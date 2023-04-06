@@ -1,32 +1,69 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import {
+  Box,
+  Button,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+} from "@chakra-ui/react";
+import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 
-const LoginSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .min(6, "Too Short!")
-    .max(12, "Too Long!")
-    .required("Required"),
-});
+import { validationSchema } from "../../utils/validationSchema";
 
 export const LoginForm = () => {
-  const onSubmit = () => alert("Log In successfull");
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
+
   return (
-    <div>
+    <Box>
       <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={LoginSchema}
+        initialValues={{
+          email: "",
+          password: "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={({ email, password }, { setSubmitting, resetForm }) => {
+          console.log(email);
+          resetForm();
+          setSubmitting(false);
+        }}
       >
-        <Form onSubmit={onSubmit}>
-          <Field type="email" name="email" placeholder="E-mail" />
-          <ErrorMessage name="email" component="div" />
-          <Field type="password" name="password" placeholder="Password" />
-          <ErrorMessage name="password" component="div" />
-          <button type="submit">Log in</button>
-          <a href="./">Register</a>
+        <Form>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={<EmailIcon color="gray.300" />}
+            />
+            <Input as={Field} name="email" placeholder="E-mail" />
+          </InputGroup>
+          <ErrorMessage name="email" />
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={<LockIcon color="gray.300" />}
+            />
+            <Input
+              pr="4.5rem"
+              type={show ? "text" : "password"}
+              as={Field}
+              name="password"
+              placeholder="Password"
+            />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={handleClick}>
+                {show ? "Hide" : "Show"}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+          <ErrorMessage name="password" />
+          <Button type="submit">Log In</Button>
+          <Button as={"a"} href="./">
+            Register
+          </Button>
         </Form>
       </Formik>
-    </div>
+    </Box>
   );
 };
