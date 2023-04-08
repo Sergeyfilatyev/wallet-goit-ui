@@ -1,0 +1,1 @@
+export { SecondaryLogo } from "./SecondaryLogo";
