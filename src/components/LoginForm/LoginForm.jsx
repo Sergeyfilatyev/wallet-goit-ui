@@ -21,11 +21,9 @@ export const LoginForm = () => {
 
   return (
     <Box
-      border={{ base: "none", xl: "1px solid #000000" }}
-      boxShadow={{ base: "none", xl: "0px 4px 4px rgba(0, 0, 0, 0.25);" }}
       borderRadius={{ base: "none", s: "20px" }}
       bgColor="#FFFFFF"
-      w={{ base: "100%", s: "480px", m: "533px" }}
+      w={{ base: "100vh", s: "480px", m: "533px" }}
       h={{ base: "100%", s: "468px" }}
       overflow="hidden"
       paddingTop={{ base: "107px", s: "40px" }}

@@ -17,8 +17,6 @@ import { Logo } from "../Logo";
 export const RegistrationForm = () => {
   return (
     <Box
-      border={{ base: "none", xl: "1px solid #000000" }}
-      boxShadow={{ base: "none", xl: "0px 4px 4px rgba(0, 0, 0, 0.25);" }}
       borderRadius={{ base: "none", s: "20px" }}
       bgColor="#FFFFFF"
       w={{ base: "100%", s: "480px", m: "533px" }}
