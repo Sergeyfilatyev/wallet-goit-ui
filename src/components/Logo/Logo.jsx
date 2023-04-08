@@ -8,13 +8,13 @@ export const Logo = () => {
         <Image
           src={logo}
           alt="Logo"
-          boxSize={{ base: "30px", s: "40px" }}
-          marginRight={{ base: "16px", s: "20px" }}
+          boxSize={{ xs: "30px", s: "40px" }}
+          marginRight={{ xs: "16px", s: "20px" }}
         />
         <Heading
           fontFamily="Poppins"
           fontWeight="700"
-          fontSize={{ base: "17px", s: "30px" }}
+          fontSize={{ xs: "22px", s: "30px" }}
           lineHeight="1.5"
           as="h1"
         >
