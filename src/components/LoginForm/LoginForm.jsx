@@ -46,18 +46,29 @@ export const LoginForm = () => {
         }}
       >
         <Form>
-          <Box pt="60px">
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            gap="20px"
+            mt="60px"
+          >
             <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
                 children={<EmailIcon color="#E0E0E0" h="16px" w="20px" />}
               />
               <Input
-                variant="flushed"
                 as={Field}
+                variant="flushed"
+                focusBorderColor="none"
+                w={{ base: "280px", s: "408px" }}
                 name="email"
                 placeholder="E-mail"
-                _placeholder={{ color: "#BDBDBD", fontSize: "18px" }}
+                _placeholder={{
+                  color: "#BDBDBD",
+                  fontSize: "18px",
+                }}
               />
             </InputGroup>
             <ErrorMessage name="email" />
@@ -68,19 +79,34 @@ export const LoginForm = () => {
               />
               <Input
                 variant="flushed"
-                pr="4.5rem"
+                focusBorderColor="none"
+                w={{ base: "280px", s: "408px" }}
                 type={show ? "text" : "password"}
                 as={Field}
                 name="password"
                 placeholder="Password"
                 _placeholder={{ color: "#BDBDBD", fontSize: "18px" }}
               />
-              <InputRightElement width="4.5rem">
-                <Button background={"transparent"} onClick={handleClick}>
+              <InputRightElement>
+                <Button
+                  background="transparent"
+                  onClick={handleClick}
+                  _hover={{ background: "transparent" }}
+                >
                   {show ? (
-                    <ViewOffIcon color="#E0E0E0" h="16px" w="20px" />
+                    <ViewOffIcon
+                      color="#4A56E2"
+                      h="16px"
+                      w="20px"
+                      _hover={{ color: "#E0E0E0" }}
+                    />
                   ) : (
-                    <ViewIcon color="#E0E0E0" h="16px" w="20px" />
+                    <ViewIcon
+                      color="#E0E0E0"
+                      h="16px"
+                      w="20px"
+                      _hover={{ color: "#4A56E2" }}
+                    />
                   )}
                 </Button>
               </InputRightElement>
@@ -92,18 +118,22 @@ export const LoginForm = () => {
             flexDirection="column"
             alignItems="center"
             gap="20px"
-            mt={["40px", "42px"]}
+            mt={{ base: "40px", s: "42px" }}
           >
-            <Button type="submit" variant="greenButton" w={["280px", "300px"]}>
+            <Button
+              type="submit"
+              variant="greenButton"
+              w={{ base: "280px", s: "300px" }}
+            >
               Log In
             </Button>
             <Button
               as={"a"}
               href="/register"
               variant="whiteButton"
-              w={["280px", "300px"]}
+              w={{ base: "280px", s: "300px" }}
             >
-              Registers
+              Register
             </Button>
           </Box>
         </Form>

@@ -1,7 +1,6 @@
 import { defineStyle, defineStyleConfig } from "@chakra-ui/react";
 
 const baseStyle = defineStyle({
-  h: "50px",
   borderRadius: "20px",
   fontFamily: "Circe",
   fontWeight: "400",
@@ -9,6 +8,7 @@ const baseStyle = defineStyle({
 });
 
 const greenButton = defineStyle({
+  h: "50px",
   border: "none",
   bgColor: "#24CCA7",
   color: "#FFFFFF",
@@ -18,6 +18,7 @@ const greenButton = defineStyle({
 });
 
 const whiteButton = defineStyle({
+  h: "50px",
   border: "1px solid #4A56E2;",
   bgColor: "#FFFFFF",
   color: "#4A56E2",
