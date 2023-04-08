@@ -8,7 +8,7 @@ import registerPicture from "../assets/images/register-picture.svg";
 import purpleEllips from "../assets/images/purple-ellips-background.png";
 import orangeEllips from "../assets/images/orange-ellips-background.png";
 
-const RegiostrationPage = () => {
+const RegistrationPage = () => {
   return (
     <>
       <Media
@@ -18,20 +18,21 @@ const RegiostrationPage = () => {
       >
         {(matches) => (
           <Box
-            background="#E7EAF2"
-            backgroundImage={purpleEllips}
-            backgroundRepeat="no-repeat"
-            backgroundPosition="bottom left"
-            backgroundSize={{ m: "75%", xl: "45%" }}
+            background={{ xs: "#FFF", s: "#E7EAF2" }}
+            backgroundImage={{ s: purpleEllips }}
+            backgroundRepeat={{ s: "no-repeat" }}
+            backgroundPosition={{ s: "bottom left" }}
+            backgroundSize={{ s: "75%", xl: "45%" }}
+            alignItems="center"
           >
             <Flex
-              backgroundImage={orangeEllips}
-              backgroundRepeat="no-repeat"
-              backgroundPosition={{ m: "top right -150px", xl: "top right" }}
-              backgroundSize={{ s: "65%", xl: "40%" }}
-              py={{ s: "60px", xl: "0" }}
+              backgroundImage={{ s: orangeEllips }}
+              backgroundRepeat={{ s: "no-repeat" }}
+              backgroundPosition={{ s: "top right" }}
+              backgroundSize={{ xs: "65%", xl: "40%" }}
+              py={{ m: "60px", xl: "0" }}
               h="100vh"
-              justifyContent={{ s: "center", m: "start", xl: "space-between" }}
+              justifyContent={{ xs: "center", m: "start", xl: "space-between" }}
               alignItems="center"
               flexDirection={{ m: "column", xl: "row" }}
             >
@@ -71,4 +72,4 @@ const RegiostrationPage = () => {
   );
 };
 
-export default RegiostrationPage;
+export default RegistrationPage;
