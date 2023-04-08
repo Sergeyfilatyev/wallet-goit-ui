@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
   Box,
   Button,
+  Flex,
   Input,
   InputGroup,
   InputLeftElement,
@@ -12,6 +13,7 @@ import {
 import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 import { validationSchema } from "../../utils/validationSchema";
+import { Logo } from "../Logo";
 
 export const LoginForm = () => {
   const [show, setShow] = useState(false);
@@ -19,19 +21,20 @@ export const LoginForm = () => {
 
   return (
     <Box
-      border={["none", "1px solid #000000"]}
-      borderRadius={["none", "20px"]}
+      border={{ base: "none", xl: "1px solid #000000" }}
+      boxShadow={{ base: "none", xl: "0px 4px 4px rgba(0, 0, 0, 0.25);" }}
+      borderRadius={{ base: "none", s: "20px" }}
       bgColor="#FFFFFF"
-      minW="320px"
-      maxW="533px"
-      h="100%"
+      w={{ base: "100%", s: "480px", m: "533px" }}
+      h={{ base: "100%", s: "468px" }}
       overflow="hidden"
-      paddingTop={["107px", "40px"]}
-      paddingBottom={["107px", "62px"]}
-      px={["20px", "61.5px"]}
+      paddingTop={{ base: "107px", s: "40px" }}
+      paddingBottom={{ base: "107px", s: "62px" }}
+      px={{ base: "20px", s: "61.5px" }}
     >
-      <Box></Box>
-
+      <Flex justifyContent="center">
+        <Logo />
+      </Flex>
       <Formik
         initialValues={{
           email: "",
