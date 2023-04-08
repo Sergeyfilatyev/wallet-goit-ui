@@ -2,6 +2,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import {
   Box,
   Button,
+  Flex,
   Input,
   InputGroup,
   InputLeftElement,
@@ -11,22 +12,25 @@ import {
 import { EmailIcon, LockIcon, UnlockIcon, StarIcon } from "@chakra-ui/icons";
 
 import { validationSchema } from "../../utils/validationSchema";
+import { Logo } from "../Logo";
 
 export const RegistrationForm = () => {
   return (
     <Box
-      border={["none", "1px solid #000000"]}
-      borderRadius={["none", "20px"]}
+      border={{ base: "none", xl: "1px solid #000000" }}
+      boxShadow={{ base: "none", xl: "0px 4px 4px rgba(0, 0, 0, 0.25);" }}
+      borderRadius={{ base: "none", s: "20px" }}
       bgColor="#FFFFFF"
-      minW="320px"
-      maxW="533px"
+      w={{ base: "100%", s: "480px", m: "533px" }}
       h="100%"
       overflow="hidden"
-      paddingTop={["107px", "40px"]}
-      paddingBottom={["107px", "62px"]}
-      px={["20px", "61.5px"]}
+      paddingTop={{ base: "107px", s: "40px" }}
+      paddingBottom={{ base: "107px", s: "62px" }}
+      px={{ base: "20px", s: "61.5px" }}
     >
-      <Box></Box>
+      <Flex justifyContent="center">
+        <Logo />
+      </Flex>
       <Formik
         initialValues={{
           email: "",
@@ -53,12 +57,14 @@ export const RegistrationForm = () => {
             <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<EmailIcon color="gray.300" />}
+                children={<EmailIcon color="#E0E0E0" h="16px" w="20px" />}
               />
               <Input
+                variant="flushed"
                 as={Field}
                 name="email"
                 placeholder="E-mail"
+                _placeholder={{ color: "#BDBDBD", fontSize: "18px" }}
                 autoComplete="new-email"
               />
             </InputGroup>
@@ -66,13 +72,16 @@ export const RegistrationForm = () => {
             <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<UnlockIcon color="gray.300" />}
+                children={<UnlockIcon color="#E0E0E0" h="16px" w="21px" />}
               />
+
               <Input
+                variant="flushed"
                 as={Field}
                 type="password"
                 name="password"
                 placeholder="Password"
+                _placeholder={{ color: "#BDBDBD", fontSize: "18px" }}
                 autoComplete="new-password"
               />
             </InputGroup>
@@ -80,13 +89,19 @@ export const RegistrationForm = () => {
             <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<LockIcon color="gray.300" />}
+                children={<LockIcon color="#E0E0E0" h="16px" w="21px" />}
               />
+
               <Input
+                variant="flushed"
                 as={Field}
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm password"
+                _placeholder={{
+                  color: "#BDBDBD",
+                  fontSize: "18px",
+                }}
                 autoComplete="new-password"
               />
             </InputGroup>
@@ -94,12 +109,15 @@ export const RegistrationForm = () => {
             <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<StarIcon color="gray.300" />}
+                children={<StarIcon color="#E0E0E0" h="16px" w="21px" />}
               />
+              s
               <Input
+                variant="flushed"
                 as={Field}
                 name="firstName"
                 placeholder="First name"
+                _placeholder={{ color: "#BDBDBD", fontSize: "18px" }}
                 autoComplete="new-name"
               />
             </InputGroup>
