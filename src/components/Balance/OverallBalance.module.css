@@ -1,6 +1,7 @@
 .totalBalance {
   width: 395px;
   height: 80px;
+  padding: 8px 40px;
   background: #ffffff;
   border-radius: 30px;
 }
@@ -16,6 +17,7 @@
   .totalBalance {
     width: 280px;
     height: 80px;
+    padding: 8px 32px;
   }
 }
 
@@ -25,6 +27,8 @@
   font-weight: 400;
   font-size: 30px;
   line-height: 45px;
+
+  color: #000000;
 }
 
 .totalBalanceTitle {
