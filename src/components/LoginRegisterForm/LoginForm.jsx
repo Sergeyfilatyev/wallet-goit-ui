@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 
 import { validationSchema } from "../../utils/validationSchema";
 import { Logo } from "../Logo";
