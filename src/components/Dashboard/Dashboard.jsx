@@ -4,11 +4,8 @@ import { Flex, Box } from "@chakra-ui/react";
 import { Navigation } from "../Navigation/Navigation";
 import { Balance } from "../Balance/Balance";
 import { Currency } from "../Currency";
-<<<<<<< Updated upstream
-=======
-import { ModalAddTransaction } from "../ModalTransaction";
->>>>>>> Stashed changes
 
+import { ModalAddTransaction } from "../ModalTransaction";
 import { PageContainer } from "../PageContainer";
 
 import { DashboardBox } from "./DashboardStyled";
@@ -22,6 +19,7 @@ export const Dashboard = () => {
             <Navigation />
             <Balance />
             <Currency />
+            <ModalAddTransaction />
           </Box>
           <Outlet />
         </Flex>

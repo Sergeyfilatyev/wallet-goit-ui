@@ -42,7 +42,7 @@ export const LoginForm = () => {
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
             <LoginRegisterFormSubmitButton name="Log In" />
-            <LoginRegisterFormRedirectButton name="Register" />
+            <LoginRegisterFormRedirectButton name="Register" to="register" />
           </LoginRegisterFormButtonsBox>
         </Form>
       </Formik>
