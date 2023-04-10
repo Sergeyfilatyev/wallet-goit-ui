@@ -24,7 +24,7 @@ const GoogleAuthPage = () => {
             Выберите другой способ входа для регистрации
           </Heading>
           <Box mt="4">
-            <Button as={Link} to="/register" colorScheme="blue">
+            <Button as={Link} to="/" colorScheme="blue">
               Регистрация
             </Button>
           </Box>
