@@ -4,8 +4,8 @@ import { Flex, Box } from "@chakra-ui/react";
 import { Navigation } from "../Navigation/Navigation";
 import { Balance } from "../Balance/Balance";
 import { Currency } from "../Currency";
-import { ModalAddTransaction } from "../ModalAddTransaction";
 
+import { ModalAddTransaction } from "../ModalTransaction";
 import { PageContainer } from "../PageContainer";
 
 import { DashboardBox } from "./DashboardStyled";
