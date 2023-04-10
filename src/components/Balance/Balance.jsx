@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import styles from "./OverallBalance.module.css";
+import { BalanceBox, BalanceBoxTitle, BalanceBoxNumber } from "./BalanceStyled";
 
-const OverallBalance = () => {
+export const Balance = () => {
   const [balance, setBalance] = useState(0);
   const authToken = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const response = await axios.get("/api/wallet/balance", {
+        const response = await axios.get("/api/users/current", {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -24,11 +24,9 @@ const OverallBalance = () => {
   }, [authToken]);
 
   return (
-    <div className={styles.totalBalance}>
-      <p className={styles.totalBalanceTitle}>Your balance</p>
-      <p className={styles.totalBalanceNumber}>{balance}</p>
-    </div>
+    <BalanceBox>
+      <BalanceBoxTitle />
+      <BalanceBoxNumber value={balance} />
+    </BalanceBox>
   );
 };
-
-export default OverallBalance;

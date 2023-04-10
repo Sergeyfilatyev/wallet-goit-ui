@@ -28,6 +28,7 @@ const DashboardPage = () => {
           >
             <PageContainer>
               <Flex
+                flexDirection={"column"}
                 background={{ xl: "rgba(255, 255, 255, 0.4)" }}
                 backdropFilter={{ xl: "blur(25px)" }}
                 as="div"
