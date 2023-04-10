@@ -1,9 +1,19 @@
-import { Box, Container, Flex, Image } from "@chakra-ui/react";
+import { PageContainer } from "../PageContainer/PageContainer";
+
+import { Logo } from "../Logo";
+import { User } from "../User";
+
+import { HeaderBox, HeaderContentBox } from "./HeaderStyled";
 
 export const Header = () => {
   return (
-    <Box as="header">
-      <Container></Container>
-    </Box>
+    <HeaderBox>
+      <PageContainer>
+        <HeaderContentBox>
+          <Logo />
+          <User name={"Name"} />
+        </HeaderContentBox>
+      </PageContainer>
+    </HeaderBox>
   );
 };
