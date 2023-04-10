@@ -1,7 +1,7 @@
 import { Box, Image, Flex } from "@chakra-ui/react";
 import Media from "react-media";
 
-import { RegistrationForm } from "../components/RegistrationForm";
+import { RegisterForm } from "../components/LoginRegisterForm";
 import { SecondaryLogo } from "../components/SecondaryLogo";
 
 import registerPicture from "../assets/images/register-picture.svg";
@@ -62,7 +62,7 @@ const RegistrationPage = () => {
                 px={{ m: "100px" }}
                 h={{ xl: "100vh" }}
               >
-                <RegistrationForm />
+                <RegisterForm />
               </Flex>
             </Flex>
           </Box>

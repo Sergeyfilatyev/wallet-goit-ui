@@ -1,7 +1,7 @@
 import { Box, Image, Flex } from "@chakra-ui/react";
 import Media from "react-media";
 
-import { LoginForm } from "../components/LoginForm";
+import { LoginForm } from "../components/LoginRegisterForm";
 import { SecondaryLogo } from "../components/SecondaryLogo";
 
 import loginPicture from "../assets/images/login-picture.svg";
