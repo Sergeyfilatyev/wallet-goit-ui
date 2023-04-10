@@ -12,6 +12,8 @@ import {
 
 import { Field } from "formik";
 
+import { Link } from "react-router-dom";
+
 import { ViewIcon, ViewOffIcon, Icon } from "@chakra-ui/icons";
 
 export const LoginRegisterFormBox = ({ children }) => {
@@ -76,11 +78,11 @@ export const LoginRegisterFormSubmitButton = ({ name }) => {
   );
 };
 
-export const LoginRegisterFormRedirectButton = ({ name }) => {
+export const LoginRegisterFormRedirectButton = ({ name, to }) => {
   return (
     <Button
-      as={"a"}
-      href="/"
+      as={Link}
+      to={to}
       variant="whiteButton"
       w={{ base: "280px", s: "300px" }}
     >
