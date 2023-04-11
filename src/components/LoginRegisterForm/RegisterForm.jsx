@@ -37,10 +37,16 @@ export const RegisterForm = () => {
           name: "",
         }}
         validationSchema={validationSchemaRegister}
-        onSubmit={(
-          { email, password, confirmPassword, name },
-          { setSubmitting, resetForm }
-        ) => {
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          dispatch(register(values)).then(({ error }) => {
+            const { password, confirmPassword } = values;
+
+            if (password !== confirmPassword) {
+              alert("!");
+              return;
+            }
+            console.log(values);
+          });
           resetForm();
           setSubmitting(false);
         }}
