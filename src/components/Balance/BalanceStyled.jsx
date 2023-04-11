@@ -3,14 +3,11 @@ import { Box } from "@chakra-ui/react";
 export const BalanceBox = ({ children }) => {
   return (
     <Box
-      width={{ xs: "280px", m: "336px", xl: "395px" }}
-      height={{ xs: "80px", m: "80px", xl: "80px" }}
-      backgroundColor="#ffffff"
+      backgroundColor="#FFF"
+      mb={{ xs: "32px", m: "0px", xl: "32px" }}
+      width={{ xs: "280px", m: "335px", xl: "390px" }}
       borderRadius="30px"
-      backgroundRepeat="no-repeat"
-      backgroundPosition="bottom"
-      backgroundSize="100%"
-      as="div"
+      height="80px"
     >
       {children}
     </Box>
