@@ -37,6 +37,12 @@ export const RegisterForm = () => {
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           dispatch(register(values)).then(({ error }) => {
+            const { password, confirmPassword } = values;
+
+            if (password !== confirmPassword) {
+              alert("!");
+              return;
+            }
             console.log(values);
           });
           resetForm();
