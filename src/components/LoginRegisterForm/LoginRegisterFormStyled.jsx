@@ -234,7 +234,7 @@ export const LoginRegisterFormNameInput = ({ placeholder }) => {
       <Input
         as={Field}
         w={{ base: "280px", s: "408px" }}
-        name="firstName"
+        name="name"
         placeholder={placeholder}
         _placeholder={{
           color: "#BDBDBD",
