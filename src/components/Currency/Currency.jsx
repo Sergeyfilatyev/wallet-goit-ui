@@ -53,19 +53,23 @@ export const Currency = () => {
       {!rates && <CurrencySpinner />}
       {rates && (
         <CurrencyTableBody>
-          {rates.map((item) => (
-            <CurrencyTableBodyLine
-              key={item.currencyCodeA + item.currencyCodeB}
-            >
-              <CurrencyTableBodyLineValue
-                value={`${currencyCodesConverter(
-                  item.currencyCodeA
-                )}/${currencyCodesConverter(item.currencyCodeB)}`}
-              />
-              <CurrencyTableBodyLineValue value={item.rateBuy.toFixed(2)} />
-              <CurrencyTableBodyLineValue value={item.rateSell.toFixed(2)} />
-            </CurrencyTableBodyLine>
-          ))}
+          {rates
+            .sort((a, b) => {
+              return a - b;
+            })
+            .map((item) => (
+              <CurrencyTableBodyLine
+                key={item.currencyCodeA + item.currencyCodeB}
+              >
+                <CurrencyTableBodyLineValue
+                  value={`${currencyCodesConverter(
+                    item.currencyCodeA
+                  )}/${currencyCodesConverter(item.currencyCodeB)}`}
+                />
+                <CurrencyTableBodyLineValue value={item.rateBuy.toFixed(2)} />
+                <CurrencyTableBodyLineValue value={item.rateSell.toFixed(2)} />
+              </CurrencyTableBodyLine>
+            ))}
         </CurrencyTableBody>
       )}
     </CurrencyBox>

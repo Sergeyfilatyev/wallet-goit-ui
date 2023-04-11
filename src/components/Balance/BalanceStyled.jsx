@@ -14,16 +14,15 @@ export const BalanceBox = ({ children }) => {
   );
 };
 
-
 export const BalanceBoxTitle = () => {
   return (
     <Box
-      font-family="Circe"
-      font-style="normal"
-      font-weight="400px"
-      font-size="12px"
-      line-height="18px"
-      text-transform="uppercase"
+      fontFamily="Circe"
+      fontStyle="normal"
+      fontWeight="400px"
+      fontSize="12px"
+      lineHeight="18px"
+      textTransform="uppercase"
       color="#a6a6a6"
       as="p"
     >
@@ -35,11 +34,11 @@ export const BalanceBoxTitle = () => {
 export const BalanceBoxNumber = ({ value }) => {
   return (
     <Box
-      font-family="Poppins"
-      font-style="normal"
-      font-weight="400px"
-      font-size="30px"
-      line-height="45px"
+      fontFamily="Poppins"
+      fontStyle="normal"
+      fontWeight="400px"
+      fontSize="30px"
+      lineHeight="45px"
       color="#000000"
       as="p"
     >
@@ -47,4 +46,3 @@ export const BalanceBoxNumber = ({ value }) => {
     </Box>
   );
 };
-

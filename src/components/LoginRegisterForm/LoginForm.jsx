@@ -1,7 +1,7 @@
 import React from "react";
-import { Formik, Form } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 
-import { validationSchema } from "../../utils/validationSchema";
+import { validationSchemaLogin } from "../../utils/validationSchema";
 import { Logo } from "../Logo";
 
 import {
@@ -26,9 +26,8 @@ export const LoginForm = () => {
           email: "",
           password: "",
         }}
-        validationSchema={validationSchema}
+        validationSchema={validationSchemaLogin}
         onSubmit={({ email, password }, { setSubmitting, resetForm }) => {
-          console.log(email);
           resetForm();
           setSubmitting(false);
         }}
@@ -36,9 +35,9 @@ export const LoginForm = () => {
         <Form>
           <LoginRegisterFormInputsBox>
             <LoginRegisterFormEmailInput placeholder="E-mail" />
-            {/* <ErrorMessage name="email" /> */}
+            <ErrorMessage name="email" />
             <LoginRegisterFormPasswordInput placeholder="Password" />
-            {/* <ErrorMessage name="password" /> */}
+            <ErrorMessage name="password" />
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
             <LoginRegisterFormSubmitButton name="Log In" />
