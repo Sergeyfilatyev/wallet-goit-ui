@@ -1,20 +1,14 @@
 import { Outlet } from "react-router-dom";
 import { Flex, Box } from "@chakra-ui/react";
 import Media from "react-media";
-
-import { Component } from "react";
-
-import Switch from "react-switch";
-
 import { Navigation } from "../Navigation/Navigation";
 import { Balance } from "../Balance/Balance";
 import { Currency } from "../Currency";
-
 import { ModalAddTransaction } from "../ModalTransaction";
 import { PageContainer } from "../PageContainer";
-
 import { DashboardBox, DashboardDivider } from "./DashboardStyled";
-
+import { Switch } from "@chakra-ui/react";
+const { SwitchExample } = Switch;
 export const Dashboard = () => {
   return (
     <>
