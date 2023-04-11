@@ -38,3 +38,16 @@ export const DashboardBox = ({ children }) => {
     </Box>
   );
 };
+
+export const DashboardDivider = () => {
+  return (
+    <Box
+      border="1px solid #E7E5F2"
+      boxShadow="-1px 0px 0px rgba(0, 0, 0, 0.05), 1px 0px 0px rgba(255, 255, 255, 0.6);"
+      h="100vh"
+      mx="70px"
+      mt="-40px"
+      as="div"
+    ></Box>
+  );
+};
