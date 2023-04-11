@@ -13,7 +13,7 @@ export const ModalEditTransaction = () => {
       <ModalWindow
         modalHeader="Add transaction"
         modalFunction={editTransaction}
-        modalFunctionName="Add"
+        modalFunctionName="Edit"
         modalCancelName="Cancel"
         isOpen={isOpen}
         onClose={onClose}
@@ -21,6 +21,7 @@ export const ModalEditTransaction = () => {
         <Box>
           <Switch variant="switchTransaction" />
           <Input placeholder="Comment" />
+
           <Box
             display="flex"
             flexDirection="column"
