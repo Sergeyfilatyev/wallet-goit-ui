@@ -21,6 +21,7 @@ import {
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+
   return (
     <LoginRegisterFormBox>
       <LoginRegisterFormLogoBox>
@@ -34,20 +35,10 @@ export const RegisterForm = () => {
           firstName: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={(
-          { email, password, confirmPassword, firstName },
-          { setSubmitting, resetForm }
-        ) => {
-          dispatch(
-            register({ email, password, confirmPassword, firstName }).then(
-              ({ error }) => {
-                if (error) {
-                  return;
-                }
-              }
-            )
-          );
-          console.log(email);
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          dispatch(register(values)).then(({ error }) => {
+            console.log(values);
+          });
           resetForm();
           setSubmitting(false);
         }}

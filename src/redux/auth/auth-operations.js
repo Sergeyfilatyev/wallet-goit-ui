@@ -1,6 +1,10 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+// const API_URL = process.env.REACT_APP_API_URL;
+
+axios.defaults.baseURL = "https://wallet-api-goit.onrender.com";
+
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -14,9 +18,10 @@ export const register = createAsyncThunk(
   "auth/register",
   async (userData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post("/api/users/register", userData);
-      token.set(data.token);
-      return data;
+      const res = await axios.post("/api/users/register", userData);
+
+      // token.set(res.token);
+      return res;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -27,8 +32,10 @@ export const login = createAsyncThunk(
   "auth/login",
   async (userData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post("/api/users/login", userData);
-      token.set(data.token);
+      const { data, token } = await axios.post("/api/users/login", userData);
+
+      token.set(token);
+      console.log(data, token);
       return data;
     } catch (error) {
       return rejectWithValue(error);
