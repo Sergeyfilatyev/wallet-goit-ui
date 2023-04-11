@@ -8,6 +8,8 @@ export const BalanceBox = ({ children }) => {
       width={{ xs: "280px", m: "335px", xl: "390px" }}
       borderRadius="30px"
       height="80px"
+      pl={12}
+      pt={3}
     >
       {children}
     </Box>
