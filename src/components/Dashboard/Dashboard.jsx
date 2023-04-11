@@ -2,6 +2,10 @@ import { Outlet } from "react-router-dom";
 import { Flex, Box } from "@chakra-ui/react";
 import Media from "react-media";
 
+import { Component } from "react";
+
+import Switch from "react-switch";
+
 import { Navigation } from "../Navigation/Navigation";
 import { Balance } from "../Balance/Balance";
 import { Currency } from "../Currency";
@@ -28,6 +32,7 @@ export const Dashboard = () => {
                   <Balance />
                   <Currency />
                   <ModalAddTransaction />
+                  <SwitchExample />
                 </Box>
                 {matches.xl && <DashboardDivider />}
                 <Outlet />
