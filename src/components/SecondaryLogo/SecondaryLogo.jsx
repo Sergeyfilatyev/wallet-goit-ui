@@ -2,7 +2,7 @@ import { Box, Heading, Flex } from "@chakra-ui/react";
 
 export const SecondaryLogo = () => {
   return (
-    <Box width="187px">
+    <Box width="188px">
       <Flex justifyContent="center" alignItems="center">
         <Heading
           fontFamily="Poppins"
@@ -11,7 +11,7 @@ export const SecondaryLogo = () => {
           lineHeight="1.5"
           as="h2"
         >
-          Finanse App
+          Finance App
         </Heading>
       </Flex>
     </Box>
