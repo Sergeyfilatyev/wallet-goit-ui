@@ -1,9 +1,21 @@
-import { Box, Button, Input, Switch, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, useDisclosure } from "@chakra-ui/react";
+
+import "react-datetime/css/react-datetime.css";
+
+import { useState } from "react";
 
 import { ModalWindow } from "../ModalWindow";
+import {
+  ModalAmount,
+  ModalComment,
+  ModalDatatime,
+  ModalSelectCategory,
+} from "./ModalTransactionStyled";
+import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 
 export const ModalAddTransaction = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isSwitchExpense, setIsSwitchExpense] = useState(false);
 
   const addTransaction = () => {};
 
@@ -19,14 +31,14 @@ export const ModalAddTransaction = () => {
         onClose={onClose}
       >
         <Box>
-          <Switch variant="switchTransaction" />
-          <Input placeholder="Comment" />
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            gap="20px"
-          ></Box>
+          <ModalSwitch
+            isSwitchExpense={isSwitchExpense}
+            setIsSwitchExpense={setIsSwitchExpense}
+          />
+          {isSwitchExpense && <ModalSelectCategory />}
+          <ModalAmount />
+          <ModalDatatime />
+          <ModalComment />
         </Box>
       </ModalWindow>
     </>
