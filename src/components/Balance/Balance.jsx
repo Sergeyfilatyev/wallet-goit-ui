@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -29,4 +30,10 @@ export const Balance = () => {
       <BalanceBoxNumber value={balance} />
     </BalanceBox>
   );
+
+
+
+export const Balance = () => {
+  return <BalanceBox></BalanceBox>;
+
 };

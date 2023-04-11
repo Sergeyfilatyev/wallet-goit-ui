@@ -2,6 +2,7 @@
 // import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import GoogleAuthPage from "../pages/GoogleAuthPage";
 // import PublicRoute from "../HOCs/PublicRoute";
 // import PrivateRoute from "../HOCs/PrivateRoute";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="home" element={<HomePageDesktop />} />
           <Route path="statistics" element={<StatisticsPageDesktop />} />
         </Route>
+        <Route path="/google-auth" element={<GoogleAuthPage />} />
       </Routes>
     </Suspense>
   );

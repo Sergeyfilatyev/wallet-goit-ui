@@ -1,18 +1,12 @@
-import { Outlet } from "react-router-dom";
-
-import { PageContainer } from "../components/PageContainer/PageContainer";
 import { Header } from "../components/Header";
-import { Currency } from "../components/Currency";
-import { Flex, Box } from "@chakra-ui/react";
-
-import purpleEllips from "../assets/images/purple-ellips-background.png";
-import orangeEllips from "../assets/images/orange-ellips-background.png";
+import { Dashboard } from "../components/Dashboard/Dashboard";
 
 const DashboardPage = () => {
   return (
     <>
       <Header />
       <main>
+
         <Box
           background={{ xs: "#FFF", s: "#E7EAF2" }}
           backgroundImage={{ s: purpleEllips }}
@@ -40,6 +34,9 @@ const DashboardPage = () => {
             </PageContainer>
           </Box>
         </Box>
+
+        <Dashboard />
+
       </main>
     </>
   );

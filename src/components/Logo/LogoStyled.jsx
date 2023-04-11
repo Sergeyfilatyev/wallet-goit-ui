@@ -4,9 +4,9 @@ import logo from "../../assets/images/logo.svg";
 export const LogoBox = ({ children }) => {
   return (
     <Flex
-      justifyContent="center"
+      justifyContent="start"
       alignItems="center"
-      width={{ base: "120px", s: "180px" }}
+      width={{ xs: "120px", s: "180px" }}
       as="div"
     >
       {children}

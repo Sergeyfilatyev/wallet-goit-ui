@@ -14,6 +14,7 @@ export const BalanceBox = ({ children }) => {
   );
 };
 
+
 export const BalanceBoxTitle = () => {
   return (
     <Box
@@ -46,3 +47,4 @@ export const BalanceBoxNumber = ({ value }) => {
     </Box>
   );
 };
+

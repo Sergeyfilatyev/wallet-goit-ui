@@ -1,6 +1,7 @@
 import { extendTheme } from "@chakra-ui/react";
 import { buttonStyle } from "./buttonStyle";
-import { inputStyle } from "./inputStyle";
+import { inputLoginRegisterStyle } from "./inputLoginRegisterStyled";
+import { modalStyle } from "./modalStyle";
 
 export const chakraTheme = extendTheme({
   breakpoints: {
@@ -10,7 +11,11 @@ export const chakraTheme = extendTheme({
     l: "960px",
     xl: "1280px",
   },
-  components: { Button: buttonStyle, Input: inputStyle },
+  components: {
+    Button: buttonStyle,
+    Input: inputLoginRegisterStyle,
+    Modal: modalStyle,
+  },
   styles: {
     global: {
       body: {
