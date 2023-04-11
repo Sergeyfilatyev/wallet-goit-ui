@@ -43,6 +43,7 @@ export const NavigationHome = ({ linkName }) => {
     >
       {!active && (
         <>
+          <NavigationHomeIcon fill="#6E78E8" />
           <Link
             to="home"
             as={NavLink}
@@ -50,13 +51,16 @@ export const NavigationHome = ({ linkName }) => {
             fontSize="18px"
             lineHeight="1.5"
           >
-            <NavigationHomeIcon fill="#6E78E8" />
             {linkName}
           </Link>
         </>
       )}
       {active && (
         <>
+          <NavigationHomeIcon
+            fill="#4A56E2"
+            filter="drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))"
+          />
           <Link
             to="home"
             as={NavLink}
@@ -66,10 +70,6 @@ export const NavigationHome = ({ linkName }) => {
             fontWeight="700"
             _hover={{ textDecoration: "none" }}
           >
-            <NavigationHomeIcon
-              fill="#4A56E2"
-              filter="drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))"
-            />
             {linkName}
           </Link>
         </>
@@ -113,6 +113,7 @@ export const NavigationStatistics = ({ linkName }) => {
     >
       {!active && (
         <>
+          <NavigationStatisticsIcon fill="#6E78E8" />
           <Link
             to="statistics"
             as={NavLink}
@@ -120,13 +121,16 @@ export const NavigationStatistics = ({ linkName }) => {
             fontSize="18px"
             lineHeight="1.5"
           >
-            <NavigationStatisticsIcon fill="#6E78E8" />
             {linkName}
           </Link>
         </>
       )}
       {active && (
         <>
+          <NavigationStatisticsIcon
+            fill="#4A56E2"
+            filter="drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))"
+          />
           <Link
             to="statistics"
             as={NavLink}
@@ -136,10 +140,6 @@ export const NavigationStatistics = ({ linkName }) => {
             fontWeight="700"
             _hover={{ textDecoration: "none" }}
           >
-            <NavigationStatisticsIcon
-              fill="#4A56E2"
-              filter="drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))"
-            />
             {linkName}
           </Link>
         </>

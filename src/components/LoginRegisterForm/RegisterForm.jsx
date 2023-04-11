@@ -1,5 +1,7 @@
 import React from "react";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/auth-operations";
 
 import { validationSchema } from "../../utils/validationSchema";
 import { Logo } from "../Logo";
@@ -18,6 +20,7 @@ import {
 } from "./LoginRegisterFormStyled";
 
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
   return (
     <LoginRegisterFormBox>
       <LoginRegisterFormLogoBox>
@@ -27,9 +30,23 @@ export const RegisterForm = () => {
         initialValues={{
           email: "",
           password: "",
+          confirmPassword: "",
+          firstName: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={({ email, password }, { setSubmitting, resetForm }) => {
+        onSubmit={(
+          { email, password, confirmPassword, firstName },
+          { setSubmitting, resetForm }
+        ) => {
+          dispatch(
+            register({ email, password, confirmPassword, firstName }).then(
+              ({ error }) => {
+                if (error) {
+                  return;
+                }
+              }
+            )
+          );
           console.log(email);
           resetForm();
           setSubmitting(false);

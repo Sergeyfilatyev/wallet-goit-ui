@@ -23,7 +23,7 @@ export const ModalWindow = ({
 }) => {
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
         <ModalContentBox>
           <ModalHeaderBox>{modalHeader}</ModalHeaderBox>

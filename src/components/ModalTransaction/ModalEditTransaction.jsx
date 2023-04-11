@@ -2,18 +2,18 @@ import { Box, Button, Input, Switch, useDisclosure } from "@chakra-ui/react";
 
 import { ModalWindow } from "../ModalWindow";
 
-export const ModalAddTransaction = () => {
+export const ModalEditTransaction = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const addTransaction = () => {};
+  const editTransaction = () => {};
 
   return (
     <>
       <Button variant="isOpenModalButton" onClick={onOpen}></Button>
       <ModalWindow
         modalHeader="Add transaction"
-        modalFunction={addTransaction}
-        modalFunctionName="Add"
+        modalFunction={editTransaction}
+        modalFunctionName="Edit"
         modalCancelName="Cancel"
         isOpen={isOpen}
         onClose={onClose}
@@ -21,6 +21,7 @@ export const ModalAddTransaction = () => {
         <Box>
           <Switch variant="switchTransaction" />
           <Input placeholder="Comment" />
+
           <Box
             display="flex"
             flexDirection="column"
