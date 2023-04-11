@@ -1,9 +1,10 @@
 import React from "react";
+
 import { Formik, Form } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/auth-operations";
 
-import { validationSchema } from "../../utils/validationSchema";
+import { validationSchemaLogin } from "../../utils/validationSchema";
 import { Logo } from "../Logo";
 
 import {
@@ -29,7 +30,8 @@ export const LoginForm = () => {
           email: "",
           password: "",
         }}
-        validationSchema={validationSchema}
+        
+        validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           dispatch(
             login(values).then(({ error }) => {
@@ -43,9 +45,9 @@ export const LoginForm = () => {
         <Form>
           <LoginRegisterFormInputsBox>
             <LoginRegisterFormEmailInput placeholder="E-mail" />
-            {/* <ErrorMessage name="email" /> */}
+            <ErrorMessage name="email" />
             <LoginRegisterFormPasswordInput placeholder="Password" />
-            {/* <ErrorMessage name="password" /> */}
+            <ErrorMessage name="password" />
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
             <LoginRegisterFormSubmitButton name="Log In" />

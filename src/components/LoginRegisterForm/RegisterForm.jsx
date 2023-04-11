@@ -3,7 +3,9 @@ import { Formik, Form } from "formik";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/auth-operations";
 
-import { validationSchema } from "../../utils/validationSchema";
+import { ErrorMessage } from "formik";
+
+import { validationSchemaRegister } from "../../utils/validationSchema";
 import { Logo } from "../Logo";
 
 import {
@@ -32,9 +34,9 @@ export const RegisterForm = () => {
           email: "",
           password: "",
           confirmPassword: "",
-          firstName: "",
+          name: "",
         }}
-        validationSchema={validationSchema}
+        validationSchema={validationSchemaRegister}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           dispatch(register(values)).then(({ error }) => {
             const { password, confirmPassword } = values;
@@ -52,13 +54,13 @@ export const RegisterForm = () => {
         <Form>
           <LoginRegisterFormInputsBox>
             <LoginRegisterFormEmailInput placeholder="E-mail" />
-            {/* <ErrorMessage name="email" /> */}
+            <ErrorMessage name="email" />
             <LoginRegisterFormPasswordInput placeholder="Password" />
-            {/* <ErrorMessage name="password" /> */}
+            <ErrorMessage name="password" />
             <LoginRegisterFormConfirmPasswordInput placeholder="Confirm Password" />
-            {/* <ErrorMessage name="confirmPassword" /> */}
+            <ErrorMessage name="confirmPassword" />
             <LoginRegisterFormNameInput placeholder="First Name" />
-            {/* <ErrorMessage name="firstName" /> */}
+            <ErrorMessage name="firstName" />
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
             <LoginRegisterFormSubmitButton name="Register " />

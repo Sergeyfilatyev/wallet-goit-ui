@@ -13,3 +13,36 @@ export const BalanceBox = ({ children }) => {
     </Box>
   );
 };
+
+export const BalanceBoxTitle = () => {
+  return (
+    <Box
+      fontFamily="Circe"
+      fontStyle="normal"
+      fontWeight="400px"
+      fontSize="12px"
+      lineHeight="18px"
+      textTransform="uppercase"
+      color="#a6a6a6"
+      as="p"
+    >
+      Your balance
+    </Box>
+  );
+};
+
+export const BalanceBoxNumber = ({ value }) => {
+  return (
+    <Box
+      fontFamily="Poppins"
+      fontStyle="normal"
+      fontWeight="400px"
+      fontSize="30px"
+      lineHeight="45px"
+      color="#000000"
+      as="p"
+    >
+      {value}
+    </Box>
+  );
+};
