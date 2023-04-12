@@ -1,17 +1,13 @@
-import { Button } from "@chakra-ui/react";
-
 import {
-  TransactionsTable,
-  TransactionsTh,
-  TransactionsThDate,
-  TransactionsThSum,
-  TransactionsTr,
-  TransactionsTd,
-  TransactionsTdDate,
-  TransactionsTdSum,
-  TransactionsTdDelete,
-  TransactionsLastTr,
-} from "./TableStyled";
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  SimpleGrid,
+  Text,
+  Button,
+  Heading,
+} from "@chakra-ui/react";
 
 const userTransactions = [
   {
@@ -63,7 +59,7 @@ const userTransactions = [
     updatedAt: "2023-04-09T09:00:05.907Z",
   },
   {
-    _id: "64327e9590632194c689a5c3",
+    _id: "64327e9590632194c689a5c5",
     amount: 3300,
     income: false,
     category: "car",
@@ -79,7 +75,7 @@ const userTransactions = [
     updatedAt: "2023-04-09T09:00:05.907Z",
   },
   {
-    _id: "64327d7090632194c689a5b0",
+    _id: "64327d7090632194c689a5b6",
     amount: 200,
     income: true,
     category: "car",
@@ -95,7 +91,7 @@ const userTransactions = [
     updatedAt: "2023-04-09T08:55:12.508Z",
   },
   {
-    _id: "64327e8b90632194c689a5b0",
+    _id: "64327e8b90632194c689a5bf",
     amount: 300,
     income: false,
     category: "products",
@@ -111,7 +107,7 @@ const userTransactions = [
     updatedAt: "2023-04-09T08:59:55.547Z",
   },
   {
-    _id: "64327e9590632194c689a5c2",
+    _id: "64327e9590632194c689a5c5",
     amount: 3300,
     income: false,
     category: "car",
@@ -127,7 +123,7 @@ const userTransactions = [
     updatedAt: "2023-04-09T09:00:05.907Z",
   },
   {
-    _id: "64327e9590632194c689a5c1",
+    _id: "64327e9590632194c689a5c5",
     amount: 3300,
     income: false,
     category: "car",
@@ -144,64 +140,70 @@ const userTransactions = [
   },
 ];
 
-const userTRTest = {
-  _id: "64327e9590632194c689a5c1",
-  amount: 3300,
-  income: false,
-  category: "car",
-  comment: "test",
-  date: {
-    time: 1681030445404,
-    day: 9,
-    month: 4,
-    year: 2023,
-  },
-  owner: "64327d3790632194c689a5b0",
-  createdAt: "2023-04-09T09:00:05.907Z",
-  updatedAt: "2023-04-09T09:00:05.907Z",
-};
-
-export const Table = () => {
+export const TableMobile = () => {
   return (
-    <>
-      {userTransactions.length > 0 ? (
-        <TransactionsTable>
-          <thead>
-            <tr>
-              <TransactionsThDate value="date" />
-              <TransactionsTh value="type" />
-              <TransactionsTh value="category" />
-              <TransactionsTh value="comment" />
-              <TransactionsThSum value="sum" />
-            </tr>
-          </thead>
-
-          <tbody>
-            {userTransactions.map((item) => (
-              <TransactionsTr key={item._id}>
-                <TransactionsTdDate
-                  value={`${item.date.day}.${item.date.month + 1}.${
-                    item.date.year
-                  }`}
-                />
-                <TransactionsTd value={item.income ? "+" : "-"} />
-                <TransactionsTd value={item.category} />
-                <TransactionsTd value={item.comment} />
-                <TransactionsTdSum value={item.amount} />
-                <TransactionsTd value="edit" />
-                <TransactionsTdDelete>
-                  <Button variant="greenButton">Delete</Button>
-                </TransactionsTdDelete>
-              </TransactionsTr>
-            ))}
-            <TransactionsLastTr>
-              <td></td>
-            </TransactionsLastTr>
-          </tbody>
-        </TransactionsTable>
-      ) : (
-        <p>There are no transactions yet</p>
-      )}
-    </>
+    <SimpleGrid
+      spacing={4}
+      templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+    >
+      <Card>
+        <CardBody>
+          <Text>View a summary of all your customers over the last month.</Text>
+        </CardBody>
+        <CardFooter>
+          <Button variant="greenButton">View here</Button>
+        </CardFooter>
+      </Card>
+      <Card>
+        <CardHeader>
+          <Heading size="md"> Customer dashboard</Heading>
+        </CardHeader>
+        <CardBody>
+          <Text>View a summary of all your customers over the last month.</Text>
+        </CardBody>
+        <CardFooter>
+          <Button variant="greenButton">View here</Button>
+        </CardFooter>
+      </Card>
+      <Card>
+        <CardHeader>
+          <Heading size="md"> Customer dashboard</Heading>
+        </CardHeader>
+        <CardBody>
+          <Text>View a summary of all your customers over the last month.</Text>
+        </CardBody>
+        <CardFooter>
+          <Button variant="greenButton">View here</Button>
+        </CardFooter>
+      </Card>
+    </SimpleGrid>
+    // <>
+    //   <ul>
+    //     <li>
+    //       <p>Date</p>
+    //       <p>4.09.2022</p>
+    //     </li>
+    //     <li>
+    //       <p>Type</p>
+    //       <p>-</p>
+    //     </li>
+    //     <li>
+    //       <p>Category</p>
+    //       <p>Other</p>
+    //     </li>
+    //     <li>
+    //       <p>Comment</p>
+    //       <p>gift</p>
+    //     </li>
+    //     <li>
+    //       <p>Sum</p>
+    //       <p>300</p>
+    //     </li>
+    //     <li>
+    //       <p>Delete</p>
+    //       <p>Edit</p>
+    //     </li>
+    //   </ul>
+    // </>
   );
 };

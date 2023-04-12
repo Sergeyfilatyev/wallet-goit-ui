@@ -8,6 +8,7 @@ import { Currency } from "../Currency";
 import { ModalAddTransaction } from "../ModalTransaction";
 import { PageContainer } from "../PageContainer";
 import { DashboardBox, DashboardDivider } from "./DashboardStyled";
+import { Table, TableMobile } from "../Table";
 
 export const Dashboard = () => {
   return (
@@ -25,9 +26,16 @@ export const Dashboard = () => {
                   <Navigation />
                   <Balance />
                   <Currency />
+
                   <ModalAddTransaction />
                 </Box>
+
                 {matches.xl && <DashboardDivider />}
+
+                <Box>
+                  <Table />
+                </Box>
+
                 <Outlet />
               </Flex>
             </PageContainer>
