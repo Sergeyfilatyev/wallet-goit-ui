@@ -8,8 +8,8 @@ export const BalanceBox = ({ children }) => {
       width={{ xs: "280px", m: "335px", xl: "390px" }}
       borderRadius="30px"
       height="80px"
-      pl={12}
-      pt={3}
+      pl={{ xs: "32px", m: "40px", xl: "40px" }}
+      pt="8px"
     >
       {children}
     </Box>
@@ -44,7 +44,7 @@ export const BalanceBoxNumber = ({ value }) => {
       color="#000000"
       as="p"
     >
-      {value}
+      ₴ {value}
     </Box>
   );
 };
