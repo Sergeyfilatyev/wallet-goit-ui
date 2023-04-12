@@ -54,13 +54,13 @@ export const RegisterForm = () => {
         <Form>
           <LoginRegisterFormInputsBox>
             <LoginRegisterFormEmailInput placeholder="E-mail" />
-            <ErrorMessage name="email" />
+            {/* <ErrorMessage name="email" /> */}
             <LoginRegisterFormPasswordInput placeholder="Password" />
-            <ErrorMessage name="password" />
+            {/* <ErrorMessage name="password" /> */}
             <LoginRegisterFormConfirmPasswordInput placeholder="Confirm Password" />
-            <ErrorMessage name="confirmPassword" />
+            {/* <ErrorMessage name="confirmPassword" /> */}
             <LoginRegisterFormNameInput placeholder="First Name" />
-            <ErrorMessage name="firstName" />
+            {/* <ErrorMessage name="firstName" /> */}
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
             <LoginRegisterFormSubmitButton name="Register " />

@@ -5,8 +5,8 @@ import currencyBackground from "../../assets/images/currency-background.svg";
 export const CurrencyBox = ({ children }) => {
   return (
     <Box
-      width={{ xs: "280px", m: "335px", xl: "390px" }}
-      height={{ xs: "175px", m: "180px", xl: "330px" }}
+      width={{ xs: "100%", l: "390px" }}
+      height={{ xs: "175px", m: "180px", l: "330px" }}
       backgroundColor="#4A56E2"
       borderRadius="30px"
       backgroundImage={currencyBackground}
@@ -25,9 +25,10 @@ export const CurrencyTableHead = ({ children }) => {
     <Flex
       justifyContent="center"
       alignItems="center"
+      borderRadius="30px 30px 0 0"
       backgroundColor="#FFFFFF33"
-      height={{ xs: "50px", xl: "60px" }}
-      gap={{ xs: "25px", m: "40px", xl: "40px" }}
+      height={{ xs: "50px", l: "60px" }}
+      gap={{ xs: "25px", m: "40px", l: "40px" }}
       as="div"
     >
       {children}
@@ -42,11 +43,11 @@ export const CurrencyTableHeadValue = ({ value }) => {
       fontFamily="Circe"
       textTransform="Capitalize"
       fontWeight="700"
-      fontSize="17px"
+      fontSize="18px"
       lineHeight="1.5"
       textAlign="center"
       display="block"
-      width="68px"
+      width="72px"
       as="p"
     >
       {value}
@@ -56,7 +57,7 @@ export const CurrencyTableHeadValue = ({ value }) => {
 
 export const CurrencyTableBody = ({ children }) => {
   return (
-    <Box py={{ xs: "12px", m: "16px", xl: "20px" }} as="div">
+    <Box py={{ xs: "12px", m: "16px", l: "20px" }} as="div">
       {children}
     </Box>
   );
@@ -67,7 +68,7 @@ export const CurrencyTableBodyLine = ({ children }) => {
     <Flex
       justifyContent="center"
       alignItems="center"
-      gap={{ xs: "25px", m: "40px", xl: "40px" }}
+      gap={{ xs: "25px", m: "40px", l: "40px" }}
       as="div"
     >
       {children}
@@ -80,13 +81,13 @@ export const CurrencyTableBodyLineValue = ({ value }) => {
     <Box
       color="#FFF"
       fontFamily="Circe"
-      fontSize="15px"
+      fontSize="16px"
       lineHeight="1.5"
       borderBottom="none"
       textAlign="center"
       display="block"
-      width="70px"
-      mb={{ xs: "12px", xl: "24px" }}
+      width="74px"
+      mb={{ xs: "12px", l: "24px" }}
       as="p"
     >
       {value}
@@ -99,7 +100,7 @@ export const CurrencySpinner = () => {
     <Flex
       justifyContent="center"
       alignItems="center"
-      height={{ xs: "125px", m: "130px", xl: "270px" }}
+      height={{ xs: "125px", m: "130px", l: "270px" }}
       as="div"
     >
       <Spinner
