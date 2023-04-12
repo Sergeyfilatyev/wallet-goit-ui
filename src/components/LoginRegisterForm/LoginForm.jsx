@@ -45,9 +45,9 @@ export const LoginForm = () => {
         <Form>
           <LoginRegisterFormInputsBox>
             <LoginRegisterFormEmailInput placeholder="E-mail" />
-            <ErrorMessage name="email" />
+            {/* <ErrorMessage name="email" /> */}
             <LoginRegisterFormPasswordInput placeholder="Password" />
-            <ErrorMessage name="password" />
+            {/* <ErrorMessage name="password" /> */}
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
             <LoginRegisterFormSubmitButton name="Log In" />
