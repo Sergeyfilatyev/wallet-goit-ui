@@ -144,23 +144,6 @@ const userTransactions = [
   },
 ];
 
-const userTRTest = {
-  _id: "64327e9590632194c689a5c1",
-  amount: 3300,
-  income: false,
-  category: "car",
-  comment: "test",
-  date: {
-    time: 1681030445404,
-    day: 9,
-    month: 4,
-    year: 2023,
-  },
-  owner: "64327d3790632194c689a5b0",
-  createdAt: "2023-04-09T09:00:05.907Z",
-  updatedAt: "2023-04-09T09:00:05.907Z",
-};
-
 export const Table = () => {
   return (
     <>
