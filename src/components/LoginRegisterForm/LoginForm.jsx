@@ -31,14 +31,13 @@ export const LoginForm = () => {
           email: "",
           password: "",
         }}
-        
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          dispatch(
-            login(values).then(({ error }) => {
-              console.log(values);
-            })
-          );
+          const { email, password } = values;
+          const data = { password, email };
+
+          dispatch(login(data));
+
           resetForm();
           setSubmitting(false);
         }}

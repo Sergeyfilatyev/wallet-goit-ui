@@ -38,16 +38,15 @@ export const RegisterForm = () => {
         }}
         validationSchema={validationSchemaRegister}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          const {name, password, email} = values;
-          const data = {name, password, email}
-          dispatch(register(data)).then(({ error }) => {
-            const { password, confirmPassword } = values;
+          const { name, password, email, confirmPassword } = values;
+          const data = { name, password, email };
 
-            if (password !== confirmPassword) {
-              alert("!");
-              return;
-            }
-          });
+          if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+          }
+
+          dispatch(register(data));
           resetForm();
           setSubmitting(false);
         }}
