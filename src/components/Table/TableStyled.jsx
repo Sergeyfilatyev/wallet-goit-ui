@@ -62,7 +62,11 @@ export const TransactionsThSum = ({ value }) => {
 
 export const TransactionsTr = ({ children }) => {
   return (
-    <Box boxShadow="0px 1px 0px 0px #FFFFFF99;" as="tr">
+    <Box
+      borderBottom="1px solid #DCDCDF"
+      boxShadow="0px 1px 0px rgba(255, 255, 255, 0.6)"
+      as="tr"
+    >
       {children}
     </Box>
   );
