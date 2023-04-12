@@ -6,6 +6,7 @@ import { login } from "../../redux/auth/auth-operations";
 
 import { validationSchemaLogin } from "../../utils/validationSchema";
 import { Logo } from "../Logo";
+import { ErrorMessage } from "formik";
 
 import {
   LoginRegisterFormBox,
@@ -32,11 +33,11 @@ export const LoginForm = () => {
         }}
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          dispatch(
-            login(values).then(({ error }) => {
-              console.log(values);
-            })
-          );
+          const { email, password } = values;
+          const data = { password, email };
+
+          dispatch(login(data));
+
           resetForm();
           setSubmitting(false);
         }}
