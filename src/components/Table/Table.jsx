@@ -1,4 +1,6 @@
 import { Button } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
+import { EditIcon } from "@chakra-ui/icons";
 
 import {
   TransactionsTable,
@@ -9,7 +11,7 @@ import {
   TransactionsTd,
   TransactionsTdDate,
   TransactionsTdSum,
-  TransactionsTdDelete,
+  TransactionsTdButton,
   TransactionsLastTr,
 } from "./TableStyled";
 
@@ -171,10 +173,17 @@ export const Table = () => {
                 <TransactionsTd value={item.category} />
                 <TransactionsTd value={item.comment} />
                 <TransactionsTdSum value={item.amount} />
-                <TransactionsTd value="edit" />
-                <TransactionsTdDelete>
+
+                <TransactionsTdButton>
+                  <IconButton
+                    backgroundColor="transparent"
+                    aria-label="Edit transaction"
+                    icon={<EditIcon />}
+                  />
+                </TransactionsTdButton>
+                <TransactionsTdButton>
                   <Button variant="greenButton">Delete</Button>
-                </TransactionsTdDelete>
+                </TransactionsTdButton>
               </TransactionsTr>
             ))}
             <TransactionsLastTr>

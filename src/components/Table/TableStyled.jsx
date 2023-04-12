@@ -127,7 +127,7 @@ export const TransactionsLastTr = ({ children }) => {
   );
 };
 
-export const TransactionsTdDelete = ({ children }) => {
+export const TransactionsTdButton = ({ children }) => {
   return (
     <Box height="52px" textAlign="center" as="td">
       {children}
