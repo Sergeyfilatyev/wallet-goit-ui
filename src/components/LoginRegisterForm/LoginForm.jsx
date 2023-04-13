@@ -16,13 +16,21 @@ import {
   LoginRegisterFormRedirectButton,
   LoginRegisterFormEmailInput,
   LoginRegisterFormPasswordInput,
+  GoogleButton,
 } from "./LoginRegisterFormStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 
 export const LoginForm = () => {
+  const handleGoogleAuth = async () => {
+    try {
+      console.log("GoogleAuth");
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   const dispatch = useDispatch();
   return (
-    <LoginRegisterFormBox height={{ base: "100%", s: "468px" }}>
+    <LoginRegisterFormBox height={{ base: "100%", s: "518px" }}>
       <LoginRegisterFormLogoBox>
         <Logo />
       </LoginRegisterFormLogoBox>
@@ -50,6 +58,10 @@ export const LoginForm = () => {
           <LoginRegisterFormButtonsBox>
             <LoginRegisterFormSubmitButton name="Log In" />
             <LoginRegisterFormRedirectButton name="Register" to="register" />
+            <GoogleButton
+              name="Log in with"
+              handleGoogleAuth={handleGoogleAuth}
+            />
           </LoginRegisterFormButtonsBox>
         </Form>
       </Formik>

@@ -15,6 +15,7 @@ import { Field } from "formik";
 import { Link } from "react-router-dom";
 
 import { ViewIcon, ViewOffIcon, Icon } from "@chakra-ui/icons";
+import { FcGoogle } from "react-icons/fc";
 
 export const LoginRegisterFormBox = ({ children, height }) => {
   return (
@@ -85,6 +86,20 @@ export const LoginRegisterFormRedirectButton = ({ name, to }) => {
       to={to}
       variant="whiteButton"
       w={{ base: "280px", s: "300px" }}
+    >
+      {name}
+    </Button>
+  );
+};
+
+export const GoogleButton = ({ name, handleGoogleAuth }) => {
+  return (
+    <Button
+      as={Link}
+      variant="whiteButton"
+      w={{ base: "280px", s: "300px" }}
+      rightIcon={<FcGoogle />}
+      onClick={handleGoogleAuth}
     >
       {name}
     </Button>
