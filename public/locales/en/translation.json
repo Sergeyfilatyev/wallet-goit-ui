@@ -1,0 +1,15 @@
+{
+  "login": {
+    "login": "log in",
+    "register": "register",
+    "google": "log in with",
+    "email": "e-mail",
+    "name": "first name",
+    "password": "password",
+    "confirmPassword": "confirm password"
+  },
+
+  "home": {},
+  "statistics": {},
+  "header": {}
+}

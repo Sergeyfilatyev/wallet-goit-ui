@@ -1,0 +1,15 @@
+{
+  "login": {
+    "login": "увійти",
+    "register": "зареєструватися",
+    "google": "увійти за допомогою",
+    "email": "електронна пошта",
+    "name": "ім'я",
+    "password": "пароль",
+    "confirmPassword": "підтвердити пароль"
+  },
+
+  "home": {},
+  "statistics": {},
+  "header": {}
+}

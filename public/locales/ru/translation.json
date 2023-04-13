@@ -1,0 +1,14 @@
+{
+  "login": {
+    "login": "войти",
+    "register": "зарегистрироваться",
+    "google": "войти с помощью",
+    "email": "электронная почта",
+    "name": "имя",
+    "password": "пароль",
+    "confirmPassword": "подтвердить пароль"
+  },
+  "home": {},
+  "statistics": {},
+  "header": {}
+}
