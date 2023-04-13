@@ -1,7 +1,7 @@
 import {
   register,
   login,
-  logout,
+  logout, current,
   refresh,
   verifyUser,
 } from "./auth-operations";
@@ -13,6 +13,7 @@ const initialState = {
   isLoading: false,
   error: null,
   isAuth: false,
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -44,6 +45,21 @@ const authSlice = createSlice({
         state.token = payload.token;
       })
 
+      .addCase(current.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(current.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user = payload.user;
+        state.token = payload.token;
+        state.error = null;
+        state.isRefreshing = false;
+      })
+
+      .addCase(current.rejected, (state) => {
+        state.isRefreshing = false;
+      })
+
       .addMatcher(
         isAnyOf(
           register.fulfilled,
@@ -63,7 +79,8 @@ const authSlice = createSlice({
           login.pending,
           logout.pending,
           refresh.pending,
-          verifyUser.pending
+          verifyUser.pending,
+          current.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -76,7 +93,9 @@ const authSlice = createSlice({
           login.rejected,
           logout.rejected,
           refresh.rejected,
-          verifyUser.rejected
+          verifyUser.rejected,
+          current.rejected
+
         ),
         (state, { payload }) => {
           state.isLoading = false;

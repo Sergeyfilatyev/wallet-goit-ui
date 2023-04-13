@@ -1,7 +1,13 @@
+
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
+
 import { Currency } from "./Currency";
+// import { useSelector } from "react-redux";
+// import { getAuth } from "../redux/auth/auth-selectors";
+
+// import { current } from "../redux/auth/auth-operations";
 // import PublicRoute from "../HOCs/PublicRoute";
 // import PrivateRoute from "../HOCs/PrivateRoute";
 
@@ -17,6 +23,7 @@ const StatisticsPageDesktop = lazy(() =>
 );
 
 function App() {
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
@@ -29,6 +36,13 @@ function App() {
       dispatch(() => verifyUser(tokenFromParams));
     }
   }, []);
+
+  // const dispatch = useDispatch();
+  // const isAuth = useSelector(getAuth);
+
+  // useEffect(() => {
+  //   dispatch(current());
+  // }, [dispatch]);
 
   return (
     <Suspense>
