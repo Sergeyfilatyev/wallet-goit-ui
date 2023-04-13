@@ -1,8 +1,11 @@
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Currency } from "./Currency";
+// import { useSelector } from "react-redux";
+// import { getAuth } from "../redux/auth/auth-selectors";
+
+// import { current } from "../redux/auth/auth-operations";
 // import PublicRoute from "../HOCs/PublicRoute";
 // import PrivateRoute from "../HOCs/PrivateRoute";
 
@@ -15,6 +18,12 @@ const StatisticsPageDesktop = lazy(() =>
 );
 
 function App() {
+  // const dispatch = useDispatch();
+  // const isAuth = useSelector(getAuth);
+
+  // useEffect(() => {
+  //   dispatch(current());
+  // }, [dispatch]);
   return (
     <Suspense>
       <Routes>
