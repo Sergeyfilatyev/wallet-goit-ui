@@ -1,8 +1,11 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://wallet-api-goit.onrender.com/api",
+  baseURL: "http://localhost:3030/api"/* "https://wallet-api-goit.onrender.com/api" */,
+  /* withCredentials: true, */
 });
+
+/* instance.interceptors.request.use() */
 
 const setToken = (token) => {
   if (token) {
@@ -13,7 +16,7 @@ const setToken = (token) => {
 
 export const register = async (data) => {
   const { data: result } = await instance.post("/users/register", data);
-  setToken(result.token);
+  /* setToken(result.token); */
   return result;
 };
 
@@ -39,5 +42,24 @@ export const getCurrent = async (token) => {
     throw error;
   }
 };
+
+export const verifyUser = async (token) => {
+  try {
+    const {data: result} = await instance.get(`/users/verify/${token}`);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const checkAuth = async () => {
+  try {
+    const {data} = await instance.get("/users/refresh");
+    setToken(data.token);
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 export default instance;

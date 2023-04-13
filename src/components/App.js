@@ -1,10 +1,12 @@
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route, useSearchParams } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
 import { Currency } from "./Currency";
 // import PublicRoute from "../HOCs/PublicRoute";
 // import PrivateRoute from "../HOCs/PrivateRoute";
+
+import { verifyUser } from "../shared/api/auth";
+import { selectToken } from "../redux/auth/auth-selectors";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
@@ -15,6 +17,19 @@ const StatisticsPageDesktop = lazy(() =>
 );
 
 function App() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+
+  const tokenFromParams = searchParams.get("token");
+
+  useEffect(() => {
+    if (tokenFromParams || !token) {
+      dispatch(() => verifyUser(tokenFromParams));
+    }
+  }, []);
+
   return (
     <Suspense>
       <Routes>

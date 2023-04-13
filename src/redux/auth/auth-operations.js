@@ -38,6 +38,31 @@ export const logout = createAsyncThunk(
   }
 );
 
+export const verifyUser = createAsyncThunk(
+  "auth/verifyUser",
+  async (token, { rejectWithValue }) => {
+    try {
+      const {data }= await api.verifyUser(token);
+      console.log(data);
+      return data;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
+    }
+  }
+)
+
+export const refresh = createAsyncThunk(
+  "auth/refresh",
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await api.checkAuth();
+      return data;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
+    }
+  }
+)
+
 export const current = createAsyncThunk(
   "auth/current",
   async (_, { rejectWithValue, getState }) => {
