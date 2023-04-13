@@ -5,12 +5,6 @@ import { lazy, Suspense, useEffect } from "react";
 import { Currency } from "./Currency";
 import "../i18n";
 import { ChangeLanguage } from "./ChangeLanguage/ChangeLanguage";
-// import { useSelector } from "react-redux";
-// import { getAuth } from "../redux/auth/auth-selectors";
-
-// import { current } from "../redux/auth/auth-operations";
-// import PublicRoute from "../HOCs/PublicRoute";
-// import PrivateRoute from "../HOCs/PrivateRoute";
 
 import { verifyUser } from "../shared/api/auth";
 import { selectToken } from "../redux/auth/auth-selectors";
