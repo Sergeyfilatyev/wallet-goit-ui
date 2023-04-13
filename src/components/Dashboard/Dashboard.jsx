@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+
 import Media from "react-media";
 
 import { Navigation } from "../Navigation/Navigation";
@@ -14,6 +15,7 @@ import {
   DashboardContentFirstPart,
   DashboardContentSecondPart,
   DashboardAddTransactionButton,
+  DashboardRedirect,
 } from "./DashboardStyled";
 
 export const Dashboard = () => {
@@ -32,7 +34,7 @@ export const Dashboard = () => {
                 <DashboardContentFirstPart>
                   <DashboardNavigationBalanceBox>
                     <Navigation />
-                    <Balance />
+                    {matches.m && <Balance />}
                   </DashboardNavigationBalanceBox>
                   {matches.m && <Currency />}
                 </DashboardContentFirstPart>
@@ -43,6 +45,7 @@ export const Dashboard = () => {
               </DashboardContent>
               <DashboardAddTransactionButton />
             </PageContainer>
+            {matches.m && <DashboardRedirect />}
           </DashboardBox>
         )}
       </Media>

@@ -1,3 +1,5 @@
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 
 import { ModalAddTransaction } from "../ModalTransaction";
@@ -69,7 +71,7 @@ export const DashboardAddTransactionButton = () => {
 };
 
 export const DashboardContent = ({ children }) => {
-  return <Flex>{children}</Flex>;
+  return <Flex flexDirection={{ xs: "column", m: "row" }}>{children}</Flex>;
 };
 
 export const DashboardNavigationBalanceBox = ({ children }) => {
@@ -94,4 +96,13 @@ export const DashboardContentFirstPart = ({ children }) => {
 
 export const DashboardContentSecondPart = ({ children }) => {
   return <Box>{children}</Box>;
+};
+
+export const DashboardRedirect = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    location.pathname === "/dashboard/currency" && navigate("/dashboard/home");
+  }, [navigate, location]);
 };
