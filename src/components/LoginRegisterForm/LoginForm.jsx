@@ -21,13 +21,6 @@ import {
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 
 export const LoginForm = () => {
-  const handleGoogleAuth = async () => {
-    try {
-      console.log("GoogleAuth");
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
   const dispatch = useDispatch();
   return (
     <LoginRegisterFormBox height={{ base: "100%", s: "518px" }}>
@@ -60,7 +53,7 @@ export const LoginForm = () => {
             <LoginRegisterFormRedirectButton name="Register" to="register" />
             <GoogleButton
               name="Log in with"
-              handleGoogleAuth={handleGoogleAuth}
+              to="https://wallet-api-goit.onrender.com/api/auth/google"
             />
           </LoginRegisterFormButtonsBox>
         </Form>

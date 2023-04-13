@@ -92,14 +92,14 @@ export const LoginRegisterFormRedirectButton = ({ name, to }) => {
   );
 };
 
-export const GoogleButton = ({ name, handleGoogleAuth }) => {
+export const GoogleButton = ({ name, to }) => {
   return (
     <Button
       as={Link}
+      to={to}
       variant="whiteButton"
       w={{ base: "280px", s: "300px" }}
       rightIcon={<FcGoogle />}
-      onClick={handleGoogleAuth}
     >
       {name}
     </Button>

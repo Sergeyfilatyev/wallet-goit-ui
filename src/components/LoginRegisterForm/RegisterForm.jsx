@@ -24,13 +24,6 @@ import {
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 
 export const RegisterForm = () => {
-  const handleGoogleAuth = async () => {
-    try {
-      console.log("GoogleAuth");
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
   const dispatch = useDispatch();
 
   return (
@@ -82,7 +75,7 @@ export const RegisterForm = () => {
             <LoginRegisterFormRedirectButton name="Log In" to="/" />
             <GoogleButton
               name="Sign in with"
-              handleGoogleAuth={handleGoogleAuth}
+              to="https://wallet-api-goit.onrender.com/api/auth/google"
             />
           </LoginRegisterFormButtonsBox>
         </Form>
