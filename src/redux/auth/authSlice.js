@@ -1,4 +1,11 @@
-import { register, login, logout, current } from "./auth-operations";
+import {
+  register,
+  login,
+  logout,
+  current,
+  refresh,
+  verifyUser,
+} from "./auth-operations";
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -16,21 +23,28 @@ const authSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.user = payload.user;
+        state.user = payload.data;
       })
 
+      .addCase(verifyUser.fulfilled, (state, action) => {
+        console.log("payload", action)
+        state.user = action.payload.data;
+        state.token = action.payload.data.token;
+        state.isAuth = true;
+      })
       .addCase(login.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.user = payload.user;
-        state.token = payload.accessToken;
+        state.token = payload.token;
         state.isAuth = true;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.isLoading = false;
         state.token = "";
         state.user = {};
         state.isAuth = false;
+      })
+      .addCase(refresh.fulfilled, (state, { payload }) => {
+        state.isAuth = true;
+        state.token = payload.token;
       })
 
       .addCase(current.pending, (state) => {
@@ -50,9 +64,24 @@ const authSlice = createSlice({
 
       .addMatcher(
         isAnyOf(
+          register.fulfilled,
+          login.fulfilled,
+          logout.fulfilled,
+          refresh.fulfilled,
+          verifyUser.fulfilled
+        ),
+        (state) => {
+          state.isLoading = false;
+        }
+      )
+
+      .addMatcher(
+        isAnyOf(
           register.pending,
           login.pending,
           logout.pending,
+          refresh.pending,
+          verifyUser.pending,
           current.pending
         ),
         (state) => {
@@ -65,6 +94,8 @@ const authSlice = createSlice({
           register.rejected,
           login.rejected,
           logout.rejected,
+          refresh.rejected,
+          verifyUser.rejected,
           current.rejected
         ),
         (state, { payload }) => {
