@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Formik, Form } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/auth-operations";
 
@@ -17,11 +17,12 @@ import {
   LoginRegisterFormEmailInput,
   LoginRegisterFormPasswordInput,
 } from "./LoginRegisterFormStyled";
+import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   return (
-    <LoginRegisterFormBox>
+    <LoginRegisterFormBox height={{ base: "100%", s: "468px" }}>
       <LoginRegisterFormLogoBox>
         <Logo />
       </LoginRegisterFormLogoBox>
@@ -32,21 +33,19 @@ export const LoginForm = () => {
         }}
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          const { email, password } = values;
-          const data = { password, email };
-
-          dispatch(login(data));
-
+          dispatch(login(values));
           resetForm();
           setSubmitting(false);
         }}
       >
         <Form>
           <LoginRegisterFormInputsBox>
-            <LoginRegisterFormEmailInput placeholder="E-mail" />
-            {/* <ErrorMessage name="email" /> */}
-            <LoginRegisterFormPasswordInput placeholder="Password" />
-            {/* <ErrorMessage name="password" /> */}
+            <LoginRegisterFormEmailInput placeholder="E-mail">
+              <FieldErrorMessage error={<ErrorMessage name="email" />} />
+            </LoginRegisterFormEmailInput>
+            <LoginRegisterFormPasswordInput placeholder="Password">
+              <FieldErrorMessage error={<ErrorMessage name="password" />} />
+            </LoginRegisterFormPasswordInput>
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
             <LoginRegisterFormSubmitButton name="Log In" />

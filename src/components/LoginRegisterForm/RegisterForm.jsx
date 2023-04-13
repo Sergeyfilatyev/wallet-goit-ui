@@ -20,12 +20,13 @@ import {
   LoginRegisterFormNameInput,
   LoginRegisterFormConfirmPasswordInput,
 } from "./LoginRegisterFormStyled";
+import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
 
   return (
-    <LoginRegisterFormBox>
+    <LoginRegisterFormBox height={{ base: "100%", s: "616px" }}>
       <LoginRegisterFormLogoBox>
         <Logo />
       </LoginRegisterFormLogoBox>
@@ -53,14 +54,20 @@ export const RegisterForm = () => {
       >
         <Form>
           <LoginRegisterFormInputsBox>
-            <LoginRegisterFormEmailInput placeholder="E-mail" />
-            {/* <ErrorMessage name="email" /> */}
-            <LoginRegisterFormPasswordInput placeholder="Password" />
-            {/* <ErrorMessage name="password" /> */}
-            <LoginRegisterFormConfirmPasswordInput placeholder="Confirm Password" />
-            {/* <ErrorMessage name="confirmPassword" /> */}
-            <LoginRegisterFormNameInput placeholder="First Name" />
-            {/* <ErrorMessage name="firstName" /> */}
+            <LoginRegisterFormEmailInput placeholder="E-mail">
+              <FieldErrorMessage error={<ErrorMessage name="email" />} />
+            </LoginRegisterFormEmailInput>
+            <LoginRegisterFormPasswordInput placeholder="Password">
+              <FieldErrorMessage error={<ErrorMessage name="password" />} />
+            </LoginRegisterFormPasswordInput>
+            <LoginRegisterFormConfirmPasswordInput placeholder="Confirm Password">
+              <FieldErrorMessage
+                error={<ErrorMessage name="confirmPassword" />}
+              />
+            </LoginRegisterFormConfirmPasswordInput>
+            <LoginRegisterFormNameInput placeholder="First Name">
+              <FieldErrorMessage error={<ErrorMessage name="name" />} />
+            </LoginRegisterFormNameInput>
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
             <LoginRegisterFormSubmitButton name="Register " />

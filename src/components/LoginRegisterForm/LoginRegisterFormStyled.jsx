@@ -16,13 +16,13 @@ import { Link } from "react-router-dom";
 
 import { ViewIcon, ViewOffIcon, Icon } from "@chakra-ui/icons";
 
-export const LoginRegisterFormBox = ({ children }) => {
+export const LoginRegisterFormBox = ({ children, height }) => {
   return (
     <Box
       borderRadius={{ base: "none", s: "20px" }}
       bgColor="#FFFFFF"
       w={{ base: "100%", s: "480px", m: "533px" }}
-      h={{ base: "100%", s: "616px" }}
+      h={height}
       overflow="hidden"
       paddingTop={{ base: "107px", s: "40px" }}
       paddingBottom={{ base: "107px", s: "62px" }}
@@ -91,24 +91,27 @@ export const LoginRegisterFormRedirectButton = ({ name, to }) => {
   );
 };
 
-export const LoginRegisterFormEmailInput = ({ placeholder }) => {
+export const LoginRegisterFormEmailInput = ({ placeholder, children }) => {
   return (
-    <InputGroup>
-      <InputLeftElement
-        pointerEvents="none"
-        children={<LoginRegisterFormEmailIcon />}
-      />
-      <Input
-        as={Field}
-        w={{ base: "280px", s: "408px" }}
-        name="email"
-        placeholder={placeholder}
-        _placeholder={{
-          color: "#BDBDBD",
-          fontSize: "18px",
-        }}
-      />
-    </InputGroup>
+    <Box>
+      <InputGroup dislay="flex" flexDirection="row">
+        <InputLeftElement
+          pointerEvents="none"
+          children={<LoginRegisterFormEmailIcon />}
+        />
+        <Input
+          as={Field}
+          w={{ base: "280px", s: "408px" }}
+          name="email"
+          placeholder={placeholder}
+          _placeholder={{
+            color: "#BDBDBD",
+            fontSize: "18px",
+          }}
+        />
+      </InputGroup>
+      {children}
+    </Box>
   );
 };
 
@@ -123,48 +126,51 @@ const LoginRegisterFormEmailIcon = () => {
   );
 };
 
-export const LoginRegisterFormPasswordInput = ({ placeholder }) => {
+export const LoginRegisterFormPasswordInput = ({ placeholder, children }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
   return (
-    <InputGroup>
-      <InputLeftElement
-        pointerEvents="none"
-        children={<LoginRegisterFormPasswordIcon />}
-      />
-      <Input
-        w={{ base: "280px", s: "408px" }}
-        type={show ? "text" : "password"}
-        as={Field}
-        name="password"
-        placeholder={placeholder}
-        _placeholder={{ color: "#BDBDBD", fontSize: "18px" }}
-      />
-      <InputRightElement>
-        <Button
-          background="transparent"
-          onClick={handleClick}
-          _hover={{ background: "transparent" }}
-        >
-          {show ? (
-            <ViewOffIcon
-              color="#4A56E2"
-              h="16px"
-              w="20px"
-              _hover={{ color: "#E0E0E0" }}
-            />
-          ) : (
-            <ViewIcon
-              color="#E0E0E0"
-              h="16px"
-              w="20px"
-              _hover={{ color: "#4A56E2" }}
-            />
-          )}
-        </Button>
-      </InputRightElement>
-    </InputGroup>
+    <Box>
+      <InputGroup>
+        <InputLeftElement
+          pointerEvents="none"
+          children={<LoginRegisterFormPasswordIcon />}
+        />
+        <Input
+          w={{ base: "280px", s: "408px" }}
+          type={show ? "text" : "password"}
+          as={Field}
+          name="password"
+          placeholder={placeholder}
+          _placeholder={{ color: "#BDBDBD", fontSize: "18px" }}
+        />
+        <InputRightElement>
+          <Button
+            background="transparent"
+            onClick={handleClick}
+            _hover={{ background: "transparent" }}
+          >
+            {show ? (
+              <ViewOffIcon
+                color="#4A56E2"
+                h="16px"
+                w="20px"
+                _hover={{ color: "#E0E0E0" }}
+              />
+            ) : (
+              <ViewIcon
+                color="#E0E0E0"
+                h="16px"
+                w="20px"
+                _hover={{ color: "#4A56E2" }}
+              />
+            )}
+          </Button>
+        </InputRightElement>
+      </InputGroup>
+      {children}
+    </Box>
   );
 };
 
@@ -179,69 +185,78 @@ const LoginRegisterFormPasswordIcon = () => {
   );
 };
 
-export const LoginRegisterFormConfirmPasswordInput = ({ placeholder }) => {
+export const LoginRegisterFormConfirmPasswordInput = ({
+  children,
+  placeholder,
+}) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
   return (
-    <InputGroup>
-      <InputLeftElement
-        pointerEvents="none"
-        children={<LoginRegisterFormPasswordIcon />}
-      />
-      <Input
-        w={{ base: "280px", s: "408px" }}
-        type={show ? "text" : "password"}
-        as={Field}
-        name="confirmPassword"
-        placeholder={placeholder}
-        _placeholder={{ color: "#BDBDBD", fontSize: "18px" }}
-      />
-      <InputRightElement>
-        <Button
-          background="transparent"
-          onClick={handleClick}
-          _hover={{ background: "transparent" }}
-        >
-          {show ? (
-            <ViewOffIcon
-              color="#4A56E2"
-              h="16px"
-              w="20px"
-              _hover={{ color: "#E0E0E0" }}
-            />
-          ) : (
-            <ViewIcon
-              color="#E0E0E0"
-              h="16px"
-              w="20px"
-              _hover={{ color: "#4A56E2" }}
-            />
-          )}
-        </Button>
-      </InputRightElement>
-    </InputGroup>
+    <Box>
+      <InputGroup>
+        <InputLeftElement
+          pointerEvents="none"
+          children={<LoginRegisterFormPasswordIcon />}
+        />
+        <Input
+          w={{ base: "280px", s: "408px" }}
+          type={show ? "text" : "password"}
+          as={Field}
+          name="confirmPassword"
+          placeholder={placeholder}
+          _placeholder={{ color: "#BDBDBD", fontSize: "18px" }}
+        />
+        <InputRightElement>
+          <Button
+            background="transparent"
+            onClick={handleClick}
+            _hover={{ background: "transparent" }}
+          >
+            {show ? (
+              <ViewOffIcon
+                color="#4A56E2"
+                h="16px"
+                w="20px"
+                _hover={{ color: "#E0E0E0" }}
+              />
+            ) : (
+              <ViewIcon
+                color="#E0E0E0"
+                h="16px"
+                w="20px"
+                _hover={{ color: "#4A56E2" }}
+              />
+            )}
+          </Button>
+        </InputRightElement>
+      </InputGroup>
+      {children}
+    </Box>
   );
 };
 
-export const LoginRegisterFormNameInput = ({ placeholder }) => {
+export const LoginRegisterFormNameInput = ({ children, placeholder }) => {
   return (
-    <InputGroup>
-      <InputLeftElement
-        pointerEvents="none"
-        children={<LoginRegisterFormNameIcon />}
-      />
-      <Input
-        as={Field}
-        w={{ base: "280px", s: "408px" }}
-        name="name"
-        placeholder={placeholder}
-        _placeholder={{
-          color: "#BDBDBD",
-          fontSize: "18px",
-        }}
-      />
-    </InputGroup>
+    <Box>
+      <InputGroup>
+        <InputLeftElement
+          pointerEvents="none"
+          children={<LoginRegisterFormNameIcon />}
+        />
+        <Input
+          as={Field}
+          w={{ base: "280px", s: "408px" }}
+          name="name"
+          placeholder={placeholder}
+          _placeholder={{
+            color: "#BDBDBD",
+            fontSize: "18px",
+          }}
+        />
+      </InputGroup>
+      {children}
+    </Box>
   );
 };
 
