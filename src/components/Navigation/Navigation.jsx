@@ -2,15 +2,27 @@ import {
   NavigationBox,
   NavigationHome,
   NavigationStatistics,
+  NavigationCurrency,
 } from "./NavigationStyled";
+
+import Media from "react-media";
 
 export const Navigation = () => {
   return (
     <>
-      <NavigationBox>
-        <NavigationHome linkName="Home" />
-        <NavigationStatistics linkName="Statistics" />
-      </NavigationBox>
+      <Media
+        queries={{
+          s: "(max-width: 767px)",
+        }}
+      >
+        {(matches) => (
+          <NavigationBox>
+            <NavigationHome linkName="Home" />
+            <NavigationStatistics linkName="Statistics" />
+            {matches.s && <NavigationCurrency linkName="Currency" />}
+          </NavigationBox>
+        )}
+      </Media>
     </>
   );
 };

@@ -4,8 +4,8 @@ export const BalanceBox = ({ children }) => {
   return (
     <Box
       backgroundColor="#FFF"
-      mb={{ xs: "32px", m: "0px", xl: "32px" }}
-      width={{ xs: "280px", m: "335px", xl: "390px" }}
+      mb={{ xs: "32px", m: "0px", l: "32px" }}
+      width={{ xs: "100%", l: "390px" }}
       borderRadius="30px"
       height="80px"
       pl={{ xs: "32px", m: "40px", xl: "40px" }}
