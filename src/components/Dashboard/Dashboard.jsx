@@ -34,6 +34,7 @@ export const Dashboard = () => {
 
                 <Box>
                   <Table />
+                  <TableMobile />
                 </Box>
 
                 <Outlet />

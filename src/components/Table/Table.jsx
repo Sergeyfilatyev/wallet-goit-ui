@@ -13,7 +13,14 @@ import {
   TransactionsTdSum,
   TransactionsTdButton,
   TransactionsLastTr,
+  DataRowDivider,
 } from "./TableStyled";
+
+import {
+  TransactionsTh1,
+  TransactionsThDate1,
+  TransactionsThSum1,
+} from "./TableStyledSort";
 
 const userTransactions = [
   {
@@ -153,15 +160,30 @@ export const Table = () => {
         <TransactionsTable>
           <thead>
             <tr>
-              <TransactionsThDate value="date" />
+              {/* <TransactionsThDate value="date" />
               <TransactionsTh value="type" />
               <TransactionsTh value="category" />
               <TransactionsTh value="comment" />
-              <TransactionsThSum value="sum" />
+              <TransactionsThSum value="sum" /> */}
+              <TransactionsThDate1>
+                <button id="date">date</button>
+              </TransactionsThDate1>
+              <TransactionsTh1>
+                <button id="type">type</button>
+              </TransactionsTh1>
+              <TransactionsTh1>
+                <button id="category">category</button>
+              </TransactionsTh1>
+              <TransactionsTh1>
+                <button id="comment">comment</button>
+              </TransactionsTh1>
+              <TransactionsThSum1>
+                <button id="sum">sum</button>
+              </TransactionsThSum1>
             </tr>
           </thead>
 
-          <tbody>
+          <tbody id="table-content">
             {userTransactions.map((item) => (
               <TransactionsTr key={item._id}>
                 <TransactionsTdDate
@@ -186,6 +208,7 @@ export const Table = () => {
                 </TransactionsTdButton>
               </TransactionsTr>
             ))}
+
             <TransactionsLastTr>
               <td></td>
             </TransactionsLastTr>

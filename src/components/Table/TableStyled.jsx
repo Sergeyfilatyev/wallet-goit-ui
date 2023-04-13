@@ -134,3 +134,15 @@ export const TransactionsTdButton = ({ children }) => {
     </Box>
   );
 };
+
+export const DataRowDivider = () => {
+  return (
+    <Box
+      // ml="-25px"
+      border="1px solid #DCDCDF"
+      boxShadow="0px 1px 0px rgba(255, 255, 255, 0.6)"
+      width="700px"
+      as="div"
+    ></Box>
+  );
+};
