@@ -1,17 +1,18 @@
+import { Text, Button } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
+import { EditIcon } from "@chakra-ui/icons";
+
 import {
+  Header,
+  TransactionData,
   Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  SimpleGrid,
-  Text,
-  Button,
-  Heading,
-} from "@chakra-ui/react";
+  DataRow,
+  DataRowDivider,
+} from "./TableMobileStyled";
 
 const userTransactions = [
   {
-    _id: "64327d7090632194c689a5b6",
+    _id: "64327d7090632194c689a5b3",
     amount: 200,
     income: true,
     category: "car",
@@ -27,7 +28,7 @@ const userTransactions = [
     updatedAt: "2023-04-09T08:55:12.508Z",
   },
   {
-    _id: "64327e8b90632194c689a5bf",
+    _id: "64327e8b90632194c689a5bg",
     amount: 300,
     income: false,
     category: "products",
@@ -59,7 +60,7 @@ const userTransactions = [
     updatedAt: "2023-04-09T09:00:05.907Z",
   },
   {
-    _id: "64327e9590632194c689a5c5",
+    _id: "64327e9590632194c689a5c4",
     amount: 3300,
     income: false,
     category: "car",
@@ -107,7 +108,7 @@ const userTransactions = [
     updatedAt: "2023-04-09T08:59:55.547Z",
   },
   {
-    _id: "64327e9590632194c689a5c5",
+    _id: "64327e9590632194c689a5c3",
     amount: 3300,
     income: false,
     category: "car",
@@ -123,7 +124,7 @@ const userTransactions = [
     updatedAt: "2023-04-09T09:00:05.907Z",
   },
   {
-    _id: "64327e9590632194c689a5c5",
+    _id: "64327e9590632194c689a5c2",
     amount: 3300,
     income: false,
     category: "car",
@@ -142,68 +143,49 @@ const userTransactions = [
 
 export const TableMobile = () => {
   return (
-    <SimpleGrid
-      spacing={4}
-      templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
-    >
-      <Card>
-        <CardBody>
-          <Text>View a summary of all your customers over the last month.</Text>
-        </CardBody>
-        <CardFooter>
-          <Button variant="greenButton">View here</Button>
-        </CardFooter>
-      </Card>
-      <Card>
-        <CardHeader>
-          <Heading size="md"> Customer dashboard</Heading>
-        </CardHeader>
-        <CardBody>
-          <Text>View a summary of all your customers over the last month.</Text>
-        </CardBody>
-        <CardFooter>
-          <Button variant="greenButton">View here</Button>
-        </CardFooter>
-      </Card>
-      <Card>
-        <CardHeader>
-          <Heading size="md"> Customer dashboard</Heading>
-        </CardHeader>
-        <CardBody>
-          <Text>View a summary of all your customers over the last month.</Text>
-        </CardBody>
-        <CardFooter>
-          <Button variant="greenButton">View here</Button>
-        </CardFooter>
-      </Card>
-    </SimpleGrid>
-    // <>
-    //   <ul>
-    //     <li>
-    //       <p>Date</p>
-    //       <p>4.09.2022</p>
-    //     </li>
-    //     <li>
-    //       <p>Type</p>
-    //       <p>-</p>
-    //     </li>
-    //     <li>
-    //       <p>Category</p>
-    //       <p>Other</p>
-    //     </li>
-    //     <li>
-    //       <p>Comment</p>
-    //       <p>gift</p>
-    //     </li>
-    //     <li>
-    //       <p>Sum</p>
-    //       <p>300</p>
-    //     </li>
-    //     <li>
-    //       <p>Delete</p>
-    //       <p>Edit</p>
-    //     </li>
-    //   </ul>
-    // </>
+    <>
+      {userTransactions.map((item) => (
+        <Card key={item._id}>
+          <DataRow>
+            <Header value="date" />
+            <TransactionData
+              value={`${item.date.day}.${item.date.month + 1}.${
+                item.date.year
+              }`}
+            />
+          </DataRow>
+          <DataRowDivider />
+          <DataRow>
+            <Header value="type" />
+            <TransactionData value={item.income ? "+" : "-"} />
+          </DataRow>
+          <DataRowDivider />
+          <DataRow>
+            <Header value="category" />
+            <TransactionData value={item.category} />
+          </DataRow>
+          <DataRowDivider />
+          <DataRow>
+            <Header value="comment" />
+            <TransactionData value={item.comment} />
+          </DataRow>
+          <DataRowDivider />
+          <DataRow>
+            <Header value="sum" />
+            <TransactionData value={item.amount} />
+          </DataRow>
+          <DataRowDivider />
+          <DataRow>
+            <Button variant="greenButton">Delete</Button>
+            <IconButton
+              backgroundColor="transparent"
+              aria-label="Edit transaction"
+              icon={<EditIcon />}
+            />
+            <Text>Edit</Text>
+          </DataRow>
+        </Card>
+      ))}
+    </>
   );
 };
