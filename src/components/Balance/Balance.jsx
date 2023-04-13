@@ -11,12 +11,12 @@ export const Balance = () => {
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        // const response = await axios.get("/api/users/current", {
-        //   headers: {
-        //     Authorization: `Bearer ${authToken}`,
-        //   },
-        // });
-        // setBalance(response.data.balance);
+        const response = await axios.get("/api/users/current", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        setBalance(response.data.balance);
       } catch (error) {
         console.log(error);
       }
