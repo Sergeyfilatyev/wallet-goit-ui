@@ -6,7 +6,7 @@ import { BalanceBox, BalanceBoxTitle, BalanceBoxNumber } from "./BalanceStyled";
 
 export const Balance = () => {
   const [balance, setBalance] = useState(0);
-  const authToken = useSelector((state) => state.auth.token);
+  /* const authToken = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -22,7 +22,7 @@ export const Balance = () => {
       }
     };
     fetchBalance();
-  }, [authToken]);
+  }, [authToken]); */
 
   return (
     <BalanceBox>

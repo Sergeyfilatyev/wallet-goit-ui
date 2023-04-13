@@ -41,15 +41,17 @@ export const logout = createAsyncThunk(
 export const verifyUser = createAsyncThunk(
   "auth/verifyUser",
   async (token, { rejectWithValue }) => {
+    console.log("token", token)
     try {
-      const {data }= await api.verifyUser(token);
-      console.log(data);
+      const {data} = await api.verifyUser(token);
+      console.log(await api.verifyUser(token));
+      console.log("from operations", data);
       return data;
-    } catch ({ response }) {
-      return rejectWithValue(response.data);
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
-)
+);
 
 export const refresh = createAsyncThunk(
   "auth/refresh",
@@ -61,7 +63,7 @@ export const refresh = createAsyncThunk(
       return rejectWithValue(response.data);
     }
   }
-)
+);
 
 export const current = createAsyncThunk(
   "auth/current",

@@ -44,14 +44,17 @@ export const getCurrent = async (token) => {
 };
 
 export const verifyUser = async (token) => {
-  try {
-    const {data: result} = await instance.get(`/users/verify/${token}`);
-    return result;
-  } catch (error) {
-    throw error;
-  }
-}
 
+  return await instance.get(`/users/verify/${token}`);
+  /* try {
+    const {data} = await instance.get(`/users/verify/${token}`);
+    console.log("from auth", data);
+    /* setToken(result.token); 
+    return data;
+  } catch (error) {
+    throw error;*/
+  }
+ 
 export const checkAuth = async () => {
   try {
     const {data} = await instance.get("/users/refresh");

@@ -1,4 +1,3 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
@@ -23,19 +22,21 @@ const StatisticsPageDesktop = lazy(() =>
 );
 
 function App() {
-
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
 
   const tokenFromParams = searchParams.get("token");
+  console.log(tokenFromParams);
+  let verificationDone = false;
 
   useEffect(() => {
-    if (tokenFromParams || !token) {
+    if (tokenFromParams && !verificationDone) {
       dispatch(() => verifyUser(tokenFromParams));
+      verificationDone = true;
     }
-  }, []);
+  }, [tokenFromParams, dispatch]);
 
   // const dispatch = useDispatch();
   // const isAuth = useSelector(getAuth);

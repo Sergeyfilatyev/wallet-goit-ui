@@ -1,7 +1,8 @@
 import {
   register,
   login,
-  logout, current,
+  logout,
+  current,
   refresh,
   verifyUser,
 } from "./auth-operations";
@@ -21,13 +22,14 @@ const authSlice = createSlice({
   initialState,
   extraReducers: (builder) =>
     builder
-      /*       .addCase(register.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
+      .addCase(register.fulfilled, (state, { payload }) => {
+        state.user = payload.data;
       })
- */
-      .addCase(verifyUser.fulfilled, (state, { payload }) => {
-        state.user = payload.name;
-        state.token = payload.token;
+
+      .addCase(verifyUser.fulfilled, (state, action) => {
+        console.log("payload", action)
+        state.user = action.payload.data;
+        state.token = action.payload.data.token;
         state.isAuth = true;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
@@ -95,7 +97,6 @@ const authSlice = createSlice({
           refresh.rejected,
           verifyUser.rejected,
           current.rejected
-
         ),
         (state, { payload }) => {
           state.isLoading = false;
