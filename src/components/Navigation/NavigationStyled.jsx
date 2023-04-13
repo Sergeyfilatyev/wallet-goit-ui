@@ -6,7 +6,14 @@ import { NavLink } from "react-router-dom";
 
 export const NavigationBox = ({ children }) => {
   return (
-    <Flex as="nav" mb="28px" flexDirection="column" gap="12px">
+    <Flex
+      justifyContent={{ xs: "center", m: "start" }}
+      as="nav"
+      mb={{ xs: "12px", m: "28px" }}
+      flexDirection={{ xs: "row", m: "column" }}
+      width="100%"
+      gap="12px"
+    >
       {children}
     </Flex>
   );
@@ -14,7 +21,13 @@ export const NavigationBox = ({ children }) => {
 
 const NavigationHomeIcon = ({ fill, filter }) => {
   return (
-    <Icon viewBox="0 0 18 18" w="18px" h="18px" mr="23px" filter={filter}>
+    <Icon
+      viewBox="0 0 18 18"
+      w={{ xs: "38px", m: "18px" }}
+      h={{ xs: "38px", m: "18px" }}
+      mr={{ xs: "0px", m: "23px" }}
+      filter={filter}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -47,7 +60,7 @@ export const NavigationHome = ({ linkName }) => {
             to="home"
             as={NavLink}
             fontFamily="Poppins"
-            fontSize="18px"
+            fontSize={{ xs: "0px", m: "18px" }}
             lineHeight="1.5"
           >
             <NavigationHomeIcon fill="#6E78E8" />
@@ -61,7 +74,7 @@ export const NavigationHome = ({ linkName }) => {
             to="home"
             as={NavLink}
             fontFamily="Poppins"
-            fontSize="18px"
+            fontSize={{ xs: "0px", m: "18px" }}
             lineHeight="1.5"
             fontWeight="700"
             _hover={{ textDecoration: "none" }}
@@ -80,7 +93,13 @@ export const NavigationHome = ({ linkName }) => {
 
 const NavigationStatisticsIcon = ({ fill, filter }) => {
   return (
-    <Icon viewBox="0 0 18 18" w="18px" h="18px" mr="23px" filter={filter}>
+    <Icon
+      viewBox="0 0 18 18"
+      w={{ xs: "38px", m: "18px" }}
+      h={{ xs: "38px", m: "18px" }}
+      mr={{ xs: "0px", m: "23px" }}
+      filter={filter}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -117,7 +136,7 @@ export const NavigationStatistics = ({ linkName }) => {
             to="statistics"
             as={NavLink}
             fontFamily="Poppins"
-            fontSize="18px"
+            fontSize={{ xs: "0px", m: "18px" }}
             lineHeight="1.5"
           >
             <NavigationStatisticsIcon fill="#6E78E8" />
@@ -131,12 +150,88 @@ export const NavigationStatistics = ({ linkName }) => {
             to="statistics"
             as={NavLink}
             fontFamily="Poppins"
-            fontSize="18px"
+            fontSize={{ xs: "0px", m: "18px" }}
             lineHeight="1.5"
             fontWeight="700"
             _hover={{ textDecoration: "none" }}
           >
             <NavigationStatisticsIcon
+              fill="#4A56E2"
+              filter="drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))"
+            />
+            {linkName}
+          </Link>
+        </>
+      )}
+    </Flex>
+  );
+};
+
+const NavigationCurrencyIcon = ({ fill, filter }) => {
+  return (
+    <Icon
+      viewBox="0 0 38 38"
+      w={{ xs: "38px", m: "18px" }}
+      h={{ xs: "38px", m: "18px" }}
+      mr={{ xs: "0px", m: "23px" }}
+      filter={filter}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M6 0C2.68629 0 0 2.68629 0 6V32C0 35.3137 2.68629 38 6 38H32C35.3137 38 38 35.3137 38 32V6C38 2.68629 35.3137 0 32 0H6ZM15.7523 15.5989C15.7523 16.7809 16.6607 17.5399 19.4852 18.2741C22.3096 19.0082 25.3332 20.2151 25.3332 23.7489C25.3332 26.2996 23.4046 27.7056 20.9783 28.166V30.8412H17.2455V28.1411C14.8565 27.631 12.8159 26.1005 12.6666 23.3756H15.4039C15.5408 24.8438 16.5487 25.9885 19.1119 25.9885C21.8617 25.9885 22.4714 24.6198 22.4714 23.7613C22.4714 22.6041 21.8493 21.5092 18.7386 20.7626C15.2671 19.9289 12.8905 18.498 12.8905 15.6238C12.8905 13.2223 14.8316 11.6546 17.2455 11.132V8.44434H20.9783V11.1693C23.5788 11.8039 24.8853 13.7698 24.9724 15.91H22.2225C22.1479 14.3546 21.3267 13.297 19.1119 13.297C17.0091 13.297 15.7523 14.2426 15.7523 15.5989Z"
+        fill={fill}
+      />
+    </Icon>
+  );
+};
+
+export const NavigationCurrency = ({ linkName }) => {
+  const [active, setActive] = useBoolean();
+  const location = useLocation();
+
+  useEffect(() => {
+    location.pathname === "/dashboard/currency"
+      ? setActive.on()
+      : setActive.off();
+  }, [location.pathname, setActive]);
+
+  return (
+    <Flex
+      alignItems="center"
+      onMouseEnter={setActive.on}
+      onMouseLeave={
+        location.pathname !== "/dashboard/currency"
+          ? setActive.off
+          : setActive.on
+      }
+    >
+      {!active && (
+        <>
+          <Link
+            to="currency"
+            as={NavLink}
+            fontFamily="Poppins"
+            fontSize={{ xs: "0px", m: "18px" }}
+            lineHeight="1.5"
+          >
+            <NavigationCurrencyIcon fill="#6E78E8" />
+            {linkName}
+          </Link>
+        </>
+      )}
+      {active && (
+        <>
+          <Link
+            to="currency"
+            as={NavLink}
+            fontFamily="Poppins"
+            fontSize={{ xs: "0px", m: "18px" }}
+            lineHeight="1.5"
+            fontWeight="700"
+            _hover={{ textDecoration: "none" }}
+          >
+            <NavigationCurrencyIcon
               fill="#4A56E2"
               filter="drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5))"
             />

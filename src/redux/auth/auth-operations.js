@@ -31,10 +31,31 @@ export const logout = createAsyncThunk(
   "auth/logout",
   async (_, { rejectWithValue }) => {
     try {
-      const result = await api.logout();
+      await api.logout();
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
+    }
+  }
+);
+
+export const current = createAsyncThunk(
+  "auth/current",
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const result = await api.getCurrent(auth.token);
       return result;
     } catch ({ response }) {
       return rejectWithValue(response.data);
     }
+  },
+
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
+        return false;
+      }
+    },
   }
 );

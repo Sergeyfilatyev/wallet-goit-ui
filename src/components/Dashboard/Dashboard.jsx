@@ -1,36 +1,51 @@
 import { Outlet } from "react-router-dom";
-import { Flex, Box } from "@chakra-ui/react";
+
 import Media from "react-media";
 
 import { Navigation } from "../Navigation/Navigation";
 import { Balance } from "../Balance/Balance";
 import { Currency } from "../Currency";
-import { ModalAddTransaction } from "../ModalTransaction";
+
 import { PageContainer } from "../PageContainer";
-import { DashboardBox, DashboardDivider } from "./DashboardStyled";
+import {
+  DashboardBox,
+  DashboardDivider,
+  DashboardContent,
+  DashboardNavigationBalanceBox,
+  DashboardContentFirstPart,
+  DashboardContentSecondPart,
+  DashboardAddTransactionButton,
+  DashboardRedirect,
+} from "./DashboardStyled";
 
 export const Dashboard = () => {
   return (
     <>
       <Media
         queries={{
-          xl: "(min-width: 1280px)",
+          l: "(min-width: 960px)",
+          m: "(min-width: 768px)",
         }}
       >
         {(matches) => (
           <DashboardBox>
             <PageContainer>
-              <Flex>
-                <Box>
-                  <Navigation />
-                  <Balance />
-                  <Currency />
-                  <ModalAddTransaction />
-                </Box>
-                {matches.xl && <DashboardDivider />}
-                <Outlet />
-              </Flex>
+              <DashboardContent>
+                <DashboardContentFirstPart>
+                  <DashboardNavigationBalanceBox>
+                    <Navigation />
+                    {matches.m && <Balance />}
+                  </DashboardNavigationBalanceBox>
+                  {matches.m && <Currency />}
+                </DashboardContentFirstPart>
+                {matches.l && <DashboardDivider />}
+                <DashboardContentSecondPart>
+                  <Outlet />
+                </DashboardContentSecondPart>
+              </DashboardContent>
+              <DashboardAddTransactionButton />
             </PageContainer>
+            {matches.m && <DashboardRedirect />}
           </DashboardBox>
         )}
       </Media>

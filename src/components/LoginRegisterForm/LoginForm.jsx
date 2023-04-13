@@ -33,7 +33,7 @@ export const LoginForm = () => {
         }}
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          dispatch(login(values).then(console.log(values)));
+          dispatch(login(values));
           resetForm();
           setSubmitting(false);
         }}
