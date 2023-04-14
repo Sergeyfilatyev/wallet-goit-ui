@@ -1,15 +1,18 @@
-import { useSelector, Outlet } from "react-redux";
-import { isUserLogin } from "../redux/auth/auth-selectors";
+import { useSelector } from "react-redux";
+import { getAuth } from "../redux/auth/auth-selectors";
 import { Navigate } from "react-router-dom";
 
-const PublicRoute = () => {
-  const isAuth = useSelector(isUserLogin);
+const PublicRoute = ({ children, restricted = false }) => {
+  /* 
 
   if (isAuth) {
     return <Navigate to="/dashboard" />;
   }
 
-  return <Outlet />;
+  return <Outlet />; */
+  const isAuth = useSelector(getAuth).isAuth;;
+  const shouldRedirect = isAuth && restricted;
+  return shouldRedirect ? <Navigate to="/dashboard" /> : children;
 };
 
 export default PublicRoute;

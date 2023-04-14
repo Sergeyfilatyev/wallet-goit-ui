@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../../shared/api/auth";
-// const API_URL = process.env.REACT_APP_API_URL;
 
 export const register = createAsyncThunk(
   "auth/register",
@@ -19,7 +18,7 @@ export const login = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.login(data);
-
+      localStorage.setItem("token", "generated");
       return result;
     } catch ({ response }) {
       return rejectWithValue(response.data);
@@ -32,23 +31,22 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await api.logout();
+      localStorage.removeItem("token");
     } catch ({ response }) {
       return rejectWithValue(response.data);
     }
   }
 );
 
-export const verifyUser = createAsyncThunk(
-  "auth/verifyUser",
+export const verify = createAsyncThunk(
+  "auth/verify",
   async (token, { rejectWithValue }) => {
-    console.log("token", token)
     try {
-      const {data} = await api.verifyUser(token);
-      console.log(await api.verifyUser(token));
-      console.log("from operations", data);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
+      const result = await api.verifyUser(token);
+      localStorage.setItem("token", "generated");
+      return result;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
     }
   }
 );
@@ -58,6 +56,7 @@ export const refresh = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const data = await api.checkAuth();
+      localStorage.setItem("token", "generated");
       return data;
     } catch ({ response }) {
       return rejectWithValue(response.data);

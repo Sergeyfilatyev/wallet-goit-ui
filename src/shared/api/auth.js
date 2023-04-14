@@ -1,11 +1,9 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3030/api"/* "https://wallet-api-goit.onrender.com/api" */,
-  /* withCredentials: true, */
+  baseURL: process.env.REACT_APP_BASE_URL,
+  withCredentials: true,
 });
-
-/* instance.interceptors.request.use() */
 
 const setToken = (token) => {
   if (token) {
@@ -16,20 +14,19 @@ const setToken = (token) => {
 
 export const register = async (data) => {
   const { data: result } = await instance.post("/users/register", data);
-  /* setToken(result.token); */
   return result;
 };
 
 export const login = async (data) => {
   const { data: result } = await instance.post("/users/login", data);
   setToken(result.token);
+  console.log("from auth", result.token);
   return result;
 };
 
 export const logout = async () => {
-  const { data } = await instance.post("/users/logout");
+  await instance.post("/users/logout");
   setToken();
-  console.log(data);
 };
 
 export const getCurrent = async (token) => {
@@ -44,25 +41,51 @@ export const getCurrent = async (token) => {
 };
 
 export const verifyUser = async (token) => {
-
-  return await instance.get(`/users/verify/${token}`);
-  /* try {
-    const {data} = await instance.get(`/users/verify/${token}`);
-    console.log("from auth", data);
-    /* setToken(result.token); 
+  try {
+    const { data } = await instance.get(`/users/verify/${token}`);
+    setToken(data.data.token);
     return data;
   } catch (error) {
-    throw error;*/
+    throw error;
   }
- 
+};
+
 export const checkAuth = async () => {
   try {
-    const {data} = await instance.get("/users/refresh");
-    setToken(data.token);
+    const { data } = await instance.get("/users/refresh");
+    setToken(data.data.token);
+    console.log(data.data.token);
     return data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
+
+instance.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+    console.log(error);
+    if (
+      error.response.status == 401 &&
+      error.config &&
+      !originalRequest._isRetry
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const { data } = await instance.get("/users/refresh");
+        console.log(data.data.token);
+        error.config.headers["Authorization"] = `Bearer ${data.data.token}`;
+        localStorage.setItem("token", "generated");
+        return instance.request(originalRequest);
+      } catch (error) {
+        throw error;
+      }
+    }
+    throw error;
+  }
+);
 
 export default instance;

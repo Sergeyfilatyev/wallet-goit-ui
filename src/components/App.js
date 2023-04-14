@@ -9,11 +9,11 @@ import { Currency } from "./Currency";
 // import { getAuth } from "../redux/auth/auth-selectors";
 
 // import { current } from "../redux/auth/auth-operations";
-// import PublicRoute from "../HOCs/PublicRoute";
-// import PrivateRoute from "../HOCs/PrivateRoute";
+import PublicRoute from "../HOCs/PublicRoute";
+import PrivateRoute from "../HOCs/PrivateRoute";
 
-import { verifyUser } from "../shared/api/auth";
-import { selectToken } from "../redux/auth/auth-selectors";
+import { verify, refresh } from "../redux/auth/auth-operations";
+
 import "../i18n";
 import { Table, TableMobile } from "./Table";
 import { ChangeLanguage } from "./ChangeLanguage/ChangeLanguage";
@@ -30,18 +30,18 @@ function App() {
   const [searchParams] = useSearchParams();
 
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
 
   const tokenFromParams = searchParams.get("token");
-  console.log(tokenFromParams);
-  let verificationDone = false;
 
   useEffect(() => {
-    if (tokenFromParams && !verificationDone) {
-      dispatch(() => verifyUser(tokenFromParams));
-      verificationDone = true;
+    if (tokenFromParams && !localStorage.getItem("token")) {
+      dispatch(verify(tokenFromParams));
     }
-  }, [tokenFromParams, dispatch]);
+
+    if (localStorage.getItem("token")) {
+      dispatch(refresh());
+    }
+  }, []);
 
   // const dispatch = useDispatch();
   // const isAuth = useSelector(getAuth);
@@ -52,16 +52,15 @@ function App() {
 
   return (
     <Suspense>
-      <ChangeLanguage />
-      {/* <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/dashboard" element={<DashboardPage />}>
+      <Routes>
+        <Route path="/" element={<PublicRoute restricted><LoginPage /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute restricted><RegistrationPage /></PublicRoute>} />
+        <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
           <Route path="home" element={<HomePageDesktop />} />
           <Route path="statistics" element={<StatisticsPageDesktop />} />
           <Route path="currency" element={<Currency />} />
         </Route>
-      </Routes> */}
+      </Routes> 
       <Media
         queries={{
           xs: "(min-width: 320px)",
@@ -70,9 +69,9 @@ function App() {
       >
         {(matches) => (
           <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/register" element={<RegistrationPage />} />
-            <Route path="/dashboard" element={<DashboardPage />}>
+            <Route path="/" element={<PublicRoute restricted><LoginPage /></PublicRoute>} />
+            <Route path="/register" element={<PublicRoute restricted><RegistrationPage /></PublicRoute>} />
+            <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
               {matches.m && <Route path="home" element={<Table />} />}
               {matches.xs && <Route path="home" element={<TableMobile />} />}
               <Route path="statistics" element={<></>} />

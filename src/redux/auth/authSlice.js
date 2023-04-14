@@ -4,7 +4,7 @@ import {
   logout,
   current,
   refresh,
-  verifyUser,
+  verify,
 } from "./auth-operations";
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 
@@ -26,15 +26,15 @@ const authSlice = createSlice({
         state.user = payload.data;
       })
 
-      .addCase(verifyUser.fulfilled, (state, action) => {
-        console.log("payload", action)
-        state.user = action.payload.data;
-        state.token = action.payload.data.token;
+      .addCase(verify.fulfilled, (state, {payload}) => {
+        state.user = { name: payload.data.name, email: payload.data.email };
+        state.token = payload.data.token;
         state.isAuth = true;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
+        console.log(payload);
+        state.user = { name: payload.data.name, email: payload.data.email };
+        state.token = payload.data.token;
         state.isAuth = true;
       })
       .addCase(logout.fulfilled, (state) => {
@@ -44,7 +44,8 @@ const authSlice = createSlice({
       })
       .addCase(refresh.fulfilled, (state, { payload }) => {
         state.isAuth = true;
-        state.token = payload.token;
+        /* state.token = payload.data.token; */
+        state.user = { name: payload.data.name, email: payload.data.email };
       })
 
       .addCase(current.pending, (state) => {
@@ -68,7 +69,7 @@ const authSlice = createSlice({
           login.fulfilled,
           logout.fulfilled,
           refresh.fulfilled,
-          verifyUser.fulfilled
+          verify.fulfilled
         ),
         (state) => {
           state.isLoading = false;
@@ -81,7 +82,7 @@ const authSlice = createSlice({
           login.pending,
           logout.pending,
           refresh.pending,
-          verifyUser.pending,
+          verify.pending,
           current.pending
         ),
         (state) => {
@@ -95,7 +96,7 @@ const authSlice = createSlice({
           login.rejected,
           logout.rejected,
           refresh.rejected,
-          verifyUser.rejected,
+          verify.rejected,
           current.rejected
         ),
         (state, { payload }) => {
