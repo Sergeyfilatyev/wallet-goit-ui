@@ -19,8 +19,9 @@ import {
   GoogleButton,
 } from "./LoginRegisterFormStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
-
+import { useTranslation } from "react-i18next";
 export const LoginForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   return (
     <LoginRegisterFormBox height={{ base: "100%", s: "518px" }}>
@@ -41,19 +42,22 @@ export const LoginForm = () => {
       >
         <Form>
           <LoginRegisterFormInputsBox>
-            <LoginRegisterFormEmailInput placeholder="E-mail">
+            <LoginRegisterFormEmailInput placeholder={t("email")}>
               <FieldErrorMessage error={<ErrorMessage name="email" />} />
             </LoginRegisterFormEmailInput>
-            <LoginRegisterFormPasswordInput placeholder="Password">
+            <LoginRegisterFormPasswordInput placeholder={t("password")}>
               <FieldErrorMessage error={<ErrorMessage name="password" />} />
             </LoginRegisterFormPasswordInput>
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
-            <LoginRegisterFormSubmitButton name="Log In" />
-            <LoginRegisterFormRedirectButton name="Register" to="register" />
+            <LoginRegisterFormSubmitButton name={t("login")} />
+            <LoginRegisterFormRedirectButton
+              name={t("register")}
+              to="register"
+            />
             <GoogleButton
-              name="Log in with"
-              to="http://localhost:3030/api/auth/google"
+              name={t("google")}
+              to="https://wallet-api-goit.onrender.com/api/auth/google"
             />
           </LoginRegisterFormButtonsBox>
         </Form>

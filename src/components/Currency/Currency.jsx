@@ -13,8 +13,9 @@ import {
   CurrencyTableBodyLineValue,
   CurrencySpinner,
 } from "./CurrencyStyled";
-
+import { useTranslation } from "react-i18next";
 export const Currency = () => {
+  const { t } = useTranslation();
   const [rates, setRates] = useState(
     localStorage.getItem("rates")
       ? JSON.parse(localStorage.getItem("rates"))
@@ -46,9 +47,9 @@ export const Currency = () => {
   return (
     <CurrencyBox>
       <CurrencyTableHead>
-        <CurrencyTableHeadValue value="Currency" />
-        <CurrencyTableHeadValue value="Purchase" />
-        <CurrencyTableHeadValue value="Sale" />
+        <CurrencyTableHeadValue value={t("currency")} />
+        <CurrencyTableHeadValue value={t("purchase")} />
+        <CurrencyTableHeadValue value={t("sale")} />
       </CurrencyTableHead>
       {!rates && <CurrencySpinner />}
       {rates && (

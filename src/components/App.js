@@ -1,3 +1,5 @@
+import Media from "react-media";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
@@ -12,6 +14,9 @@ import PrivateRoute from "../HOCs/PrivateRoute";
 
 import { verify, refresh } from "../redux/auth/auth-operations";
 
+import "../i18n";
+import { Table, TableMobile } from "./Table";
+import { ChangeLanguage } from "./ChangeLanguage/ChangeLanguage";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
@@ -53,9 +58,28 @@ function App() {
         <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
           <Route path="home" element={<HomePageDesktop />} />
           <Route path="statistics" element={<StatisticsPageDesktop />} />
-          <Route path="currency" element={<PrivateRoute><Currency /></PrivateRoute>} />
+          <Route path="currency" element={<Currency />} />
         </Route>
-      </Routes>
+      </Routes> 
+      <Media
+        queries={{
+          xs: "(min-width: 320px)",
+          m: "(min-width: 768px)",
+        }}
+      >
+        {(matches) => (
+          <Routes>
+            <Route path="/" element={<PublicRoute restricted><LoginPage /></PublicRoute>} />
+            <Route path="/register" element={<PublicRoute restricted><RegistrationPage /></PublicRoute>} />
+            <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
+              {matches.m && <Route path="home" element={<Table />} />}
+              {matches.xs && <Route path="home" element={<TableMobile />} />}
+              <Route path="statistics" element={<></>} />
+              <Route path="currency" element={<Currency />} />
+            </Route>
+          </Routes>
+        )}
+      </Media>
     </Suspense>
   );
 }
