@@ -1,4 +1,5 @@
 // import { useSelector, useDispatch } from "react-redux";
+import EllipsisText from "react-ellipsis-text";
 
 import { IconButton } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
@@ -11,6 +12,7 @@ import {
   TransactionsTr,
   TransactionsTd,
   TransactionsTdDate,
+  TransactionsTdComment,
   TransactionsTdSum,
   TransactionsTdButton,
   TransactionsLastTr,
@@ -30,7 +32,8 @@ const userTransactions = [
     amount: 200,
     income: true,
     category: "car",
-    comment: "test",
+    comment:
+      "test this is loooong long comment for testing  react-ellipsis-text",
     date: {
       time: 1681030445404,
       day: 9,
@@ -203,7 +206,9 @@ export const Table = () => {
                 />
                 <TransactionsTd value={item.income ? "+" : "-"} />
                 <TransactionsTd value={item.category} />
-                <TransactionsTd value={item.comment} />
+                <TransactionsTdComment>
+                  <EllipsisText text={item.comment} length={26} />
+                </TransactionsTdComment>
                 <TransactionsTdSum value={`${item.amount}.00`} />
 
                 <TransactionsTdButton>
