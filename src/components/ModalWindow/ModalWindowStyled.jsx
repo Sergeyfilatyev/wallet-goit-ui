@@ -34,13 +34,7 @@ export const MadalBodyBox = ({ children }) => {
 
 export const ModalFooterButtonBox = ({ children }) => {
   return (
-    <Flex
-      flexDirection="column"
-      alignItems="center"
-      gap="20px"
-      mt={{ base: "40px", s: "42px" }}
-      as="div"
-    >
+    <Flex flexDirection="column" alignItems="center" gap="20px" as="div">
       {children}
     </Flex>
   );

@@ -1,7 +1,9 @@
-export const isUserLogin = ({ auth }) => auth.isAuth;
+export const isUserLogin = (state) => state.auth.isAuth;
 export const getAuth = ({ auth }) => {
   const { isAuth, token } = auth;
   return { isAuth, token };
 };
 
 export const getUser = ({ auth }) => auth.user;
+
+export const selectToken = store => store.auth.token;

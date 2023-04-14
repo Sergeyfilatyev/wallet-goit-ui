@@ -3,14 +3,16 @@ import { PageContainer } from "../PageContainer/PageContainer";
 import { Logo } from "../Logo";
 import { User } from "../User";
 
-import { HeaderBox, HeaderContentBox } from "./HeaderStyled";
+import { HeaderBox, HeaderContentBox, HeaderLogoLink } from "./HeaderStyled";
 
 export const Header = () => {
   return (
     <HeaderBox>
       <PageContainer>
         <HeaderContentBox>
-          <Logo />
+          <HeaderLogoLink>
+            <Logo />
+          </HeaderLogoLink>
           <User name={"Name"} />
         </HeaderContentBox>
       </PageContainer>
