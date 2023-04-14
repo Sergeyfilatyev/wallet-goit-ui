@@ -231,7 +231,7 @@ export const Table = () => {
                 </TransactionsTdButton>
                 <TransactionsTdButton>
                   <DeleteButton
-                    name="Delete"
+                    name={t("delete")}
                     // onClick={() => dispatch(deleteTransaction(item._id))}
                   />
                 </TransactionsTdButton>
