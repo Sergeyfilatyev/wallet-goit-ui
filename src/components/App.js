@@ -52,6 +52,7 @@ function App() {
 
   return (
     <Suspense>
+      <ChangeLanguage />
       <Media
         queries={{
           xs: "(min-width: 320px)",
