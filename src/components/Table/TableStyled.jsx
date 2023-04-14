@@ -128,22 +128,6 @@ export const TransactionsTdComment = ({ children }) => {
   );
 };
 
-export const TransactionsTdSum = ({ value }) => {
-  return (
-    <Box
-      height="52px"
-      fontWeight="700"
-      fontSize="16px"
-      lineHeight="1.5"
-      color="#000000"
-      textAlign="left"
-      as="td"
-    >
-      {value}
-    </Box>
-  );
-};
-
 export const TransactionsLastTr = ({ children }) => {
   return (
     <Box lineHeight="0" as="tr">

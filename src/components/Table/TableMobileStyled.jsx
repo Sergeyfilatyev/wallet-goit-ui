@@ -1,29 +1,8 @@
 import { Box, Flex, Button } from "@chakra-ui/react";
 
-export const Card = ({ children }) => {
-  return (
-    <Box
-      width="280px"
-      mb="8px"
-      p="0 20px"
-      borderRadius="10px"
-      borderLeft="5px solid #FF6596"
-      bg="#FFFFFF"
-      // bg="#fae6e6"
-    >
-      {children}
-    </Box>
-  );
-};
-
 export const DataRow = ({ children }) => {
   return (
-    <Flex
-      justifyContent="space-between"
-      alignItems="center"
-      height="47px"
-      //borderBottom="1px solid #DCDCDF"
-    >
+    <Flex justifyContent="space-between" alignItems="center" height="47px">
       {children}
     </Flex>
   );
