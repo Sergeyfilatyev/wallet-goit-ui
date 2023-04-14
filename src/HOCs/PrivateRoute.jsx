@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { getAuth } from "../redux/auth/auth-selectors";
 import { Navigate, Outlet } from "react-router-dom";
 
-const PrivateRoute = ({children}) => {
+const PrivateRoute = ({ children }) => {
   /* const { token, isAuth } = useSelector(getAuth);
 
   if (!isAuth && token) {
@@ -16,7 +16,6 @@ const PrivateRoute = ({children}) => {
   return <Outlet />; */
 
   const isAuth = useSelector(getAuth).isAuth;
-
 
   return isAuth ? children : <Navigate to="/" />;
 };

@@ -10,9 +10,9 @@ const PublicRoute = ({ children, restricted = false }) => {
   }
 
   return <Outlet />; */
-  const isAuth = useSelector(getAuth).isAuth;;
+  const isAuth = useSelector(getAuth).isAuth;
   const shouldRedirect = isAuth && restricted;
-  return shouldRedirect ? <Navigate to="/dashboard" /> : children;
+  return shouldRedirect ? <Navigate to="/dashboard/home" /> : children;
 };
 
 export default PublicRoute;
