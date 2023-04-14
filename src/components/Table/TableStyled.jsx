@@ -112,6 +112,22 @@ export const TransactionsTdDate = ({ value }) => {
   );
 };
 
+export const TransactionsTdComment = ({ children }) => {
+  return (
+    <Box
+      maxWidth="125px"
+      height="52px"
+      fontSize="16px"
+      lineHeight="1.5"
+      color="#000000"
+      textAlign="left"
+      as="td"
+    >
+      {children}
+    </Box>
+  );
+};
+
 export const TransactionsTdSum = ({ value }) => {
   return (
     <Box
