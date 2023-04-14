@@ -10,7 +10,8 @@ import { Currency } from "./Currency";
 // import PublicRoute from "../HOCs/PublicRoute";
 // import PrivateRoute from "../HOCs/PrivateRoute";
 
-import { verifyUser } from "../shared/api/auth";
+/* import { verifyUser, ref } from "../shared/api/auth"; */
+import { verify } from "../redux/auth/auth-operations";
 import { selectToken } from "../redux/auth/auth-selectors";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
@@ -28,15 +29,12 @@ function App() {
   const token = useSelector(selectToken);
 
   const tokenFromParams = searchParams.get("token");
-  console.log(tokenFromParams);
-  let verificationDone = false;
 
   useEffect(() => {
-    if (tokenFromParams && !verificationDone) {
-      dispatch(() => verifyUser(tokenFromParams));
-      verificationDone = true;
+    if (tokenFromParams) {
+      dispatch(verify(tokenFromParams));
     }
-  }, [tokenFromParams, dispatch]);
+  }, []);
 
   // const dispatch = useDispatch();
   // const isAuth = useSelector(getAuth);

@@ -1,4 +1,6 @@
 import { Button, Box, useDisclosure, Text } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/auth/auth-operations";
 
 import "react-datetime/css/react-datetime.css";
 
@@ -7,8 +9,11 @@ import { ModalExitText, ModalExitButton } from "./ModalExitStyled";
 
 export const ModalExit = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
 
-  const userSignOut = () => {};
+  const userSignOut = () => {
+    dispatch(logout());
+  };
 
   return (
     <>

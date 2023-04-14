@@ -53,7 +53,7 @@ export const LoginForm = () => {
             <LoginRegisterFormRedirectButton name="Register" to="register" />
             <GoogleButton
               name="Log in with"
-              to="https://wallet-api-goit.onrender.com/api/auth/google"
+              to="http://localhost:3030/api/auth/google"
             />
           </LoginRegisterFormButtonsBox>
         </Form>

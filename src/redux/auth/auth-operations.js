@@ -38,17 +38,14 @@ export const logout = createAsyncThunk(
   }
 );
 
-export const verifyUser = createAsyncThunk(
-  "auth/verifyUser",
+export const verify = createAsyncThunk(
+  "auth/verify",
   async (token, { rejectWithValue }) => {
-    console.log("token", token)
     try {
-      const {data} = await api.verifyUser(token);
-      console.log(await api.verifyUser(token));
-      console.log("from operations", data);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
+      const result = await api.verifyUser(token);
+      return result;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
     }
   }
 );
