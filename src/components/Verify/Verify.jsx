@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { getAuth  } from "../../redux/auth/auth-selectors";
+import { getUser  } from "../../redux/auth/auth-selectors";
 
 import {Flex} from "@chakra-ui/react";
 import Media from "react-media";
@@ -10,7 +10,7 @@ import { VerifyButton, VerifyText } from "./VerifyStyled";
 
 export const Verify = () => {
   
-    const user = useSelector(getAuth)
+    const user = useSelector(getUser)
 
 
   const fetchResendEmail = () => {
