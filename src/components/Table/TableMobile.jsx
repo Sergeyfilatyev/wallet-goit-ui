@@ -1,6 +1,6 @@
 import EllipsisText from "react-ellipsis-text";
 
-import { Button } from "@chakra-ui/react";
+import { Button, Box } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
 import {
@@ -149,7 +149,15 @@ export const TableMobile = () => {
   return (
     <>
       {userTransactions.map((item) => (
-        <Card key={item._id}>
+        <Box
+          key={item._id}
+          width="280px"
+          mb="8px"
+          p="0 20px"
+          borderRadius="10px"
+          borderLeft={item.income ? "5px solid #24CCA7" : "5px solid #FF6596"}
+          bg="#FFFFFF"
+        >
           <DataRow>
             <Header value="date" />
             <TransactionData
@@ -178,7 +186,15 @@ export const TableMobile = () => {
           <DataRowDivider />
           <DataRow>
             <Header value="sum" />
-            <TransactionData value={`${item.amount}.00`} />
+            <Box
+              fontSize="16px"
+              lineHeight="1.5"
+              fontWeight="700"
+              textAlign="right"
+              textTransform="Capitalize"
+              color={item.income ? "#24CCA7" : "#FF6596"}
+            >{`${item.amount}.00`}</Box>
+            {/* <TransactionData value={`${item.amount}.00`} /> */}
           </DataRow>
           <DataRowDivider />
           <DataRow>
@@ -199,7 +215,7 @@ export const TableMobile = () => {
               Edit
             </Button>
           </DataRow>
-        </Card>
+        </Box>
       ))}
     </>
   );

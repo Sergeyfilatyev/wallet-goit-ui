@@ -1,7 +1,7 @@
 // import { useSelector, useDispatch } from "react-redux";
 import EllipsisText from "react-ellipsis-text";
 
-import { IconButton } from "@chakra-ui/react";
+import { IconButton, Box } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
 import {
@@ -13,7 +13,6 @@ import {
   TransactionsTd,
   TransactionsTdDate,
   TransactionsTdComment,
-  TransactionsTdSum,
   TransactionsTdButton,
   TransactionsLastTr,
   DeleteButton,
@@ -209,8 +208,17 @@ export const Table = () => {
                 <TransactionsTdComment>
                   <EllipsisText text={item.comment} length={26} />
                 </TransactionsTdComment>
-                <TransactionsTdSum value={`${item.amount}.00`} />
-
+                {/* <TransactionsTdSum value={`${item.amount}.00`} /> */}
+                <Box
+                  height="52px"
+                  fontWeight="700"
+                  fontSize="16px"
+                  lineHeight="1.5"
+                  // color="#000000"
+                  color={item.income ? "#24CCA7" : "#FF6596"}
+                  textAlign="left"
+                  as="td"
+                >{`${item.amount}.00`}</Box>
                 <TransactionsTdButton>
                   <IconButton
                     backgroundColor="transparent"
