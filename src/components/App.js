@@ -1,3 +1,5 @@
+import Media from "react-media";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
@@ -13,8 +15,7 @@ import { Currency } from "./Currency";
 import { verifyUser } from "../shared/api/auth";
 import { selectToken } from "../redux/auth/auth-selectors";
 import "../i18n";
-import { Table } from "./Table";
-import { TableMobile } from "./Table";
+import { Table, TableMobile } from "./Table";
 import { ChangeLanguage } from "./ChangeLanguage/ChangeLanguage";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
@@ -52,7 +53,7 @@ function App() {
   return (
     <Suspense>
       <ChangeLanguage />
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/dashboard" element={<DashboardPage />}>
@@ -60,7 +61,26 @@ function App() {
           <Route path="statistics" element={<StatisticsPageDesktop />} />
           <Route path="currency" element={<Currency />} />
         </Route>
-      </Routes>
+      </Routes> */}
+      <Media
+        queries={{
+          xs: "(min-width: 320px)",
+          m: "(min-width: 768px)",
+        }}
+      >
+        {(matches) => (
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/register" element={<RegistrationPage />} />
+            <Route path="/dashboard" element={<DashboardPage />}>
+              {matches.m && <Route path="home" element={<Table />} />}
+              {matches.xs && <Route path="home" element={<TableMobile />} />}
+              <Route path="statistics" element={<></>} />
+              <Route path="currency" element={<Currency />} />
+            </Route>
+          </Routes>
+        )}
+      </Media>
     </Suspense>
   );
 }
