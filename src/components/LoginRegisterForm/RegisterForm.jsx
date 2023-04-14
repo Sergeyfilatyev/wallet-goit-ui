@@ -78,7 +78,7 @@ export const RegisterForm = () => {
             <LoginRegisterFormRedirectButton name={t("login")} to="/" />
             <GoogleButton
               name={t("google")}
-              to="https://wallet-api-goit.onrender.com/api/auth/google"
+              to={`${process.env.REACT_APP_BASE_URL}/auth/google`}
             />
           </LoginRegisterFormButtonsBox>
         </Form>

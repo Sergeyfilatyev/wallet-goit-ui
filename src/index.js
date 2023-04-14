@@ -14,15 +14,13 @@ import { chakraTheme } from "./styles/chakraTheme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ChakraProvider theme={chakraTheme}>
-        {/* <PersistGate persistore={persistor}> */}
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-        {/* </PersistGate> */}
-      </ChakraProvider>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <ChakraProvider theme={chakraTheme}>
+      {/* <PersistGate persistore={persistor}> */}
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+      {/* </PersistGate> */}
+    </ChakraProvider>
+  </Provider>
 );
