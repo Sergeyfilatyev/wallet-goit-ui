@@ -7,6 +7,9 @@ import { Balance } from "../Balance/Balance";
 import { Currency } from "../Currency";
 
 import { PageContainer } from "../PageContainer";
+
+import { Table, TableMobile } from "../Table";
+
 import {
   DashboardBox,
   DashboardDivider,
