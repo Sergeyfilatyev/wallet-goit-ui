@@ -14,10 +14,9 @@ export const ChangeLanguage = () => {
   return (
     <Box
       pos="absolute"
-      zIndex={"banner"}
+      zIndex={"500"}
+      left={"50%"}
       top="4"
-      left="0"
-      right="0"
       textAlign="center"
       color={"#BDBDBD"}
     >
