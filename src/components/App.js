@@ -12,9 +12,10 @@ import { Currency } from "./Currency";
 
 import { verifyUser } from "../shared/api/auth";
 import { selectToken } from "../redux/auth/auth-selectors";
-
+import "../i18n";
 import { Table } from "./Table";
 import { TableMobile } from "./Table";
+import { ChangeLanguage } from "./ChangeLanguage/ChangeLanguage";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
@@ -50,6 +51,7 @@ function App() {
 
   return (
     <Suspense>
+      <ChangeLanguage />
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegistrationPage />} />

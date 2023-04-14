@@ -22,10 +22,11 @@ import {
   GoogleButton,
 } from "./LoginRegisterFormStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
+import { useTranslation } from "react-i18next";
 
 export const RegisterForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
-
   return (
     <LoginRegisterFormBox height={{ base: "100%", s: "666px" }}>
       <LoginRegisterFormLogoBox>
@@ -55,26 +56,28 @@ export const RegisterForm = () => {
       >
         <Form>
           <LoginRegisterFormInputsBox>
-            <LoginRegisterFormEmailInput placeholder="E-mail">
+            <LoginRegisterFormEmailInput placeholder={t("email")}>
               <FieldErrorMessage error={<ErrorMessage name="email" />} />
             </LoginRegisterFormEmailInput>
-            <LoginRegisterFormPasswordInput placeholder="Password">
+            <LoginRegisterFormPasswordInput placeholder={t("password")}>
               <FieldErrorMessage error={<ErrorMessage name="password" />} />
             </LoginRegisterFormPasswordInput>
-            <LoginRegisterFormConfirmPasswordInput placeholder="Confirm Password">
+            <LoginRegisterFormConfirmPasswordInput
+              placeholder={t("confirmPas")}
+            >
               <FieldErrorMessage
                 error={<ErrorMessage name="confirmPassword" />}
               />
             </LoginRegisterFormConfirmPasswordInput>
-            <LoginRegisterFormNameInput placeholder="First Name">
+            <LoginRegisterFormNameInput placeholder={t("name")}>
               <FieldErrorMessage error={<ErrorMessage name="name" />} />
             </LoginRegisterFormNameInput>
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
-            <LoginRegisterFormSubmitButton name="Register " />
-            <LoginRegisterFormRedirectButton name="Log In" to="/" />
+            <LoginRegisterFormSubmitButton name={t("register")} />
+            <LoginRegisterFormRedirectButton name={t("login")} to="/" />
             <GoogleButton
-              name="Sign in with"
+              name={t("google")}
               to="https://wallet-api-goit.onrender.com/api/auth/google"
             />
           </LoginRegisterFormButtonsBox>

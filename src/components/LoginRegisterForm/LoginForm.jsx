@@ -42,21 +42,21 @@ export const LoginForm = () => {
       >
         <Form>
           <LoginRegisterFormInputsBox>
-            <LoginRegisterFormEmailInput placeholder={t("login.email")}>
+            <LoginRegisterFormEmailInput placeholder={t("email")}>
               <FieldErrorMessage error={<ErrorMessage name="email" />} />
             </LoginRegisterFormEmailInput>
-            <LoginRegisterFormPasswordInput placeholder={t("login.password")}>
+            <LoginRegisterFormPasswordInput placeholder={t("password")}>
               <FieldErrorMessage error={<ErrorMessage name="password" />} />
             </LoginRegisterFormPasswordInput>
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
-            <LoginRegisterFormSubmitButton name={t("login.login")} />
+            <LoginRegisterFormSubmitButton name={t("login")} />
             <LoginRegisterFormRedirectButton
-              name={t("login.register")}
+              name={t("register")}
               to="register"
             />
             <GoogleButton
-              name={t("login.google")}
+              name={t("google")}
               to="https://wallet-api-goit.onrender.com/api/auth/google"
             />
           </LoginRegisterFormButtonsBox>

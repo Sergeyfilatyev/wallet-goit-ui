@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   NavigationBox,
   NavigationHome,
@@ -8,6 +9,7 @@ import {
 import Media from "react-media";
 
 export const Navigation = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Media
@@ -17,8 +19,8 @@ export const Navigation = () => {
       >
         {(matches) => (
           <NavigationBox>
-            <NavigationHome linkName="Home" />
-            <NavigationStatistics linkName="Statistics" />
+            <NavigationHome linkName={t("home")} />
+            <NavigationStatistics linkName={t("stats")} />
             {matches.s && <NavigationCurrency linkName="Currency" />}
           </NavigationBox>
         )}
