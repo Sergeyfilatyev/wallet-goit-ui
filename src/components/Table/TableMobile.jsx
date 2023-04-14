@@ -1,5 +1,4 @@
-import { Text, Button } from "@chakra-ui/react";
-import { IconButton } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
 import {
@@ -9,6 +8,7 @@ import {
   DataRow,
   DataRowDivider,
 } from "./TableMobileStyled";
+import { DeleteButton } from "./TableStyled";
 
 const userTransactions = [
   {
@@ -172,17 +172,26 @@ export const TableMobile = () => {
           <DataRowDivider />
           <DataRow>
             <Header value="sum" />
-            <TransactionData value={item.amount} />
+            <TransactionData value={`${item.amount}.00`} />
           </DataRow>
           <DataRowDivider />
           <DataRow>
-            <Button variant="greenButton">Delete</Button>
-            <IconButton
-              backgroundColor="transparent"
-              aria-label="Edit transaction"
-              icon={<EditIcon />}
+            <DeleteButton
+              name="Delete"
+              // onClick={() => dispatch(deleteTransaction(item._id))}
             />
-            <Text>Edit</Text>
+            <Button
+              leftIcon={<EditIcon />}
+              backgroundColor="transparent"
+              fontSize="14px"
+              lineHeight="1.5"
+              letterSpacing="0.6px"
+              textTransform="Capitalize"
+              _hover={{ color: "#24CCA7" }}
+              _active={{ bg: "transparent" }}
+            >
+              Edit
+            </Button>
           </DataRow>
         </Card>
       ))}

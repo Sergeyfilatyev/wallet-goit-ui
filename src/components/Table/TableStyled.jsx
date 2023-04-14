@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 
 export const TransactionsTable = ({ children }) => {
   return (
@@ -8,54 +8,55 @@ export const TransactionsTable = ({ children }) => {
   );
 };
 
-export const TransactionsTh = ({ value }) => {
+export const TransactionsTh = ({ children }) => {
   return (
-    <Box
-      height="58px"
-      backgroundColor="#FFFFFF"
-      fontSize="18px"
-      lineHeight="1.5"
-      textTransform="Capitalize"
-      textAlign="left"
-      as="th"
-    >
-      {value}
+    <Box height="58px" backgroundColor="#FFFFFF" textAlign="left" as="th">
+      {children}
     </Box>
   );
 };
 
-export const TransactionsThDate = ({ value }) => {
+export const TransactionsThDate = ({ children }) => {
   return (
     <Box
       height="58px"
       pl="20px"
       backgroundColor="#FFFFFF"
       borderLeftRadius="30px"
-      fontSize="18px"
-      lineHeight="1.5"
-      textTransform="Capitalize"
       textAlign="left"
       as="th"
     >
-      {value}
+      {children}
     </Box>
   );
 };
 
-export const TransactionsThSum = ({ value }) => {
+export const TransactionsThSum = ({ children }) => {
   return (
     <Box
       colSpan="3"
       height="58px"
       backgroundColor="#FFFFFF"
       borderRightRadius="30px"
-      fontSize="18px"
-      lineHeight="1.5"
-      textTransform="Capitalize"
       textAlign="left"
       as="th"
     >
-      {value}
+      {children}
+    </Box>
+  );
+};
+
+export const HeaderButton = ({ name }) => {
+  return (
+    <Box
+      type="submit"
+      fontSize="18px"
+      lineHeight="1.5"
+      fontWeight="700"
+      textTransform="Capitalize"
+      as="button"
+    >
+      {name}
     </Box>
   );
 };
@@ -65,6 +66,14 @@ export const TransactionsTr = ({ children }) => {
     <Box
       borderBottom="1px solid #DCDCDF"
       boxShadow="0px 1px 0px rgba(255, 255, 255, 0.6)"
+      // _after={{
+      //   content: '""',
+      //   w: "700px",
+      //   height: "4px",
+      //   bgColor: "red",
+      //   display: "inline-block",
+      //   mr: "5px",
+      // }}
       as="tr"
     >
       {children}
@@ -135,14 +144,31 @@ export const TransactionsTdButton = ({ children }) => {
   );
 };
 
-export const DataRowDivider = () => {
+export const DeleteButton = ({ name }) => {
   return (
-    <Box
-      // ml="-25px"
-      border="1px solid #DCDCDF"
-      boxShadow="0px 1px 0px rgba(255, 255, 255, 0.6)"
-      width="700px"
-      as="div"
-    ></Box>
+    <Button
+      type="submit"
+      variant="greenButton"
+      w="67px"
+      h="26px"
+      fontSize="14px"
+      lineHeight="1.5"
+      letterSpacing="0.6px"
+      textTransform="Capitalize"
+    >
+      {name}
+    </Button>
   );
 };
+
+// export const DataRowDivider = () => {
+//   return (
+//     <Box
+//       // ml="-25px"
+//       border="1px solid #DCDCDF"
+//       boxShadow="0px 1px 0px rgba(255, 255, 255, 0.6)"
+//       width="700px"
+//       as="div"
+//     ></Box>
+//   );
+// };

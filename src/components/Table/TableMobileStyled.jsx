@@ -1,7 +1,6 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Button } from "@chakra-ui/react";
 
 export const Card = ({ children }) => {
-  console.log(children);
   return (
     <Box
       width="280px"
@@ -55,6 +54,23 @@ export const TransactionData = ({ value }) => {
     >
       {value}
     </Box>
+  );
+};
+
+export const DeleteButton = ({ name }) => {
+  return (
+    <Button
+      type="submit"
+      variant="greenButton"
+      w="67px"
+      h="26px"
+      fontSize="14px"
+      lineHeight="1.5"
+      letterSpacing="0.6px"
+      textTransform="Capitalize"
+    >
+      {name}
+    </Button>
   );
 };
 

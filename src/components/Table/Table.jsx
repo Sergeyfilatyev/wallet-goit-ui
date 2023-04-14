@@ -1,4 +1,5 @@
-import { Button } from "@chakra-ui/react";
+// import { useSelector, useDispatch } from "react-redux";
+
 import { IconButton } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
@@ -13,14 +14,15 @@ import {
   TransactionsTdSum,
   TransactionsTdButton,
   TransactionsLastTr,
-  DataRowDivider,
+  DeleteButton,
+  HeaderButton,
 } from "./TableStyled";
 
-import {
-  TransactionsTh1,
-  TransactionsThDate1,
-  TransactionsThSum1,
-} from "./TableStyledSort";
+// import { selectTransactions } from "../../redux/transactions/transactions-selectors";
+// import {
+//   deleteTransaction,
+//   updateTransaction,
+// } from "../../redux/transactions/transactions-operations";
 
 const userTransactions = [
   {
@@ -154,6 +156,9 @@ const userTransactions = [
 ];
 
 export const Table = () => {
+  // const transactions = useSelector(selectTransactions);
+  // const dispatch = useDispatch();
+
   return (
     <>
       {userTransactions.length > 0 ? (
@@ -165,21 +170,26 @@ export const Table = () => {
               <TransactionsTh value="category" />
               <TransactionsTh value="comment" />
               <TransactionsThSum value="sum" /> */}
-              <TransactionsThDate1>
-                <button id="date">date</button>
-              </TransactionsThDate1>
-              <TransactionsTh1>
-                <button id="type">type</button>
-              </TransactionsTh1>
-              <TransactionsTh1>
-                <button id="category">category</button>
-              </TransactionsTh1>
-              <TransactionsTh1>
-                <button id="comment">comment</button>
-              </TransactionsTh1>
-              <TransactionsThSum1>
-                <button id="sum">sum</button>
-              </TransactionsThSum1>
+              <TransactionsThDate>
+                <HeaderButton name="date" />
+                {/* <button id="date">date</button> */}
+              </TransactionsThDate>
+              <TransactionsTh>
+                <HeaderButton name="type" />
+                {/* <button id="type">type</button> */}
+              </TransactionsTh>
+              <TransactionsTh>
+                <HeaderButton name="category" />
+                {/* <button id="category">category</button> */}
+              </TransactionsTh>
+              <TransactionsTh>
+                <HeaderButton name="comment" />
+                {/* <button id="comment">comment</button> */}
+              </TransactionsTh>
+              <TransactionsThSum>
+                <HeaderButton name="sum" />
+                {/* <button id="sum">sum</button> */}
+              </TransactionsThSum>
             </tr>
           </thead>
 
@@ -194,17 +204,22 @@ export const Table = () => {
                 <TransactionsTd value={item.income ? "+" : "-"} />
                 <TransactionsTd value={item.category} />
                 <TransactionsTd value={item.comment} />
-                <TransactionsTdSum value={item.amount} />
+                <TransactionsTdSum value={`${item.amount}.00`} />
 
                 <TransactionsTdButton>
                   <IconButton
                     backgroundColor="transparent"
                     aria-label="Edit transaction"
                     icon={<EditIcon />}
+                    _hover={{ color: "#24CCA7" }}
+                    _active={{ bg: "transparent" }}
                   />
                 </TransactionsTdButton>
                 <TransactionsTdButton>
-                  <Button variant="greenButton">Delete</Button>
+                  <DeleteButton
+                    name="Delete"
+                    // onClick={() => dispatch(deleteTransaction(item._id))}
+                  />
                 </TransactionsTdButton>
               </TransactionsTr>
             ))}
