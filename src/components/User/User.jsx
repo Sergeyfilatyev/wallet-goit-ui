@@ -12,8 +12,10 @@ import {
 import { ModalExit } from "./ModalExit";
 
 import Media from "react-media";
+import { useTranslation } from "react-i18next";
 
 export const User = ({ name }) => {
+  const { t } = useTranslation();
   return (
     <>
       <Media
@@ -27,7 +29,7 @@ export const User = ({ name }) => {
             {matches.m && <UserDivider />}
             <ModalExit>
               <UserExitIcon />
-              {matches.m && <UserExitText text="Exit" />}
+              {matches.m && <UserExitText text={t("exit")} />}
             </ModalExit>
           </UserBox>
         )}

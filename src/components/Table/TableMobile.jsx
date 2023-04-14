@@ -7,12 +7,11 @@ import {
   Header,
   TransactionData,
   TransactionDataComment,
-  Card,
   DataRow,
   DataRowDivider,
 } from "./TableMobileStyled";
 import { DeleteButton } from "./TableStyled";
-
+import { useTranslation } from "react-i18next";
 const userTransactions = [
   {
     _id: "64327d7090632194c689a5b3",
@@ -146,6 +145,7 @@ const userTransactions = [
 ];
 
 export const TableMobile = () => {
+  const { t } = useTranslation();
   return (
     <>
       {userTransactions.map((item) => (
@@ -159,7 +159,7 @@ export const TableMobile = () => {
           bg="#FFFFFF"
         >
           <DataRow>
-            <Header value="date" />
+            <Header value={t("date")} />
             <TransactionData
               value={`${item.date.day}.${item.date.month + 1}.${
                 item.date.year
@@ -168,24 +168,24 @@ export const TableMobile = () => {
           </DataRow>
           <DataRowDivider />
           <DataRow>
-            <Header value="type" />
+            <Header value={t("type")} />
             <TransactionData value={item.income ? "+" : "-"} />
           </DataRow>
           <DataRowDivider />
           <DataRow>
-            <Header value="category" />
-            <TransactionData value={item.category} />
+            <Header value={t("category")} />
+            <TransactionData value={t(item.category)} />
           </DataRow>
           <DataRowDivider />
           <DataRow>
-            <Header value="comment" />
+            <Header value={t("comment")} />
             <TransactionDataComment>
               <EllipsisText text={item.comment} length={20} />
             </TransactionDataComment>
           </DataRow>
           <DataRowDivider />
           <DataRow>
-            <Header value="sum" />
+            <Header value={t("sum")} />
             <Box
               fontSize="16px"
               lineHeight="1.5"
@@ -199,7 +199,7 @@ export const TableMobile = () => {
           <DataRowDivider />
           <DataRow>
             <DeleteButton
-              name="Delete"
+              name={t("delete")}
               // onClick={() => dispatch(deleteTransaction(item._id))}
             />
             <Button

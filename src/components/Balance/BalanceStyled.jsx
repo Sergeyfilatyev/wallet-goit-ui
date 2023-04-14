@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-
+import { useTranslation } from "react-i18next";
 export const BalanceBox = ({ children }) => {
   return (
     <Box
@@ -17,6 +17,7 @@ export const BalanceBox = ({ children }) => {
 };
 
 export const BalanceBoxTitle = () => {
+  const { t } = useTranslation();
   return (
     <Box
       fontFamily="Circe"
@@ -28,7 +29,7 @@ export const BalanceBoxTitle = () => {
       color="#a6a6a6"
       as="p"
     >
-      Your balance
+      {t("balance")}
     </Box>
   );
 };
