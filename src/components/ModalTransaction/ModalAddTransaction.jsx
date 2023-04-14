@@ -15,6 +15,7 @@ import {
 } from "./ModalTransactionStyled";
 import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
+import { useTranslation } from "react-i18next";
 
 const currentDay = () => {
   const date = new Date();
@@ -40,8 +41,8 @@ const amountValidation = (amount) => {
     return true;
   }
 };
-
 export const ModalAddTransaction = () => {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [isExpense, setIsExpense] = useState(false);
@@ -85,8 +86,8 @@ export const ModalAddTransaction = () => {
       <ModalWindow
         modalHeader="Add transaction"
         modalFunction={addTransaction}
-        modalFunctionName="Add"
-        modalCancelName="Cancel"
+        modalFunctionName={t("add")}
+        modalCancelName={t("cancel")}
         isOpen={isOpen}
         onClose={onClose}
       >
