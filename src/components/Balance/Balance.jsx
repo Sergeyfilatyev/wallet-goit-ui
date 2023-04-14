@@ -9,7 +9,6 @@ export const Balance = () => {
 
   const authToken = useSelector((state) => state.auth.token);
 
-
   useEffect(() => {
     const fetchBalance = async () => {
       try {
@@ -24,7 +23,7 @@ export const Balance = () => {
       }
     };
     fetchBalance();
-  }, [authToken]); */
+  }, [authToken]);
 
   return (
     <BalanceBox>
