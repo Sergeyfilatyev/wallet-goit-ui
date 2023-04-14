@@ -71,7 +71,7 @@ export const DashboardAddTransactionButton = () => {
 };
 
 export const DashboardContent = ({ children }) => {
-  return <Flex flexDirection={{ xs: "column", m: "row" }}>{children}</Flex>;
+  return <Flex flexDirection={{ xs: "column", l: "row" }}>{children}</Flex>;
 };
 
 export const DashboardNavigationBalanceBox = ({ children }) => {

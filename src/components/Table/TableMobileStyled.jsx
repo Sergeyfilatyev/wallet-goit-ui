@@ -8,8 +8,8 @@ export const Card = ({ children }) => {
       p="0 20px"
       borderRadius="10px"
       borderLeft="5px solid #FF6596"
-      //bg="#FFFFFF"
-      bg="#fae6e6"
+      bg="#FFFFFF"
+      // bg="#fae6e6"
     >
       {children}
     </Box>
