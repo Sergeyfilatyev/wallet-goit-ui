@@ -6,4 +6,3 @@ export const getAuth = ({ auth }) => {
 
 export const getUser = ({ auth }) => auth.user;
 
-export const selectToken = store => store.auth.token;

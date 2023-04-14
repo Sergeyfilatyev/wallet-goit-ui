@@ -7,12 +7,11 @@ import { Currency } from "./Currency";
 // import { getAuth } from "../redux/auth/auth-selectors";
 
 // import { current } from "../redux/auth/auth-operations";
-// import PublicRoute from "../HOCs/PublicRoute";
-// import PrivateRoute from "../HOCs/PrivateRoute";
+import PublicRoute from "../HOCs/PublicRoute";
+import PrivateRoute from "../HOCs/PrivateRoute";
 
-/* import { verifyUser, ref } from "../shared/api/auth"; */
-import { verify } from "../redux/auth/auth-operations";
-import { selectToken } from "../redux/auth/auth-selectors";
+import { verify, refresh } from "../redux/auth/auth-operations";
+
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
@@ -26,13 +25,16 @@ function App() {
   const [searchParams] = useSearchParams();
 
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
 
   const tokenFromParams = searchParams.get("token");
 
   useEffect(() => {
-    if (tokenFromParams) {
+    if (tokenFromParams && !localStorage.getItem("token")) {
       dispatch(verify(tokenFromParams));
+    }
+
+    if (localStorage.getItem("token")) {
+      dispatch(refresh());
     }
   }, []);
 
@@ -46,12 +48,12 @@ function App() {
   return (
     <Suspense>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/dashboard" element={<DashboardPage />}>
+        <Route path="/" element={<PublicRoute restricted><LoginPage /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute restricted><RegistrationPage /></PublicRoute>} />
+        <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
           <Route path="home" element={<HomePageDesktop />} />
           <Route path="statistics" element={<StatisticsPageDesktop />} />
-          <Route path="currency" element={<Currency />} />
+          <Route path="currency" element={<PrivateRoute><Currency /></PrivateRoute>} />
         </Route>
       </Routes>
     </Suspense>

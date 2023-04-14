@@ -44,7 +44,7 @@ const authSlice = createSlice({
       })
       .addCase(refresh.fulfilled, (state, { payload }) => {
         state.isAuth = true;
-        state.token = payload.data.token;
+        /* state.token = payload.data.token; */
         state.user = { name: payload.data.name, email: payload.data.email };
       })
 
