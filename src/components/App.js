@@ -52,15 +52,6 @@ function App() {
 
   return (
     <Suspense>
-      <Routes>
-        <Route path="/" element={<PublicRoute restricted><LoginPage /></PublicRoute>} />
-        <Route path="/register" element={<PublicRoute restricted><RegistrationPage /></PublicRoute>} />
-        <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
-          <Route path="home" element={<HomePageDesktop />} />
-          <Route path="statistics" element={<StatisticsPageDesktop />} />
-          <Route path="currency" element={<Currency />} />
-        </Route>
-      </Routes> 
       <Media
         queries={{
           xs: "(min-width: 320px)",
@@ -69,9 +60,30 @@ function App() {
       >
         {(matches) => (
           <Routes>
-            <Route path="/" element={<PublicRoute restricted><LoginPage /></PublicRoute>} />
-            <Route path="/register" element={<PublicRoute restricted><RegistrationPage /></PublicRoute>} />
-            <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>}>
+            <Route
+              path="/"
+              element={
+                <PublicRoute restricted>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute restricted>
+                  <RegistrationPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <DashboardPage />
+                </PrivateRoute>
+              }
+            >
               {matches.m && <Route path="home" element={<Table />} />}
               {matches.xs && <Route path="home" element={<TableMobile />} />}
               <Route path="statistics" element={<></>} />
