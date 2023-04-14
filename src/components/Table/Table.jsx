@@ -19,6 +19,7 @@ import {
   DeleteButton,
   HeaderButton,
 } from "./TableStyled";
+import { useTranslation } from "react-i18next";
 
 // import { selectTransactions } from "../../redux/transactions/transactions-selectors";
 // import {
@@ -161,7 +162,7 @@ const userTransactions = [
 export const Table = () => {
   // const transactions = useSelector(selectTransactions);
   // const dispatch = useDispatch();
-
+  const { t } = useTranslation();
   return (
     <>
       {userTransactions.length > 0 ? (
@@ -174,23 +175,23 @@ export const Table = () => {
               <TransactionsTh value="comment" />
               <TransactionsThSum value="sum" /> */}
               <TransactionsThDate>
-                <HeaderButton name="date" />
+                <HeaderButton name={t("date")} />
                 {/* <button id="date">date</button> */}
               </TransactionsThDate>
               <TransactionsTh>
-                <HeaderButton name="type" />
+                <HeaderButton name={t("type")} />
                 {/* <button id="type">type</button> */}
               </TransactionsTh>
               <TransactionsTh>
-                <HeaderButton name="category" />
+                <HeaderButton name={t("category")} />
                 {/* <button id="category">category</button> */}
               </TransactionsTh>
               <TransactionsTh>
-                <HeaderButton name="comment" />
+                <HeaderButton name={t("comment")} />
                 {/* <button id="comment">comment</button> */}
               </TransactionsTh>
               <TransactionsThSum>
-                <HeaderButton name="sum" />
+                <HeaderButton name={t("sum")} />
                 {/* <button id="sum">sum</button> */}
               </TransactionsThSum>
             </tr>
@@ -205,7 +206,7 @@ export const Table = () => {
                   }`}
                 />
                 <TransactionsTd value={item.income ? "+" : "-"} />
-                <TransactionsTd value={item.category} />
+                <TransactionsTd value={t(item.category)} />
                 <TransactionsTdComment>
                   <EllipsisText text={item.comment} length={26} />
                 </TransactionsTdComment>
