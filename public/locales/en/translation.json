@@ -37,6 +37,6 @@
   "cancel": "cancel",
   "save": "save",
   "logoutTitle": "Are you sure?",
-  "logoutText": "Do you really want to sign out?",
+  "logoutText": "Do you really want to sign out",
   "signOut": "sign out"
 }
