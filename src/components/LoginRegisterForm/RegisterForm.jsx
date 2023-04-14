@@ -21,10 +21,15 @@ import {
   LoginRegisterFormPasswordInput,
   LoginRegisterFormNameInput,
   LoginRegisterFormConfirmPasswordInput,
+  GoogleButton,
 } from "./LoginRegisterFormStyled";
+import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
+import { useTranslation } from "react-i18next";
 
 export const RegisterForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
+
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
@@ -35,9 +40,8 @@ export const RegisterForm = () => {
     }
   }, [status, navigate]);
 
-
   return (
-    <LoginRegisterFormBox>
+    <LoginRegisterFormBox height={{ base: "100%", s: "666px" }}>
       <LoginRegisterFormLogoBox>
         <Logo />
       </LoginRegisterFormLogoBox>
@@ -69,18 +73,30 @@ export const RegisterForm = () => {
       >
         <Form>
           <LoginRegisterFormInputsBox>
-            <LoginRegisterFormEmailInput placeholder="E-mail" />
-            <ErrorMessage name="email" />
-            <LoginRegisterFormPasswordInput placeholder="Password" />
-            <ErrorMessage name="password" />
-            <LoginRegisterFormConfirmPasswordInput placeholder="Confirm Password" />
-            <ErrorMessage name="confirmPassword" />
-            <LoginRegisterFormNameInput placeholder="First Name" />
-            <ErrorMessage name="firstName" />
+            <LoginRegisterFormEmailInput placeholder={t("email")}>
+              <FieldErrorMessage error={<ErrorMessage name="email" />} />
+            </LoginRegisterFormEmailInput>
+            <LoginRegisterFormPasswordInput placeholder={t("password")}>
+              <FieldErrorMessage error={<ErrorMessage name="password" />} />
+            </LoginRegisterFormPasswordInput>
+            <LoginRegisterFormConfirmPasswordInput
+              placeholder={t("confirmPas")}
+            >
+              <FieldErrorMessage
+                error={<ErrorMessage name="confirmPassword" />}
+              />
+            </LoginRegisterFormConfirmPasswordInput>
+            <LoginRegisterFormNameInput placeholder={t("name")}>
+              <FieldErrorMessage error={<ErrorMessage name="name" />} />
+            </LoginRegisterFormNameInput>
           </LoginRegisterFormInputsBox>
           <LoginRegisterFormButtonsBox>
-            <LoginRegisterFormSubmitButton name="Register " />
-            <LoginRegisterFormRedirectButton name="Log In" to="/" />
+            <LoginRegisterFormSubmitButton name={t("register")} />
+            <LoginRegisterFormRedirectButton name={t("login")} to="/" />
+            <GoogleButton
+              name={t("google")}
+              to={`${process.env.REACT_APP_BASE_URL}/auth/google`}
+            />
           </LoginRegisterFormButtonsBox>
         </Form>
       </Formik>

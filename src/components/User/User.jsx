@@ -9,9 +9,13 @@ import {
   UserExitText,
 } from "./UserStyled";
 
+import { ModalExit } from "./ModalExit";
+
 import Media from "react-media";
+import { useTranslation } from "react-i18next";
 
 export const User = ({ name }) => {
+  const { t } = useTranslation();
   return (
     <>
       <Media
@@ -23,8 +27,10 @@ export const User = ({ name }) => {
           <UserBox>
             <UserName name={name} />
             {matches.m && <UserDivider />}
-            <UserExitIcon />
-            {matches.m && <UserExitText text="Exit" />}
+            <ModalExit>
+              <UserExitIcon />
+              {matches.m && <UserExitText text={t("exit")} />}
+            </ModalExit>
           </UserBox>
         )}
       </Media>

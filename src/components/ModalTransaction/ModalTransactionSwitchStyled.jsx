@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Switch from "react-switch";
 
@@ -78,9 +78,12 @@ const ModalSwitchTrackOn = () => {
 export const ModalSwitch = ({ setIsSwitchExpense, isSwitchExpense }) => {
   const [checked, setChecked] = useState(false);
 
+  useEffect(() => {
+    setIsSwitchExpense(checked);
+  }, [setIsSwitchExpense, checked]);
+
   const handleChange = () => {
     setChecked(!checked);
-    setIsSwitchExpense(!isSwitchExpense);
   };
 
   return (

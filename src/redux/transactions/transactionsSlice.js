@@ -43,4 +43,4 @@ fetchAllTransactions, addTransaction, deleteTransaction, updateTransaction
      
   });
   
-  export const contactsReducer = transactionsSlice.reducer;
+  export default transactionsSlice.reducer;
