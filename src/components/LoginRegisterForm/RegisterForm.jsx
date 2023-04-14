@@ -1,6 +1,8 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import { useDispatch } from "react-redux";
+import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { register } from "../../redux/auth/auth-operations";
 
 import { ErrorMessage } from "formik";
@@ -23,6 +25,16 @@ import {
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const [status, setStatus] = useState("");
+  const navigate = useNavigate();
+
+   useEffect(() => {
+    if (status===201) {
+      navigate("/verify");
+      setStatus("")
+    }
+  }, [status, navigate]);
+
 
   return (
     <LoginRegisterFormBox>
@@ -39,6 +51,7 @@ export const RegisterForm = () => {
         validationSchema={validationSchemaRegister}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           const { name, password, email, confirmPassword } = values;
+          
           const data = { name, password, email };
 
           if (password !== confirmPassword) {
@@ -46,7 +59,10 @@ export const RegisterForm = () => {
             return;
           }
 
-          dispatch(register(data));
+          dispatch(register(data)).then(response => {
+            console.log(response)
+              setStatus(response.payload.status)
+          });
           resetForm();
           setSubmitting(false);
         }}

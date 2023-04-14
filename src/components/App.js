@@ -13,6 +13,7 @@ const HomePageDesktop = lazy(() => import("../pages/HomePageDesktop"));
 const StatisticsPageDesktop = lazy(() =>
   import("../pages/StatisticsPageDesktop")
 );
+const VerifyPage = lazy(() => import("../pages/VerifyPage"));
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="statistics" element={<StatisticsPageDesktop />} />
         </Route>
         <Route path="/google-auth" element={<GoogleAuthPage />} />
+        <Route path="/verify" element={<VerifyPage />} />
       </Routes>
     </Suspense>
   );

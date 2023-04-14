@@ -12,15 +12,15 @@ const setToken = (token) => {
 };
 
 export const register = async (data) => {
-  const { data: result } = await instance.post("/users/register", data);
+  const { data: result, status } = await instance.post("/users/register", data);
   setToken(result.token);
-  return result;
+  return { result, status };
 };
 
 export const login = async (data) => {
-  const { data: result } = await instance.post("/users/login", data);
+  const { data: result, status } = await instance.post("/users/login", data);
   setToken(result.token);
-  return result;
+  return { result, status };
 };
 
 export const logout = async () => {
