@@ -46,7 +46,7 @@ export const Dashboard = () => {
                   <Outlet />
                 </DashboardContentSecondPart>
               </DashboardContent>
-              <DashboardAddTransactionButton />
+              <DashboardAddTransactionButton id={15} />
             </PageContainer>
             {matches.m && <DashboardRedirect />}
           </DashboardBox>

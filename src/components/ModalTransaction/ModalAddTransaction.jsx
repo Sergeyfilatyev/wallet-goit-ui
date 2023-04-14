@@ -41,12 +41,12 @@ const amountValidation = (amount) => {
   }
 };
 
-export const ModalAddTransaction = () => {
+export const ModalAddTransaction = ({ id }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [isExpense, setIsExpense] = useState(false);
   const [category, setCategory] = useState("Income");
-  const [amount, setAmount] = useState("0.00");
+  const [amount, setAmount] = useState("");
   const [date, setDate] = useState(currentDay());
   const [comment, setComment] = useState("");
 
@@ -73,8 +73,8 @@ export const ModalAddTransaction = () => {
       return setAmountError(true);
     } else setAmountError(false);
 
-    const expense = { isExpense, category, amount, date, comment };
-    const income = { isExpense, category, amount, date, comment };
+    const expense = { isExpense, category, amount, date, comment, id };
+    const income = { isExpense, category, amount, date, comment, id };
 
     isExpense ? console.log(expense) : console.log(income);
   };

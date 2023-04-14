@@ -58,14 +58,14 @@ export const DashboardDivider = () => {
   );
 };
 
-export const DashboardAddTransactionButton = () => {
+export const DashboardAddTransactionButton = ({ id }) => {
   return (
     <Box
       position="absolute"
       bottom={{ xs: "20px", m: "40px" }}
       right={{ xs: "20px", m: "40px" }}
     >
-      <ModalAddTransaction />
+      <ModalAddTransaction id={id} />
     </Box>
   );
 };
