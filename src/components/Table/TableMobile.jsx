@@ -1,9 +1,12 @@
+import EllipsisText from "react-ellipsis-text";
+
 import { Button } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
 import {
   Header,
   TransactionData,
+  TransactionDataComment,
   Card,
   DataRow,
   DataRowDivider,
@@ -16,7 +19,8 @@ const userTransactions = [
     amount: 200,
     income: true,
     category: "car",
-    comment: "test",
+    comment:
+      "test this is loooong long comment for testing  react-ellipsis-text",
     date: {
       time: 1681030445404,
       day: 9,
@@ -167,7 +171,9 @@ export const TableMobile = () => {
           <DataRowDivider />
           <DataRow>
             <Header value="comment" />
-            <TransactionData value={item.comment} />
+            <TransactionDataComment>
+              <EllipsisText text={item.comment} length={20} />
+            </TransactionDataComment>
           </DataRow>
           <DataRowDivider />
           <DataRow>

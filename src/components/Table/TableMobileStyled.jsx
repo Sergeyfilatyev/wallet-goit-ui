@@ -57,6 +57,21 @@ export const TransactionData = ({ value }) => {
   );
 };
 
+export const TransactionDataComment = ({ children }) => {
+  return (
+    <Box
+      maxWidth="130px"
+      fontSize="16px"
+      lineHeight="1.5"
+      textAlign="right"
+      textTransform="Capitalize"
+      color="#000000"
+    >
+      {children}
+    </Box>
+  );
+};
+
 export const DeleteButton = ({ name }) => {
   return (
     <Button
