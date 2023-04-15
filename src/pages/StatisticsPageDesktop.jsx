@@ -1,5 +1,11 @@
+import { DiagramTab } from "../components/DiagramTab/DiagramTab";
+
 const StatisticsPageDesktop = () => {
-  return;
+  return (
+    <>
+      <DiagramTab />
+    </>
+  );
 };
 
 export default StatisticsPageDesktop;
