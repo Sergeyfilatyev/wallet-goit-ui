@@ -61,31 +61,31 @@ export const checkAuth = async () => {
   }
 };
 
-// instance.interceptors.response.use(
-//   (config) => {
-//     return config;
-//   },
-//   async (error) => {
-//     const originalRequest = error.config;
-//     console.log(error);
-//     if (
-//       error.response.status == 401 &&
-//       error.config &&
-//       !originalRequest._isRetry
-//     ) {
-//       originalRequest._isRetry = true;
-//       try {
-//         const { data } = await instance.get("/users/refresh");
-//         console.log(data.data.token);
-//         error.config.headers["Authorization"] = `Bearer ${data.data.token}`;
-//         localStorage.setItem("token", "generated");
-//         return instance.request(originalRequest);
-//       } catch (error) {
-//         throw error;
-//       }
-//     }
-//     throw error;
-//   }
-// );
+instance.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+    console.log(error);
+    if (
+      error.response.status == 401 &&
+      error.config &&
+      !originalRequest._isRetry
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const { data } = await instance.get("/users/refresh");
+        console.log(data.data.token);
+        error.config.headers["Authorization"] = `Bearer ${data.data.token}`;
+        localStorage.setItem("token", "generated");
+        return instance.request(originalRequest);
+      } catch (error) {
+        throw error;
+      }
+    }
+    throw error;
+  }
+);
 
 export default instance;
