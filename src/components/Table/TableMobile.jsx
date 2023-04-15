@@ -1,7 +1,8 @@
 import EllipsisText from "react-ellipsis-text";
-
+import {useState} from "react"
 import { Button, Box } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
+import {ModalEditTransaction} from "../../components/ModalTransaction/ModalEditTransaction"
 
 import {
   Header,
@@ -145,6 +146,7 @@ const userTransactions = [
 ];
 
 export const TableMobile = () => {
+  const [isOpenEditForm, setIsOpenEditForm] = useState(false);
   const { t } = useTranslation();
   return (
     <>
@@ -203,6 +205,7 @@ export const TableMobile = () => {
               // onClick={() => dispatch(deleteTransaction(item._id))}
             />
             <Button
+            onClick={()=> setIsOpenEditForm(!isOpenEditForm)}
               leftIcon={<EditIcon />}
               backgroundColor="transparent"
               fontSize="14px"
@@ -214,6 +217,8 @@ export const TableMobile = () => {
             >
               Edit
             </Button>
+            {isOpenEditForm && <ModalEditTransaction/>}
+
           </DataRow>
         </Box>
       ))}
