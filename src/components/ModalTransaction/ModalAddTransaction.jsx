@@ -1,11 +1,18 @@
-import { Box, Button, useDisclosure } from "@chakra-ui/react";
+import { Box, useDisclosure } from "@chakra-ui/react";
+
+import { useTranslation } from "react-i18next";
 
 import "react-datetime/css/react-datetime.css";
 
+import { fetchCategories } from "../../utils/fetchCategories";
+
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { getAuth } from "../../redux/auth/auth-selectors";
 
 import { ModalWindow } from "../ModalWindow";
 import {
+  ModalAddOpentButton,
   ModalAmount,
   ModalAmountDateBox,
   ModalComment,
@@ -15,7 +22,6 @@ import {
 } from "./ModalTransactionStyled";
 import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
-import { useTranslation } from "react-i18next";
 
 const currentDay = () => {
   const date = new Date();
@@ -47,7 +53,7 @@ export const ModalAddTransaction = () => {
 
   const [isExpense, setIsExpense] = useState(false);
   const [category, setCategory] = useState("Income");
-  const [amount, setAmount] = useState("0.00");
+  const [amount, setAmount] = useState("");
   const [date, setDate] = useState(currentDay());
   const [comment, setComment] = useState("");
 
@@ -65,6 +71,14 @@ export const ModalAddTransaction = () => {
     },
   };
 
+  const [categories, setCategories] = useState([]);
+
+  const token = useSelector(getAuth).token;
+
+  useEffect(() => {
+    fetchCategories(token).then((response) => setCategories(response));
+  }, [token]);
+
   useEffect(() => {
     isExpense ? setCategory("Expense") : setCategory("Income");
   }, [isExpense]);
@@ -78,11 +92,17 @@ export const ModalAddTransaction = () => {
     const income = { isExpense, category, amount, date, comment };
 
     isExpense ? console.log(expense) : console.log(income);
+
+    setIsExpense(false);
+    setCategory("Income");
+    setAmount("");
+    setDate(currentDay());
+    setComment("");
   };
 
   return (
     <>
-      <Button variant="isOpenModalButton" onClick={onOpen}></Button>
+      <ModalAddOpentButton onClick={onOpen} />
       <ModalWindow
         modalHeader="Add transaction"
         modalFunction={addTransaction}
@@ -94,14 +114,21 @@ export const ModalAddTransaction = () => {
         <ModalSwitch
           isSwitchExpense={isExpense}
           setIsSwitchExpense={setIsExpense}
+          expenseLabel="expense"
+          incomeLabel="income"
         />
         <ModalComponentsBox>
           {isExpense && (
             <ModalSelectCategory
               category={category}
               setCategory={handleChange.category}
+              placeholder={"Select a category"}
             >
-              <option value="Other">Other</option>
+              {categories.map((item) => (
+                <option value={item.category} key={item.id}>
+                  {t(item.category)}
+                </option>
+              ))}
             </ModalSelectCategory>
           )}
           <ModalAmountDateBox>
@@ -111,7 +138,11 @@ export const ModalAddTransaction = () => {
             </Box>
             <ModalDate date={date} setDate={handleChange.date} />
           </ModalAmountDateBox>
-          <ModalComment comment={comment} setComment={handleChange.comment} />
+          <ModalComment
+            comment={comment}
+            setComment={handleChange.comment}
+            placeholder="Comment"
+          />
         </ModalComponentsBox>
       </ModalWindow>
     </>

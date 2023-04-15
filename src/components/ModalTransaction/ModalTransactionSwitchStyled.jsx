@@ -75,7 +75,11 @@ const ModalSwitchTrackOn = () => {
   );
 };
 
-export const ModalSwitch = ({ setIsSwitchExpense, isSwitchExpense }) => {
+export const ModalSwitch = ({
+  setIsSwitchExpense,
+  expenseLabel,
+  incomeLabel,
+}) => {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -96,7 +100,7 @@ export const ModalSwitch = ({ setIsSwitchExpense, isSwitchExpense }) => {
           lineHeight="1.5"
           color="#E0E0E0"
         >
-          Income
+          {incomeLabel}
         </Text>
       ) : (
         <Text
@@ -106,7 +110,7 @@ export const ModalSwitch = ({ setIsSwitchExpense, isSwitchExpense }) => {
           lineHeight="1.5"
           color="#24CCA7"
         >
-          Income
+          {incomeLabel}
         </Text>
       )}
       <Switch
@@ -133,7 +137,7 @@ export const ModalSwitch = ({ setIsSwitchExpense, isSwitchExpense }) => {
           lineHeight="1.5"
           color="#FF6596"
         >
-          Expense
+          {expenseLabel}
         </Text>
       ) : (
         <Text
@@ -143,7 +147,7 @@ export const ModalSwitch = ({ setIsSwitchExpense, isSwitchExpense }) => {
           lineHeight="1.5"
           color="#E0E0E0"
         >
-          Expense
+          {expenseLabel}
         </Text>
       )}
     </Flex>

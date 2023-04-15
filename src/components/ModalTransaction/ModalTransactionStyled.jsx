@@ -1,10 +1,23 @@
 import {
+  Button,
   Flex,
   Input,
   NumberInput,
   NumberInputField,
   Select,
+  Icon,
 } from "@chakra-ui/react";
+
+export const ModalAddOpentButton = ({ onClick }) => {
+  return (
+    <Button variant="isOpenModalButton" w="44px" h="44px" onClick={onClick}>
+      <Icon viewBox="0 0 20 20" w="20px" h="20px">
+        <path d="M10 0V20" stroke="white" strokeWidth="2" />
+        <path d="M0 10L20 10" stroke="white" strokeWidth="2" />
+      </Icon>
+    </Button>
+  );
+};
 
 export const ModalComponentsBox = ({ children }) => {
   return (
@@ -20,14 +33,19 @@ export const ModalComponentsBox = ({ children }) => {
   );
 };
 
-export const ModalSelectCategory = ({ children, category, setCategory }) => {
+export const ModalSelectCategory = ({
+  children,
+  category,
+  setCategory,
+  placeholder,
+}) => {
   return (
     <Select
       onChange={setCategory}
       variant="flushed"
       w={{ base: "280px", s: "394px" }}
       defaultValue={category}
-      placeholder="Select a category"
+      placeholder={placeholder}
       _placeholder={{
         color: "#BDBDBD",
         fontSize: "30px",
@@ -85,13 +103,13 @@ export const ModalDate = ({ date, setDate }) => {
   );
 };
 
-export const ModalComment = ({ comment, setComment }) => {
+export const ModalComment = ({ comment, setComment, placeholder }) => {
   return (
     <Input
       value={comment}
       onChange={setComment}
       w={{ base: "280px", s: "394px" }}
-      placeholder="Comment"
+      placeholder={placeholder}
       _placeholder={{
         color: "#BDBDBD",
         fontSize: "18px",
