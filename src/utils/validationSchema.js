@@ -11,14 +11,14 @@ export const validationSchemaRegister = Yup.object().shape({
     .min(8, "Password is too short")
     .matches(
       "(?=.*[0-9])(?=.*[@$!%*?.,/-_&])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z@$!%*?.,/-_&]{8,}",
-      "8+ characters: a-z, A-Z, 0-9, symbols(@$!%*?.,/-_&)"
+      "8+ characters: a-z, A-Z, 0-9, symbols(@$!%*?.,/-&)"
     )
     .required("Password is required"),
   confirmPassword: Yup.string()
     .min(8, "Password is too short")
     .matches(
       "(?=.*[0-9])(?=.*[@$!%*?.,/-_&])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z@$!%*?.,/-_&]{8,}",
-      "8+ characters: a-z, A-Z, 0-9, symbols(@$!%*?.,/-_&)"
+      "8+ characters: a-z, A-Z, 0-9, symbols(@$!%*?.,/-&)"
     )
     .required("Confirm password is required")
     .oneOf(
