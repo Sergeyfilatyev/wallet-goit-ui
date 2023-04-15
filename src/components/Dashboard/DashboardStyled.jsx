@@ -96,11 +96,7 @@ export const DashboardContentFirstPart = ({ children }) => {
 };
 
 export const DashboardContentSecondPart = ({ children }) => {
-  return (
-    <Flex justifyContent={"center"} alignItems={"center"}>
-      {children}
-    </Flex>
-  );
+  return <Flex>{children}</Flex>;
 };
 
 export const DashboardRedirect = () => {

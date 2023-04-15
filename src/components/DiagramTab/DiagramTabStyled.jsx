@@ -1,15 +1,7 @@
-import {
-  Select,
-  Box,
-  List,
-  Text,
-  ListItem,
-  Flex,
-  Button,
-} from "@chakra-ui/react";
+import { Select, Box, List, Text, ListItem, Flex } from "@chakra-ui/react";
+
 import { Doughnut } from "react-chartjs-2";
 import { useMediaQuery } from "@chakra-ui/react";
-import { wrap } from "framer-motion";
 
 export const ListItemCategory = ({ statByCategory }) => {
   const categoryColors = {
@@ -29,13 +21,21 @@ export const ListItemCategory = ({ statByCategory }) => {
       {Object.entries(statByCategory)
         .filter(([category, value]) => value !== 0)
         .map(([category, value]) => (
-          <ListItem key={category} display="flex" alignItems="center">
+          <ListItem
+            paddingLeft="18px"
+            key={category}
+            display="flex"
+            alignItems="center"
+            w="100%"
+            h="50px"
+            pos="relative"
+          >
             <Box
               h="24px"
               w="24px"
               backgroundColor={categoryColors[category]}
               borderRadius="2px"
-              //   mr="12px"
+              mr="16px"
             />
             <Flex
               justifyContent="space-between"
@@ -62,18 +62,20 @@ export const ListItemCategory = ({ statByCategory }) => {
                 lineHeight={["16px", "24px", "24px", "24px"]}
                 textAlign="right"
                 color="#000000"
+                paddingRight="20px"
               >
                 {value}
               </Text>
+              <Box
+                position="absolute"
+                bottom="0"
+                right="0"
+                w="100%"
+                h="0px"
+                border="1px solid #DCDCDF"
+                boxShadow="0px 1px 0px rgba(255, 255, 255, 0.6)"
+              ></Box>
             </Flex>
-            <Box
-              h="0px"
-              w="100%"
-              border="1px solid #DCDCDF"
-              boxShadow="0px 1px 0px rgba(255, 255, 255, 0.6)"
-              transform="rotate(-90deg)"
-              //   mr={["8px", "15px", "15px", "15px"]}
-            />
           </ListItem>
         ))}
     </List>
@@ -82,58 +84,52 @@ export const ListItemCategory = ({ statByCategory }) => {
 
 export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
   return (
-    <Flex
-      flexDirection={["column", null, "row"]}
-      flexWrap="wrap"
-      justifyContent="space-between"
-      alignItems="center"
-      mb="30px"
-    >
-      <Box mb={[3, null, 0]} flex={["0 0 auto", null, 1]}>
+    <Box display="flex" flexDirection="column">
+      <Box display="flex" position="relative" justifyContent="space-between">
         <Text
           fontFamily="'Circe', sans-serif"
           fontWeight="700"
           fontSize={["14px", null, "16px"]}
           lineHeight={["20.58px", null, "23.58px"]}
           color="#000000"
+          paddingLeft="18px"
         >
           Expenses:
         </Text>
-      </Box>
-      <Box textAlign={["left", null, "right"]} flex={["0 0 auto", null, 1]}>
         <Text
           fontFamily="'Circe', sans-serif"
           fontWeight="700"
           fontSize={["14px", null, "16px"]}
           lineHeight={["20.58px", null, "23.58px"]}
           color="#FF6596"
+          paddingRight="20px"
         >
           {totalExpense}
         </Text>
       </Box>
-      <Box ml={[0, null, 20]} mb={[3, null, 0]} flex={["0 0 auto", null, 1]}>
+      <Box display="flex" justifyContent="space-between" marginTop="15px">
         <Text
           fontFamily="'Circe', sans-serif"
           fontWeight="700"
           fontSize={["14px", null, "16px"]}
           lineHeight={["20.58px", null, "23.58px"]}
           color="#000000"
+          paddingLeft="18px"
         >
           Income:
         </Text>
-      </Box>
-      <Box textAlign={["left", null, "right"]} flex={["0 0 auto", null, 1]}>
         <Text
           fontFamily="'Circe', sans-serif"
           fontWeight="700"
           fontSize={["14px", null, "16px"]}
           lineHeight={["20.58px", null, "23.58px"]}
           color="#24CCA7"
+          paddingRight="20px"
         >
           {totalIncome}
         </Text>
       </Box>
-    </Flex>
+    </Box>
   );
 };
 
@@ -152,8 +148,7 @@ export const SelectMonth = ({
       name="month"
       value={selectedMonth}
       onChange={handleMonthChange}
-      w="160px"
-      maxW={{ xs: "100%", l: "160px", xl: "180px" }}
+      w={{ xl: "180px", m: "160px", xs: "280px" }}
       h="50px"
       borderRadius="30px"
       borderWidth="1px"
@@ -178,24 +173,17 @@ export const SelectYear = ({ year, handleYearChange, years }) => {
   const [isLargerThan1185] = useMediaQuery("(max-width: 1185px)");
 
   return (
-    // xs: "320px",
-    // s: "480px",
-    // m: "768px",
-    // l: "960px",
-    // xl: "1280px",
     <Select
       name="year"
       value={year}
       onChange={handleYearChange}
-      w="160px"
-      maxW={{ xs: "100%", l: "160px", xl: "180px" }}
+      w={{ xl: "180px", m: "160px", xs: "280px" }}
       h="50px"
       borderRadius="30px"
       borderWidth="1px"
       borderColor="#000000"
-      ml={{ l: "20px", xl: "20px" }}
-      // ml={isLargerThan960 && "20px"}
-      // mt={isLargerThan767 && "20px"}
+      ml={{ m: "20px", xs: "0" }}
+      mt={{ m: "0", xs: "20px" }}
     >
       {years
         .map((year, index) => (
@@ -209,14 +197,12 @@ export const SelectYear = ({ year, handleYearChange, years }) => {
 };
 
 export const CategorySumBox = () => {
-  const [isLargerThan1200] = useMediaQuery("(min-width: 1280px)");
-  const [isLargerThan960] = useMediaQuery("(min-width: 960px)");
   const [isLargerThan767] = useMediaQuery("(max-width: 768px)");
 
   return (
     <>
       <Flex
-        maxW="390px"
+        w="100%"
         height="60px"
         justifyContent="space-between"
         alignItems="center"
@@ -249,44 +235,6 @@ export const CategorySumBox = () => {
   );
 };
 
-//   return (
-//     <>
-//       {isLargerThan767 && (
-//         <Flex
-//           width={"100%"}
-//           height="60px"
-//           justifyContent="space-between"
-//           alignItems="center"
-//           right="16px"
-//           top="250px"
-//           bg="#FFFFFF"
-//           borderRadius="30px"
-//           px="20px"
-//         >
-//           <Text
-//             fontFamily="'Circe', sans-serif"
-//             fontWeight="700"
-//             fontSize={isLargerThan767 ? "18px" : "16px"}
-//             lineHeight="26.53px"
-//             color="#000000"
-//           >
-//             Category
-//           </Text>
-//           <Text
-//             fontFamily="'Circe', sans-serif"
-//             fontWeight="700"
-//             fontSize={isLargerThan767 ? "18px" : "16px"}
-//             lineHeight="26.53px"
-//             color="#000000"
-//           >
-//             Sum
-//           </Text>
-//         </Flex>
-//       )}
-//     </>
-//   );
-// };
-
 export const DiagramRenderer = ({
   totalExpense,
   totalIncome,
@@ -295,8 +243,7 @@ export const DiagramRenderer = ({
   chartData,
 }) => {
   const [isLargerThan1200] = useMediaQuery("(min-width: 1050px)");
-  const [isLargerThan959] = useMediaQuery("(min-width: 959px)");
-  const [isLargerThan960] = useMediaQuery("(min-width: 768px)");
+  const [isLargerThan960] = useMediaQuery("(min-width: 960px)");
   const [isLargerThan767] = useMediaQuery("(max-width: 767px)");
 
   return (
@@ -306,8 +253,24 @@ export const DiagramRenderer = ({
       (Object.keys(statByCategory || {}).length === 0 && totalExpense === 0) ? (
         <Box>
           <Box
-            h={isLargerThan1200 ? "288px" : "188px"}
-            w={isLargerThan1200 ? "288px" : "188px"}
+            h={
+              isLargerThan1200
+                ? "288px"
+                : isLargerThan960
+                ? "188px"
+                : isLargerThan767
+                ? "333px"
+                : "340px"
+            }
+            w={
+              isLargerThan1200
+                ? "288px"
+                : isLargerThan960
+                ? "188px"
+                : isLargerThan767
+                ? "280px"
+                : "340px"
+            }
             position="relative"
           >
             <Text
@@ -325,12 +288,26 @@ export const DiagramRenderer = ({
             </Text>
             <Text
               position="absolute"
-              top={isLargerThan1200 ? "180px" : "130px"}
-              right={isLargerThan1200 ? "-15px" : "-63px"}
+              top={
+                isLargerThan1200
+                  ? "180px"
+                  : isLargerThan960
+                  ? "130px"
+                  : isLargerThan767
+                  ? "180px"
+                  : "208px"
+              }
+              right={
+                isLargerThan1200
+                  ? "-15px"
+                  : isLargerThan960
+                  ? "-63px"
+                  : isLargerThan767
+                  ? "-14px"
+                  : "14px"
+              }
               h="24"
               w="80"
-              //                           top: 130px;
-              // right: -63px;
               fontFamily="Circe"
               fontStyle="normal"
               fontWeight="700"
@@ -346,7 +323,27 @@ export const DiagramRenderer = ({
         </Box>
       ) : (
         <>
-          <Box height="288px" width="288px" pos="relative">
+          <Box
+            h={
+              isLargerThan1200
+                ? "288px"
+                : isLargerThan960
+                ? "188px"
+                : isLargerThan767
+                ? "280px"
+                : "340px"
+            }
+            w={
+              isLargerThan1200
+                ? "288px"
+                : isLargerThan960
+                ? "188px"
+                : isLargerThan767
+                ? "280px"
+                : "340px"
+            }
+            pos="relative"
+          >
             <Text
               fontFamily="Poppins"
               fontStyle="normal"
@@ -362,8 +359,24 @@ export const DiagramRenderer = ({
             </Text>
             <Text
               position="absolute"
-              top="180"
-              right="-15"
+              top={
+                isLargerThan1200
+                  ? "180px"
+                  : isLargerThan960
+                  ? "130px"
+                  : isLargerThan767
+                  ? "208px"
+                  : "180px"
+              }
+              right={
+                isLargerThan1200
+                  ? "-15px"
+                  : isLargerThan960
+                  ? "-63px"
+                  : isLargerThan767
+                  ? "-14px"
+                  : "-14px"
+              }
               h="24"
               w="80"
               fontFamily="Circe"
@@ -376,7 +389,7 @@ export const DiagramRenderer = ({
             >
               ₴ {totalExpense}
             </Text>
-            {/* <Doughnut
+            <Doughnut
               options={options}
               data={{
                 datasets: [
@@ -389,7 +402,7 @@ export const DiagramRenderer = ({
                   },
                 ],
               }}
-            /> */}
+            />
           </Box>
         </>
       )}
@@ -400,53 +413,70 @@ export const DiagramRenderer = ({
 export const NoDataDiagram = ({ totalExpense }) => {
   const [isLargerThan1200] = useMediaQuery("(min-width: 960px)");
   const [isLargerThan960] = useMediaQuery("(min-width: 768px)");
+  const [isLargerThan767] = useMediaQuery("(max-width: 767px)");
 
   return (
-    // <Box
-    //   h={isLargerThan1200 ? "288px" : isLargerThan960 ? "336px" : "280px"}
-    //   w={isLargerThan1200 ? "288px" : isLargerThan960 ? "336px" : "280px"}
-    //   position="relative"
-    // >
-    //   <Text
-    //     fontFamily="Poppins"
-    //     fontStyle="normal"
-    //     fontWeight="400"
-    //     fontSize="30px"
-    //     lineHeight="45px"
-    //     display="flex"
-    //     alignItems="center"
-    //     textAlign="center"
-    //     color="#000000"
-    //   >
-    //     Statistics
-    //   </Text>
-    //   <Text
-    //     position="absolute"
-    //     top="180"
-    //     right="-15"
-    //     h="24"
-    //     w="80"
-    //     fontFamily="Circe"
-    //     fontStyle="normal"
-    //     fontWeight="700"
-    //     fontSize="18px"
-    //     lineHeight="27px"
-    //     textAlign="center"
-    //     color="#000000"
-    //   >
-    //     ₴ {totalExpense}
-    //   </Text>
-    //   <Doughnut
-    //     data={{
-    //       datasets: [
-    //         {
-    //           data: [50, 50],
-    //           backgroundColor: ["rgb(192, 192, 192)", "rgb(192, 192, 192)"],
-    //         },
-    //       ],
-    //     }}
-    //   />
-    <Text>You have no transactions in the current month 💰.</Text>
-    // </Box>
+    <Box
+      h={
+        isLargerThan1200
+          ? "288px"
+          : isLargerThan960
+          ? "188px"
+          : isLargerThan767
+          ? "280px"
+          : "340px"
+      }
+      w={
+        isLargerThan1200
+          ? "288px"
+          : isLargerThan960
+          ? "188px"
+          : isLargerThan767
+          ? "280px"
+          : "340px"
+      }
+      position="relative"
+    >
+      <Text
+        fontFamily="Poppins"
+        fontStyle="normal"
+        fontWeight="400"
+        fontSize="30px"
+        lineHeight="45px"
+        display="flex"
+        alignItems="center"
+        textAlign="center"
+        color="#000000"
+      >
+        Statistics
+      </Text>
+      <Text
+        position="absolute"
+        top={isLargerThan1200 ? "180px" : isLargerThan960 ? "130px" : "208px"}
+        right={isLargerThan1200 ? "-15px" : isLargerThan960 ? "-63px" : "14px"}
+        h="24"
+        w="80"
+        fontFamily="Circe"
+        fontStyle="normal"
+        fontWeight="700"
+        fontSize="18px"
+        lineHeight="27px"
+        textAlign="center"
+        color="#000000"
+      >
+        ₴ {totalExpense}
+      </Text>
+      <Doughnut
+        data={{
+          datasets: [
+            {
+              data: [50, 50],
+              backgroundColor: ["rgb(192, 192, 192)", "rgb(192, 192, 192)"],
+            },
+          ],
+        }}
+      />
+      <Text>You have no transactions in the current month 💰.</Text>
+    </Box>
   );
 };

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Grid, GridItem } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-import { useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import fetchData from "./fetchStats";
-import { Container } from "@chakra-ui/react";
+import { getAuth } from "../../redux/auth/auth-selectors";
 import {
   ListItemCategory,
   CalculateNetIncome,
@@ -47,9 +46,9 @@ export function DiagramTab() {
   const totalExpense = statisticsData.totalExpense;
   const totalIncome = statisticsData.totalIncome;
   const statByCategory = statisticsData.expenseByCategory;
-
+  const token = useSelector(getAuth).token;
   useEffect(() => {
-    fetchData(year, selectedMonth).then((statisticsData) => {
+    fetchData(year, selectedMonth, token).then((statisticsData) => {
       setStatisticsData(statisticsData);
     });
   }, [year, selectedMonth]);
@@ -98,15 +97,17 @@ export function DiagramTab() {
   const options = {
     cutout: "70%",
   };
-  const [isLargerThan1185] = useMediaQuery("(min-width: 1186px)");
-  const [isLargerThan960] = useMediaQuery("(max-width: 960px)");
-  const [isLargerThan767] = useMediaQuery("(max-width: 767px)");
   return (
     <Box w="100%">
       {Object.keys(statByCategory || {}).length > 0 ? (
         <>
-          <Box display="flex" justifyContent="space-between">
-            <Box display="flex" justifyContent="space-between">
+          <Box
+            display="flex"
+            flexDirection={{ m: "initial", xs: "column" }}
+            justifyContent={{ m: "normal", xs: "center" }}
+            alignItems={{ m: "normal", xs: "center" }}
+          >
+            <Box display="flex">
               <DiagramRenderer
                 totalExpense={totalExpense}
                 totalIncome={totalIncome}
@@ -115,29 +116,34 @@ export function DiagramTab() {
                 chartData={chartData}
               ></DiagramRenderer>
             </Box>
-            {/* <Box display="flex" flexDirection="column" mr="20px"> */}
-            {/* // xs: "320px", // s: "480px", // m: "768px", // l: "960px", //
-              xl: "1280px", */}
-            <Box display={{ l: "flex" }} w="100%">
-              <SelectMonth
-                selectedMonth={selectedMonth}
-                handleMonthChange={handleMonthChange}
-                displayedMonths={displayedMonths}
-              ></SelectMonth>
-              <SelectYear
-                year={year}
-                years={years}
-                handleYearChange={handleYearChange}
-              ></SelectYear>
+            <Box display="flex" flexDir="column" ml={{ m: "40px", xs: "0" }}>
+              <Box
+                marginTop={{ xl: "0", m: "20px", xs: "30px" }}
+                display={{ m: "flex", xs: "block" }}
+                w="100%"
+              >
+                <SelectMonth
+                  selectedMonth={selectedMonth}
+                  handleMonthChange={handleMonthChange}
+                  displayedMonths={displayedMonths}
+                ></SelectMonth>
+                <SelectYear
+                  year={year}
+                  years={years}
+                  handleYearChange={handleYearChange}
+                ></SelectYear>
+              </Box>
+              <Flex mt="20px">
+                <CategorySumBox></CategorySumBox>
+              </Flex>
+              <ListItemCategory
+                statByCategory={statByCategory}
+              ></ListItemCategory>
+              <CalculateNetIncome
+                totalExpense={totalExpense}
+                totalIncome={totalIncome}
+              ></CalculateNetIncome>
             </Box>
-            {/* <CategorySumBox></CategorySumBox> */}
-            {/* <ListItemCategory
-                  statByCategory={statByCategory}
-                ></ListItemCategory> */}
-            {/* <CalculateNetIncome
-                  totalExpense={totalExpense}
-                  totalIncome={totalIncome}
-                ></CalculateNetIncome> */}
           </Box>
           {/* </Box> */}
         </>
