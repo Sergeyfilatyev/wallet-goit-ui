@@ -1,25 +1,29 @@
 import * as Yup from "yup";
 
 export const validationSchemaLogin = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .min(6, "Too Short!")
-    .max(12, "Too Long!")
-    .required("Required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  password: Yup.string().required("Password is required"),
 });
 
 export const validationSchemaRegister = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string()
-    .min(6, "Too Short!")
-    .max(12, "Too Long!")
-    .required("Required"),
+    .min(8, "Password is too short")
+    .matches(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?.,/-_&])[A-Za-zd@$!%*?.,/-_&]{8,}$",
+      "8+ characters: a-z, A-Z, 0-9, symbols(@$!%*?.,/-_&)"
+    )
+    .required("Password is required"),
   confirmPassword: Yup.string()
-    .min(6, "Too Short!")
-    .max(12, "Too Long!")
-    .required("Required"),
-  name: Yup.string()
-    .min(1, "Too Short!")
-    .max(12, "Too Long!")
-    .required("Required"),
+    .min(8, "Password is too short")
+    .matches(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?.,/-_&])[A-Za-zd@$!%*?.,/-_&]{8,}$",
+      "8+ characters: a-z, A-Z, 0-9, symbols(@$!%*?.,/-_&)"
+    )
+    .required("Confirm password is required")
+    .oneOf(
+      [Yup.ref("password"), null],
+      "Password must match its confirmation "
+    ),
+  name: Yup.string().min(1, "Name is too short").required("Name is required"),
 });

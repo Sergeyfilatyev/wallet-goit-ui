@@ -8,6 +8,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  Progress,
 } from "@chakra-ui/react";
 
 import { Field } from "formik";
@@ -141,7 +142,11 @@ const LoginRegisterFormEmailIcon = () => {
   );
 };
 
-export const LoginRegisterFormPasswordInput = ({ placeholder, children }) => {
+export const LoginRegisterFormPasswordInput = ({
+  placeholder,
+  children,
+  onChange,
+}) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
@@ -248,6 +253,18 @@ export const LoginRegisterFormConfirmPasswordInput = ({
       </InputGroup>
       {children}
     </Box>
+  );
+};
+
+export const FirstPasswordProgressBar = ({ value, colorScheme }) => {
+  return (
+    <Progress value={value} colorScheme={colorScheme} h="4px" mt="-12px" />
+  );
+};
+
+export const SecondPasswordProgressBar = ({ value, colorScheme }) => {
+  return (
+    <Progress value={value} colorScheme={colorScheme} h="4px" mt="-12px" />
   );
 };
 
