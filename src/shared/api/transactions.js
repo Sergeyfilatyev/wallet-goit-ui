@@ -6,11 +6,11 @@ export const getAllTransactions = async () => {
 };
 
 export const addTransaction = async (data) => {
-  return instance.post("/transactions", data);
+  return await instance.post("/transactions", data);
 };
 
-export const deleteTransaction = (id) => {
-  return instance.delete(`/transactions/${id}`);
+export const deleteTransaction = async (id) => {
+  return await instance.delete(`/transactions/${id}`);
 };
 
 export const updateTransaction = async ({
@@ -20,7 +20,7 @@ export const updateTransaction = async ({
   comment,
   amount,
 }) => {
-  const { data } = instance.patch(`/transactions/${id}`, {
+  const { data } = await instance.patch(`/transactions/${id}`, {
     type,
     category,
     comment,

@@ -6,7 +6,7 @@ import { getAuth } from "../../redux/auth/auth-selectors";
 import { fetchCategories } from "../../utils/fetchCategories";
 
 import { useDispatch } from "react-redux";
-import { addTransaction } from "../../shared/api/transactions";
+import { addTransaction } from "../../redux/transactions/transactions-operations";
 
 import { currentDay } from "../../utils/currentDay";
 import { amountValidation } from "../../utils/amountValidation";
@@ -33,7 +33,7 @@ export const ModalAddTransaction = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [isExpense, setIsExpense] = useState(false);
-  const [category, setCategory] = useState("Income");
+  const [category, setCategory] = useState("income");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState(currentDay());
   const [comment, setComment] = useState("");
@@ -63,7 +63,7 @@ export const ModalAddTransaction = () => {
   }, [token]);
 
   useEffect(() => {
-    isExpense ? setCategory("Expense") : setCategory("Income");
+    isExpense ? setCategory("expense") : setCategory("income");
   }, [isExpense]);
 
   const addNewTransaction = () => {
@@ -71,26 +71,29 @@ export const ModalAddTransaction = () => {
       return setAmountError(true);
     } else setAmountError(false);
 
+    const transactionDate = {
+      day: Number(date.slice(8, 10)),
+      month: Number(date.slice(5, 7)),
+      year: Number(date.slice(0, 4)),
+    };
+
     const transaction = {
       income: !isExpense,
       category,
       comment,
       amount,
-      date,
+      date: transactionDate,
     };
 
     dispatch(addTransaction(transaction));
 
-    const expense = { isExpense, category, amount, date, comment };
-    const income = { isExpense, category, amount, date, comment };
-
-    isExpense ? console.log(expense) : console.log(income);
-
     setIsExpense(false);
-    setCategory("Income");
+    setCategory("income");
     setAmount("");
     setDate(currentDay());
     setComment("");
+
+    onClose();
   };
 
   return (

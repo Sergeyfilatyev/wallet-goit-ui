@@ -1,17 +1,37 @@
-import { Box, Button, Input, Switch, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  IconButton,
+  Input,
+  Switch,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 import { ModalWindow } from "../ModalWindow";
+import { EditIcon } from "@chakra-ui/icons";
 
-export const ModalEditTransaction = () => {
+export const ModalEditTransaction = ({ id }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const editTransaction = () => {};
+  const editTransaction = () => {
+    console.log(id);
+  };
 
   return (
     <>
-      <Button variant="isOpenModalButton" onClick={onOpen}></Button>
+      <IconButton
+        backgroundColor="transparent"
+        aria-label="Edit transaction"
+        icon={<EditIcon />}
+        _hover={{ color: "#24CCA7" }}
+        _active={{ bg: "transparent" }}
+        onClick={onOpen}
+      />
+      {/* <Button variant="isOpenModalButton" onClick={onOpen}>
+        FEEEE
+      </Button> */}
       <ModalWindow
-        modalHeader="Add transaction"
+        modalHeader="Edit transaction"
         modalFunction={editTransaction}
         modalFunctionName="Edit"
         modalCancelName="Cancel"
