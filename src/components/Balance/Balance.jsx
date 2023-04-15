@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import axios from "axios";
+import { selectBalance } from "../../redux/transactions/transactions-selectors";
 
 import { BalanceBox, BalanceBoxTitle, BalanceBoxNumber } from "./BalanceStyled";
 
 export const Balance = () => {
-  const [balance, setBalance] = useState(0);
+  const balance = useSelector(selectBalance);
 
   return (
     <BalanceBox>

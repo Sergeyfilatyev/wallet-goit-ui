@@ -1,14 +1,11 @@
 import Media from "react-media";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Routes, Route, useSearchParams, Navigate } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 
 import { Currency } from "./Currency";
-// import { useSelector } from "react-redux";
-// import { getAuth } from "../redux/auth/auth-selectors";
 
-// import { current } from "../redux/auth/auth-operations";
 import PublicRoute from "../HOCs/PublicRoute";
 import PrivateRoute from "../HOCs/PrivateRoute";
 
@@ -25,6 +22,7 @@ const HomePageDesktop = lazy(() => import("../pages/HomePageDesktop"));
 const StatisticsPageDesktop = lazy(() =>
   import("../pages/StatisticsPageDesktop")
 );
+const VerifyPage = lazy(() => import("../pages/VerifyPage"));
 
 function App() {
   const [searchParams] = useSearchParams();
@@ -42,13 +40,6 @@ function App() {
       dispatch(refresh());
     }
   }, []);
-
-  // const dispatch = useDispatch();
-  // const isAuth = useSelector(getAuth);
-
-  // useEffect(() => {
-  //   dispatch(current());
-  // }, [dispatch]);
 
   return (
     <Suspense>
@@ -74,6 +65,14 @@ function App() {
               element={
                 <PublicRoute restricted>
                   <RegistrationPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/verify"
+              element={
+                <PublicRoute restricted>
+                  <VerifyPage />
                 </PublicRoute>
               }
             />

@@ -2,6 +2,8 @@ import React from "react";
 
 import { Formik, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/auth/auth-operations";
 
 import { validationSchemaLogin } from "../../utils/validationSchema";
@@ -20,9 +22,21 @@ import {
 } from "./LoginRegisterFormStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 import { useTranslation } from "react-i18next";
+
 export const LoginForm = () => {
+  console.log(process.env.REACT_APP_URL);
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const [status, setStatus] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (status === 400) {
+      navigate("/verify");
+      setStatus("");
+    }
+  }, [status, navigate]);
+
   return (
     <LoginRegisterFormBox height={{ base: "100%", s: "518px" }}>
       <LoginRegisterFormLogoBox>
@@ -35,7 +49,10 @@ export const LoginForm = () => {
         }}
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          dispatch(login(values));
+          dispatch(login(values)).then((response) => {
+            console.log(response)
+            setStatus(response.payload.status);
+          });
           resetForm();
           setSubmitting(false);
         }}
@@ -57,7 +74,7 @@ export const LoginForm = () => {
             />
             <GoogleButton
               name={t("google")}
-              to={`${process.env.REACT_APP_BASE_URL}/auth/google`}
+              to={`${process.env.REACT_APP_URL}/auth/google`}
             />
           </LoginRegisterFormButtonsBox>
         </Form>

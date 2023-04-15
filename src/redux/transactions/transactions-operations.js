@@ -1,52 +1,51 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import * as api from "../../shared/api/transactions";
 
 export const fetchAllTransactions = createAsyncThunk(
-  'transactions/fetchAll',
+  "transactions/getAllTransactions",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios('/api/transactions');
+      const data = await api.getAllTransactions();
       console.log(data);
       return data;
-    } catch (error) {
-      return rejectWithValue(error);
+    } catch ({ response }) {
+      return rejectWithValue(response);
     }
   }
 );
 export const addTransaction = createAsyncThunk(
-  'transactions/addTransaction',
-  async (user, { rejectWithValue }) => {
+  "transactions/addTransaction",
+  async (data, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(`/api/transactions`, user);
+      const { data: result } = await api.addTransaction(data);
       console.log(data);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
+      return result;
+    } catch ({ response }) {
+      return rejectWithValue(response);
     }
   }
 );
 export const deleteTransaction = createAsyncThunk(
-  'transactions/deleteTransaction',
+  "transactions/deleteTransaction",
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`/api/transactions/${id}`);
-   
+      await api.deleteTransaction(id);
+
       return id;
-    } catch (error) {
-      return rejectWithValue(error);
+    } catch ({ response }) {
+      return rejectWithValue(response);
     }
   }
 );
 
 export const updateTransaction = createAsyncThunk(
-  'transactions/updateTransaction',
-  async ({id, type, category, comment , amount}, { rejectWithValue }) => {
-
+  "transactions/updateTransaction",
+  async (data, { rejectWithValue }) => {
     try {
-      const {data} = await axios.patch(`/api/transactions/${id}`, { type, category, comment , amount});
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
+      const { data: result } = await api.updateTransaction(data);
+      return result;
+    } catch ({ response }) {
+      return rejectWithValue(response);
     }
   }
 );

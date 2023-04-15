@@ -11,6 +11,7 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 const initialState = {
   user: {},
   token: "",
+  balance: 0,
   isLoading: false,
   error: null,
   isAuth: false,
@@ -26,7 +27,7 @@ const authSlice = createSlice({
         state.user = payload.data;
       })
 
-      .addCase(verify.fulfilled, (state, {payload}) => {
+      .addCase(verify.fulfilled, (state, { payload }) => {
         state.user = { name: payload.data.name, email: payload.data.email };
         state.token = payload.data.token;
         state.isAuth = true;

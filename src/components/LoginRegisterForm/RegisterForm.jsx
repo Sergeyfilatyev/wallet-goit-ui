@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/auth-operations";
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ErrorMessage } from "formik";
 
@@ -37,6 +38,16 @@ export const RegisterForm = () => {
 
   const [firstPasswordProgress, setFirstPasswordProgress] = useState(0);
   const [secondPasswordProgress, setSecondPasswordProgress] = useState(0);
+  const [status, setStatus] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (status === 201) {
+      navigate("/verify");
+      setStatus("");
+    }
+  }, [status, navigate]);
+
 
   const handleFormChange = ({ target }) => {
     if (target.name === "password") {
@@ -89,7 +100,10 @@ export const RegisterForm = () => {
           const { name, password, email } = values;
           const data = { name, password, email };
 
-          dispatch(register(data));
+          dispatch(register(data)).then(response => {
+            console.log(response)
+              setStatus(response.payload.status)
+          });
           resetForm();
           setSubmitting(false);
         }}
@@ -126,7 +140,7 @@ export const RegisterForm = () => {
             <LoginRegisterFormRedirectButton name={t("login")} to="/" />
             <GoogleButton
               name={t("google")}
-              to={`${process.env.REACT_APP_BASE_URL}/auth/google`}
+              to={`${process.env.REACT_APP_URL}/auth/google`}
             />
           </LoginRegisterFormButtonsBox>
         </Form>

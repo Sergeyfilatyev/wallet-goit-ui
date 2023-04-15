@@ -1,8 +1,10 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: process.env.REACT_APP_URL,
   withCredentials: true,
+  mode: "cors",
+  credentials: "include",
 });
 
 const setToken = (token) => {
@@ -19,7 +21,7 @@ export const register = async (data) => {
 
 export const login = async (data) => {
   const { data: result } = await instance.post("/users/login", data);
-  setToken(result.token);
+  setToken(result.data.token);
   console.log("from auth", result.token);
   return result;
 };
@@ -61,31 +63,32 @@ export const checkAuth = async () => {
   }
 };
 
-// instance.interceptors.response.use(
-//   (config) => {
-//     return config;
-//   },
-//   async (error) => {
-//     const originalRequest = error.config;
-//     console.log(error);
-//     if (
-//       error.response.status == 401 &&
-//       error.config &&
-//       !originalRequest._isRetry
-//     ) {
-//       originalRequest._isRetry = true;
-//       try {
-//         const { data } = await instance.get("/users/refresh");
-//         console.log(data.data.token);
-//         error.config.headers["Authorization"] = `Bearer ${data.data.token}`;
-//         localStorage.setItem("token", "generated");
-//         return instance.request(originalRequest);
-//       } catch (error) {
-//         throw error;
-//       }
-//     }
-//     throw error;
-//   }
-// );
+instance.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+    console.log(error);
+    if (
+      error.response.status === 401 &&
+      error.config &&
+      !originalRequest._isRetry &&
+      originalRequest.headers["Authorization"]
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const { data } = await instance.get("/users/refresh");
+        console.log(data.data.token);
+        error.config.headers["Authorization"] = `Bearer ${data.data.token}`;
+        localStorage.setItem("token", "generated");
+        return instance.request(originalRequest);
+      } catch (error) {
+        throw error;
+      }
+    }
+    throw error;
+  }
+);
 
 export default instance;
