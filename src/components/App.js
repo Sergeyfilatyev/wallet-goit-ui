@@ -86,7 +86,7 @@ function App() {
             >
               {matches.m && <Route path="home" element={<Table />} />}
               {matches.xs && <Route path="home" element={<TableMobile />} />}
-              <Route path="statistics" element={<></>} />
+              <Route path="statistics" element={<StatisticsPageDesktop />} />
               <Route path="currency" element={<Currency />} />
             </Route>
             <Route
