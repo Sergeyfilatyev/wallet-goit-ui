@@ -79,6 +79,14 @@ function App() {
               }
             />
             <Route
+              path="/verify"
+              element={
+                <PublicRoute restricted>
+                  <VerifyPage />
+                </PublicRoute>
+              }
+            />
+            <Route
               path="/dashboard"
               element={
                 <PrivateRoute>

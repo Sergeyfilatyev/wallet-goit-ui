@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
-import { getUser  } from "../../redux/auth/auth-selectors";
+import { getUser } from "../../redux/auth/auth-selectors";
+import axios from "axios";
 
 import {Flex} from "@chakra-ui/react";
 import Media from "react-media";
@@ -8,22 +9,24 @@ import { PageContainer } from "../PageContainer";
 import { DashboardBox } from "../Dashboard/DashboardStyled";
 import { VerifyButton, VerifyText } from "./VerifyStyled";
 
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL
+
 export const Verify = () => {
   
-    const user = useSelector(getUser)
+  const user = useSelector(getUser)
 
 
   const fetchResendEmail = () => {
     console.log(user)
-    //   axios.post('/verify', {
-    //     email,
-    //   })
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+      axios.post('/users/verify', {
+        email: user.email,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   return (
     <>

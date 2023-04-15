@@ -65,7 +65,7 @@ export const RegisterForm = () => {
 
           dispatch(register(data)).then(response => {
             console.log(response)
-              // setStatus(response.payload.status)
+              setStatus(response.payload.status)
           });
           resetForm();
           setSubmitting(false);
