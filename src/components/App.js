@@ -22,6 +22,7 @@ const HomePageDesktop = lazy(() => import("../pages/HomePageDesktop"));
 const StatisticsPageDesktop = lazy(() =>
   import("../pages/StatisticsPageDesktop")
 );
+const VerifyPage = lazy(() => import("../pages/VerifyPage"));
 
 function App() {
   const [searchParams] = useSearchParams();
@@ -64,6 +65,14 @@ function App() {
               element={
                 <PublicRoute restricted>
                   <RegistrationPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/verify"
+              element={
+                <PublicRoute restricted>
+                  <VerifyPage />
                 </PublicRoute>
               }
             />
