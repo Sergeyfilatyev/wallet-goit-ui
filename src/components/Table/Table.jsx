@@ -22,6 +22,7 @@ import {
   HeaderButton,
 } from "./TableStyled";
 import { useTranslation } from "react-i18next";
+import { DashboardEditTransactionButton } from "./TableMobileStyled";
 
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
 
@@ -211,21 +212,19 @@ export const Table = () => {
                 <TransactionsTdComment>
                   <EllipsisText text={item.comment} length={26} />
                 </TransactionsTdComment>
+
                 <TransactionsTdSum
                   value={`${item.amount}.00`}
                   income={item.income}
                 />
-                <TransactionsTdButton>
-                  <IconButton
-                    onClick={() => setIsOpenEditForm(!isOpenEditForm)}
-                    backgroundColor="transparent"
-                    aria-label="Edit transaction"
-                    icon={<EditIcon />}
-                    _hover={{ color: "#24CCA7" }}
-                    _active={{ bg: "transparent" }}
-                  />
-                  {isOpenEditForm && <ModalEditTransaction />}
-                </TransactionsTdButton>
+              
+
+               
+        
+
+                <DashboardEditTransactionButton id={item._id} />
+
+
                 <TransactionsTdButton>
                   {/* <DeleteButton
                     name={t("delete")}
