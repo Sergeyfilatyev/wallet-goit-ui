@@ -21,6 +21,7 @@ import {
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 import { useTranslation } from "react-i18next";
 export const LoginForm = () => {
+  console.log(process.env.REACT_APP_URL);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   return (
@@ -57,7 +58,7 @@ export const LoginForm = () => {
             />
             <GoogleButton
               name={t("google")}
-              to={`${process.env.REACT_APP_BASE_URL}/auth/google`}
+              to={`${process.env.REACT_APP_URL}/auth/google`}
             />
           </LoginRegisterFormButtonsBox>
         </Form>

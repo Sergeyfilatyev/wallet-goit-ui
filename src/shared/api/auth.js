@@ -1,8 +1,10 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: process.env.REACT_APP_URL,
   withCredentials: true,
+  mode: "cors",
+  credentials: "include",
 });
 
 const setToken = (token) => {
@@ -19,7 +21,7 @@ export const register = async (data) => {
 
 export const login = async (data) => {
   const { data: result } = await instance.post("/users/login", data);
-  setToken(result.token);
+  setToken(result.data.token);
   console.log("from auth", result.token);
   return result;
 };

@@ -126,7 +126,7 @@ export const RegisterForm = () => {
             <LoginRegisterFormRedirectButton name={t("login")} to="/" />
             <GoogleButton
               name={t("google")}
-              to={`${process.env.REACT_APP_BASE_URL}/auth/google`}
+              to={`${process.env.REACT_APP_URL}/auth/google`}
             />
           </LoginRegisterFormButtonsBox>
         </Form>
