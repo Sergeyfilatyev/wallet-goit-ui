@@ -16,23 +16,25 @@ const transactionsSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-
       .addCase(fetchAllTransactions.fulfilled, (state, { payload }) => {
         console.log(payload);
         state.transItems = payload.data;
         state.balance = payload.balance;
       })
-      .addCase(addTransaction.fulfilled, (state, action) => {
-        state.transItems = [...state.transItems, action.payload];
+      .addCase(addTransaction.fulfilled, (state, { payload }) => {
+        state.transItems = [...state.transItems, payload];
+        state.balance = payload.balance;
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
         state.transItems = state.transItems.filter(({ id }) => id !== payload);
+        state.balance = payload.balance;
       })
       .addCase(updateTransaction.fulfilled, (state, { payload }) => {
         const index = state.transItems.findIndex(
           (contact) => contact.id === payload.id
         );
         state.transItems[index] = payload;
+        state.balance = payload.balance;
       })
       .addMatcher(
         isAnyOf(
