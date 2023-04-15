@@ -1,23 +1,7 @@
-
-import {
-  Box,
-  Button,
-  IconButton,
-  Input,
-  Switch,
-  useDisclosure,
-} from "@chakra-ui/react";
-
 import { ModalWindow } from "../ModalWindow";
 import { EditIcon } from "@chakra-ui/icons";
 
-export const ModalEditTransaction = ({ id }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const editTransaction = () => {
-    console.log(id);
-
-import { Box, useDisclosure } from "@chakra-ui/react";
+import { Box, IconButton, useDisclosure } from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";
 
@@ -29,7 +13,6 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getAuth } from "../../redux/auth/auth-selectors";
 
-import { ModalWindow } from "../ModalWindow";
 import {
   ModalAddOpentButton,
   ModalAmount,
@@ -42,30 +25,9 @@ import {
 import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 
-const currentDay = () => {
-  const date = new Date();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-  if (month < 10) month = "0" + month;
-  if (day < 10) day = "0" + day;
-  const today = year + "-" + month + "-" + day;
-  return today;
-};
+import { currentDay } from "../../utils/currentDay";
+import { amountValidation } from "../../utils/amountValidation";
 
-const amountValidation = (amount) => {
-  if (
-    amount === "0.00" ||
-    amount === "" ||
-    amount === false ||
-    amount === 0 ||
-    amount === "0"
-  ) {
-    return false;
-  } else {
-    return true;
-  }
-};
 export const ModalEditTransaction = () => {
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -102,7 +64,7 @@ export const ModalEditTransaction = () => {
     isExpense ? setCategory("Expense") : setCategory("Income");
   }, [isExpense]);
 
-  const addTransaction = () => {
+  const editTransaction = () => {
     if (!amountValidation(amount)) {
       return setAmountError(true);
     } else setAmountError(false);
@@ -117,12 +79,10 @@ export const ModalEditTransaction = () => {
     setAmount("");
     setDate(currentDay());
     setComment("");
-
   };
 
   return (
     <>
-
       <IconButton
         backgroundColor="transparent"
         aria-label="Edit transaction"
@@ -131,9 +91,7 @@ export const ModalEditTransaction = () => {
         _active={{ bg: "transparent" }}
         onClick={onOpen}
       />
-      {/* <Button variant="isOpenModalButton" onClick={onOpen}>
-        FEEEE
-      </Button> */}
+
       <ModalWindow
         modalHeader="Edit transaction"
         modalFunction={editTransaction}
