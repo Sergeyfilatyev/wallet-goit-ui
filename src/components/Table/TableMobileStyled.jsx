@@ -1,4 +1,5 @@
 import { Box, Flex, Button } from "@chakra-ui/react";
+import { ModalEditTransaction } from "../ModalTransaction/ModalEditTransaction";
 
 export const DataRow = ({ children }) => {
   return (
@@ -71,5 +72,13 @@ export const DeleteButton = ({ name }) => {
 export const DataRowDivider = () => {
   return (
     <Box ml="-25px" border="1px solid #DCDCDF" width="280px" as="div"></Box>
+  );
+};
+
+export const DashboardEditTransactionButton = ({ id }) => {
+  return (
+    <Flex justifyContent={"center"} alignItems={"center"} as="td">
+      <ModalEditTransaction id={id} />
+    </Flex>
   );
 };

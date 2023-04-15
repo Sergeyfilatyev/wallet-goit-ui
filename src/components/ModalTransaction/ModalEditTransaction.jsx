@@ -1,4 +1,22 @@
-// 
+
+import {
+  Box,
+  Button,
+  IconButton,
+  Input,
+  Switch,
+  useDisclosure,
+} from "@chakra-ui/react";
+
+import { ModalWindow } from "../ModalWindow";
+import { EditIcon } from "@chakra-ui/icons";
+
+export const ModalEditTransaction = ({ id }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const editTransaction = () => {
+    console.log(id);
+
 import { Box, useDisclosure } from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";
@@ -99,16 +117,28 @@ export const ModalEditTransaction = () => {
     setAmount("");
     setDate(currentDay());
     setComment("");
+
   };
 
   return (
     <>
-      <ModalAddOpentButton onClick={onOpen} />
+
+      <IconButton
+        backgroundColor="transparent"
+        aria-label="Edit transaction"
+        icon={<EditIcon />}
+        _hover={{ color: "#24CCA7" }}
+        _active={{ bg: "transparent" }}
+        onClick={onOpen}
+      />
+      {/* <Button variant="isOpenModalButton" onClick={onOpen}>
+        FEEEE
+      </Button> */}
       <ModalWindow
         modalHeader="Edit transaction"
-        // modalFunction={addTransaction}
-        modalFunctionName={t("add")}
-        modalCancelName={t("cancel")}
+        modalFunction={editTransaction}
+        modalFunctionName="Edit"
+        modalCancelName="Cancel"
         isOpen={isOpen}
         onClose={onClose}
       >
