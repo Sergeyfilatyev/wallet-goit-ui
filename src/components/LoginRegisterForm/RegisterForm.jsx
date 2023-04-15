@@ -38,7 +38,11 @@ export const RegisterForm = () => {
 
   const [firstPasswordProgress, setFirstPasswordProgress] = useState(0);
   const [secondPasswordProgress, setSecondPasswordProgress] = useState(0);
+
   const [status, setStatus] = useState("");
+  const [isError409, setIsError409] = useState(false);
+  const [emailWithError, setEmailWithError] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,8 +52,8 @@ export const RegisterForm = () => {
     }
   }, [status, navigate]);
 
-
   const handleFormChange = ({ target }) => {
+    setIsError409(false);
     if (target.name === "password") {
       let progress = 0;
 
@@ -100,9 +104,13 @@ export const RegisterForm = () => {
           const { name, password, email } = values;
           const data = { name, password, email };
 
-          dispatch(register(data)).then(response => {
-            console.log(response)
-              setStatus(response.payload.status)
+          dispatch(register(data)).then((response) => {
+            setStatus(response.payload.status);
+
+            if (response.payload.status === 409) {
+              setIsError409(true);
+              setEmailWithError(email);
+            }
           });
           resetForm();
           setSubmitting(false);
@@ -111,7 +119,13 @@ export const RegisterForm = () => {
         <Form onChange={handleFormChange}>
           <LoginRegisterFormInputsBox>
             <LoginRegisterFormEmailInput placeholder={t("email")}>
-              <FieldErrorMessage error={<ErrorMessage name="email" />} />
+              {isError409 ? (
+                <FieldErrorMessage
+                  error={`${emailWithError} is already registered`}
+                />
+              ) : (
+                <FieldErrorMessage error={<ErrorMessage name="email" />} />
+              )}
             </LoginRegisterFormEmailInput>
             <LoginRegisterFormPasswordInput placeholder={t("password")}>
               <FieldErrorMessage error={<ErrorMessage name="password" />} />

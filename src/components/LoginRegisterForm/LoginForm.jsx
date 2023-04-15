@@ -27,7 +27,10 @@ export const LoginForm = () => {
   console.log(process.env.REACT_APP_URL);
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
   const [status, setStatus] = useState("");
+  const [isError401, setIsError401] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,8 +53,11 @@ export const LoginForm = () => {
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           dispatch(login(values)).then((response) => {
-            console.log(response)
             setStatus(response.payload.status);
+
+            if (response.payload.status === 401) {
+              setIsError401(true);
+            }
           });
           resetForm();
           setSubmitting(false);
@@ -60,7 +66,11 @@ export const LoginForm = () => {
         <Form>
           <LoginRegisterFormInputsBox>
             <LoginRegisterFormEmailInput placeholder={t("email")}>
-              <FieldErrorMessage error={<ErrorMessage name="email" />} />
+              {isError401 ? (
+                <FieldErrorMessage error="The login or password is incorrect" />
+              ) : (
+                <FieldErrorMessage error={<ErrorMessage name="email" />} />
+              )}
             </LoginRegisterFormEmailInput>
             <LoginRegisterFormPasswordInput placeholder={t("password")}>
               <FieldErrorMessage error={<ErrorMessage name="password" />} />

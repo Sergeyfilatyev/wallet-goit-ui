@@ -1,16 +1,20 @@
-import { Box, useDisclosure } from "@chakra-ui/react";
-
 import { useTranslation } from "react-i18next";
-
-import "react-datetime/css/react-datetime.css";
-
-import { fetchCategories } from "../../utils/fetchCategories";
-
 import { useState, useEffect } from "react";
+
 import { useSelector } from "react-redux";
 import { getAuth } from "../../redux/auth/auth-selectors";
+import { fetchCategories } from "../../utils/fetchCategories";
 
+import { useDispatch } from "react-redux";
+import { addTransaction } from "../../shared/api/transactions";
+
+import { currentDay } from "../../utils/currentDay";
+import { amountValidation } from "../../utils/amountValidation";
+
+import { Box, useDisclosure } from "@chakra-ui/react";
+import "react-datetime/css/react-datetime.css";
 import { ModalWindow } from "../ModalWindow";
+
 import {
   ModalAddOpentButton,
   ModalAmount,
@@ -20,33 +24,10 @@ import {
   ModalDate,
   ModalSelectCategory,
 } from "./ModalTransactionStyled";
+
 import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 
-const currentDay = () => {
-  const date = new Date();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-  if (month < 10) month = "0" + month;
-  if (day < 10) day = "0" + day;
-  const today = year + "-" + month + "-" + day;
-  return today;
-};
-
-const amountValidation = (amount) => {
-  if (
-    amount === "0.00" ||
-    amount === "" ||
-    amount === false ||
-    amount === 0 ||
-    amount === "0"
-  ) {
-    return false;
-  } else {
-    return true;
-  }
-};
 export const ModalAddTransaction = () => {
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -58,6 +39,8 @@ export const ModalAddTransaction = () => {
   const [comment, setComment] = useState("");
 
   const [amountError, setAmountError] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleChange = {
     category: ({ target: { value } }) => {
@@ -83,10 +66,20 @@ export const ModalAddTransaction = () => {
     isExpense ? setCategory("Expense") : setCategory("Income");
   }, [isExpense]);
 
-  const addTransaction = () => {
+  const addNewTransaction = () => {
     if (!amountValidation(amount)) {
       return setAmountError(true);
     } else setAmountError(false);
+
+    const transaction = {
+      income: !isExpense,
+      category,
+      comment,
+      amount,
+      date,
+    };
+
+    dispatch(addTransaction(transaction));
 
     const expense = { isExpense, category, amount, date, comment };
     const income = { isExpense, category, amount, date, comment };
@@ -105,7 +98,7 @@ export const ModalAddTransaction = () => {
       <ModalAddOpentButton onClick={onOpen} />
       <ModalWindow
         modalHeader="Add transaction"
-        modalFunction={addTransaction}
+        modalFunction={addNewTransaction}
         modalFunctionName={t("add")}
         modalCancelName={t("cancel")}
         isOpen={isOpen}
