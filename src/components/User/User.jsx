@@ -1,6 +1,3 @@
-// import { useDispatch } from "react-redux";
-// import { logout } from "../../shared/api/auth";
-
 import {
   UserBox,
   UserName,
@@ -13,9 +10,13 @@ import { ModalExit } from "./ModalExit";
 
 import Media from "react-media";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { getName } from "../../redux/auth/auth-selectors";
 
-export const User = ({ name }) => {
+export const User = () => {
   const { t } = useTranslation();
+  const name = useSelector(getName);
+
   return (
     <>
       <Media
@@ -25,7 +26,7 @@ export const User = ({ name }) => {
       >
         {(matches) => (
           <UserBox>
-            <UserName name={name} />
+            <UserName name={`${name}`} />
             {matches.m && <UserDivider />}
             <ModalExit>
               <UserExitIcon />
