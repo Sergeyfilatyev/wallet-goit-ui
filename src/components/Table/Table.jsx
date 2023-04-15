@@ -1,9 +1,9 @@
-// import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import EllipsisText from "react-ellipsis-text";
-
+import { useState } from "react";
 import { IconButton, Box } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
-
+import {ModalEditTransaction} from "../../components/ModalTransaction/ModalEditTransaction"
 import {
   TransactionsTable,
   TransactionsTh,
@@ -25,6 +25,8 @@ import { useTranslation } from "react-i18next";
 //   deleteTransaction,
 //   updateTransaction,
 // } from "../../redux/transactions/transactions-operations";
+
+import {updateTransaction} from "../../redux/transactions/transactions-operations"
 
 const userTransactions = [
   {
@@ -159,8 +161,12 @@ const userTransactions = [
 ];
 
 export const Table = () => {
+
+  const [isOpenEditForm, setIsOpenEditForm] = useState(false);
+
+
   // const transactions = useSelector(selectTransactions);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   return (
     <>
@@ -221,13 +227,14 @@ export const Table = () => {
                   as="td"
                 >{`${item.amount}.00`}</Box>
                 <TransactionsTdButton>
-                  <IconButton
+                  <IconButton  onClick={()=> setIsOpenEditForm(!isOpenEditForm)}
                     backgroundColor="transparent"
                     aria-label="Edit transaction"
                     icon={<EditIcon />}
                     _hover={{ color: "#24CCA7" }}
                     _active={{ bg: "transparent" }}
                   />
+                  {isOpenEditForm && <ModalEditTransaction/>}
                 </TransactionsTdButton>
                 <TransactionsTdButton>
                   <DeleteButton
