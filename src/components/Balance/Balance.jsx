@@ -1,16 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../../redux/auth/auth-selectors";
 
 import { BalanceBox, BalanceBoxTitle, BalanceBoxNumber } from "./BalanceStyled";
 
 export const Balance = () => {
-  const [balance, setBalance] = useState(0);
+  const [currentBalance, setCurrentBalance] = useState(0);
+
+  const dispatch = useDispatch();
+  const { balance } = useSelector(getUser);
+
+  useEffect(() => {
+    setCurrentBalance(balance);
+  }, [balance]);
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
   return (
     <BalanceBox>
       <BalanceBoxTitle />
-      <BalanceBoxNumber value={balance} />
+      <BalanceBoxNumber value={currentBalance} />
     </BalanceBox>
   );
 };
