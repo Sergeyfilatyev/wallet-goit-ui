@@ -88,6 +88,7 @@ export const DashboardContentFirstPart = ({ children }) => {
       flexDirection={{ m: "row", l: "column" }}
       gap={{ xs: "0px", m: "32px", l: "0px" }}
       width={{ xs: "100%", l: "auto" }}
+      marginBottom={{ m: "20px" }}
     >
       {children}
     </Flex>
@@ -95,7 +96,11 @@ export const DashboardContentFirstPart = ({ children }) => {
 };
 
 export const DashboardContentSecondPart = ({ children }) => {
-  return <Box>{children}</Box>;
+  return (
+    <Flex justifyContent={"center"} alignItems={"center"}>
+      {children}
+    </Flex>
+  );
 };
 
 export const DashboardRedirect = () => {

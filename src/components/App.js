@@ -1,7 +1,7 @@
 import Media from "react-media";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route, useSearchParams } from "react-router-dom";
+import { Routes, Route, useSearchParams, Navigate } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 
 import { Currency } from "./Currency";
@@ -90,6 +90,14 @@ function App() {
               <Route path="statistics" element={<></>} />
               <Route path="currency" element={<Currency />} />
             </Route>
+            <Route
+              path="*"
+              element={
+                <PublicRoute>
+                  <Navigate to="/" />
+                </PublicRoute>
+              }
+            />
           </Routes>
         )}
       </Media>
