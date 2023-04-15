@@ -71,7 +71,8 @@ instance.interceptors.response.use(
     if (
       error.response.status === 401 &&
       error.config &&
-      !originalRequest._isRetry
+      !originalRequest._isRetry &&
+      originalRequest.headers["Authorization"]
     ) {
       originalRequest._isRetry = true;
       try {
