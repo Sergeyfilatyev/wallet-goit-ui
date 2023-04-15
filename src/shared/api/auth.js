@@ -69,7 +69,7 @@ instance.interceptors.response.use(
     const originalRequest = error.config;
     console.log(error);
     if (
-      error.response.status == 401 &&
+      error.response.status === 401 &&
       error.config &&
       !originalRequest._isRetry
     ) {
