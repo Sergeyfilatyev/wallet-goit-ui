@@ -12,12 +12,15 @@ const transactionsSlice = createSlice({
     transItems: [],
     isLoading: false,
     error: null,
+    balance: 0,
   },
   extraReducers: (builder) =>
     builder
 
-      .addCase(fetchAllTransactions.fulfilled, (state, action) => {
-        state.transItems = action.payload;
+      .addCase(fetchAllTransactions.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.transItems = payload.data;
+        state.balance = payload.balance;
       })
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.transItems = [...state.transItems, action.payload];
