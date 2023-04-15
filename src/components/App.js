@@ -1,14 +1,11 @@
 import Media from "react-media";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Routes, Route, useSearchParams, Navigate } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 
 import { Currency } from "./Currency";
-// import { useSelector } from "react-redux";
-// import { getAuth } from "../redux/auth/auth-selectors";
 
-// import { current } from "../redux/auth/auth-operations";
 import PublicRoute from "../HOCs/PublicRoute";
 import PrivateRoute from "../HOCs/PrivateRoute";
 
@@ -42,13 +39,6 @@ function App() {
       dispatch(refresh());
     }
   }, []);
-
-  // const dispatch = useDispatch();
-  // const isAuth = useSelector(getAuth);
-
-  // useEffect(() => {
-  //   dispatch(current());
-  // }, [dispatch]);
 
   return (
     <Suspense>
