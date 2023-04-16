@@ -75,7 +75,7 @@ export const Table = () => {
               return (
                 <TransactionsTr key={item._id}>
                   <TransactionsTdDate
-                    value={`${date.day}.${date.month + 1}.${date.year}`}
+                    value={`${date.day}.${date.month}.${date.year}`}
                   />
                   <TransactionsTd value={item.income ? "+" : "-"} />
                   <TransactionsTd value={t(item.category)} />
