@@ -24,7 +24,7 @@ export const UserName = ({ name }) => {
 
 export const UserDivider = () => {
   return (
-    <Icon viewBox="0 0 2 30" h="30px" mr="12px" w="2px">
+    <Icon viewBox="0 0 2 30" h="30px" mr="4px" w="2px">
       <path stroke="#BDBDBD" d="M1 0V30" />
     </Icon>
   );

@@ -7,7 +7,7 @@ import {
 } from "./UserStyled";
 
 import { ModalExit } from "./ModalExit";
-
+import { ChangeLanguage } from "../ChangeLanguage/ChangeLanguage";
 import Media from "react-media";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -28,6 +28,7 @@ export const User = () => {
           <UserBox>
             <UserName name={`${name}`} />
             {matches.m && <UserDivider />}
+            <ChangeLanguage />
             <ModalExit>
               <UserExitIcon />
               {matches.m && <UserExitText text={t("exit")} />}

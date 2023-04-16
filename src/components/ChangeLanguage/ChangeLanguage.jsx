@@ -12,14 +12,7 @@ export const ChangeLanguage = () => {
   const { i18n } = useTranslation();
 
   return (
-    <Box
-      pos="absolute"
-      zIndex={"500"}
-      left={"50%"}
-      top="4"
-      textAlign="center"
-      color={"#BDBDBD"}
-    >
+    <Box color={"#BDBDBD"} p={"0"} mr={"10px"}>
       <Menu>
         {({ isOpen }) => (
           <>
@@ -27,6 +20,7 @@ export const ChangeLanguage = () => {
               as={Button}
               aria-label="Language"
               variant="ghost"
+              p={"0"}
               _hover={{ bg: "transparent" }}
             >
               {i18n.language === "en"
