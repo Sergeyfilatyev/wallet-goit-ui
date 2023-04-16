@@ -22,6 +22,7 @@
   "expense": "Expense",
   "income": "Income",
   "category": "Category",
+  "select a category": "Select a category",
   "main expenses": "Main expenses",
   "products": "Products",
   "car": "Car",
@@ -38,5 +39,17 @@
   "save": "save",
   "logoutTitle": "Are you sure?",
   "logoutText": "Do you really want to sign out",
-  "signOut": "sign out"
+  "signOut": "sign out",
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December"
 }

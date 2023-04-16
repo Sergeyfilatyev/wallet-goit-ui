@@ -68,13 +68,13 @@ export const Table = () => {
           </thead>
 
           <tbody id="table-content">
-            {currentTransactions.map((item) => {
+            {transactions.map((item) => {
+              const date = item.date;
+
               return (
                 <TransactionsTr key={item._id}>
                   <TransactionsTdDate
-                    value={`${item.date.day}.${item.date.month + 1}.${
-                      item.date.year
-                    }`}
+                    value={`${date.day}.${date.month}.${date.year}`}
                   />
                   <TransactionsTd value={item.income ? "+" : "-"} />
                   <TransactionsTd value={t(item.category)} />

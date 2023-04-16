@@ -4,9 +4,11 @@ import {useDispatch, useSelector} from "react-redux"
 import { Box, IconButton, useDisclosure } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import "react-datetime/css/react-datetime.css";
-import { fetchCategories } from "../../utils/fetchCategories";
 import { useState, useEffect } from "react";
-import { getAuth } from "../../redux/auth/auth-selectors";
+import { useSelector } from "react-redux";
+import { selectCategories } from "../../redux/categories/categories-selectors";
+
+
 import {
   ModalAddOpentButton,
   ModalAmount,
@@ -63,13 +65,7 @@ console.log('TRANS to Find', transToFind);
     },
   };
 
-  const [categories, setCategories] = useState([]);
-
-  const token = useSelector(getAuth).token;
-
-  useEffect(() => {
-    fetchCategories(token).then((response) => setCategories(response));
-  }, [token]);
+  const categories = useSelector(selectCategories);
 
   useEffect(() => {
     isExpense ? setCategory("Expense") : setCategory("Income");
@@ -106,25 +102,25 @@ console.log('TRANS to Find', transToFind);
       />
 
       <ModalWindow
-        modalHeader="Edit transaction"
+        modalHeader={t("edit")}
         modalFunction={editTransaction}
-        modalFunctionName="Edit"
-        modalCancelName="Cancel"
+        modalFunctionName={t("save")}
+        modalCancelName={t("cancel")}
         isOpen={isOpen}
         onClose={onClose}
       >
         <ModalSwitch
           isSwitchExpense={isExpense}
           setIsSwitchExpense={setIsExpense}
-          expenseLabel="expense"
-          incomeLabel="income"
+          expenseLabel={t("expense")}
+          incomeLabel={t("income")}
         />
         <ModalComponentsBox>
           {isExpense && (
             <ModalSelectCategory
               category={category}
               setCategory={handleChange.category}
-              placeholder={"Select a category"}
+              placeholder={t("select a category")}
             >
               {categories.map((item) => (
                 <option value={item.category} key={item.id}>
@@ -143,7 +139,7 @@ console.log('TRANS to Find', transToFind);
           <ModalComment
             comment={comment}
             setComment={handleChange.comment}
-            placeholder="Comment"
+            placeholder={t("comment")}
           />
         </ModalComponentsBox>
       </ModalWindow>
