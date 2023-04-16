@@ -1,4 +1,10 @@
-import { Box, Flex, ModalContent } from "@chakra-ui/react";
+import {
+  Box,
+  CloseButton,
+  Flex,
+  ModalCloseButton,
+  ModalContent,
+} from "@chakra-ui/react";
 
 export const ModalContentBox = ({ children }) => {
   return (
@@ -25,6 +31,22 @@ export const ModalHeaderBox = ({ children }) => {
     >
       {children}
     </Box>
+  );
+};
+
+export const ModalCloseButtonStyle = () => {
+  return (
+    <ModalCloseButton
+      background="#FFFFFF"
+      borderRadius="20px"
+      _hover={{
+        background: "#FFFFFF",
+        color: "#4A56E2",
+        border: "1px solid #4A56E2;",
+        borderRadius: "20px",
+        boxShadow: "0px 6px 15px  rgba(74, 86, 226, 0.35)",
+      }}
+    />
   );
 };
 

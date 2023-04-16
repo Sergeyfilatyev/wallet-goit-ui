@@ -38,7 +38,7 @@ export const LoginForm = () => {
   }, [status, navigate]);
 
   return (
-    <LoginRegisterFormBox height={{ base: "100%", s: "518px" }}>
+    <LoginRegisterFormBox height={{ base: "100%", s: "559px" }}>
       <LoginRegisterFormLogoBox>
         <Logo />
       </LoginRegisterFormLogoBox>
@@ -50,7 +50,7 @@ export const LoginForm = () => {
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           dispatch(login(values)).then((response) => {
-            console.log(response)
+            console.log(response);
             setStatus(response.payload.status);
           });
           resetForm();

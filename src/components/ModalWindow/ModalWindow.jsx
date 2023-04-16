@@ -1,12 +1,8 @@
-import {
-  Button,
-  Modal,
-  ModalCloseButton,
-  ModalOverlay,
-} from "@chakra-ui/react";
+import { Button, Modal, ModalOverlay } from "@chakra-ui/react";
 
 import {
   MadalBodyBox,
+  ModalCloseButtonStyle,
   ModalContentBox,
   ModalFooterButtonBox,
   ModalHeaderBox,
@@ -27,7 +23,7 @@ export const ModalWindow = ({
         <ModalOverlay />
         <ModalContentBox>
           <ModalHeaderBox>{modalHeader}</ModalHeaderBox>
-          <ModalCloseButton />
+          <ModalCloseButtonStyle />
           <MadalBodyBox>{children}</MadalBodyBox>
           <ModalFooterButtonBox>
             <Button variant="greenButton" w="300px" onClick={modalFunction}>
