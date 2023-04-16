@@ -8,7 +8,6 @@ import { useState, useEffect } from "react";
 import { selectCategories } from "../../redux/categories/categories-selectors";
 
 import {
-  ModalAddOpentButton,
   ModalAmount,
   ModalAmountDateBox,
   ModalComment,
@@ -18,23 +17,22 @@ import {
 } from "./ModalTransactionStyled";
 import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
-import { selectTransactions } from "../../redux/transactions/transactions-selectors";
 import { updateTransaction } from "../../redux/transactions/transactions-operations";
-import { currentDay } from "../../utils/currentDay";
 import { amountValidation } from "../../utils/amountValidation";
 
-export const ModalEditTransaction = ({transactionToUpdate}) => {
+export const ModalEditTransaction = ({ transactionToUpdate }) => {
   const { t } = useTranslation();
-const dispatch = useDispatch()
-const transactions = useSelector(selectTransactions);
+  const dispatch = useDispatch();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isExpense, setIsExpense] = useState(transactionToUpdate.expense);
+  const [isExpense, setIsExpense] = useState(transactionToUpdate.income);
   const [category, setCategory] = useState(transactionToUpdate.category);
   const [amount, setAmount] = useState(transactionToUpdate.amount);
   const [date, setDate] = useState(transactionToUpdate.date.time);
   const [comment, setComment] = useState(transactionToUpdate.comment);
   const [amountError, setAmountError] = useState(false);
+
+  console.log(transactionToUpdate.income);
 
   const handleChange = {
     category: ({ target: { value } }) => {
@@ -59,10 +57,10 @@ const transactions = useSelector(selectTransactions);
       return setAmountError(true);
     } else setAmountError(false);
 
-    const expense = { isExpense, category, amount, date, comment };
-    const income = { isExpense, category, amount, date, comment };
+    // const expense = { isExpense, category, amount, date, comment };
+    // const income = { isExpense, category, amount, date, comment };
 
-    isExpense ? console.log(expense) : console.log(income);
+    // isExpense ? expense : income;
 
     const transactionDate = {
       day: Number(date.slice(8, 10)),
@@ -77,13 +75,11 @@ const transactions = useSelector(selectTransactions);
       comment,
       date: transactionDate,
       income: !isExpense,
-    }
+    };
 
-    console.log("beforesend",updatedData);
-
-    dispatch(updateTransaction({id: transactionToUpdate._id ,updatedData}))
+    dispatch(updateTransaction({ id: transactionToUpdate._id, updatedData }));
+    onClose();
   };
-
   return (
     <>
       <IconButton
