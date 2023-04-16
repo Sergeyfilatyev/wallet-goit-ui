@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { getAuth } from "../../redux/auth/auth-selectors";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_URL,
@@ -56,6 +58,7 @@ export const checkAuth = async () => {
   try {
     const { data } = await instance.get("/users/refresh");
     setToken(data.data.token);
+
     return data;
   } catch (error) {
     console.log(error);
@@ -68,11 +71,11 @@ instance.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
-
     if (
       error.response.status === 401 &&
       error.config &&
-      !originalRequest._isRetry &&
+      !originalRequest._isRetry      
+   &&
       originalRequest.headers["Authorization"]
     ) {
       originalRequest._isRetry = true;

@@ -45,7 +45,7 @@ export const Table = () => {
 
   return (
     <>
-      {currentTransactions.length > 0 ? (
+      {transactions.length > 0 ? (
         <TransactionsTable>
           <thead>
             <tr>
@@ -87,8 +87,7 @@ export const Table = () => {
                     income={item.income}
                   />
 
-                  <DashboardEditTransactionButton id={item._id} />
-
+                  <DashboardEditTransactionButton transactionToUpdate={item} />
                   <TransactionsTdButton>
                     {/* <DeleteButton
                     name={t("delete")}

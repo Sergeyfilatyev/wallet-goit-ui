@@ -68,6 +68,7 @@ export const ModalAddTransaction = () => {
       day: Number(date.slice(8, 10)),
       month: Number(date.slice(5, 7)),
       year: Number(date.slice(0, 4)),
+      time: date,
     };
 
     const transaction = {
