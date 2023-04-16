@@ -51,5 +51,6 @@
   "september": "September",
   "october": "October",
   "november": "November",
-  "december": "December"
+  "december": "December",
+  "ststsNull": "You have no transactions in the current month"
 }
