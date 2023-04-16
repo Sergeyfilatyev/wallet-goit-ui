@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form } from "formik";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/auth-operations";
@@ -27,6 +27,7 @@ import {
 } from "./LoginRegisterFormStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export const RegisterForm = () => {
   const { t } = useTranslation();
@@ -102,7 +103,6 @@ export const RegisterForm = () => {
         onSubmit={(values, { setSubmitting, resetForm }) => {
           const { name, password, email } = values;
           const data = { name, password, email };
-
 
           dispatch(register(data)).then((response) => {
             setStatus(response.payload.status);

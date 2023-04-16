@@ -24,7 +24,6 @@ import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 import { useTranslation } from "react-i18next";
 
 export const LoginForm = () => {
-  // console.log(process.env.REACT_APP_URL);
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -45,7 +44,6 @@ export const LoginForm = () => {
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           dispatch(login(values)).then((response) => {
-
             setStatus(response.payload.status);
 
             if (response.payload.status === 400) {
