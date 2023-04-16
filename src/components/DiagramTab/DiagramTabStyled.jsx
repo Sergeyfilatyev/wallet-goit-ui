@@ -213,7 +213,6 @@ export const CategorySumBox = () => {
         px="20px"
       >
         <Text
-          fontFamily="'Circe', sans-serif"
           fontWeight="700"
           fontSize={isLargerThan767 ? "18px" : "16px"}
           lineHeight="26.53px"
@@ -222,7 +221,6 @@ export const CategorySumBox = () => {
           Category
         </Text>
         <Text
-          fontFamily="'Circe', sans-serif"
           fontWeight="700"
           fontSize={isLargerThan767 ? "18px" : "16px"}
           lineHeight="26.53px"

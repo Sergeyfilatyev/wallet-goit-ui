@@ -38,11 +38,10 @@ export const Table = () => {
   const transactions = useSelector(selectTransactions);
 
   const { t } = useTranslation();
-  console.log(transactions[0].date.day);
 
   useEffect(() => {
     setCurrentTransactions(transactions);
-    console.log(transactions)
+    console.log(transactions);
   }, [transactions]);
 
   return (
@@ -76,9 +75,7 @@ export const Table = () => {
               return (
                 <TransactionsTr key={item._id}>
                   <TransactionsTdDate
-                    value={`${date.day}.${date.month + 1}.${
-                      date.year
-                    }`}
+                    value={`${date.day}.${date.month + 1}.${date.year}`}
                   />
                   <TransactionsTd value={item.income ? "+" : "-"} />
                   <TransactionsTd value={t(item.category)} />
@@ -86,47 +83,45 @@ export const Table = () => {
                     <EllipsisText text={item.comment} length={26} />
                   </TransactionsTdComment>
 
+                  <TransactionsTdSum
+                    value={`${item.amount}.00`}
+                    income={item.income}
+                  />
 
-                    <TransactionsTdSum
-                      value={`${item.amount}.00`}
-                      income={item.income}
-                    />
+                  <DashboardEditTransactionButton id={item._id} />
 
-                    <DashboardEditTransactionButton id={item._id} />
-
-                    <TransactionsTdButton>
-                      {/* <DeleteButton
+                  <TransactionsTdButton>
+                    {/* <DeleteButton
                     name={t("delete")}
                     //onClick={() => dispatch(deleteTransaction(item._id))}
                     id={item._id}
                   /> */}
-                      <Button
-                        type="submit"
-                        variant="greenButton"
-                        w="67px"
-                        h="26px"
-                        fontSize="14px"
-                        lineHeight="1.5"
-                        letterSpacing="0.6px"
-                        textTransform="Capitalize"
-                        onClick={() => dispatch(deleteTransaction(item._id))}
-                      >
-                        {t("delete")}
-                      </Button>
-                    </TransactionsTdButton>
-                  </TransactionsTr>
-                );
-              })}
+                    <Button
+                      type="submit"
+                      variant="greenButton"
+                      w="67px"
+                      h="26px"
+                      fontSize="14px"
+                      lineHeight="1.5"
+                      letterSpacing="0.6px"
+                      textTransform="Capitalize"
+                      onClick={() => dispatch(deleteTransaction(item._id))}
+                    >
+                      {t("delete")}
+                    </Button>
+                  </TransactionsTdButton>
+                </TransactionsTr>
+              );
+            })}
 
-              <TransactionsLastTr>
-                <td></td>
-              </TransactionsLastTr>
-            </tbody>
-          </TransactionsTable>
-        ) : (
-          <p>There are no transactions yet</p>
-        )
-      }
+            <TransactionsLastTr>
+              <td></td>
+            </TransactionsLastTr>
+          </tbody>
+        </TransactionsTable>
+      ) : (
+        <p>There are no transactions yet</p>
+      )}
     </>
   );
 };
