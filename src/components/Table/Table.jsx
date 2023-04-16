@@ -41,7 +41,6 @@ export const Table = () => {
 
   useEffect(() => {
     setCurrentTransactions(transactions);
-    console.log(transactions);
   }, [transactions]);
 
   return (
@@ -71,7 +70,7 @@ export const Table = () => {
           <tbody id="table-content">
             {transactions.map((item) => {
               const date = item.date;
-              console.log(date);
+
               return (
                 <TransactionsTr key={item._id}>
                   <TransactionsTdDate

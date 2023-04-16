@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchStatistics } from "./statistics-operations";
+import { getStatistics } from "./statistics-operations";
 
 const statisticsSlice = createSlice({
   name: "statistics",
@@ -8,7 +8,7 @@ const statisticsSlice = createSlice({
   },
 
   extraReducers: (builder) =>
-    builder.addCase(fetchStatistics.fulfilled, (state, { payload }) => {
+    builder.addCase(getStatistics.fulfilled, (state, { payload }) => {
       state.statistics = payload.data;
     }),
 });

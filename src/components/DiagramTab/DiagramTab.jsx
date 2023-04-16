@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Box, Flex } from "@chakra-ui/react";
-import fetchData from "./fetchStats";
-import { getAuth } from "../../redux/auth/auth-selectors";
 import {
   ListItemCategory,
   CalculateNetIncome,
@@ -13,8 +11,7 @@ import {
   DiagramRenderer,
   NoDataDiagram,
 } from "./DiagramTabStyled";
-import { fetchStatistics } from "../../redux/statistics/statistics-operations";
-
+import { getStatistics } from "../../redux/statistics/statistics-operations";
 import { useTranslation } from "react-i18next";
 import { selectStatistics } from "../../redux/statistics/statistics-selectors";
 
@@ -39,32 +36,30 @@ const years = Array.from({ length: currentYear - 1999 }, (_, i) => 2000 + i);
 
 export function DiagramTab() {
   const { t } = useTranslation();
-  const [year, setYear] = useState(currentYear);
+  const [year, setYear] = useState(String(currentYear));
   const [selectedMonth, setSelectedMonth] = useState(
     months[currentMonth].value
   );
-  const [statisticsData, setStatisticsData] = useState({});
-  const [displayedMonths, setDisplayedMonths] = useState(
-    months.slice(0, currentMonth + 1)
-  );
-
-  const totalExpense = statisticsData.totalExpense;
-  const totalIncome = statisticsData.totalIncome;
-  const statByCategory = statisticsData.expenseByCategory;
 
   const dispatch = useDispatch();
   const statistics = useSelector(selectStatistics);
 
   useEffect(() => {
-    dispatch(fetchStatistics());
-  }, [dispatch]);
+    dispatch(getStatistics({ year, selectedMonth }));
+  }, [dispatch, year, selectedMonth]);
 
-  console.log(statistics);
+  const [displayedMonths, setDisplayedMonths] = useState(
+    months.slice(0, currentMonth + 1)
+  );
+
+  const totalExpense = statistics.totalExpense;
+  const totalIncome = statistics.totalIncome;
+  const statByCategory = statistics.expenseByCategory;
 
   const handleYearChange = (e) => {
     const newSelectedYear = e.target.value;
     setYear(newSelectedYear);
-    if (newSelectedYear == currentYear) {
+    if (newSelectedYear === currentYear) {
       setDisplayedMonths(months.slice(0, currentMonth + 1));
       if (selectedMonth > months[currentMonth].value) {
         setSelectedMonth(months[currentMonth].value);
@@ -153,7 +148,6 @@ export function DiagramTab() {
               ></CalculateNetIncome>
             </Box>
           </Box>
-          {/* </Box> */}
         </>
       ) : (
         <NoDataDiagram totalExpense={totalExpense}></NoDataDiagram>

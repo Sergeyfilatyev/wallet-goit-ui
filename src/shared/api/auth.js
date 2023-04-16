@@ -68,7 +68,7 @@ instance.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
-    // console.log(error);
+
     if (
       error.response.status === 401 &&
       error.config &&
@@ -78,7 +78,6 @@ instance.interceptors.response.use(
       originalRequest._isRetry = true;
       try {
         const { data } = await instance.get("/users/refresh");
-        console.log(data.data.token);
         error.config.headers["Authorization"] = `Bearer ${data.data.token}`;
         localStorage.setItem("token", "generated");
         return instance.request(originalRequest);
