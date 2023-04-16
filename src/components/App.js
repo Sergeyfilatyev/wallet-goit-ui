@@ -13,7 +13,6 @@ import { verify, refresh } from "../redux/auth/auth-operations";
 
 import "../i18n";
 import { Table, TableMobile } from "./Table";
-import { ChangeLanguage } from "./ChangeLanguage/ChangeLanguage";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
@@ -43,7 +42,6 @@ function App() {
 
   return (
     <Suspense>
-      <ChangeLanguage />
       <Media
         queries={{
           xs: "(min-width: 320px)",

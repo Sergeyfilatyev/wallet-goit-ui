@@ -17,18 +17,18 @@ import { selectStatistics } from "../../redux/statistics/statistics-selectors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const months = [
-  { value: "01", label: "January" },
-  { value: "02", label: "February" },
-  { value: "03", label: "March" },
-  { value: "04", label: "April" },
-  { value: "05", label: "May" },
-  { value: "06", label: "June" },
-  { value: "07", label: "July" },
-  { value: "08", label: "August" },
-  { value: "09", label: "September" },
-  { value: "10", label: "October" },
-  { value: "11", label: "November" },
-  { value: "12", label: "December" },
+  { value: "01", label: "january" },
+  { value: "02", label: "february" },
+  { value: "03", label: "march" },
+  { value: "04", label: "april" },
+  { value: "05", label: "may" },
+  { value: "06", label: "june" },
+  { value: "07", label: "july" },
+  { value: "08", label: "august" },
+  { value: "09", label: "september" },
+  { value: "10", label: "october" },
+  { value: "11", label: "november" },
+  { value: "12", label: "december" },
 ];
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth();

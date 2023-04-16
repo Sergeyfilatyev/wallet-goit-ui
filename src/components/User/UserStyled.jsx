@@ -11,7 +11,6 @@ export const UserBox = ({ children }) => {
 export const UserName = ({ name }) => {
   return (
     <Text
-      fontFamily="Circe"
       fontSize="18px"
       alignItems="1.5"
       color="#BDBDBD"
@@ -25,7 +24,7 @@ export const UserName = ({ name }) => {
 
 export const UserDivider = () => {
   return (
-    <Icon viewBox="0 0 2 30" h="30px" mr="12px" w="2px">
+    <Icon viewBox="0 0 2 30" h="30px" mr="4px" w="2px">
       <path stroke="#BDBDBD" d="M1 0V30" />
     </Icon>
   );
@@ -44,13 +43,7 @@ export const UserExitIcon = () => {
 
 export const UserExitText = ({ text }) => {
   return (
-    <Text
-      fontFamily="Circe"
-      fontSize="18px"
-      alignItems="1.5"
-      color="#BDBDBD"
-      as="p"
-    >
+    <Text fontSize="18px" alignItems="1.5" color="#BDBDBD" as="p">
       {text}
     </Text>
   );

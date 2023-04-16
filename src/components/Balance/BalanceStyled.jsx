@@ -20,7 +20,6 @@ export const BalanceBoxTitle = () => {
   const { t } = useTranslation();
   return (
     <Box
-      fontFamily="Circe"
       fontStyle="normal"
       fontWeight="400px"
       fontSize="12px"

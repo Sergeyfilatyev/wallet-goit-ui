@@ -1,12 +1,11 @@
 import { ModalWindow } from "../ModalWindow";
 import { EditIcon } from "@chakra-ui/icons";
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { Box, IconButton, useDisclosure } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import "react-datetime/css/react-datetime.css";
 import { useState, useEffect } from "react";
 import { selectCategories } from "../../redux/categories/categories-selectors";
-
 
 import {
   ModalAddOpentButton,
@@ -29,7 +28,6 @@ export const ModalEditTransaction = ({transactionToUpdate}) => {
 const dispatch = useDispatch()
 const transactions = useSelector(selectTransactions);
 
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isExpense, setIsExpense] = useState(transactionToUpdate.expense);
   const [category, setCategory] = useState(transactionToUpdate.category);
@@ -37,7 +35,6 @@ const transactions = useSelector(selectTransactions);
   const [date, setDate] = useState(transactionToUpdate.date.time);
   const [comment, setComment] = useState(transactionToUpdate.comment);
   const [amountError, setAmountError] = useState(false);
-
 
   const handleChange = {
     category: ({ target: { value } }) => {
