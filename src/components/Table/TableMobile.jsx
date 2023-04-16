@@ -10,6 +10,7 @@ import {
   TransactionDataComment,
   DataRow,
   DataRowDivider,
+  DashboardEditTransactionButton,
 } from "./TableMobileStyled";
 import { DeleteButton } from "./TableStyled";
 import { useTranslation } from "react-i18next";
@@ -217,7 +218,8 @@ export const TableMobile = () => {
             >
               Edit
             </Button>
-            {isOpenEditForm && <ModalEditTransaction/>}
+            <DashboardEditTransactionButton id={item._id}/>
+            {/* {isOpenEditForm && <ModalEditTransaction id={item._id}/>} */}
 
           </DataRow>
         </Box>
