@@ -28,7 +28,6 @@ export const TableMobile = () => {
   const { t } = useTranslation();
   return (
     <>
-    
       {transactions.length > 0 ? (
         <>
           {transactions.map((item) => (
@@ -36,7 +35,11 @@ export const TableMobile = () => {
               <DataRow>
                 <Header value={t("date")} />
                 <TransactionData
-                  value={`${item.date.day}.${item.date.month}.${item.date.year}`}
+                  value={`${item.date.day
+                    .toString()
+                    .padStart(2, "0")}.${item.date.month
+                    .toString()
+                    .padStart(2, "0")}.${item.date.year}`}
                 />
               </DataRow>
               <DataRowDivider />
@@ -69,7 +72,6 @@ export const TableMobile = () => {
                 />
               </DataRow>
               <DataRowDivider />
-
 
               <DataRow>
                 <DeleteButton name={t("delete")} />
