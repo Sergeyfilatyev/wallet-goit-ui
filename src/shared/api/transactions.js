@@ -5,8 +5,9 @@ export const getAllTransactions = async () => {
   return data;
 };
 
-export const addTransaction = async (data) => {
-  return await instance.post("/transactions", data);
+export const addTransaction = async (transaction) => {
+  const { data } = await instance.post("/transactions", transaction);
+  return data;
 };
 
 export const deleteTransaction = async (id) => {

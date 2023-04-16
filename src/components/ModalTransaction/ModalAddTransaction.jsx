@@ -81,7 +81,7 @@ export const ModalAddTransaction = () => {
       income: !isExpense,
       category,
       comment,
-      amount,
+      amount: Number(amount),
       date: transactionDate,
     };
 
