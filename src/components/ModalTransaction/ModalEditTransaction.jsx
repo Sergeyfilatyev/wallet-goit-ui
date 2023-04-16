@@ -23,31 +23,17 @@ import { updateTransaction } from "../../redux/transactions/transactions-operati
 import { currentDay } from "../../utils/currentDay";
 import { amountValidation } from "../../utils/amountValidation";
 
-export const ModalEditTransaction = ({ id }) => {
+export const ModalEditTransaction = ({transactionToUpdate}) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const transactions = useSelector(selectTransactions);
-  console.log("TRANSACTIONS:-", transactions);
-  const transToFind = transactions.filter((trans) => trans.id === id);
-  console.log("Id Prop from Table: -", id);
-  console.log("TRANS to Find", transToFind);
+const dispatch = useDispatch()
+const transactions = useSelector(selectTransactions);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isExpense, setIsExpense] = useState(false);
-  // const [isExpense, setIsExpense] = useState(transToFind.expense);
-
-  const [category, setCategory] = useState("Income");
-  // const [category, setCategory] = useState(transToFind.expense);
-
-  const [amount, setAmount] = useState("");
-  // const [amount, setAmount] = useState(transToFind.amount);
-
-  const [date, setDate] = useState(currentDay());
-  // const [date, setDate] = useState(transToFind.date);
-
-  const [comment, setComment] = useState("");
-  // const [comment, setComment] = useState(transToFind.comment);
-
+  const [isExpense, setIsExpense] = useState(transactionToUpdate.expense);
+  const [category, setCategory] = useState(transactionToUpdate.category);
+  const [amount, setAmount] = useState(transactionToUpdate.amount);
+  const [date, setDate] = useState(transactionToUpdate.date.time);
+  const [comment, setComment] = useState(transactionToUpdate.comment);
   const [amountError, setAmountError] = useState(false);
 
   const handleChange = {
@@ -65,7 +51,7 @@ export const ModalEditTransaction = ({ id }) => {
   const categories = useSelector(selectCategories);
 
   useEffect(() => {
-    isExpense ? setCategory("Expense") : setCategory("Income");
+    isExpense ? setCategory("Expense") : setCategory("income");
   }, [isExpense]);
 
   const editTransaction = () => {
@@ -78,13 +64,24 @@ export const ModalEditTransaction = ({ id }) => {
 
     isExpense ? console.log(expense) : console.log(income);
 
-    // dispatch(updateTransaction(transToFind))
+    const transactionDate = {
+      day: Number(date.slice(8, 10)),
+      month: Number(date.slice(5, 7)),
+      year: Number(date.slice(0, 4)),
+      time: date,
+    };
 
-    setIsExpense(false);
-    setCategory("Income");
-    setAmount("");
-    setDate(currentDay());
-    setComment("");
+    const updatedData = {
+      amount: Number(amount),
+      category,
+      comment,
+      date: transactionDate,
+      income: !isExpense,
+    }
+
+    console.log("beforesend",updatedData);
+
+    dispatch(updateTransaction({id: transactionToUpdate._id ,updatedData}))
   };
 
   return (
