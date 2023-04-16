@@ -5,7 +5,6 @@ import { Box, IconButton, useDisclosure } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import "react-datetime/css/react-datetime.css";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { selectCategories } from "../../redux/categories/categories-selectors";
 
 

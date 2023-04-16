@@ -21,6 +21,7 @@ import {
   DeleteButtonTest,
   HeaderButton,
 } from "./TableStyled";
+import { ModalDelete } from "./ModalDelete";
 import { useTranslation } from "react-i18next";
 import { DashboardEditTransactionButton } from "./TableMobileStyled";
 
@@ -95,8 +96,9 @@ export const Table = () => {
                     //onClick={() => dispatch(deleteTransaction(item._id))}
                     id={item._id}
                   /> */}
+                    {/* <ModalDelete id={item._id}> */}
                     <Button
-                      type="submit"
+                      type="button"
                       variant="greenButton"
                       w="67px"
                       h="26px"
@@ -104,10 +106,11 @@ export const Table = () => {
                       lineHeight="1.5"
                       letterSpacing="0.6px"
                       textTransform="Capitalize"
-                      onClick={() => dispatch(deleteTransaction(item._id))}
+                      // onClick={() => dispatch(deleteTransaction(item._id))}
                     >
                       {t("delete")}
-                    </Button>
+                      </Button>
+                      {/* </ModalDelete> */}
                   </TransactionsTdButton>
                 </TransactionsTr>
               );
