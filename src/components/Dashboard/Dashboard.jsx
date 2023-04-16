@@ -8,7 +8,7 @@ import { Currency } from "../Currency";
 
 import { PageContainer } from "../PageContainer";
 
-import { Table, TableMobile } from "../Table";
+//import { Table, TableMobile } from "../Table";
 
 import {
   DashboardBox,

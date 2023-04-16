@@ -96,7 +96,11 @@ export const DashboardContentFirstPart = ({ children }) => {
 };
 
 export const DashboardContentSecondPart = ({ children }) => {
-  return <Flex>{children}</Flex>;
+  return (
+    <Flex flexDirection={{ xs: "column" }} alignItems={{ xs: "center" }}>
+      {children}
+    </Flex>
+  );
 };
 
 export const DashboardRedirect = () => {

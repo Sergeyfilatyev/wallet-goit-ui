@@ -1,8 +1,10 @@
 import EllipsisText from "react-ellipsis-text";
-import {useState} from "react"
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Button, Box } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
-import {ModalEditTransaction} from "../../components/ModalTransaction/ModalEditTransaction"
+import { selectTransactions } from "../../redux/transactions/transactions-selectors";
+import { ModalEditTransaction } from "../../components/ModalTransaction/ModalEditTransaction";
 
 import {
   Header,
@@ -147,10 +149,13 @@ const userTransactions = [
 
 export const TableMobile = () => {
   const [isOpenEditForm, setIsOpenEditForm] = useState(false);
+
+  const transactions = useSelector(selectTransactions);
+
   const { t } = useTranslation();
   return (
     <>
-      {userTransactions.map((item) => (
+      {transactions.map((item) => (
         <Box
           key={item._id}
           width="280px"
@@ -205,7 +210,7 @@ export const TableMobile = () => {
               // onClick={() => dispatch(deleteTransaction(item._id))}
             />
             <Button
-            onClick={()=> setIsOpenEditForm(!isOpenEditForm)}
+              onClick={() => setIsOpenEditForm(!isOpenEditForm)}
               leftIcon={<EditIcon />}
               backgroundColor="transparent"
               fontSize="14px"
@@ -217,8 +222,7 @@ export const TableMobile = () => {
             >
               Edit
             </Button>
-            {isOpenEditForm && <ModalEditTransaction/>}
-
+            {isOpenEditForm && <ModalEditTransaction />}
           </DataRow>
         </Box>
       ))}
