@@ -2,8 +2,8 @@ import React from "react";
 
 import { Formik, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 import { login } from "../../redux/auth/auth-operations";
 
 import { validationSchemaLogin } from "../../utils/validationSchema";
@@ -24,18 +24,13 @@ import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 import { useTranslation } from "react-i18next";
 
 export const LoginForm = () => {
-  console.log(process.env.REACT_APP_URL);
+  // console.log(process.env.REACT_APP_URL);
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [status, setStatus] = useState("");
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (status === 400) {
-      navigate("/verify");
-      setStatus("");
-    }
-  }, [status, navigate]);
+  const [status, setStatus] = useState("");
+  const [isError400, setIsError400] = useState(false);
+  const [isError401, setIsError401] = useState(false);
 
   return (
     <LoginRegisterFormBox height={{ base: "100%", s: "559px" }}>
@@ -50,9 +45,20 @@ export const LoginForm = () => {
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           dispatch(login(values)).then((response) => {
-            console.log(response);
+
             setStatus(response.payload.status);
+
+            if (response.payload.status === 400) {
+              setIsError400(true);
+              setIsError401(false);
+            }
+
+            if (response.payload.status === 401) {
+              setIsError401(true);
+              setIsError400(false);
+            }
           });
+
           resetForm();
           setSubmitting(false);
         }}
@@ -60,7 +66,15 @@ export const LoginForm = () => {
         <Form>
           <LoginRegisterFormInputsBox>
             <LoginRegisterFormEmailInput placeholder={t("email")}>
-              <FieldErrorMessage error={<ErrorMessage name="email" />} />
+              {isError400 && (
+                <FieldErrorMessage error="You need to verify your account" />
+              )}
+              {isError401 && (
+                <FieldErrorMessage error="The login or password is incorrect" />
+              )}
+              {isError400 && isError401 && (
+                <FieldErrorMessage error={<ErrorMessage name="email" />} />
+              )}
             </LoginRegisterFormEmailInput>
             <LoginRegisterFormPasswordInput placeholder={t("password")}>
               <FieldErrorMessage error={<ErrorMessage name="password" />} />

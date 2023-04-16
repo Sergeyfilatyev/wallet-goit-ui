@@ -1,3 +1,6 @@
+import { useDispatch } from "react-redux";
+import { deleteTransaction } from "../../redux/transactions/transactions-operations";
+
 import { Box, Button } from "@chakra-ui/react";
 
 export const TransactionsTable = ({ children }) => {
@@ -128,6 +131,22 @@ export const TransactionsTdComment = ({ children }) => {
   );
 };
 
+export const TransactionsTdSum = ({ value, income }) => {
+  return (
+    <Box
+      height="52px"
+      fontWeight="700"
+      fontSize="16px"
+      lineHeight="1.5"
+      color={income ? "#24CCA7" : "#FF6596"}
+      textAlign="left"
+      as="td"
+    >
+      {value}
+    </Box>
+  );
+};
+
 export const TransactionsLastTr = ({ children }) => {
   return (
     <Box lineHeight="0" as="tr">
@@ -144,7 +163,8 @@ export const TransactionsTdButton = ({ children }) => {
   );
 };
 
-export const DeleteButton = ({ name }) => {
+export const DeleteButton = ({ name, id }) => {
+  const dispatch = useDispatch();
   return (
     <Button
       type="submit"
@@ -155,6 +175,7 @@ export const DeleteButton = ({ name }) => {
       lineHeight="1.5"
       letterSpacing="0.6px"
       textTransform="Capitalize"
+      onClick={() => dispatch(deleteTransaction(id))}
     >
       {name}
     </Button>

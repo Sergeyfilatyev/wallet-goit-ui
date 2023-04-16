@@ -17,9 +17,9 @@ export const addTransaction = createAsyncThunk(
   "transactions/addTransaction",
   async (data, { rejectWithValue }) => {
     try {
-      const { data: result } = await api.addTransaction(data);
-      console.log(data);
-      return result;
+      await api.addTransaction(data);
+      // console.log(data);
+      return data;
     } catch ({ response }) {
       return rejectWithValue(response);
     }
