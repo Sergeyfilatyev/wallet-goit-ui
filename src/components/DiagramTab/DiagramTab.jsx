@@ -13,7 +13,7 @@ import {
   DiagramRenderer,
   NoDataDiagram,
 } from "./DiagramTabStyled";
-
+import { useTranslation } from "react-i18next";
 ChartJS.register(ArcElement, Tooltip, Legend);
 const months = [
   { value: "01", label: "January" },
@@ -34,6 +34,7 @@ const currentMonth = new Date().getMonth();
 const years = Array.from({ length: currentYear - 1999 }, (_, i) => 2000 + i);
 
 export function DiagramTab() {
+  const { t } = useTranslation();
   const [year, setYear] = useState(currentYear);
   const [selectedMonth, setSelectedMonth] = useState(
     months[currentMonth].value

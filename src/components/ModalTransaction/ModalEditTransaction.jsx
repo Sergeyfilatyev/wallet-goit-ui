@@ -93,25 +93,25 @@ export const ModalEditTransaction = () => {
       />
 
       <ModalWindow
-        modalHeader="Edit transaction"
+        modalHeader={t("edit")}
         modalFunction={editTransaction}
-        modalFunctionName="Edit"
-        modalCancelName="Cancel"
+        modalFunctionName={t("save")}
+        modalCancelName={t("cancel")}
         isOpen={isOpen}
         onClose={onClose}
       >
         <ModalSwitch
           isSwitchExpense={isExpense}
           setIsSwitchExpense={setIsExpense}
-          expenseLabel="expense"
-          incomeLabel="income"
+          expenseLabel={t("expense")}
+          incomeLabel={t("income")}
         />
         <ModalComponentsBox>
           {isExpense && (
             <ModalSelectCategory
               category={category}
               setCategory={handleChange.category}
-              placeholder={"Select a category"}
+              placeholder={t("select a category")}
             >
               {categories.map((item) => (
                 <option value={item.category} key={item.id}>
@@ -130,7 +130,7 @@ export const ModalEditTransaction = () => {
           <ModalComment
             comment={comment}
             setComment={handleChange.comment}
-            placeholder="Comment"
+            placeholder={t("comment")}
           />
         </ModalComponentsBox>
       </ModalWindow>
