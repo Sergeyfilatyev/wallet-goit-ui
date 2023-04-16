@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Box, Flex } from "@chakra-ui/react";
 import fetchData from "./fetchStats";
@@ -13,7 +13,11 @@ import {
   DiagramRenderer,
   NoDataDiagram,
 } from "./DiagramTabStyled";
+import { fetchStatistics } from "../../redux/statistics/statistics-operations";
+
 import { useTranslation } from "react-i18next";
+import { selectStatistics } from "../../redux/statistics/statistics-selectors";
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 const months = [
   { value: "01", label: "January" },
@@ -47,12 +51,15 @@ export function DiagramTab() {
   const totalExpense = statisticsData.totalExpense;
   const totalIncome = statisticsData.totalIncome;
   const statByCategory = statisticsData.expenseByCategory;
-  const token = useSelector(getAuth).token;
+
+  const dispatch = useDispatch();
+  const statistics = useSelector(selectStatistics);
+
   useEffect(() => {
-    fetchData(year, selectedMonth, token).then((statisticsData) => {
-      setStatisticsData(statisticsData);
-    });
-  }, [year, selectedMonth]);
+    dispatch(fetchStatistics());
+  }, [dispatch]);
+
+  console.log(statistics);
 
   const handleYearChange = (e) => {
     const newSelectedYear = e.target.value;
