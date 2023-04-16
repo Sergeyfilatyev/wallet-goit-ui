@@ -38,51 +38,54 @@ export const Table = () => {
   const transactions = useSelector(selectTransactions);
 
   const { t } = useTranslation();
+  console.log(transactions[0].date.day);
 
-  /* useEffect(() => {
+  useEffect(() => {
     setCurrentTransactions(transactions);
     console.log(transactions)
-  }, [transactions]); */
+  }, [transactions]);
 
   return (
     <>
-      {
-        /* currentTransactions */ transactions.length > 0 ? (
-          <TransactionsTable>
-            <thead>
-              <tr>
-                <TransactionsThDate>
-                  <HeaderButton name={t("date")} />
-                </TransactionsThDate>
-                <TransactionsTh>
-                  <HeaderButton name={t("type")} />
-                </TransactionsTh>
-                <TransactionsTh>
-                  <HeaderButton name={t("category")} />
-                </TransactionsTh>
-                <TransactionsTh>
-                  <HeaderButton name={t("comment")} />
-                </TransactionsTh>
-                <TransactionsThSum>
-                  <HeaderButton name={t("sum")} />
-                </TransactionsThSum>
-              </tr>
-            </thead>
+      {currentTransactions.length > 0 ? (
+        <TransactionsTable>
+          <thead>
+            <tr>
+              <TransactionsThDate>
+                <HeaderButton name={t("date")} />
+              </TransactionsThDate>
+              <TransactionsTh>
+                <HeaderButton name={t("type")} />
+              </TransactionsTh>
+              <TransactionsTh>
+                <HeaderButton name={t("category")} />
+              </TransactionsTh>
+              <TransactionsTh>
+                <HeaderButton name={t("comment")} />
+              </TransactionsTh>
+              <TransactionsThSum>
+                <HeaderButton name={t("sum")} />
+              </TransactionsThSum>
+            </tr>
+          </thead>
 
-            <tbody id="table-content">
-              {transactions.map((item) => {
-                return (
-                  <TransactionsTr key={item._id}>
-                    <TransactionsTdDate
-                    /* value={`${item.date.day}.${item.date.month + 1}.${
-                    item.date.year
-                  }`} */
-                    />
-                    <TransactionsTd value={item.income ? "+" : "-"} />
-                    <TransactionsTd value={t(item.category)} />
-                    <TransactionsTdComment>
-                      <EllipsisText text={item.comment} length={26} />
-                    </TransactionsTdComment>
+          <tbody id="table-content">
+            {transactions.map((item) => {
+              const date = item.date;
+              console.log(date);
+              return (
+                <TransactionsTr key={item._id}>
+                  <TransactionsTdDate
+                    value={`${date.day}.${date.month + 1}.${
+                      date.year
+                    }`}
+                  />
+                  <TransactionsTd value={item.income ? "+" : "-"} />
+                  <TransactionsTd value={t(item.category)} />
+                  <TransactionsTdComment>
+                    <EllipsisText text={item.comment} length={26} />
+                  </TransactionsTdComment>
+
 
                     <TransactionsTdSum
                       value={`${item.amount}.00`}
