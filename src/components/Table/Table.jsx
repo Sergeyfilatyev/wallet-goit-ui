@@ -5,6 +5,8 @@ import { useState } from "react";
 import { IconButton, Box, Button } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { ModalEditTransaction } from "../../components/ModalTransaction/ModalEditTransaction";
+import { NoTransactions } from "./NoTransactions";
+
 import {
   TransactionsTable,
   TransactionsTh,
@@ -217,13 +219,8 @@ export const Table = () => {
                   value={`${item.amount}.00`}
                   income={item.income}
                 />
-              
-
-               
-        
 
                 <DashboardEditTransactionButton id={item._id} />
-
 
                 <TransactionsTdButton>
                   {/* <DeleteButton
@@ -240,7 +237,9 @@ export const Table = () => {
                     lineHeight="1.5"
                     letterSpacing="0.6px"
                     textTransform="Capitalize"
-                    onClick={() => dispatch(deleteTransaction(item._id))}
+                    onClick={() => {
+                      dispatch(deleteTransaction(item._id));
+                    }}
                   >
                     {t("delete")}
                   </Button>
@@ -254,7 +253,7 @@ export const Table = () => {
           </tbody>
         </TransactionsTable>
       ) : (
-        <p>There are no transactions yet</p>
+        <NoTransactions />
       )}
     </>
   );
