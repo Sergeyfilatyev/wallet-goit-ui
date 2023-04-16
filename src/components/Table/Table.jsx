@@ -86,45 +86,47 @@ export const Table = () => {
                     <EllipsisText text={item.comment} length={26} />
                   </TransactionsTdComment>
 
-                  <TransactionsTdSum
-                    value={`${item.amount}.00`}
-                    income={item.income}
-                  />
 
-                  <DashboardEditTransactionButton id={item._id} />
+                    <TransactionsTdSum
+                      value={`${item.amount}.00`}
+                      income={item.income}
+                    />
 
-                  <TransactionsTdButton>
-                    {/* <DeleteButton
+                    <DashboardEditTransactionButton id={item._id} />
+
+                    <TransactionsTdButton>
+                      {/* <DeleteButton
                     name={t("delete")}
                     //onClick={() => dispatch(deleteTransaction(item._id))}
                     id={item._id}
                   /> */}
-                    <Button
-                      type="submit"
-                      variant="greenButton"
-                      w="67px"
-                      h="26px"
-                      fontSize="14px"
-                      lineHeight="1.5"
-                      letterSpacing="0.6px"
-                      textTransform="Capitalize"
-                      onClick={() => dispatch(deleteTransaction(item._id))}
-                    >
-                      {t("delete")}
-                    </Button>
-                  </TransactionsTdButton>
-                </TransactionsTr>
-              );
-            })}
+                      <Button
+                        type="submit"
+                        variant="greenButton"
+                        w="67px"
+                        h="26px"
+                        fontSize="14px"
+                        lineHeight="1.5"
+                        letterSpacing="0.6px"
+                        textTransform="Capitalize"
+                        onClick={() => dispatch(deleteTransaction(item._id))}
+                      >
+                        {t("delete")}
+                      </Button>
+                    </TransactionsTdButton>
+                  </TransactionsTr>
+                );
+              })}
 
-            <TransactionsLastTr>
-              <td></td>
-            </TransactionsLastTr>
-          </tbody>
-        </TransactionsTable>
-      ) : (
-        <p>There are no transactions yet</p>
-      )}
+              <TransactionsLastTr>
+                <td></td>
+              </TransactionsLastTr>
+            </tbody>
+          </TransactionsTable>
+        ) : (
+          <p>There are no transactions yet</p>
+        )
+      }
     </>
   );
 };
