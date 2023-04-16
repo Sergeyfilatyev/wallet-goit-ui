@@ -1,15 +1,13 @@
 import { ModalWindow } from "../ModalWindow";
 import { EditIcon } from "@chakra-ui/icons";
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { Box, IconButton, useDisclosure } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import "react-datetime/css/react-datetime.css";
 import { useState, useEffect } from "react";
 import { selectCategories } from "../../redux/categories/categories-selectors";
 
-
 import {
-  ModalAddOpentButton,
   ModalAmount,
   ModalAmountDateBox,
   ModalComment,
@@ -19,38 +17,22 @@ import {
 } from "./ModalTransactionStyled";
 import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
-import { selectTransactions } from "../../redux/transactions/transactions-selectors";
 import { updateTransaction } from "../../redux/transactions/transactions-operations";
-import { currentDay } from "../../utils/currentDay";
 import { amountValidation } from "../../utils/amountValidation";
 
-export const ModalEditTransaction = ({id}) => {
+export const ModalEditTransaction = ({ transactionToUpdate }) => {
   const { t } = useTranslation();
-const dispatch = useDispatch()
-const transactions = useSelector(selectTransactions);
-console.log('TRANSACTIONS:-', transactions);
-const transToFind = transactions.filter((trans)=>trans.id===id)
-console.log('Id Prop from Table: -', id);
-console.log('TRANS to Find', transToFind);
+  const dispatch = useDispatch();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isExpense, setIsExpense] = useState(false);
-  // const [isExpense, setIsExpense] = useState(transToFind.expense);
-
-  const [category, setCategory] = useState("Income");
-  // const [category, setCategory] = useState(transToFind.expense);
-  
-  const [amount, setAmount] = useState("");
-  // const [amount, setAmount] = useState(transToFind.amount);
- 
-  const [date, setDate] = useState(currentDay());
-  // const [date, setDate] = useState(transToFind.date);
-
-  const [comment, setComment] = useState("");
-  // const [comment, setComment] = useState(transToFind.comment);
-
+  const [isExpense, setIsExpense] = useState(transactionToUpdate.income);
+  const [category, setCategory] = useState(transactionToUpdate.category);
+  const [amount, setAmount] = useState(transactionToUpdate.amount);
+  const [date, setDate] = useState(transactionToUpdate.date.time);
+  const [comment, setComment] = useState(transactionToUpdate.comment);
   const [amountError, setAmountError] = useState(false);
 
+  console.log(transactionToUpdate.income);
 
   const handleChange = {
     category: ({ target: { value } }) => {
@@ -67,7 +49,7 @@ console.log('TRANS to Find', transToFind);
   const categories = useSelector(selectCategories);
 
   useEffect(() => {
-    isExpense ? setCategory("Expense") : setCategory("Income");
+    isExpense ? setCategory("Expense") : setCategory("income");
   }, [isExpense]);
 
   const editTransaction = () => {
@@ -75,20 +57,29 @@ console.log('TRANS to Find', transToFind);
       return setAmountError(true);
     } else setAmountError(false);
 
-    const expense = { isExpense, category, amount, date, comment };
-    const income = { isExpense, category, amount, date, comment };
+    // const expense = { isExpense, category, amount, date, comment };
+    // const income = { isExpense, category, amount, date, comment };
 
-    isExpense ? console.log(expense) : console.log(income);
+    // isExpense ? expense : income;
 
-    // dispatch(updateTransaction(transToFind))
-    
-    setIsExpense(false);
-    setCategory("Income");
-    setAmount("");
-    setDate(currentDay());
-    setComment("");
+    const transactionDate = {
+      day: Number(date.slice(8, 10)),
+      month: Number(date.slice(5, 7)),
+      year: Number(date.slice(0, 4)),
+      time: date,
+    };
+
+    const updatedData = {
+      amount: Number(amount),
+      category,
+      comment,
+      date: transactionDate,
+      income: !isExpense,
+    };
+
+    dispatch(updateTransaction({ id: transactionToUpdate._id, updatedData }));
+    onClose();
   };
-
   return (
     <>
       <IconButton

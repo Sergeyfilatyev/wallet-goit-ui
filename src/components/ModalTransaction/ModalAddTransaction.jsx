@@ -68,6 +68,7 @@ export const ModalAddTransaction = () => {
       day: Number(date.slice(8, 10)),
       month: Number(date.slice(5, 7)),
       year: Number(date.slice(0, 4)),
+      time: date,
     };
 
     const transaction = {
@@ -123,7 +124,7 @@ export const ModalAddTransaction = () => {
           <ModalAmountDateBox>
             <Box>
               <ModalAmount amount={amount} setAmount={setAmount} />
-              {amountError && <FieldErrorMessage error="amount is required" />}
+              {amountError && <FieldErrorMessage error={t("amountIsReq")} />}
             </Box>
             <ModalDate date={date} setDate={handleChange.date} />
           </ModalAmountDateBox>

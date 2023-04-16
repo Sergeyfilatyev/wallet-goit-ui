@@ -46,7 +46,7 @@ export const Table = () => {
 
   return (
     <>
-      {currentTransactions.length > 0 ? (
+      {transactions.length > 0 ? (
         <TransactionsTable>
           <thead>
             <tr>
@@ -75,7 +75,9 @@ export const Table = () => {
               return (
                 <TransactionsTr key={item._id}>
                   <TransactionsTdDate
-                    value={`${date.day}.${date.month}.${date.year}`}
+                    value={`${date.day.toString().padStart(2, "0")}.${date.month
+                      .toString()
+                      .padStart(2, "0")}.${date.year}`}
                   />
                   <TransactionsTd value={item.income ? "+" : "-"} />
                   <TransactionsTd value={t(item.category)} />
@@ -88,8 +90,7 @@ export const Table = () => {
                     income={item.income}
                   />
 
-                  <DashboardEditTransactionButton id={item._id} />
-
+                  <DashboardEditTransactionButton transactionToUpdate={item} />
                   <TransactionsTdButton>
                     {/* <DeleteButton
                     name={t("delete")}

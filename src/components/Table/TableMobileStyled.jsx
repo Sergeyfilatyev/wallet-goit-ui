@@ -105,10 +105,10 @@ export const DataRowDivider = () => {
   );
 };
 
-export const DashboardEditTransactionButton = ({ id }) => {
+export const DashboardEditTransactionButton = ({ transactionToUpdate }) => {
   return (
     <Flex justifyContent={"center"} alignItems={"center"} as="td">
-      <ModalEditTransaction id={id} />
+      <ModalEditTransaction transactionToUpdate={transactionToUpdate} />
     </Flex>
   );
 };

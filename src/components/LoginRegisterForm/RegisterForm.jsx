@@ -124,7 +124,7 @@ export const RegisterForm = () => {
             <LoginRegisterFormEmailInput placeholder={t("email")}>
               {isError409 ? (
                 <FieldErrorMessage
-                  error={`${emailWithError} is already registered`}
+                  error={`${emailWithError} ${t("errorAlready")}`}
                 />
               ) : (
                 <FieldErrorMessage error={<ErrorMessage name="email" />} />

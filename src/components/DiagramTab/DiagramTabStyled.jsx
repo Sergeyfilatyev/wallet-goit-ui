@@ -2,6 +2,7 @@ import { Select, Box, List, Text, ListItem, Flex } from "@chakra-ui/react";
 
 import { Doughnut } from "react-chartjs-2";
 import { useMediaQuery } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 export const ListItemCategory = ({ statByCategory }) => {
   const categoryColors = {
@@ -15,7 +16,7 @@ export const ListItemCategory = ({ statByCategory }) => {
     leisure: "#6E78E8",
     "other expenses": "#00AD84",
   };
-
+  const { t } = useTranslation();
   return (
     <List display="flex" flexDirection="column" alignItems="flex-end" mb="14px">
       {Object.entries(statByCategory)
@@ -43,7 +44,6 @@ export const ListItemCategory = ({ statByCategory }) => {
               flexGrow={1}
             >
               <Text
-                fontFamily="Circe"
                 fontStyle="normal"
                 fontWeight="400"
                 fontSize={["14px", "16px", "16px", "16px"]}
@@ -52,10 +52,9 @@ export const ListItemCategory = ({ statByCategory }) => {
                 alignItems="center"
                 color="#000000"
               >
-                {category}:
+                {t(category)}
               </Text>
               <Text
-                fontFamily="Circe"
                 fontStyle="normal"
                 fontWeight="400"
                 fontSize={["14px", "16px", "16px", "16px"]}
@@ -87,7 +86,6 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
     <Box display="flex" flexDirection="column">
       <Box display="flex" position="relative" justifyContent="space-between">
         <Text
-          fontFamily="'Circe', sans-serif"
           fontWeight="700"
           fontSize={["14px", null, "16px"]}
           lineHeight={["20.58px", null, "23.58px"]}
@@ -97,7 +95,6 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
           Expenses:
         </Text>
         <Text
-          fontFamily="'Circe', sans-serif"
           fontWeight="700"
           fontSize={["14px", null, "16px"]}
           lineHeight={["20.58px", null, "23.58px"]}
@@ -109,7 +106,6 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
       </Box>
       <Box display="flex" justifyContent="space-between" marginTop="15px">
         <Text
-          fontFamily="'Circe', sans-serif"
           fontWeight="700"
           fontSize={["14px", null, "16px"]}
           lineHeight={["20.58px", null, "23.58px"]}
@@ -119,7 +115,6 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
           Income:
         </Text>
         <Text
-          fontFamily="'Circe', sans-serif"
           fontWeight="700"
           fontSize={["14px", null, "16px"]}
           lineHeight={["20.58px", null, "23.58px"]}
@@ -138,11 +133,7 @@ export const SelectMonth = ({
   handleMonthChange,
   displayedMonths,
 }) => {
-  const [isLargerThan960] = useMediaQuery("(min-width: 768px)");
-  const [isLargerThan767] = useMediaQuery("(max-width: 767px)");
-  const [isLargerThan1210] = useMediaQuery("(max-width: 1210px)");
-  const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
-  const [isLargerThan1180] = useMediaQuery("(max-width: 1180px)");
+  const { t } = useTranslation();
   return (
     <Select
       name="month"
@@ -157,7 +148,7 @@ export const SelectMonth = ({
       {displayedMonths
         .map((month) => (
           <option key={month.value} value={month.value}>
-            {month.label}
+            {t(month.label)}
           </option>
         ))
         .reverse()}
@@ -166,12 +157,6 @@ export const SelectMonth = ({
 };
 
 export const SelectYear = ({ year, handleYearChange, years }) => {
-  const [isLargerThan960] = useMediaQuery("(min-width: 768px)");
-  const [isLargerThan767] = useMediaQuery("(max-width: 767px)");
-  const [isLargerThan1210] = useMediaQuery("(max-width: 1210px)");
-  const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
-  const [isLargerThan1185] = useMediaQuery("(max-width: 1185px)");
-
   return (
     <Select
       name="year"
@@ -198,7 +183,7 @@ export const SelectYear = ({ year, handleYearChange, years }) => {
 
 export const CategorySumBox = () => {
   const [isLargerThan767] = useMediaQuery("(max-width: 768px)");
-
+  const { t } = useTranslation();
   return (
     <>
       <Flex
@@ -218,7 +203,7 @@ export const CategorySumBox = () => {
           lineHeight="26.53px"
           color="#000000"
         >
-          Category
+          {t("category")}
         </Text>
         <Text
           fontWeight="700"
@@ -226,7 +211,7 @@ export const CategorySumBox = () => {
           lineHeight="26.53px"
           color="#000000"
         >
-          Sum
+          {t("sum")}
         </Text>
       </Flex>
     </>
@@ -243,6 +228,7 @@ export const DiagramRenderer = ({
   const [isLargerThan1200] = useMediaQuery("(min-width: 1050px)");
   const [isLargerThan960] = useMediaQuery("(min-width: 960px)");
   const [isLargerThan767] = useMediaQuery("(max-width: 767px)");
+  const { t } = useTranslation();
 
   return (
     <>
@@ -282,7 +268,7 @@ export const DiagramRenderer = ({
               textAlign="center"
               color="#000000"
             >
-              Statistics
+              {t("stats")}
             </Text>
             <Text
               position="absolute"
@@ -306,7 +292,6 @@ export const DiagramRenderer = ({
               }
               h="24"
               w="80"
-              fontFamily="Circe"
               fontStyle="normal"
               fontWeight="700"
               fontSize="18px"
@@ -353,7 +338,7 @@ export const DiagramRenderer = ({
               textAlign="center"
               color="#000000"
             >
-              Statistics
+              {t("stats")}
             </Text>
             <Text
               position="absolute"
@@ -377,7 +362,6 @@ export const DiagramRenderer = ({
               }
               h="24"
               w="80"
-              fontFamily="Circe"
               fontStyle="normal"
               fontWeight="700"
               fontSize="18px"
@@ -412,7 +396,7 @@ export const NoDataDiagram = ({ totalExpense }) => {
   const [isLargerThan1200] = useMediaQuery("(min-width: 960px)");
   const [isLargerThan960] = useMediaQuery("(min-width: 768px)");
   const [isLargerThan767] = useMediaQuery("(max-width: 767px)");
-
+  const { t } = useTranslation();
   return (
     <Box
       h={
@@ -446,7 +430,7 @@ export const NoDataDiagram = ({ totalExpense }) => {
         textAlign="center"
         color="#000000"
       >
-        Statistics
+        {t("stats")}
       </Text>
       <Text
         position="absolute"
@@ -454,7 +438,6 @@ export const NoDataDiagram = ({ totalExpense }) => {
         right={isLargerThan1200 ? "-15px" : isLargerThan960 ? "-63px" : "14px"}
         h="24"
         w="80"
-        fontFamily="Circe"
         fontStyle="normal"
         fontWeight="700"
         fontSize="18px"
@@ -474,7 +457,7 @@ export const NoDataDiagram = ({ totalExpense }) => {
           ],
         }}
       />
-      <Text>You have no transactions in the current month 💰.</Text>
+      <Text>{t("statsNull")} 💰.</Text>
     </Box>
   );
 };

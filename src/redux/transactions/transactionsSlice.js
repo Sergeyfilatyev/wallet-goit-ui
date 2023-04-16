@@ -30,9 +30,13 @@ const transactionsSlice = createSlice({
       })
       .addCase(updateTransaction.fulfilled, (state, { payload }) => {
         const index = state.transItems.findIndex(
-          (contact) => contact.id === payload.id
+          (el) => el._id === payload.data._id
         );
-        state.transItems[index] = payload;
+        const updatedTransaction = payload.data;
+        state.transItems[index] = {
+          ...state.transItems[index],
+          ...updatedTransaction,
+        };
         state.balance = payload.balance;
       })
       .addMatcher(

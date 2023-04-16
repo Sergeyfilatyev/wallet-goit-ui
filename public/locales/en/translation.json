@@ -51,5 +51,10 @@
   "september": "September",
   "october": "October",
   "november": "November",
-  "december": "December"
+  "december": "December",
+  "statsNull": "You have no transactions in the current month",
+  "errorVerify": "You need to verify your account",
+  "errorIncorrect": "The login or password is incorrect",
+  "errorAlready": "is already registered",
+  "amountIsReq": "amount is required"
 }

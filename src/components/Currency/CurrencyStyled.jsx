@@ -40,7 +40,6 @@ export const CurrencyTableHeadValue = ({ value }) => {
   return (
     <Box
       color="#FFF"
-      fontFamily="Circe"
       textTransform="Capitalize"
       fontWeight="700"
       fontSize="18px"
@@ -80,7 +79,6 @@ export const CurrencyTableBodyLineValue = ({ value }) => {
   return (
     <Box
       color="#FFF"
-      fontFamily="Circe"
       fontSize="16px"
       lineHeight="1.5"
       borderBottom="none"

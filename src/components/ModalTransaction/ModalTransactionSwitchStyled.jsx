@@ -93,23 +93,11 @@ export const ModalSwitch = ({
   return (
     <Flex gap="24px" justifyContent="center" alignItems="center">
       {checked ? (
-        <Text
-          fontFamily="Circe"
-          fontWeight="700"
-          fontSize="16px"
-          lineHeight="1.5"
-          color="#E0E0E0"
-        >
+        <Text fontWeight="700" fontSize="16px" lineHeight="1.5" color="#E0E0E0">
           {incomeLabel}
         </Text>
       ) : (
-        <Text
-          fontFamily="Circe"
-          fontWeight="700"
-          fontSize="16px"
-          lineHeight="1.5"
-          color="#24CCA7"
-        >
+        <Text fontWeight="700" fontSize="16px" lineHeight="1.5" color="#24CCA7">
           {incomeLabel}
         </Text>
       )}
@@ -130,23 +118,11 @@ export const ModalSwitch = ({
         activeBoxShadow={"#FFFFFF"}
       />
       {checked ? (
-        <Text
-          fontFamily="Circe"
-          fontWeight="700"
-          fontSize="16px"
-          lineHeight="1.5"
-          color="#FF6596"
-        >
+        <Text fontWeight="700" fontSize="16px" lineHeight="1.5" color="#FF6596">
           {expenseLabel}
         </Text>
       ) : (
-        <Text
-          fontFamily="Circe"
-          fontWeight="700"
-          fontSize="16px"
-          lineHeight="1.5"
-          color="#E0E0E0"
-        >
+        <Text fontWeight="700" fontSize="16px" lineHeight="1.5" color="#E0E0E0">
           {expenseLabel}
         </Text>
       )}
