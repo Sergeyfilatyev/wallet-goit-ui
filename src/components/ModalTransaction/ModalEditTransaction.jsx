@@ -1,15 +1,13 @@
 import { ModalWindow } from "../ModalWindow";
 import { EditIcon } from "@chakra-ui/icons";
-
+import {useDispatch, useSelector} from "react-redux"
 import { Box, IconButton, useDisclosure } from "@chakra-ui/react";
-
 import { useTranslation } from "react-i18next";
-
 import "react-datetime/css/react-datetime.css";
-
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectCategories } from "../../redux/categories/categories-selectors";
+
 
 import {
   ModalAddOpentButton,
@@ -22,21 +20,38 @@ import {
 } from "./ModalTransactionStyled";
 import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
-
+import { selectTransactions } from "../../redux/transactions/transactions-selectors";
+import { updateTransaction } from "../../redux/transactions/transactions-operations";
 import { currentDay } from "../../utils/currentDay";
 import { amountValidation } from "../../utils/amountValidation";
 
-export const ModalEditTransaction = () => {
+export const ModalEditTransaction = ({id}) => {
   const { t } = useTranslation();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+const dispatch = useDispatch()
+const transactions = useSelector(selectTransactions);
+console.log('TRANSACTIONS:-', transactions);
+const transToFind = transactions.filter((trans)=>trans.id===id)
+console.log('Id Prop from Table: -', id);
+console.log('TRANS to Find', transToFind);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [isExpense, setIsExpense] = useState(false);
+  // const [isExpense, setIsExpense] = useState(transToFind.expense);
+
   const [category, setCategory] = useState("Income");
+  // const [category, setCategory] = useState(transToFind.expense);
+  
   const [amount, setAmount] = useState("");
+  // const [amount, setAmount] = useState(transToFind.amount);
+ 
   const [date, setDate] = useState(currentDay());
+  // const [date, setDate] = useState(transToFind.date);
+
   const [comment, setComment] = useState("");
+  // const [comment, setComment] = useState(transToFind.comment);
 
   const [amountError, setAmountError] = useState(false);
+
 
   const handleChange = {
     category: ({ target: { value } }) => {
@@ -66,6 +81,8 @@ export const ModalEditTransaction = () => {
 
     isExpense ? console.log(expense) : console.log(income);
 
+    // dispatch(updateTransaction(transToFind))
+    
     setIsExpense(false);
     setCategory("Income");
     setAmount("");

@@ -16,6 +16,7 @@ import {
   TransactionDataSum,
   DataRow,
   DataRowDivider,
+  DashboardEditTransactionButton,
 } from "./TableMobileStyled";
 import { DeleteButton } from "./TableStyled";
 
@@ -27,6 +28,7 @@ export const TableMobile = () => {
   const { t } = useTranslation();
   return (
     <>
+    
       {transactions.length > 0 ? (
         <>
           {transactions.map((item) => (
@@ -67,6 +69,7 @@ export const TableMobile = () => {
                 />
               </DataRow>
               <DataRowDivider />
+
 
               <DataRow>
                 <DeleteButton name={t("delete")} />
