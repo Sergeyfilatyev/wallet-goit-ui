@@ -33,7 +33,7 @@ export const LoginForm = () => {
   const [isError401, setIsError401] = useState(false);
 
   return (
-    <LoginRegisterFormBox height={{ base: "100%", s: "518px" }}>
+    <LoginRegisterFormBox height={{ base: "100%", s: "559px" }}>
       <LoginRegisterFormLogoBox>
         <Logo />
       </LoginRegisterFormLogoBox>
@@ -45,6 +45,7 @@ export const LoginForm = () => {
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           dispatch(login(values)).then((response) => {
+
             setStatus(response.payload.status);
 
             if (response.payload.status === 400) {
