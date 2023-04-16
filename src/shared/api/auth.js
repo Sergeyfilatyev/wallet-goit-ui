@@ -56,7 +56,6 @@ export const checkAuth = async () => {
   try {
     const { data } = await instance.get("/users/refresh");
     setToken(data.data.token);
-    console.log(data.data.token);
     return data;
   } catch (error) {
     console.log(error);
