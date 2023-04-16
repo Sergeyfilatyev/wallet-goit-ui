@@ -2,8 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 
 import { useSelector } from "react-redux";
-import { getAuth } from "../../redux/auth/auth-selectors";
-import { fetchCategories } from "../../utils/fetchCategories";
+import { selectCategories } from "../../redux/categories/categories-selectors";
 
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../../redux/transactions/transactions-operations";
@@ -54,13 +53,7 @@ export const ModalAddTransaction = () => {
     },
   };
 
-  const [categories, setCategories] = useState([]);
-
-  const token = useSelector(getAuth).token;
-
-  useEffect(() => {
-    fetchCategories(token).then((response) => setCategories(response));
-  }, [token]);
+  const categories = useSelector(selectCategories);
 
   useEffect(() => {
     isExpense ? setCategory("expense") : setCategory("income");

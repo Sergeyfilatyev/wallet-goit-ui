@@ -17,7 +17,6 @@ const transactionsSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchAllTransactions.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.transItems = payload.data;
         state.balance = payload.balance;
       })

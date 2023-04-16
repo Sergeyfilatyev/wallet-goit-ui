@@ -38,7 +38,6 @@ export const Table = () => {
   const transactions = useSelector(selectTransactions);
 
   const { t } = useTranslation();
-  console.log(transactions[0].date.day);
 
   useEffect(() => {
     setCurrentTransactions(transactions);

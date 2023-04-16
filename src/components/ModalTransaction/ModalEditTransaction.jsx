@@ -7,11 +7,9 @@ import { useTranslation } from "react-i18next";
 
 import "react-datetime/css/react-datetime.css";
 
-import { fetchCategories } from "../../utils/fetchCategories";
-
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getAuth } from "../../redux/auth/auth-selectors";
+import { selectCategories } from "../../redux/categories/categories-selectors";
 
 import {
   ModalAddOpentButton,
@@ -52,13 +50,7 @@ export const ModalEditTransaction = () => {
     },
   };
 
-  const [categories, setCategories] = useState([]);
-
-  const token = useSelector(getAuth).token;
-
-  useEffect(() => {
-    fetchCategories(token).then((response) => setCategories(response));
-  }, [token]);
+  const categories = useSelector(selectCategories);
 
   useEffect(() => {
     isExpense ? setCategory("Expense") : setCategory("Income");
