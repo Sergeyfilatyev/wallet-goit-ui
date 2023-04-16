@@ -38,15 +38,16 @@ export const Table = () => {
   const transactions = useSelector(selectTransactions);
 
   const { t } = useTranslation();
+  console.log(transactions[0].date.day);
 
-  /* useEffect(() => {
+  useEffect(() => {
     setCurrentTransactions(transactions);
     console.log(transactions)
-  }, [transactions]); */
+  }, [transactions]);
 
   return (
     <>
-      {/* currentTransactions */transactions.length > 0 ? (
+      {currentTransactions.length > 0 ? (
         <TransactionsTable>
           <thead>
             <tr>
@@ -69,13 +70,15 @@ export const Table = () => {
           </thead>
 
           <tbody id="table-content">
-            {/* currentTransactions */transactions.map((item) => {
+            {transactions.map((item) => {
+              const date = item.date;
+              console.log(date);
               return (
                 <TransactionsTr key={item._id}>
                   <TransactionsTdDate
-                    /* value={`${item.date.day}.${item.date.month + 1}.${
-                      item.date.year
-                    }`} */
+                    value={`${date.day}.${date.month + 1}.${
+                      date.year
+                    }`}
                   />
                   <TransactionsTd value={item.income ? "+" : "-"} />
                   <TransactionsTd value={t(item.category)} />
