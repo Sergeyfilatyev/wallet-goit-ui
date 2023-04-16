@@ -1,23 +1,24 @@
-import { Button, Box, useDisclosure, Text } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-import { deleteTransaction } from "../../redux/transactions/transactions-operations";
+import { deleteTransaction} from "../../redux/transactions/transactions-operations";
 
 import "react-datetime/css/react-datetime.css";
 
 import { ModalWindow } from "../ModalWindow";
-import { ModalExitText, ModalExitButton } from "./ModalDeleteStyled";
+import { ModalExitText} from "../User/ModalExitStyled";
 
-export const ModalDelete = ({ children, id }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export const ModalDelete = ({ id, isOpen, onClose }) => {
+
   const dispatch = useDispatch();
 
   const removeTransaktion = () => {
-    dispatch(deleteTransaction(id));
+    dispatch(deleteTransaction(id))
+    onClose()
+    window.location.reload()
   };
+
 
   return (
     <>
-      <ModalExitButton onClick={onOpen}>{children}</ModalExitButton>
       <ModalWindow
         modalHeader="Are you sure?"
         modalFunction={removeTransaktion}

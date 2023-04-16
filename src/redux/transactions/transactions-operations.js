@@ -37,7 +37,7 @@ export const deleteTransaction = createAsyncThunk(
 
 export const updateTransaction = createAsyncThunk(
   "transactions/updateTransaction",
-  async ({id, updatedData}, { rejectWithValue }) => {
+  async ({ id, updatedData }, { rejectWithValue }) => {
     try {
       const data = await api.updateTransaction(id, updatedData);
       return data;

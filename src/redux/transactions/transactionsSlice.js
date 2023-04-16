@@ -26,7 +26,7 @@ const transactionsSlice = createSlice({
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
         state.transItems = state.transItems.filter(({ id }) => id !== payload);
-        // state.balance = payload.balance;
+        state.balance = payload.balance;
       })
       .addCase(updateTransaction.fulfilled, (state, { payload }) => {
         const index = state.transItems.findIndex(
