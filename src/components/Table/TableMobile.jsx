@@ -88,7 +88,7 @@ export const TableMobile = () => {
               <DataRowDivider />
 
               <DataRow>
-                <ModalDelete id={item._id} />
+                <ModalDelete id={item._id} goToPreviousPage={goToPreviousPage} />
                 <ModalEditTransaction transactionToUpdate={item} />
               </DataRow>
             </TransactionCard>
