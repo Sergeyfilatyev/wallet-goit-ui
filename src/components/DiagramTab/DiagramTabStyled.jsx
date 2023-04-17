@@ -233,8 +233,7 @@ export const DiagramRenderer = ({
 
   return (
     <>
-      {totalExpense !== 0 ||
-      totalIncome !== 0 ||
+      {totalExpense ||
       (Object.keys(statByCategory || {}).length === 0 && totalExpense === 0) ? (
         <Box>
           <Box
