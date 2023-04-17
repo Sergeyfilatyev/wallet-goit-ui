@@ -7,6 +7,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+li {
+  list-style: none;
+}
+
+li.disabled a {
+  color: #bdbdbd;
+}
+
+li.disable,
+li.disabled a {
+  cursor: default;
+}
+
+li.page-item {
+  width: 35px;
+  height: 35px;}
+
+.activePagination {
+  font-weight: 900;
+  color: #ff6596;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
