@@ -56,5 +56,6 @@
   "errorVerify": "You need to verify your account",
   "errorIncorrect": "The login or password is incorrect",
   "errorAlready": "is already registered",
-  "amountIsReq": "amount is required"
+  "amountIsReq": "amount is required",
+  "transactionNull": "There are no transactions yet"
 }

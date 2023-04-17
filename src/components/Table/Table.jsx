@@ -36,7 +36,7 @@ import {
 export const Table = () => {
   const [currentTransactions, setCurrentTransactions] = useState([]);
   const [isOpenEditForm, setIsOpenEditForm] = useState(false);
-  
+
   const transactions = useSelector(selectTransactions);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -128,7 +128,7 @@ export const Table = () => {
           </tbody>
         </TransactionsTable>
       ) : (
-        <p>There are no transactions yet</p>
+        <p>{t("transactionNull")}</p>
       )}
     </>
   );
