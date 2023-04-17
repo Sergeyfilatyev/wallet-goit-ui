@@ -31,6 +31,7 @@ export const Dashboard = () => {
         }}
       >
         {(matches) => (
+          <>
           <DashboardBox>
             <PageContainer>
               <DashboardContent>
@@ -46,10 +47,12 @@ export const Dashboard = () => {
                   <Outlet />
                 </DashboardContentSecondPart>
               </DashboardContent>
-              <DashboardAddTransactionButton />
+              
             </PageContainer>
             {matches.m && <DashboardRedirect />}
           </DashboardBox>
+          <DashboardAddTransactionButton />
+          </>
         )}
       </Media>
     </>

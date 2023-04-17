@@ -59,11 +59,20 @@ export const DashboardDivider = () => {
 };
 
 export const DashboardAddTransactionButton = () => {
+  const location = useLocation();
+  const dontDisplay = () => {
+    if (location.pathname === "/dashboard/statistics") {
+      return "none";
+    }
+    return "block";
+  }
+
   return (
     <Box
-      position="absolute"
+      position="fixed"
       bottom={{ xs: "20px", m: "40px" }}
       right={{ xs: "20px", m: "40px" }}
+      display={dontDisplay()}
     >
       <ModalAddTransaction />
     </Box>
