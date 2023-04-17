@@ -10,10 +10,9 @@ export const ModalDelete = ({ id, isOpen, onClose }) => {
 
   const dispatch = useDispatch();
 
-  const removeTransaktion = () => {
+  const removeTransaсtion = () => {
     dispatch(deleteTransaction(id))
     onClose()
-    window.location.reload()
   };
 
 
@@ -21,7 +20,7 @@ export const ModalDelete = ({ id, isOpen, onClose }) => {
     <>
       <ModalWindow
         modalHeader="Are you sure?"
-        modalFunction={removeTransaktion}
+        modalFunction={removeTransaсtion}
         modalFunctionName="Delete"
         modalCancelName="Cancel"
         isOpen={isOpen}
