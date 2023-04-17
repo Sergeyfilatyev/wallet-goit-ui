@@ -10,7 +10,7 @@ import {
 
 export const ChangeLanguage = () => {
   const { i18n } = useTranslation();
-
+  console.log(i18n.language);
   return (
     <Box color={"#BDBDBD"} p={"0"} mr={"10px"}>
       <Menu>
