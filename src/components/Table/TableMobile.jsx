@@ -104,7 +104,9 @@ export const TableMobile = () => {
                 >
                   {t("edit")}
                 </Button>
-                {isOpenEditForm && <ModalEditTransaction />}
+                {isOpenEditForm && (
+                  <ModalEditTransaction transactionToUpdate={item} />
+                )}
               </DataRow>
             </TransactionCard>
           ))}
