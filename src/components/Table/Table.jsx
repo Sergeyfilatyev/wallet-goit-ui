@@ -1,11 +1,12 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useDisclosure } from "@chakra-ui/react";
-import { useEffect } from "react";
 import EllipsisText from "react-ellipsis-text";
-import { useState } from "react";
-import { IconButton, Box, Button } from "@chakra-ui/react";
-import { EditIcon } from "@chakra-ui/icons";
-import { ModalEditTransaction } from "../../components/ModalTransaction/ModalEditTransaction";
+
+import { Button } from "@chakra-ui/react";
+
+import { TablePagination } from "./TablePagination";
+
 import {
   TransactionsTable,
   TransactionsTh,
@@ -18,8 +19,6 @@ import {
   TransactionsTdSum,
   TransactionsTdButton,
   TransactionsLastTr,
-  DeleteButton,
-  DeleteButtonTest,
   HeaderButton,
 } from "./TableStyled";
 import { ModalDelete } from "./ModalDelete";
@@ -29,13 +28,13 @@ import { DashboardEditTransactionButton } from "./TableMobileStyled";
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
 
 import {
-  updateTransaction,
   deleteTransaction,
 } from "../../redux/transactions/transactions-operations";
 
 export const Table = () => {
-  const [currentTransactions, setCurrentTransactions] = useState([]);
-  const [isOpenEditForm, setIsOpenEditForm] = useState(false);
+
+  const [itemOffset, setItemOffset] = useState(0);
+
   const [itemToDeleteId, setItemToDeleteId] = useState("");
 
   const transactions = useSelector(selectTransactions);
@@ -43,9 +42,23 @@ export const Table = () => {
 
   const { t } = useTranslation();
 
-  useEffect(() => {
-    setCurrentTransactions(transactions);
-  }, [transactions]);
+  const endOffset = itemOffset + 10;
+
+  const pageCount = Math.ceil(transactions.length / 10);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * 10) % transactions.length;
+    setItemOffset(newOffset);
+  };
+
+  const transactionsPaginated = transactions
+    .slice()
+    .sort(
+      (a, b) =>
+        b.date.time.localeCompare(a.date.time) ||
+        b.createdAt.localeCompare(a.createdAt)
+    )
+    .filter((_, index) => index < endOffset && index >= itemOffset);
 
   return (
     <>
@@ -72,7 +85,7 @@ export const Table = () => {
           </thead>
 
           <tbody id="table-content">
-            {transactions.map((item) => {
+            {transactionsPaginated.map((item) => {
               const date = item.date;
 
               return (
@@ -134,6 +147,7 @@ export const Table = () => {
       ) : (
         <p>{t("transactionNull")}</p>
       )}
+      {transactions.length > 10 && <TablePagination handlePageClick={handlePageClick} pageCount={pageCount} />}
     </>
   );
 };

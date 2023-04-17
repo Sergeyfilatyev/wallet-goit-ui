@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import EllipsisText from "react-ellipsis-text";
+import { animateScroll as scroll } from 'react-scroll';
 
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
 import { ModalEditTransaction } from "../../components/ModalTransaction/ModalEditTransaction";
+import { TablePagination } from "./TablePagination";
 
-import { Button, Box, Text } from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import {
   TransactionCard,
@@ -16,21 +18,40 @@ import {
   TransactionDataSum,
   DataRow,
   DataRowDivider,
-  DashboardEditTransactionButton,
 } from "./TableMobileStyled";
 import { DeleteButton } from "./TableStyled";
 
 export const TableMobile = () => {
   const [isOpenEditForm, setIsOpenEditForm] = useState(false);
+  const [itemOffset, setItemOffset] = useState(0);
 
   const transactions = useSelector(selectTransactions);
-
   const { t } = useTranslation();
+
+  const endOffset = itemOffset + 5;
+
+  const pageCount = Math.ceil(transactions.length / 5);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * 5) % transactions.length;
+    setItemOffset(newOffset);
+    scroll.scrollToTop();
+  };
+
+  const transactionsPaginated = transactions
+    .slice()
+    .sort(
+      (a, b) =>
+        b.date.time.localeCompare(a.date.time) ||
+        b.createdAt.localeCompare(a.createdAt)
+    )
+    .filter((_, index) => index < endOffset && index >= itemOffset);
+
   return (
     <>
       {transactions.length > 0 ? (
         <>
-          {transactions.map((item) => (
+          {transactionsPaginated.map((item) => (
             <TransactionCard key={item._id} income={item.income}>
               <DataRow>
                 <Header value={t("date")} />
@@ -95,6 +116,12 @@ export const TableMobile = () => {
         </>
       ) : (
         <Text fontSize="2xl">There are no transactions yet 💰</Text>
+      )}
+      {transactions.length > 5 && (
+        <TablePagination
+          handlePageClick={handlePageClick}
+          pageCount={pageCount}
+        />
       )}
     </>
   );

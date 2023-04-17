@@ -1,6 +1,4 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { getAuth } from "../../redux/auth/auth-selectors";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_URL,
