@@ -167,7 +167,7 @@ export const DeleteButton = ({ name, id }) => {
   /* const dispatch = useDispatch(); */
   return (
     <Button
-      type="submit"
+      type="button"
       variant="greenButton"
       w="67px"
       h="26px"

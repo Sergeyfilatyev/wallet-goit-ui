@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deleteTransaction} from "../../redux/transactions/transactions-operations";
+import { deleteTransaction } from "../../redux/transactions/transactions-operations";
 
 import "react-datetime/css/react-datetime.css";
 
@@ -7,7 +7,7 @@ import { ModalWindow } from "../ModalWindow";
 import { ModalExitText} from "../User/ModalExitStyled";
 
 export const ModalDelete = ({ id, isOpen, onClose }) => {
-
+ 
   const dispatch = useDispatch();
 
   const removeTransaсtion = () => {

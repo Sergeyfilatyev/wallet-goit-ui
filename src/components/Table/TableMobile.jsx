@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useDisclosure } from "@chakra-ui/react";
 import EllipsisText from "react-ellipsis-text";
 
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
@@ -18,14 +19,18 @@ import {
   DataRowDivider,
   DashboardEditTransactionButton,
 } from "./TableMobileStyled";
+import { ModalDelete } from "./ModalDelete";
 import { DeleteButton } from "./TableStyled";
 
 export const TableMobile = () => {
   const [isOpenEditForm, setIsOpenEditForm] = useState(false);
+  const [itemToDeleteId, setItemToDeleteId] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const transactions = useSelector(selectTransactions);
 
   const { t } = useTranslation();
+
   return (
     <>
       {transactions.length > 0 ? (
@@ -74,7 +79,34 @@ export const TableMobile = () => {
               <DataRowDivider />
 
               <DataRow>
-                <DeleteButton name={t("delete")} />
+                {/* <DeleteButton
+                    name={t("delete")}
+                    onClick={() => {
+                      setItemToDeleteId(item._id);
+                      onOpen();
+                    }}
+                  /> */}
+                <ModalDelete
+                  id={itemToDeleteId}
+                  isOpen={isOpen}
+                  onClose={onClose}
+                />
+                     <Button
+                      type="button"
+                      variant="greenButton"
+                      w="67px"
+                      h="26px"
+                      fontSize="14px"
+                      lineHeight="1.5"
+                      letterSpacing="0.6px"
+                      textTransform="Capitalize"
+                      onClick={() => {
+                        setItemToDeleteId(item._id);
+                        onOpen();
+                      }}
+                  >
+                    Delete
+                    </Button>
                 <Button
                   onClick={() => setIsOpenEditForm(!isOpenEditForm)}
                   leftIcon={<EditIcon />}

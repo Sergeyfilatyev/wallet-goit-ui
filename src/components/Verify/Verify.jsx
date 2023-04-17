@@ -53,10 +53,11 @@ export const Verify = () => {
               <Flex
                 justifyContent="center"
                 alignItems="center"
-                textAlign="center"
                 flexDirection="column"
+                textAlign="center"
+                wordWrap="break-word"
               >
-                <VerifyText text="Please go to your email and complete the verification" />
+                <VerifyText text={`Check your Email: ${userState.user.email}  and complete the verification`} />
                 <VerifyButton
                   name="Resend Email"
                   func={() => fetchResendEmail()}

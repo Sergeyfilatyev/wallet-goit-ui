@@ -19,9 +19,11 @@ export const VerifyText = ({ text }) => {
       as="p"
       fontFamily="Poppins"
       fontWeight="600"
-      fontSize="28px"
+      fontSize={{ base: "18px", s: "28px" }}
       lineHeight="1.5"
       mb="30px"
+      mr="auto"
+      ml="auto"
     >
       {text}
     </Box>
