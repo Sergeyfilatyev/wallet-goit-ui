@@ -164,7 +164,7 @@ export const TransactionsTdButton = ({ children }) => {
 };
 
 export const DeleteButton = ({ name, id }) => {
-  const dispatch = useDispatch();
+  /* const dispatch = useDispatch(); */
   return (
     <Button
       type="submit"
@@ -175,7 +175,7 @@ export const DeleteButton = ({ name, id }) => {
       lineHeight="1.5"
       letterSpacing="0.6px"
       textTransform="Capitalize"
-      onClick={() => dispatch(deleteTransaction(id))}
+      /* onClick={() => dispatch(deleteTransaction(id))} */
     >
       {name}
     </Button>

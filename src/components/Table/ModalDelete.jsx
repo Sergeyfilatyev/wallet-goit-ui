@@ -11,11 +11,10 @@ export const ModalDelete = ({ id, isOpen, onClose }) => {
   const dispatch = useDispatch();
 
   const removeTransaсtion = () => {
-    dispatch(deleteTransaction(id))
-    onClose()
+    dispatch(deleteTransaction(id));
+    onClose();
   };
-
-
+  
   return (
     <>
       <ModalWindow
