@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import { ModalAddTransaction } from "../ModalTransaction";
+import { ModalAddTransaction } from "../Modal";
 import purpleEllips from "../../assets/images/purple-ellips-background.png";
 import orangeEllips from "../../assets/images/orange-ellips-background.png";
 import { useTranslation } from "react-i18next";

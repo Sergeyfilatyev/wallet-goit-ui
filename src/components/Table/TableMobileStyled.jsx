@@ -1,5 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { ModalEditTransaction } from "../ModalTransaction/ModalEditTransaction";
+import { ModalEditTransaction } from "../Modal";
 
 export const TransactionCard = ({ children, income }) => {
   return (

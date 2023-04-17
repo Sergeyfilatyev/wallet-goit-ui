@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import EllipsisText from "react-ellipsis-text";
 import { animateScroll as scroll } from "react-scroll";
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
-import { ModalEditTransaction } from "../../components/ModalTransaction/ModalEditTransaction";
+import { ModalEditTransaction } from "../Modal";
 import { TablePagination } from "./TablePagination";
-import { Button, Text } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import {
   TransactionCard,
@@ -17,7 +17,7 @@ import {
   DataRow,
   DataRowDivider,
 } from "./TableMobileStyled";
-import { ModalDelete } from "./ModalDelete";
+import { ModalDelete } from "../Modal";
 import { NoTransactions } from "./NoTransactions";
 
 export const TableMobile = () => {
