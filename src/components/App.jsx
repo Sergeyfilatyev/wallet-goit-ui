@@ -8,6 +8,7 @@ import PrivateRoute from "../HOCs/PrivateRoute";
 import { verify, refresh } from "../redux/auth/auth-operations";
 import "../i18n";
 import { Table, TableMobile } from "./Table";
+import { Loader } from "./Loader/Loader";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
@@ -35,7 +36,7 @@ function App() {
   }, [dispatch, tokenFromParams]);
 
   return (
-    <Suspense>
+    <Suspense fallback={<Loader />}>
       <Media
         queries={{
           xs: "(min-width: 320px)",
