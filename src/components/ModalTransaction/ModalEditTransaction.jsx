@@ -32,8 +32,6 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
   const [comment, setComment] = useState(transactionToUpdate.comment);
   const [amountError, setAmountError] = useState(false);
 
-  console.log(transactionToUpdate.income);
-
   const handleChange = {
     category: ({ target: { value } }) => {
       setCategory(value);

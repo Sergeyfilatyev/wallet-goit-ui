@@ -36,6 +36,7 @@ import {
 export const Table = () => {
   const [currentTransactions, setCurrentTransactions] = useState([]);
   const [isOpenEditForm, setIsOpenEditForm] = useState(false);
+  const [itemToDeleteId, setItemToDeleteId] = useState("");
 
   const transactions = useSelector(selectTransactions);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -100,7 +101,7 @@ export const Table = () => {
                     id={item._id}
                   /> */}
                     <ModalDelete
-                      id={item._id}
+                      id={itemToDeleteId}
                       isOpen={isOpen}
                       onClose={onClose}
                     />
@@ -113,7 +114,10 @@ export const Table = () => {
                       lineHeight="1.5"
                       letterSpacing="0.6px"
                       textTransform="Capitalize"
-                      onClick={onOpen}
+                      onClick={() => {
+                        setItemToDeleteId(item._id);
+                        onOpen();
+                      }}
                     >
                       {t("delete")}
                     </Button>
