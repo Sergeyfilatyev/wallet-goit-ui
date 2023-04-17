@@ -1,12 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import EllipsisText from "react-ellipsis-text";
 import { useState } from "react";
-import ReactPaginate from "react-paginate";
-import { IconButton, Box, Button, Flex } from "@chakra-ui/react";
-import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
-import { EditIcon } from "@chakra-ui/icons";
-import { ModalEditTransaction } from "../../components/ModalTransaction/ModalEditTransaction";
+import { useSelector, useDispatch } from "react-redux";
+import EllipsisText from "react-ellipsis-text";
+
+import { Button } from "@chakra-ui/react";
+
+import { TablePagination } from "./TablePagination";
+
 import {
   TransactionsTable,
   TransactionsTh,
@@ -19,8 +18,6 @@ import {
   TransactionsTdSum,
   TransactionsTdButton,
   TransactionsLastTr,
-  DeleteButton,
-  DeleteButtonTest,
   HeaderButton,
 } from "./TableStyled";
 import { useTranslation } from "react-i18next";
@@ -29,40 +26,24 @@ import { DashboardEditTransactionButton } from "./TableMobileStyled";
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
 
 import {
-  updateTransaction,
   deleteTransaction,
 } from "../../redux/transactions/transactions-operations";
 
 export const Table = () => {
-  const [currentTransactions, setCurrentTransactions] = useState([]);
-  const [isOpenEditForm, setIsOpenEditForm] = useState(false);
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
-  const [itemOffset, setItemOffset] = useState(0);
 
-  // Simulate fetching items from another resources.
-  // (This could be items from props; or items loaded in a local state
-  // from an API endpoint with useEffect and useState)
+  const [itemOffset, setItemOffset] = useState(0);
 
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
 
   const { t } = useTranslation();
 
-  useEffect(() => {
-    setCurrentTransactions(transactions);
-  }, [transactions]);
-
   const endOffset = itemOffset + 10;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = transactions.slice(itemOffset, endOffset);
+
   const pageCount = Math.ceil(transactions.length / 10);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * 10) % transactions.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
 
@@ -154,26 +135,7 @@ export const Table = () => {
       ) : (
         <p>There are no transactions yet</p>
       )}
-      {transactions.length > 10 && (
-        <Flex
-          as={ReactPaginate}
-          w={200}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-          mt={50}
-          pb={30}
-          color={"#24CCA7"}
-          breakLabel="..."
-          nextLabel={<ArrowRightIcon />}
-          activeClassName={"activePagination "}
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
-          pageCount={pageCount}
-          previousLabel={<ArrowLeftIcon />}
-          renderOnZeroPageCount={null}
-          disableInitialCallback={true}
-        />
-      )}
+      {transactions.length > 10 && <TablePagination handlePageClick={handlePageClick} pageCount={pageCount} />}
     </>
   );
 };
