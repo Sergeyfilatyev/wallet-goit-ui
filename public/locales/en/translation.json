@@ -33,7 +33,8 @@
   "eisure": "Eisure",
   "other expenses": "Other expenses",
   "addTr": "Add transaction",
-  "edit": "Edit transaction",
+  "editTr": "Edit transaction",
+  "edit": "Edit",
   "add": "add",
   "cancel": "cancel",
   "save": "save",
@@ -57,5 +58,6 @@
   "errorIncorrect": "The login or password is incorrect",
   "errorAlready": "is already registered",
   "amountIsReq": "amount is required",
-  "transactionNull": "There are no transactions yet"
+  "transactionNull": "There are no transactions yet",
+  "deleteTr": "Do you want to delete the transaction?"
 }

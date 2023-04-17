@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import "react-datetime/css/react-datetime.css";
 import { useState, useEffect } from "react";
 import { selectCategories } from "../../redux/categories/categories-selectors";
-
 import {
   ModalAmount,
   ModalAmountDateBox,
@@ -23,9 +22,8 @@ import { amountValidation } from "../../utils/amountValidation";
 export const ModalEditTransaction = ({ transactionToUpdate }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isExpense, setIsExpense] = useState(transactionToUpdate.income);
+  const [isExpense, setIsExpense] = useState(!transactionToUpdate.income);
   const [category, setCategory] = useState(transactionToUpdate.category);
   const [amount, setAmount] = useState(transactionToUpdate.amount);
   const [date, setDate] = useState(transactionToUpdate.date.time);
@@ -43,7 +41,6 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
       setComment(value);
     },
   };
-
   const categories = useSelector(selectCategories);
 
   useEffect(() => {
@@ -54,12 +51,6 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
     if (!amountValidation(amount)) {
       return setAmountError(true);
     } else setAmountError(false);
-
-    // const expense = { isExpense, category, amount, date, comment };
-    // const income = { isExpense, category, amount, date, comment };
-
-    // isExpense ? expense : income;
-
     const transactionDate = {
       day: Number(date.slice(8, 10)),
       month: Number(date.slice(5, 7)),
@@ -90,7 +81,7 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
       />
 
       <ModalWindow
-        modalHeader={t("edit")}
+        modalHeader={t("editTr")}
         modalFunction={editTransaction}
         modalFunctionName={t("save")}
         modalCancelName={t("cancel")}

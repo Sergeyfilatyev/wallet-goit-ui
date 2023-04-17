@@ -8,8 +8,6 @@ import { Currency } from "../Currency";
 
 import { PageContainer } from "../PageContainer";
 
-//import { Table, TableMobile } from "../Table";
-
 import {
   DashboardBox,
   DashboardDivider,
@@ -32,26 +30,25 @@ export const Dashboard = () => {
       >
         {(matches) => (
           <>
-          <DashboardBox>
-            <PageContainer>
-              <DashboardContent>
-                <DashboardContentFirstPart>
-                  <DashboardNavigationBalanceBox>
-                    <Navigation />
-                    {matches.m && <Balance />}
-                  </DashboardNavigationBalanceBox>
-                  {matches.m && <Currency />}
-                </DashboardContentFirstPart>
-                {matches.l && <DashboardDivider />}
-                <DashboardContentSecondPart>
-                  <Outlet />
-                </DashboardContentSecondPart>
-              </DashboardContent>
-              
-            </PageContainer>
-            {matches.m && <DashboardRedirect />}
-          </DashboardBox>
-          <DashboardAddTransactionButton />
+            <DashboardBox>
+              <PageContainer>
+                <DashboardContent>
+                  <DashboardContentFirstPart>
+                    <DashboardNavigationBalanceBox>
+                      <Navigation />
+                      {matches.m && <Balance />}
+                    </DashboardNavigationBalanceBox>
+                    {matches.m && <Currency />}
+                  </DashboardContentFirstPart>
+                  {matches.l && <DashboardDivider />}
+                  <DashboardContentSecondPart>
+                    <Outlet />
+                  </DashboardContentSecondPart>
+                </DashboardContent>
+              </PageContainer>
+              {matches.m && <DashboardRedirect />}
+            </DashboardBox>
+            <DashboardAddTransactionButton />
           </>
         )}
       </Media>

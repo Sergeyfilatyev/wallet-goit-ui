@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import {
   Box,
   Button,
@@ -10,11 +9,8 @@ import {
   InputRightElement,
   Progress,
 } from "@chakra-ui/react";
-
 import { Field } from "formik";
-
 import { Link } from "react-router-dom";
-
 import { ViewIcon, ViewOffIcon, Icon } from "@chakra-ui/icons";
 import { FcGoogle } from "react-icons/fc";
 

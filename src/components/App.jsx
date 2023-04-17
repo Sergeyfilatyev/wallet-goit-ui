@@ -1,23 +1,17 @@
 import Media from "react-media";
-
 import { useDispatch } from "react-redux";
 import { Routes, Route, useSearchParams, Navigate } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
-
 import { Currency } from "./Currency";
-
 import PublicRoute from "../HOCs/PublicRoute";
 import PrivateRoute from "../HOCs/PrivateRoute";
-
 import { verify, refresh } from "../redux/auth/auth-operations";
-
 import "../i18n";
 import { Table, TableMobile } from "./Table";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const DashboardPage = lazy(() => import("../pages/DashboardPage"));
-const HomePageDesktop = lazy(() => import("../pages/HomePageDesktop"));
 const StatisticsPageDesktop = lazy(() =>
   import("../pages/StatisticsPageDesktop")
 );
@@ -38,7 +32,7 @@ function App() {
     if (localStorage.getItem("token")) {
       dispatch(refresh());
     }
-  }, []);
+  }, [dispatch, tokenFromParams]);
 
   return (
     <Suspense>

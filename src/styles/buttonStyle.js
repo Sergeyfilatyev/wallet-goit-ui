@@ -41,7 +41,7 @@ const isOpenModalButton = defineStyle({
 
 const deleteButton = defineStyle({
   h: "26px",
-  w: "67px",
+  px: "12px",
   bgColor: "#24CCA7",
   textTransform: "capitalize",
   fontSize: "14px",

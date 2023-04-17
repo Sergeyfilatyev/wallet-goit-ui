@@ -82,6 +82,7 @@ export const ListItemCategory = ({ statByCategory }) => {
 };
 
 export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
+  const { t } = useTranslation();
   return (
     <Box display="flex" flexDirection="column">
       <Box display="flex" position="relative" justifyContent="space-between">
@@ -92,7 +93,7 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
           color="#000000"
           paddingLeft="18px"
         >
-          Expenses:
+          {t("expenses")}
         </Text>
         <Text
           fontWeight="700"
@@ -112,7 +113,7 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
           color="#000000"
           paddingLeft="18px"
         >
-          Income:
+          {t("income")}
         </Text>
         <Text
           fontWeight="700"

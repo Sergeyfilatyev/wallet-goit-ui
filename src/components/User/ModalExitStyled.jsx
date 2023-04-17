@@ -1,4 +1,4 @@
-import { Text, Flex, Box, Button } from "@chakra-ui/react";
+import { Text, Flex } from "@chakra-ui/react";
 
 export const ModalExitText = ({ children }) => {
   return (

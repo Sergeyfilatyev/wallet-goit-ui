@@ -1,14 +1,10 @@
 import React from "react";
-
 import { Formik, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-
 import { login } from "../../redux/auth/auth-operations";
-
 import { validationSchemaLogin } from "../../utils/validationSchema";
 import { Logo } from "../Logo";
-
 import {
   LoginRegisterFormBox,
   LoginRegisterFormLogoBox,
@@ -26,10 +22,8 @@ import { useTranslation } from "react-i18next";
 export const LoginForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
-  const [status, setStatus] = useState("");
   const [isError400, setIsError400] = useState(false);
-  const [isError401, setIsError401] = useState(false);
+  const [isError403, setIsError403] = useState(false);
 
   return (
     <LoginRegisterFormBox height={{ base: "100%", s: "559px" }}>
@@ -44,15 +38,13 @@ export const LoginForm = () => {
         validationSchema={validationSchemaLogin}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           dispatch(login(values)).then((response) => {
-            setStatus(response.payload.status);
-
             if (response.payload.status === 400) {
               setIsError400(true);
-              setIsError401(false);
+              setIsError403(false);
             }
 
-            if (response.payload.status === 401) {
-              setIsError401(true);
+            if (response.payload.status === 403) {
+              setIsError403(true);
               setIsError400(false);
             }
           });
@@ -65,8 +57,8 @@ export const LoginForm = () => {
           <LoginRegisterFormInputsBox>
             <LoginRegisterFormEmailInput placeholder={t("email")}>
               {isError400 && <FieldErrorMessage error={t("errorVerify")} />}
-              {isError401 && <FieldErrorMessage error={t("errorIncorrect")} />}
-              {isError400 && isError401 && (
+              {isError403 && <FieldErrorMessage error={t("errorIncorrect")} />}
+              {isError400 && isError403 && (
                 <FieldErrorMessage error={<ErrorMessage name="email" />} />
               )}
             </LoginRegisterFormEmailInput>

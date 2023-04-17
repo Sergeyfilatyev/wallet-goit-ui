@@ -2,14 +2,10 @@ import React, { useEffect } from "react";
 import { Formik, Form } from "formik";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/auth-operations";
-
 import { useState } from "react";
-
 import { ErrorMessage } from "formik";
-
 import { validationSchemaRegister } from "../../utils/validationSchema";
 import { Logo } from "../Logo";
-
 import {
   LoginRegisterFormBox,
   LoginRegisterFormLogoBox,
@@ -32,17 +28,13 @@ import { useNavigate } from "react-router-dom";
 export const RegisterForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
   const [firstPassword, setFirstPassword] = useState("");
   const [secondPassword, setSecondPassword] = useState("");
-
   const [firstPasswordProgress, setFirstPasswordProgress] = useState(0);
   const [secondPasswordProgress, setSecondPasswordProgress] = useState(0);
-
   const [status, setStatus] = useState("");
   const [isError409, setIsError409] = useState(false);
   const [emailWithError, setEmailWithError] = useState("");
-
   const navigate = useNavigate();
 
   useEffect(() => {

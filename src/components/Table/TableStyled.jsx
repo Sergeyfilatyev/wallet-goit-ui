@@ -1,7 +1,4 @@
-import { useDispatch } from "react-redux";
-import { deleteTransaction } from "../../redux/transactions/transactions-operations";
-
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 export const TransactionsTable = ({ children }) => {
   return (
@@ -162,34 +159,3 @@ export const TransactionsTdButton = ({ children }) => {
     </Box>
   );
 };
-
-export const DeleteButton = ({ name, id }) => {
-  /* const dispatch = useDispatch(); */
-  return (
-    <Button
-      type="button"
-      variant="greenButton"
-      w="67px"
-      h="26px"
-      fontSize="14px"
-      lineHeight="1.5"
-      letterSpacing="0.6px"
-      textTransform="Capitalize"
-      /* onClick={() => dispatch(deleteTransaction(id))} */
-    >
-      {name}
-    </Button>
-  );
-};
-
-// export const DataRowDivider = () => {
-//   return (
-//     <Box
-//       // ml="-25px"
-//       border="1px solid #DCDCDF"
-//       boxShadow="0px 1px 0px rgba(255, 255, 255, 0.6)"
-//       width="700px"
-//       as="div"
-//     ></Box>
-//   );
-// };

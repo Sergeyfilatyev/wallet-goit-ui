@@ -1,4 +1,4 @@
-import { Button, Box, useDisclosure, Text } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/auth/auth-operations";
 
@@ -6,11 +6,12 @@ import "react-datetime/css/react-datetime.css";
 
 import { ModalWindow } from "../ModalWindow";
 import { ModalExitText, ModalExitButton } from "./ModalExitStyled";
+import { useTranslation } from "react-i18next";
 
 export const ModalExit = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
-
+  const { t } = useTranslation();
   const userSignOut = () => {
     dispatch(logout());
   };
@@ -19,14 +20,14 @@ export const ModalExit = ({ children }) => {
     <>
       <ModalExitButton onClick={onOpen}>{children}</ModalExitButton>
       <ModalWindow
-        modalHeader="Are you sure?"
+        modalHeader={t("logoutTitle")}
         modalFunction={userSignOut}
-        modalFunctionName="Sign Out"
-        modalCancelName="Cancel"
+        modalFunctionName={t("signOut")}
+        modalCancelName={t("cancel")}
         isOpen={isOpen}
         onClose={onClose}
       >
-        <ModalExitText>Do you really want to sign out?</ModalExitText>
+        <ModalExitText>{t("logoutText")}</ModalExitText>
       </ModalWindow>
     </>
   );

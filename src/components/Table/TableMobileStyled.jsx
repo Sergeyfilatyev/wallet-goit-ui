@@ -1,4 +1,4 @@
-import { Box, Flex, Button } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { ModalEditTransaction } from "../ModalTransaction/ModalEditTransaction";
 
 export const TransactionCard = ({ children, income }) => {
@@ -79,23 +79,6 @@ export const TransactionDataSum = ({ value, income }) => {
     >
       {value}
     </Box>
-  );
-};
-
-export const DeleteButton = ({ name }) => {
-  return (
-    <Button
-      type="submit"
-      variant="greenButton"
-      w="67px"
-      h="26px"
-      fontSize="14px"
-      lineHeight="1.5"
-      letterSpacing="0.6px"
-      textTransform="Capitalize"
-    >
-      {name}
-    </Button>
   );
 };
 

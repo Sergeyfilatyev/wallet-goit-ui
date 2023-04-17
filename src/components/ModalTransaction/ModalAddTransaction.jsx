@@ -1,19 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
-
 import { useSelector } from "react-redux";
 import { selectCategories } from "../../redux/categories/categories-selectors";
-
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../../redux/transactions/transactions-operations";
-
 import { currentDay } from "../../utils/currentDay";
 import { amountValidation } from "../../utils/amountValidation";
-
 import { Box, useDisclosure } from "@chakra-ui/react";
 import "react-datetime/css/react-datetime.css";
 import { ModalWindow } from "../ModalWindow";
-
 import {
   ModalAddOpentButton,
   ModalAmount,
@@ -23,22 +18,18 @@ import {
   ModalDate,
   ModalSelectCategory,
 } from "./ModalTransactionStyled";
-
 import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
 
 export const ModalAddTransaction = () => {
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const [isExpense, setIsExpense] = useState(false);
   const [category, setCategory] = useState("income");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState(currentDay());
   const [comment, setComment] = useState("");
-
   const [amountError, setAmountError] = useState(false);
-
   const dispatch = useDispatch();
 
   const handleChange = {
@@ -86,7 +77,6 @@ export const ModalAddTransaction = () => {
     setAmount("");
     setDate(currentDay());
     setComment("");
-
     onClose();
   };
 

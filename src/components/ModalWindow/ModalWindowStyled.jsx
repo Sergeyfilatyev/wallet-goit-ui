@@ -1,10 +1,4 @@
-import {
-  Box,
-  CloseButton,
-  Flex,
-  ModalCloseButton,
-  ModalContent,
-} from "@chakra-ui/react";
+import { Box, Flex, ModalCloseButton, ModalContent } from "@chakra-ui/react";
 
 export const ModalContentBox = ({ children }) => {
   return (

@@ -12,7 +12,6 @@ import {
   NoDataDiagram,
 } from "./DiagramTabStyled";
 import { getStatistics } from "../../redux/statistics/statistics-operations";
-import { useTranslation } from "react-i18next";
 import { selectStatistics } from "../../redux/statistics/statistics-selectors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -35,7 +34,6 @@ const currentMonth = new Date().getMonth();
 const years = Array.from({ length: currentYear - 1999 }, (_, i) => 2000 + i);
 
 export function DiagramTab() {
-  const { t } = useTranslation();
   const [year, setYear] = useState(String(currentYear));
   const [selectedMonth, setSelectedMonth] = useState(
     months[currentMonth].value

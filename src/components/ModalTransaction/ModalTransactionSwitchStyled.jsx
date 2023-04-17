@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-
 import Switch from "react-switch";
-
 import { Flex, Icon, Text } from "@chakra-ui/react";
 
 const ModalSwitchIconPlus = () => {
@@ -79,8 +77,9 @@ export const ModalSwitch = ({
   setIsSwitchExpense,
   expenseLabel,
   incomeLabel,
+  isSwitchExpense,
 }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(isSwitchExpense);
 
   useEffect(() => {
     setIsSwitchExpense(checked);

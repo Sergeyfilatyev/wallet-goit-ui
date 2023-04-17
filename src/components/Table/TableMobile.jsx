@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { useDisclosure } from "@chakra-ui/react";
 import EllipsisText from "react-ellipsis-text";
-import { animateScroll as scroll } from 'react-scroll';
-
+import { animateScroll as scroll } from "react-scroll";
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
 import { ModalEditTransaction } from "../../components/ModalTransaction/ModalEditTransaction";
 import { TablePagination } from "./TablePagination";
-
 import { Button, Text } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import {
@@ -21,24 +18,14 @@ import {
   DataRowDivider,
 } from "./TableMobileStyled";
 import { ModalDelete } from "./ModalDelete";
-import { DeleteButton } from "./TableStyled";
 
 export const TableMobile = () => {
   const [isOpenEditForm, setIsOpenEditForm] = useState(false);
-
-  const [itemToDeleteId, setItemToDeleteId] = useState("");
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   const [itemOffset, setItemOffset] = useState(0);
-
-
   const transactions = useSelector(selectTransactions);
   const { t } = useTranslation();
-
   const endOffset = itemOffset + 5;
-
   const pageCount = Math.ceil(transactions.length / 5);
-
   const handlePageClick = (event) => {
     const newOffset = (event.selected * 5) % transactions.length;
     setItemOffset(newOffset);
@@ -102,34 +89,7 @@ export const TableMobile = () => {
               <DataRowDivider />
 
               <DataRow>
-                {/* <DeleteButton
-                    name={t("delete")}
-                    onClick={() => {
-                      setItemToDeleteId(item._id);
-                      onOpen();
-                    }}
-                  /> */}
-                <ModalDelete
-                  id={itemToDeleteId}
-                  isOpen={isOpen}
-                  onClose={onClose}
-                />
-                     <Button
-                      type="button"
-                      variant="greenButton"
-                      w="67px"
-                      h="26px"
-                      fontSize="14px"
-                      lineHeight="1.5"
-                      letterSpacing="0.6px"
-                      textTransform="Capitalize"
-                      onClick={() => {
-                        setItemToDeleteId(item._id);
-                        onOpen();
-                      }}
-                  >
-                    Delete
-                    </Button>
+                <ModalDelete id={item._id} />
                 <Button
                   onClick={() => setIsOpenEditForm(!isOpenEditForm)}
                   leftIcon={<EditIcon />}
@@ -141,7 +101,7 @@ export const TableMobile = () => {
                   _hover={{ color: "#24CCA7" }}
                   _active={{ bg: "transparent" }}
                 >
-                  Edit
+                  {t("edit")}
                 </Button>
                 {isOpenEditForm && <ModalEditTransaction />}
               </DataRow>
