@@ -221,7 +221,6 @@ export const CategorySumBox = () => {
 
 export const DiagramRenderer = ({
   totalExpense,
-  totalIncome,
   statByCategory,
   options,
   chartData,
