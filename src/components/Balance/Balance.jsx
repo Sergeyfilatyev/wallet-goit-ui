@@ -18,7 +18,7 @@ export const Balance = () => {
   useEffect(() => {
     function formatBalance(number) {
       const formattedBalance = numeral(number)
-        .format("₴ 0,0.00")
+        .format("0,0.00")
         .replace(",", " ");
       return formattedBalance;
     }
