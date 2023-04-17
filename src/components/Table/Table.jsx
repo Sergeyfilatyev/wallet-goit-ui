@@ -2,8 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import EllipsisText from "react-ellipsis-text";
 import { useState } from "react";
-import ReactPaginate from 'react-paginate';
-import { IconButton, Box, Button } from "@chakra-ui/react";
+import ReactPaginate from "react-paginate";
+import { IconButton, Box, Button, Flex } from "@chakra-ui/react";
+import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { EditIcon } from "@chakra-ui/icons";
 import { ModalEditTransaction } from "../../components/ModalTransaction/ModalEditTransaction";
 import {
@@ -64,7 +65,15 @@ export const Table = () => {
     );
     setItemOffset(newOffset);
   };
-  const transactionsPag = transactions.filter((item, index) => index < endOffset && index >= itemOffset);
+
+  const transactionsPaginated = transactions
+    .slice()
+    .sort(
+      (a, b) =>
+        b.date.time.localeCompare(a.date.time) ||
+        b.createdAt.localeCompare(a.createdAt)
+    )
+    .filter((_, index) => index < endOffset && index >= itemOffset);
 
   return (
     <>
@@ -91,7 +100,7 @@ export const Table = () => {
           </thead>
 
           <tbody id="table-content">
-            {transactionsPag.map((item) => {
+            {transactionsPaginated.map((item) => {
               const date = item.date;
 
               return (
@@ -145,15 +154,26 @@ export const Table = () => {
       ) : (
         <p>There are no transactions yet</p>
       )}
-      {transactions.length > 10 && <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />}
+      {transactions.length > 10 && (
+        <Flex
+          as={ReactPaginate}
+          w={200}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          mt={50}
+          pb={30}
+          color={"#24CCA7"}
+          breakLabel="..."
+          nextLabel={<ArrowRightIcon />}
+          activeClassName={"activePagination "}
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          pageCount={pageCount}
+          previousLabel={<ArrowLeftIcon />}
+          renderOnZeroPageCount={null}
+          disableInitialCallback={true}
+        />
+      )}
     </>
   );
 };
