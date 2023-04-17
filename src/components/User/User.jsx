@@ -6,7 +6,7 @@ import {
   UserExitText,
 } from "./UserStyled";
 
-import { ModalExit } from "./ModalExit";
+import { ModalExit } from "../Modal";
 import { ChangeLanguage } from "../ChangeLanguage";
 import Media from "react-media";
 import { useTranslation } from "react-i18next";

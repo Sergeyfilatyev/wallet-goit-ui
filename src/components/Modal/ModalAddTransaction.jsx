@@ -1,12 +1,16 @@
-import { ModalWindow } from "../ModalWindow";
-import { EditIcon } from "@chakra-ui/icons";
-import { useDispatch, useSelector } from "react-redux";
-import { Box, IconButton, useDisclosure } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import "react-datetime/css/react-datetime.css";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { selectCategories } from "../../redux/categories/categories-selectors";
+import { useDispatch } from "react-redux";
+import { addTransaction } from "../../redux/transactions/transactions-operations";
+import { currentDay } from "../../utils/currentDay";
+import { amountValidation } from "../../utils/amountValidation";
+import { Box, useDisclosure } from "@chakra-ui/react";
+import "react-datetime/css/react-datetime.css";
+import { ModalWindow } from "../Modal";
 import {
+  ModalAddOpentButton,
   ModalAmount,
   ModalAmountDateBox,
   ModalComment,
@@ -16,19 +20,17 @@ import {
 } from "./ModalTransactionStyled";
 import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
-import { updateTransaction } from "../../redux/transactions/transactions-operations";
-import { amountValidation } from "../../utils/amountValidation";
 
-export const ModalEditTransaction = ({ transactionToUpdate }) => {
+export const ModalAddTransaction = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isExpense, setIsExpense] = useState(!transactionToUpdate.income);
-  const [category, setCategory] = useState(transactionToUpdate.category);
-  const [amount, setAmount] = useState(transactionToUpdate.amount);
-  const [date, setDate] = useState(transactionToUpdate.date.time);
-  const [comment, setComment] = useState(transactionToUpdate.comment);
+  const [isExpense, setIsExpense] = useState(false);
+  const [category, setCategory] = useState("income");
+  const [amount, setAmount] = useState("");
+  const [date, setDate] = useState(currentDay());
+  const [comment, setComment] = useState("");
   const [amountError, setAmountError] = useState(false);
+  const dispatch = useDispatch();
 
   const handleChange = {
     category: ({ target: { value } }) => {
@@ -41,16 +43,18 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
       setComment(value);
     },
   };
+
   const categories = useSelector(selectCategories);
 
   useEffect(() => {
-    isExpense ? setCategory("Expense") : setCategory("income");
+    isExpense ? setCategory("other expenses") : setCategory("income");
   }, [isExpense]);
 
-  const editTransaction = () => {
+  const addNewTransaction = () => {
     if (!amountValidation(amount)) {
       return setAmountError(true);
     } else setAmountError(false);
+
     const transactionDate = {
       day: Number(date.slice(8, 10)),
       month: Number(date.slice(5, 7)),
@@ -58,32 +62,31 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
       time: date,
     };
 
-    const updatedData = {
-      amount: Number(amount),
+    const transaction = {
+      income: !isExpense,
       category,
       comment,
+      amount: Number(amount),
       date: transactionDate,
-      income: !isExpense,
     };
 
-    dispatch(updateTransaction({ id: transactionToUpdate._id, updatedData }));
+    dispatch(addTransaction(transaction));
+
+    setIsExpense(false);
+    setCategory("income");
+    setAmount("");
+    setDate(currentDay());
+    setComment("");
     onClose();
   };
+
   return (
     <>
-      <IconButton
-        backgroundColor="transparent"
-        aria-label="Edit transaction"
-        icon={<EditIcon />}
-        _hover={{ color: "#24CCA7" }}
-        _active={{ bg: "transparent" }}
-        onClick={onOpen}
-      />
-
+      <ModalAddOpentButton onClick={onOpen} />
       <ModalWindow
-        modalHeader={t("editTr")}
-        modalFunction={editTransaction}
-        modalFunctionName={t("save")}
+        modalHeader={t("addTr")}
+        modalFunction={addNewTransaction}
+        modalFunctionName={t("add")}
         modalCancelName={t("cancel")}
         isOpen={isOpen}
         onClose={onClose}
@@ -111,7 +114,7 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
           <ModalAmountDateBox>
             <Box>
               <ModalAmount amount={amount} setAmount={setAmount} />
-              {amountError && <FieldErrorMessage error="amount is required" />}
+              {amountError && <FieldErrorMessage error={t("amountIsReq")} />}
             </Box>
             <ModalDate date={date} setDate={handleChange.date} />
           </ModalAmountDateBox>

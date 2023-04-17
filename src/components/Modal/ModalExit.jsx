@@ -4,7 +4,7 @@ import { logout } from "../../redux/auth/auth-operations";
 
 import "react-datetime/css/react-datetime.css";
 
-import { ModalWindow } from "../ModalWindow";
+import { ModalWindow } from "../Modal";
 import { ModalExitText, ModalExitButton } from "./ModalExitStyled";
 import { useTranslation } from "react-i18next";
 

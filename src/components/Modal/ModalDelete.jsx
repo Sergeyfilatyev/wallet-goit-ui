@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { deleteTransaction } from "../../redux/transactions/transactions-operations";
 import "react-datetime/css/react-datetime.css";
-import { ModalWindow } from "../ModalWindow";
-import { ModalExitText } from "../User/ModalExitStyled";
+import { ModalWindow } from "../Modal";
+import { ModalExitText } from "./ModalExitStyled";
 import { useTranslation } from "react-i18next";
 import { useDisclosure } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";

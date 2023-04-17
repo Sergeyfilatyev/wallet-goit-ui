@@ -16,7 +16,7 @@ import {
   TransactionsLastTr,
   HeaderButton,
 } from "./TableStyled";
-import { ModalDelete } from "./ModalDelete";
+import { ModalDelete } from "../Modal";
 import { NoTransactions } from "./NoTransactions";
 import { useTranslation } from "react-i18next";
 import { DashboardEditTransactionButton } from "./TableMobileStyled";
