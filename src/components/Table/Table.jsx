@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import EllipsisText from "react-ellipsis-text";
 import { useState } from "react";
+import ReactPaginate from 'react-paginate';
 import { IconButton, Box, Button } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { ModalEditTransaction } from "../../components/ModalTransaction/ModalEditTransaction";
@@ -34,6 +35,14 @@ import {
 export const Table = () => {
   const [currentTransactions, setCurrentTransactions] = useState([]);
   const [isOpenEditForm, setIsOpenEditForm] = useState(false);
+  // Here we use item offsets; we could also use page offsets
+  // following the API or data you're working with.
+  const [itemOffset, setItemOffset] = useState(0);
+
+  // Simulate fetching items from another resources.
+  // (This could be items from props; or items loaded in a local state
+  // from an API endpoint with useEffect and useState)
+
   const dispatch = useDispatch();
   const transactions = useSelector(selectTransactions);
 
@@ -42,6 +51,20 @@ export const Table = () => {
   useEffect(() => {
     setCurrentTransactions(transactions);
   }, [transactions]);
+
+  const endOffset = itemOffset + 10;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentItems = transactions.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(transactions.length / 10);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * 10) % transactions.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+  const transactionsPag = transactions.filter((item, index) => index < endOffset && index >= itemOffset);
 
   return (
     <>
@@ -68,7 +91,7 @@ export const Table = () => {
           </thead>
 
           <tbody id="table-content">
-            {transactions.map((item) => {
+            {transactionsPag.map((item) => {
               const date = item.date;
 
               return (
@@ -122,6 +145,15 @@ export const Table = () => {
       ) : (
         <p>There are no transactions yet</p>
       )}
+      {transactions.length > 10 && <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />}
     </>
   );
 };
