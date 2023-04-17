@@ -38,7 +38,6 @@ export function DiagramTab() {
   const [selectedMonth, setSelectedMonth] = useState(
     months[currentMonth].value
   );
-
   const dispatch = useDispatch();
   const statistics = useSelector(selectStatistics);
 
@@ -57,8 +56,9 @@ export function DiagramTab() {
   const handleYearChange = (e) => {
     const newSelectedYear = e.target.value;
     setYear(newSelectedYear);
-    if (newSelectedYear === currentYear) {
-      setDisplayedMonths(months.slice(0, currentMonth + 1));
+    if (newSelectedYear === String(currentYear)) {
+      const newDisplayedMonths = months.slice(0, currentMonth + 1);
+      setDisplayedMonths(newDisplayedMonths);
       if (selectedMonth > months[currentMonth].value) {
         setSelectedMonth(months[currentMonth].value);
       }
