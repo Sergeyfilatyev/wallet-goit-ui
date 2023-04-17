@@ -372,6 +372,7 @@ export const DiagramRenderer = ({
             >
               ₴ {totalExpense}
             </Text>
+
             <Doughnut
               options={options}
               data={{

@@ -21,11 +21,14 @@ import { NoTransactions } from "./NoTransactions";
 import { useTranslation } from "react-i18next";
 import { DashboardEditTransactionButton } from "./TableMobileStyled";
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
+import { selectIsLoading } from "../../redux/transactions/transactions-selectors";
+import { Loader } from "../Loader";
 
 export const Table = () => {
   const [itemOffset, setItemOffset] = useState(0);
 
   const transactions = useSelector(selectTransactions);
+  const isLoading = useSelector(selectIsLoading);
 
   const { t } = useTranslation();
   const endOffset = itemOffset + 10;
@@ -45,6 +48,7 @@ export const Table = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
       {transactions.length > 0 ? (
         <TransactionsTable>
           <thead>
