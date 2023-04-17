@@ -44,7 +44,7 @@ export const BalanceBoxNumber = ({ value }) => {
       color="#000000"
       as="p"
     >
-      ₴ {value}
+      {value}
     </Box>
   );
 };
