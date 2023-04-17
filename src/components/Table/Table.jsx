@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useDisclosure } from "@chakra-ui/react";
 import { useEffect } from "react";
 import EllipsisText from "react-ellipsis-text";
 import { useState } from "react";
@@ -21,6 +22,7 @@ import {
   DeleteButtonTest,
   HeaderButton,
 } from "./TableStyled";
+import { ModalDelete } from "./ModalDelete";
 import { useTranslation } from "react-i18next";
 import { DashboardEditTransactionButton } from "./TableMobileStyled";
 
@@ -34,8 +36,9 @@ import {
 export const Table = () => {
   const [currentTransactions, setCurrentTransactions] = useState([]);
   const [isOpenEditForm, setIsOpenEditForm] = useState(false);
-  const dispatch = useDispatch();
+  
   const transactions = useSelector(selectTransactions);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { t } = useTranslation();
 
@@ -93,11 +96,16 @@ export const Table = () => {
                   <TransactionsTdButton>
                     {/* <DeleteButton
                     name={t("delete")}
-                    //onClick={() => dispatch(deleteTransaction(item._id))}
+                    onClick={() => dispatch(deleteTransaction(item._id))}
                     id={item._id}
                   /> */}
+                    <ModalDelete
+                      id={item._id}
+                      isOpen={isOpen}
+                      onClose={onClose}
+                    />
                     <Button
-                      type="submit"
+                      type="button"
                       variant="greenButton"
                       w="67px"
                       h="26px"
@@ -105,7 +113,7 @@ export const Table = () => {
                       lineHeight="1.5"
                       letterSpacing="0.6px"
                       textTransform="Capitalize"
-                      onClick={() => dispatch(deleteTransaction(item._id))}
+                      onClick={onOpen}
                     >
                       {t("delete")}
                     </Button>
