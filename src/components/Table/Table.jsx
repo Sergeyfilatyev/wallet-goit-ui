@@ -81,7 +81,7 @@ export const Table = () => {
                   <TransactionsTd value={item.income ? "+" : "-"} />
                   <TransactionsTd value={t(item.category)} />
                   <TransactionsTdComment>
-                    <EllipsisText text={item.comment} length={26} />
+                    <EllipsisText text={item.comment} length={20} />
                   </TransactionsTdComment>
 
                   <TransactionsTdSum

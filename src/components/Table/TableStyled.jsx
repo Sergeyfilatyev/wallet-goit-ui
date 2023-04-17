@@ -2,7 +2,11 @@ import { Box } from "@chakra-ui/react";
 
 export const TransactionsTable = ({ children }) => {
   return (
-    <Box width={{ m: "705px", xl: "715px" }} as="table">
+    <Box
+      width="100%"
+      //width={{ m: "705px", xl: "715px" }}
+      as="table"
+    >
       {children}
     </Box>
   );
@@ -99,7 +103,8 @@ export const TransactionsTd = ({ value }) => {
 export const TransactionsTdDate = ({ value }) => {
   return (
     <Box
-      pl="20px"
+      width="104px"
+      px="20px"
       height="52px"
       fontSize="16px"
       lineHeight="1.5"
@@ -115,7 +120,7 @@ export const TransactionsTdDate = ({ value }) => {
 export const TransactionsTdComment = ({ children }) => {
   return (
     <Box
-      maxWidth="125px"
+      width="150px"
       height="52px"
       fontSize="16px"
       lineHeight="1.5"
