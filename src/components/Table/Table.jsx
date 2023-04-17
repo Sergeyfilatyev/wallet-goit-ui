@@ -21,8 +21,11 @@ import { NoTransactions } from "./NoTransactions";
 import { useTranslation } from "react-i18next";
 import { DashboardEditTransactionButton } from "./TableMobileStyled";
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
+
 import { selectIsLoading } from "../../redux/transactions/transactions-selectors";
 import { Loader } from "../Loader";
+import { Flex } from "@chakra-ui/layout";
+
 
 export const Table = () => {
   const [itemOffset, setItemOffset] = useState(0);
@@ -37,6 +40,9 @@ export const Table = () => {
     const newOffset = (event.selected * 10) % transactions.length;
     setItemOffset(newOffset);
   };
+  const goToPreviousPage = () => {
+    setItemOffset(itemOffset - 10);
+  };
   const transactionsPaginated = transactions
     .slice()
     .sort(
@@ -47,8 +53,11 @@ export const Table = () => {
     .filter((_, index) => index < endOffset && index >= itemOffset);
 
   return (
+
     <>
       {isLoading && <Loader />}
+
+    <Flex flexDirection={"column"} justifyContent={"space-between"} alignItems={"center"} h={"85vh"}>
       {transactions.length > 0 ? (
         <TransactionsTable>
           <thead>
@@ -95,7 +104,10 @@ export const Table = () => {
 
                   <DashboardEditTransactionButton transactionToUpdate={item} />
                   <TransactionsTdButton>
-                    <ModalDelete id={item._id} />
+                    <ModalDelete
+                      id={item._id}
+                      goToPreviousPage={goToPreviousPage}
+                    />
                   </TransactionsTdButton>
                 </TransactionsTr>
               );
@@ -115,6 +127,6 @@ export const Table = () => {
           pageCount={pageCount}
         />
       )}
-    </>
+    </Flex>
   );
 };

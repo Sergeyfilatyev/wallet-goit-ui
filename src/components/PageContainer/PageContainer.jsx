@@ -2,7 +2,6 @@ import { Box } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 export const PageContainer = ({ children }) => {
   const { i18n } = useTranslation();
-  console.log(i18n.language);
   return (
     <Box
       as="div"

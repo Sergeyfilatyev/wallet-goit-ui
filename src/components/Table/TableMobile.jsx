@@ -6,8 +6,6 @@ import { animateScroll as scroll } from "react-scroll";
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
 import { ModalEditTransaction } from "../Modal";
 import { TablePagination } from "./TablePagination";
-import { Button } from "@chakra-ui/react";
-import { EditIcon } from "@chakra-ui/icons";
 import {
   TransactionCard,
   Header,
@@ -21,7 +19,6 @@ import { ModalDelete } from "../Modal";
 import { NoTransactions } from "./NoTransactions";
 
 export const TableMobile = () => {
-  const [isOpenEditForm, setIsOpenEditForm] = useState(false);
   const [itemOffset, setItemOffset] = useState(0);
   const transactions = useSelector(selectTransactions);
   const { t } = useTranslation();
@@ -32,6 +29,7 @@ export const TableMobile = () => {
     setItemOffset(newOffset);
     scroll.scrollToTop();
   };
+  const goToPreviousPage = () => {setItemOffset(itemOffset-10)};
 
   const transactionsPaginated = transactions
     .slice()
@@ -90,21 +88,8 @@ export const TableMobile = () => {
               <DataRowDivider />
 
               <DataRow>
-                <ModalDelete id={item._id} />
-                <Button
-                  onClick={() => setIsOpenEditForm(!isOpenEditForm)}
-                  leftIcon={<EditIcon />}
-                  backgroundColor="transparent"
-                  fontSize="14px"
-                  lineHeight="1.5"
-                  letterSpacing="0.6px"
-                  textTransform="Capitalize"
-                  _hover={{ color: "#24CCA7" }}
-                  _active={{ bg: "transparent" }}
-                >
-                  {t("edit")}
-                </Button>
-                {isOpenEditForm && <ModalEditTransaction />}
+                <ModalDelete id={item._id} goToPreviousPage={goToPreviousPage} />
+                <ModalEditTransaction transactionToUpdate={item} />
               </DataRow>
             </TransactionCard>
           ))}
