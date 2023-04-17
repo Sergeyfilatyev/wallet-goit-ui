@@ -1,8 +1,8 @@
 import { defineStyle, defineStyleConfig } from "@chakra-ui/react";
 
 const baseStyle = defineStyle({
+  fontFamily: "inherit",
   borderRadius: "20px",
-  fontFamily: "Circe",
   fontWeight: "400",
   letterSpacing: "1.6px",
   textTransform: "uppercase",

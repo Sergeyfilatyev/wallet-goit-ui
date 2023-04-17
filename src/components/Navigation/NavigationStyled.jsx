@@ -1,6 +1,7 @@
 import { Flex, Link, Icon } from "@chakra-ui/react";
 import { useBoolean } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
@@ -45,7 +46,7 @@ export const NavigationHome = ({ linkName }) => {
   useEffect(() => {
     location.pathname === "/dashboard/home" ? setActive.on() : setActive.off();
   }, [location.pathname, setActive]);
-
+  const { i18n } = useTranslation();
   return (
     <Flex
       alignItems="center"
@@ -59,7 +60,7 @@ export const NavigationHome = ({ linkName }) => {
           <Link
             to="home"
             as={NavLink}
-            fontFamily="Poppins"
+            fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
             fontSize={{ xs: "0px", m: "18px" }}
             lineHeight="1.5"
           >
@@ -73,7 +74,7 @@ export const NavigationHome = ({ linkName }) => {
           <Link
             to="home"
             as={NavLink}
-            fontFamily="Poppins"
+            fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
             fontSize={{ xs: "0px", m: "18px" }}
             lineHeight="1.5"
             fontWeight="700"
@@ -119,7 +120,7 @@ export const NavigationStatistics = ({ linkName }) => {
       ? setActive.on()
       : setActive.off();
   }, [location.pathname, setActive]);
-
+  const { i18n } = useTranslation();
   return (
     <Flex
       alignItems="center"
@@ -135,7 +136,7 @@ export const NavigationStatistics = ({ linkName }) => {
           <Link
             to="statistics"
             as={NavLink}
-            fontFamily="Poppins"
+            fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
             fontSize={{ xs: "0px", m: "18px" }}
             lineHeight="1.5"
           >
@@ -149,7 +150,7 @@ export const NavigationStatistics = ({ linkName }) => {
           <Link
             to="statistics"
             as={NavLink}
-            fontFamily="Poppins"
+            fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
             fontSize={{ xs: "0px", m: "18px" }}
             lineHeight="1.5"
             fontWeight="700"
@@ -195,7 +196,7 @@ export const NavigationCurrency = ({ linkName }) => {
       ? setActive.on()
       : setActive.off();
   }, [location.pathname, setActive]);
-
+  const { i18n } = useTranslation();
   return (
     <Flex
       alignItems="center"
@@ -211,7 +212,7 @@ export const NavigationCurrency = ({ linkName }) => {
           <Link
             to="currency"
             as={NavLink}
-            fontFamily="Poppins"
+            fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
             fontSize={{ xs: "0px", m: "18px" }}
             lineHeight="1.5"
           >
@@ -225,7 +226,7 @@ export const NavigationCurrency = ({ linkName }) => {
           <Link
             to="currency"
             as={NavLink}
-            fontFamily="Poppins"
+            fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
             fontSize={{ xs: "0px", m: "18px" }}
             lineHeight="1.5"
             fontWeight="700"

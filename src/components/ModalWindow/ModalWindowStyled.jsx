@@ -1,4 +1,5 @@
 import { Box, Flex, ModalCloseButton, ModalContent } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 export const ModalContentBox = ({ children }) => {
   return (
@@ -16,10 +17,11 @@ export const ModalContentBox = ({ children }) => {
 };
 
 export const ModalHeaderBox = ({ children }) => {
+  const { i18n } = useTranslation();
   return (
     <Box
       textAlign="center"
-      fontFamily="Poppins"
+      fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
       fontSize={{ base: "24px", s: "30px" }}
       fontWeight="400"
     >
@@ -49,8 +51,15 @@ export const MadalBodyBox = ({ children }) => {
 };
 
 export const ModalFooterButtonBox = ({ children }) => {
+  const { i18n } = useTranslation();
   return (
-    <Flex flexDirection="column" alignItems="center" gap="20px" as="div">
+    <Flex
+      flexDirection="column"
+      fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
+      alignItems="center"
+      gap="20px"
+      as="div"
+    >
       {children}
     </Flex>
   );

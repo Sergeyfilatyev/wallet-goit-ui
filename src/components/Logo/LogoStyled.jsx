@@ -1,5 +1,6 @@
 import { Image, Heading, Flex } from "@chakra-ui/react";
 import logo from "../../assets/images/logo.svg";
+import { useTranslation } from "react-i18next";
 
 export const LogoBox = ({ children }) => {
   return (
@@ -26,9 +27,10 @@ export const LogoImage = () => {
 };
 
 export const LogoText = ({ text }) => {
+  const { i18n } = useTranslation();
   return (
     <Heading
-      fontFamily="Poppins"
+      fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
       fontWeight="700"
       fontSize={{ xs: "22px", s: "30px" }}
       lineHeight="1.5"

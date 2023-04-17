@@ -46,7 +46,7 @@ export const CurrencyTableHeadValue = ({ value }) => {
       lineHeight="1.5"
       textAlign="center"
       display="block"
-      width="74px"
+      width="80px"
       as="p"
     >
       {value}

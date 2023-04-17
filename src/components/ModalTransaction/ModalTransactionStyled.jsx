@@ -7,6 +7,7 @@ import {
   Select,
   Icon,
 } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 export const ModalAddOpentButton = ({ onClick }) => {
   return (
@@ -20,8 +21,10 @@ export const ModalAddOpentButton = ({ onClick }) => {
 };
 
 export const ModalComponentsBox = ({ children }) => {
+  const { i18n } = useTranslation();
   return (
     <Flex
+      fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
       as="div"
       flexDirection="column"
       alignItems="center"

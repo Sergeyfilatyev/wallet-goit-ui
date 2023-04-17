@@ -229,7 +229,7 @@ export const DiagramRenderer = ({
   const [isLargerThan1200] = useMediaQuery("(min-width: 1050px)");
   const [isLargerThan960] = useMediaQuery("(min-width: 960px)");
   const [isLargerThan767] = useMediaQuery("(max-width: 767px)");
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -259,7 +259,7 @@ export const DiagramRenderer = ({
             position="relative"
           >
             <Text
-              fontFamily="Poppins"
+              fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
               fontStyle="normal"
               fontWeight="400"
               fontSize="30px"
@@ -329,7 +329,7 @@ export const DiagramRenderer = ({
             pos="relative"
           >
             <Text
-              fontFamily="Poppins"
+              fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
               fontStyle="normal"
               fontWeight="400"
               fontSize="30px"
@@ -397,7 +397,7 @@ export const NoDataDiagram = ({ totalExpense }) => {
   const [isLargerThan1200] = useMediaQuery("(min-width: 960px)");
   const [isLargerThan960] = useMediaQuery("(min-width: 768px)");
   const [isLargerThan767] = useMediaQuery("(max-width: 767px)");
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <Box
       h={
@@ -421,7 +421,7 @@ export const NoDataDiagram = ({ totalExpense }) => {
       position="relative"
     >
       <Text
-        fontFamily="Poppins"
+        fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
         fontStyle="normal"
         fontWeight="400"
         fontSize="30px"

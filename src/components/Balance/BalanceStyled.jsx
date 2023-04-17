@@ -34,9 +34,10 @@ export const BalanceBoxTitle = () => {
 };
 
 export const BalanceBoxNumber = ({ value }) => {
+  const { i18n } = useTranslation();
   return (
     <Box
-      fontFamily="Poppins"
+      fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
       fontStyle="normal"
       fontWeight="400px"
       fontSize="30px"

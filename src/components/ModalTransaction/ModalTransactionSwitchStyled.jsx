@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Switch from "react-switch";
 import { Flex, Icon, Text } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const ModalSwitchIconPlus = () => {
   return (
@@ -88,15 +89,27 @@ export const ModalSwitch = ({
   const handleChange = () => {
     setChecked(!checked);
   };
-
+  const { i18n } = useTranslation();
   return (
     <Flex gap="24px" justifyContent="center" alignItems="center">
       {checked ? (
-        <Text fontWeight="700" fontSize="16px" lineHeight="1.5" color="#E0E0E0">
+        <Text
+          fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
+          fontWeight="700"
+          fontSize="16px"
+          lineHeight="1.5"
+          color="#E0E0E0"
+        >
           {incomeLabel}
         </Text>
       ) : (
-        <Text fontWeight="700" fontSize="16px" lineHeight="1.5" color="#24CCA7">
+        <Text
+          fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
+          fontWeight="700"
+          fontSize="16px"
+          lineHeight="1.5"
+          color="#24CCA7"
+        >
           {incomeLabel}
         </Text>
       )}
@@ -117,11 +130,23 @@ export const ModalSwitch = ({
         activeBoxShadow={"#FFFFFF"}
       />
       {checked ? (
-        <Text fontWeight="700" fontSize="16px" lineHeight="1.5" color="#FF6596">
+        <Text
+          fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
+          fontWeight="700"
+          fontSize="16px"
+          lineHeight="1.5"
+          color="#FF6596"
+        >
           {expenseLabel}
         </Text>
       ) : (
-        <Text fontWeight="700" fontSize="16px" lineHeight="1.5" color="#E0E0E0">
+        <Text
+          fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
+          fontWeight="700"
+          fontSize="16px"
+          lineHeight="1.5"
+          color="#E0E0E0"
+        >
           {expenseLabel}
         </Text>
       )}

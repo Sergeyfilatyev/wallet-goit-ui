@@ -1,15 +1,16 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Box, Flex } from "@chakra-ui/react";
-
 import { ModalAddTransaction } from "../ModalTransaction";
-
 import purpleEllips from "../../assets/images/purple-ellips-background.png";
 import orangeEllips from "../../assets/images/orange-ellips-background.png";
+import { useTranslation } from "react-i18next";
 
 export const DashboardBox = ({ children }) => {
+  const { i18n } = useTranslation();
   return (
     <Box
+      fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
       background="#E7EAF2"
       backgroundImage={{ s: purpleEllips }}
       backgroundRepeat={{ s: "no-repeat" }}
@@ -65,7 +66,7 @@ export const DashboardAddTransactionButton = () => {
       return "none";
     }
     return "block";
-  }
+  };
 
   return (
     <Box

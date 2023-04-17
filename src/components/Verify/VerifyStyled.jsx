@@ -1,4 +1,5 @@
 import { Button, Box } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 export const VerifyButton = ({ name, func }) => {
   return (
@@ -14,10 +15,11 @@ export const VerifyButton = ({ name, func }) => {
 };
 
 export const VerifyText = ({ text }) => {
+  const { i18n } = useTranslation();
   return (
     <Box
       as="p"
-      fontFamily="Poppins"
+      fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
       fontWeight="600"
       fontSize={{ base: "18px", s: "28px" }}
       lineHeight="1.5"
