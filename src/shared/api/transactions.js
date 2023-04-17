@@ -11,7 +11,8 @@ export const addTransaction = async (transaction) => {
 };
 
 export const deleteTransaction = async (id) => {
-  return await instance.delete(`/transactions/${id}`);
+  const {data} = await instance.delete(`/transactions/${id}`);
+  return data;
 };
 
 export const updateTransaction = async (id, updatedData) => {

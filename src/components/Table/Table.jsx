@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useDisclosure } from "@chakra-ui/react";
 import EllipsisText from "react-ellipsis-text";
 
 import { Button } from "@chakra-ui/react";
@@ -20,6 +21,7 @@ import {
   TransactionsLastTr,
   HeaderButton,
 } from "./TableStyled";
+import { ModalDelete } from "./ModalDelete";
 import { useTranslation } from "react-i18next";
 import { DashboardEditTransactionButton } from "./TableMobileStyled";
 
@@ -33,8 +35,10 @@ export const Table = () => {
 
   const [itemOffset, setItemOffset] = useState(0);
 
-  const dispatch = useDispatch();
+  const [itemToDeleteId, setItemToDeleteId] = useState("");
+
   const transactions = useSelector(selectTransactions);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { t } = useTranslation();
 
@@ -106,11 +110,16 @@ export const Table = () => {
                   <TransactionsTdButton>
                     {/* <DeleteButton
                     name={t("delete")}
-                    //onClick={() => dispatch(deleteTransaction(item._id))}
+                    onClick={() => dispatch(deleteTransaction(item._id))}
                     id={item._id}
                   /> */}
+                    <ModalDelete
+                      id={itemToDeleteId}
+                      isOpen={isOpen}
+                      onClose={onClose}
+                    />
                     <Button
-                      type="submit"
+                      type="button"
                       variant="greenButton"
                       w="67px"
                       h="26px"
@@ -118,7 +127,10 @@ export const Table = () => {
                       lineHeight="1.5"
                       letterSpacing="0.6px"
                       textTransform="Capitalize"
-                      onClick={() => dispatch(deleteTransaction(item._id))}
+                      onClick={() => {
+                        setItemToDeleteId(item._id);
+                        onOpen();
+                      }}
                     >
                       {t("delete")}
                     </Button>
@@ -133,7 +145,7 @@ export const Table = () => {
           </tbody>
         </TransactionsTable>
       ) : (
-        <p>There are no transactions yet</p>
+        <p>{t("transactionNull")}</p>
       )}
       {transactions.length > 10 && <TablePagination handlePageClick={handlePageClick} pageCount={pageCount} />}
     </>
