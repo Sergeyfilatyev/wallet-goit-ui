@@ -17,6 +17,7 @@ import {
   HeaderButton,
 } from "./TableStyled";
 import { ModalDelete } from "./ModalDelete";
+import { NoTransactions } from "./NoTransactions";
 import { useTranslation } from "react-i18next";
 import { DashboardEditTransactionButton } from "./TableMobileStyled";
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
@@ -102,7 +103,7 @@ export const Table = () => {
           </tbody>
         </TransactionsTable>
       ) : (
-        <p>{t("transactionNull")}</p>
+        <NoTransactions />
       )}
       {transactions.length > 10 && (
         <TablePagination

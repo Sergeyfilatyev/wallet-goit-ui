@@ -58,6 +58,6 @@
   "errorIncorrect": "The login or password is incorrect",
   "errorAlready": "is already registered",
   "amountIsReq": "amount is required",
-  "transactionNull": "There are no transactions yet",
+  "transactionNull": "You don't have any transactions yet",
   "deleteTr": "Do you want to delete the transaction?"
 }

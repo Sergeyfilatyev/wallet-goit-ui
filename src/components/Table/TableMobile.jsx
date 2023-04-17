@@ -18,6 +18,7 @@ import {
   DataRowDivider,
 } from "./TableMobileStyled";
 import { ModalDelete } from "./ModalDelete";
+import { NoTransactions } from "./NoTransactions";
 
 export const TableMobile = () => {
   const [isOpenEditForm, setIsOpenEditForm] = useState(false);
@@ -109,7 +110,7 @@ export const TableMobile = () => {
           ))}
         </>
       ) : (
-        <Text fontSize="2xl">There are no transactions yet 💰</Text>
+        <NoTransactions />
       )}
       {transactions.length > 5 && (
         <TablePagination
