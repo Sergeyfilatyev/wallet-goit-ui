@@ -77,7 +77,7 @@ instance.interceptors.response.use(
       try {
         const { data } = await instance.get("/users/refresh");
         error.config.headers["Authorization"] = `Bearer ${data.data.token}`;
-        localStorage.setItem("token", "generated");
+        setToken(data.data.token);
         return instance.request(originalRequest);
       } catch (error) {
         throw error;
