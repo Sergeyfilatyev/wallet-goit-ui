@@ -1,3 +1,4 @@
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
@@ -6,6 +7,10 @@ import {
   NumberInputField,
   Select,
   Icon,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
@@ -30,6 +35,7 @@ export const ModalComponentsBox = ({ children }) => {
       alignItems="center"
       pt="40px"
       gap="40px"
+      w="100%"
     >
       {children}
     </Flex>

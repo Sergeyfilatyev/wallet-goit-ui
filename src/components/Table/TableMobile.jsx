@@ -24,15 +24,15 @@ export const TableMobile = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const transactions = useSelector(selectTransactions);
   const { t } = useTranslation();
-  const endOffset = itemOffset + 5;
-  const pageCount = Math.ceil(transactions.length / 5);
+  const endOffset = itemOffset + 10;
+  const pageCount = Math.ceil(transactions.length / 10);
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * 5) % transactions.length;
+    const newOffset = (event.selected * 10) % transactions.length;
     setItemOffset(newOffset);
     scroll.scrollToTop();
   };
   const goToPreviousPage = () => {
-    setItemOffset(itemOffset - 5);
+    setItemOffset(itemOffset - 10);
   };
 
   const transactionsPaginated = transactions
@@ -105,7 +105,7 @@ export const TableMobile = () => {
       ) : (
         <NoTransactions />
       )}
-      {transactions.length > 5 && (
+      {transactions.length > 10 && (
         <TablePagination
           handlePageClick={handlePageClick}
           pageCount={pageCount}

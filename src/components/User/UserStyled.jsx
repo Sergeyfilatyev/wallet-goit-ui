@@ -14,6 +14,7 @@ export const UserName = ({ name }) => {
       fontSize="18px"
       alignItems="1.5"
       color="#BDBDBD"
+      ml={{ xs: "5px" }}
       mr={{ xs: "8px", m: "12px" }}
       as="p"
     >
