@@ -13,7 +13,7 @@ export const NavigationBox = ({ children }) => {
       mb={{ xs: "12px", m: "28px" }}
       flexDirection={{ xs: "row", m: "column" }}
       width="100%"
-      gap="12px"
+      gap="36px"
     >
       {children}
     </Flex>
@@ -44,7 +44,7 @@ export const NavigationHome = ({ linkName }) => {
   const location = useLocation();
 
   useEffect(() => {
-    location.pathname === "/dashboard/home" ? setActive.on() : setActive.off();
+    location.pathname === "/dashboard" ? setActive.on() : setActive.off();
   }, [location.pathname, setActive]);
   const { i18n } = useTranslation();
   return (
@@ -52,7 +52,7 @@ export const NavigationHome = ({ linkName }) => {
       alignItems="center"
       onMouseEnter={setActive.on}
       onMouseLeave={
-        location.pathname !== "/dashboard/home" ? setActive.off : setActive.on
+        location.pathname !== "/dashboard" ? setActive.off : setActive.on
       }
     >
       {!active && (
@@ -114,7 +114,6 @@ const NavigationStatisticsIcon = ({ fill, filter }) => {
 export const NavigationStatistics = ({ linkName }) => {
   const [active, setActive] = useBoolean();
   const location = useLocation();
-
   useEffect(() => {
     location.pathname === "/dashboard/statistics"
       ? setActive.on()

@@ -1,8 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteTransaction,
-  fetchAllTransactions,
-} from "../../redux/transactions/transactions-operations";
+import { deleteTransaction } from "../../redux/transactions/transactions-operations";
 import "react-datetime/css/react-datetime.css";
 import { ModalWindow } from "../Modal";
 import { ModalExitText } from "./ModalExitStyled";

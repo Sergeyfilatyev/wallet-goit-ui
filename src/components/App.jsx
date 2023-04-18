@@ -69,6 +69,7 @@ function App() {
                 </PublicRoute>
               }
             />
+<<<<<<< HEAD
             <Route
               path="/dashboard"
               element={
@@ -80,6 +81,47 @@ function App() {
               {matches.xs && <Route path="home" element={<TableMobile />} />}
               <Route path="statistics" element={<PrivateRoute ><StatisticsPageDesktop /></PrivateRoute>} />
               <Route path="currency" element={<Currency />} />
+=======
+            <Route path="/dashboard" element={<DashboardPage />}>
+              {matches.m && (
+                <Route
+                  index
+                  element={
+                    <PrivateRoute>
+                      <Table />
+                    </PrivateRoute>
+                  }
+                />
+              )}
+              {matches.xs && (
+                <Route
+                  index
+                  element={
+                    <PrivateRoute>
+                      <TableMobile />
+                    </PrivateRoute>
+                  }
+                />
+              )}
+
+              <Route
+                path="statistics"
+                element={
+                  <PrivateRoute>
+                    <StatisticsPageDesktop />
+                  </PrivateRoute>
+                }
+              />
+
+              <Route
+                path="currency"
+                element={
+                  <PrivateRoute>
+                    <Currency />
+                  </PrivateRoute>
+                }
+              />
+>>>>>>> main
             </Route>
             <Route
               path="*"

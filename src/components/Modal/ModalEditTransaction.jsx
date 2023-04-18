@@ -1,5 +1,4 @@
 import { ModalWindow } from "../Modal";
-import { EditIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, IconButton, useDisclosure } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
@@ -13,6 +12,7 @@ import {
   ModalComponentsBox,
   ModalDate,
   ModalSelectCategory,
+  EditIcon,
 } from "./ModalTransactionStyled";
 import { ModalSwitch } from "./ModalTransactionSwitchStyled";
 import { FieldErrorMessage } from "../FieldErrorMessage/FieldErrorMessage";
@@ -44,7 +44,7 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
   const categories = useSelector(selectCategories);
 
   useEffect(() => {
-    isExpense ? setCategory("Expense") : setCategory("income");
+    isExpense ? setCategory("other") : setCategory("income");
   }, [isExpense]);
 
   const editTransaction = () => {

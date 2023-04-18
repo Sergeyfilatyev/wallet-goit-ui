@@ -136,18 +136,18 @@ export const RegisterForm = () => {
                   error={`${emailWithError} ${t("errorAlready")}`}
                 />
               )}
-              {isError500 && (
-                <FieldErrorMessage
-                  error={t("Ooops... Server problems! Try again later")}
-                />
-              )}
+              {isError500 && <FieldErrorMessage error={t("serverError")} />}
               <FieldErrorMessage error={<ErrorMessage name="email" />} />
             </LoginRegisterFormEmailInput>
             <LoginRegisterFormPasswordInput placeholder={t("password")}>
               <FieldErrorMessage error={<ErrorMessage name="password" />} />
               <FirstPasswordProgressBar
                 value={firstPasswordProgress}
-                colorScheme={firstPasswordProgress === 100 ? "green" : "pink"}
+                colorScheme={
+                  firstPasswordProgress === 100
+                    ? "progressBarGreen"
+                    : "progressBarPink"
+                }
               />
             </LoginRegisterFormPasswordInput>
             <LoginRegisterFormConfirmPasswordInput
@@ -158,7 +158,11 @@ export const RegisterForm = () => {
               />
               <SecondPasswordProgressBar
                 value={secondPasswordProgress}
-                colorScheme={secondPasswordProgress === 100 ? "green" : "pink"}
+                colorScheme={
+                  secondPasswordProgress === 100
+                    ? "progressBarGreen"
+                    : "progressBarPink"
+                }
               />
             </LoginRegisterFormConfirmPasswordInput>
             <LoginRegisterFormNameInput placeholder={t("name")}>
