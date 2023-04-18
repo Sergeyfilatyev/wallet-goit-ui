@@ -5,7 +5,7 @@ import currencyBackground from "../../assets/images/currency-background.svg";
 export const CurrencyBox = ({ children }) => {
   return (
     <Box
-      width={{ xs: "100%", l: "390px" }}
+      width={{ xs: "100%", xl: "390px" }}
       height={{ xs: "175px", m: "180px", l: "330px" }}
       backgroundColor="#4A56E2"
       borderRadius="30px"
