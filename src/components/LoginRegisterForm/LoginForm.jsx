@@ -3,7 +3,11 @@ import { Formik, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { login } from "../../redux/auth/auth-operations";
-import { validationSchemaLogin } from "../../utils/validationSchema";
+import {
+  validationSchemaLogin,
+  validationSchemaLoginUa,
+  validationSchemaLoginRu,
+} from "../../utils/validationSchema";
 import { Logo } from "../Logo";
 import {
   LoginRegisterFormBox,
@@ -24,7 +28,7 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
   const [isError400, setIsError400] = useState(false);
   const [isError403, setIsError403] = useState(false);
-
+  const { i18n } = useTranslation();
   return (
     <LoginRegisterFormBox height={{ base: "100%", s: "520px" }}>
       <LoginRegisterFormLogoBox>
@@ -35,7 +39,13 @@ export const LoginForm = () => {
           email: "",
           password: "",
         }}
-        validationSchema={validationSchemaLogin}
+        validationSchema={
+          i18n.language === "en"
+            ? validationSchemaLogin
+            : i18n.language === "ua"
+            ? validationSchemaLoginUa
+            : validationSchemaLoginRu
+        }
         onSubmit={(values, { setSubmitting, resetForm }) => {
           dispatch(login(values)).then((response) => {
             if (response.payload.status === 400) {

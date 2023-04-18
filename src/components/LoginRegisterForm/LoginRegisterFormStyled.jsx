@@ -13,10 +13,13 @@ import { Field } from "formik";
 import { Link } from "react-router-dom";
 import { ViewIcon, ViewOffIcon, Icon } from "@chakra-ui/icons";
 import { FcGoogle } from "react-icons/fc";
+import { useTranslation } from "react-i18next";
 
 export const LoginRegisterFormBox = ({ children, height }) => {
+  const { i18n } = useTranslation();
   return (
     <Box
+      fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
       borderRadius={{ base: "none", s: "20px" }}
       bgColor="#FFFFFF"
       w={{ base: "100%", s: "480px", m: "533px" }}

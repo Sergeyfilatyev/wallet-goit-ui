@@ -4,7 +4,11 @@ import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/auth-operations";
 import { useState } from "react";
 import { ErrorMessage } from "formik";
-import { validationSchemaRegister } from "../../utils/validationSchema";
+import {
+  validationSchemaRegister,
+  validationSchemaRegisterRu,
+  validationSchemaRegisterUa,
+} from "../../utils/validationSchema";
 import { Logo } from "../Logo";
 import {
   LoginRegisterFormBox,
@@ -78,7 +82,7 @@ export const RegisterForm = () => {
       target.value !== firstPassword && setSecondPasswordProgress(0);
     }
   };
-
+  const { i18n } = useTranslation();
   return (
     <LoginRegisterFormBox height={{ base: "100%", s: "650px" }}>
       <LoginRegisterFormLogoBox>
@@ -91,7 +95,13 @@ export const RegisterForm = () => {
           confirmPassword: "",
           name: "",
         }}
-        validationSchema={validationSchemaRegister}
+        validationSchema={
+          i18n.language === "en"
+            ? validationSchemaRegister
+            : i18n.language === "ua"
+            ? validationSchemaRegisterUa
+            : validationSchemaRegisterRu
+        }
         onSubmit={(values, { setSubmitting, resetForm }) => {
           const { name, password, email } = values;
           const data = { name, password, email };
