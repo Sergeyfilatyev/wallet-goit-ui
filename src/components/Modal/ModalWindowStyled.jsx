@@ -9,6 +9,9 @@ export const ModalContentBox = ({ children }) => {
         pb="60px"
         px="73px"
         borderRadius={{ base: "none", s: "20px" }}
+        minH={{ xs: "100vh", s: "auto" }}
+        maxH={{ xs: "100%", s: "auto" }}
+        position={"fixed"}
       >
         {children}
       </ModalContent>
@@ -41,6 +44,7 @@ export const ModalCloseButtonStyle = () => {
         border: "1px solid #4A56E2;",
         borderRadius: "20px",
         boxShadow: "0px 6px 15px  rgba(74, 86, 226, 0.35)",
+        
       }}
     />
   );

@@ -72,14 +72,13 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <PrivateRoute>
+                
                   <DashboardPage />
-                </PrivateRoute>
-              }
+                }
             >
               {matches.m && <Route path="home" element={<Table />} />}
               {matches.xs && <Route path="home" element={<TableMobile />} />}
-              <Route path="statistics" element={<StatisticsPageDesktop />} />
+              <Route path="statistics" element={<PrivateRoute ><StatisticsPageDesktop /></PrivateRoute>} />
               <Route path="currency" element={<Currency />} />
             </Route>
             <Route
