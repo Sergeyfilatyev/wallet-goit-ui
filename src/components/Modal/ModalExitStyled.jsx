@@ -21,9 +21,12 @@ export const ModalExitButton = ({ children, onClick }) => {
     <Flex
       justifyContent="center"
       alignItems="center"
-      width={{ xs: "18xp", m: "60px" }}
+      px={"5px"}
+      py={"5px"}
+      borderRadius={"10px"}
       onClick={onClick}
       cursor="pointer"
+      _hover={{ backgroundColor: "gray.100" }}
       as="button"
     >
       {children}
