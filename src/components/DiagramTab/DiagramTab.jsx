@@ -13,6 +13,8 @@ import {
 } from "./DiagramTabStyled";
 import { getStatistics } from "../../redux/statistics/statistics-operations";
 import { selectStatistics } from "../../redux/statistics/statistics-selectors";
+import { selectIsLoading } from "../../redux/statistics/statistics-selectors";
+import { Loader } from "../Loader";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const months = [
@@ -40,6 +42,7 @@ export function DiagramTab() {
   );
   const dispatch = useDispatch();
   const statistics = useSelector(selectStatistics);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(getStatistics({ year, selectedMonth }));
@@ -100,6 +103,8 @@ export function DiagramTab() {
   };
   return (
     <Box w="100%">
+      {isLoading && <Loader />}
+
       {Object.keys(statByCategory || {}).length > 0 ? (
         <>
           <Box

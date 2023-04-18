@@ -23,12 +23,17 @@ import { NoTransactions } from "./NoTransactions";
 import { useTranslation } from "react-i18next";
 import { DashboardEditTransactionButton } from "./TableMobileStyled";
 import { selectTransactions } from "../../redux/transactions/transactions-selectors";
+
+import { selectIsLoading } from "../../redux/transactions/transactions-selectors";
+import { Loader } from "../Loader";
 import { Flex } from "@chakra-ui/layout";
+
 
 export const Table = () => {
   const [itemOffset, setItemOffset] = useState(0);
 
   const transactions = useSelector(selectTransactions);
+  const isLoading = useSelector(selectIsLoading);
 
   const { t } = useTranslation();
   const endOffset = itemOffset + 10;
@@ -50,6 +55,10 @@ export const Table = () => {
     .filter((_, index) => index < endOffset && index >= itemOffset);
 
   return (
+
+    <>
+      {isLoading && <Loader />}
+
     <Flex flexDirection={"column"} justifyContent={"space-between"} alignItems={"center"} h={"85vh"}>
       {transactions.length > 0 ? (
         <TransactionsTable>
