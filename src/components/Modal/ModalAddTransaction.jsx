@@ -82,7 +82,12 @@ export const ModalAddTransaction = () => {
 
   return (
     <>
-      <ModalAddOpentButton onClick={onOpen} />
+      <ModalAddOpentButton
+        onClick={() => {
+          window.scrollTo(0, 0);
+          onOpen();
+        }}
+      />
       <ModalWindow
         modalHeader={t("addTr")}
         modalFunction={addNewTransaction}

@@ -77,7 +77,10 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
         icon={<EditIcon />}
         _hover={{ color: "#24CCA7" }}
         _active={{ bg: "transparent" }}
-        onClick={onOpen}
+        onClick={() => {
+          window.scrollTo(0, 0);
+          onOpen();
+        }}
         p="0px"
       />
 

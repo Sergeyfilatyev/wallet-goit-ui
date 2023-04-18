@@ -27,6 +27,7 @@ export const ModalDelete = ({ id, goToPreviousPage }) => {
         type="button"
         variant="deleteButton"
         onClick={() => {
+          window.scrollTo(0, 0);
           onOpen();
         }}
       >

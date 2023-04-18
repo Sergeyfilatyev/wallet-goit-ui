@@ -44,7 +44,6 @@ export const ModalCloseButtonStyle = () => {
         border: "1px solid #4A56E2;",
         borderRadius: "20px",
         boxShadow: "0px 6px 15px  rgba(74, 86, 226, 0.35)",
-        
       }}
     />
   );
