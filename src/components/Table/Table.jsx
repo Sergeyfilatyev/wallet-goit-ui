@@ -56,15 +56,8 @@ export const Table = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
-
-      <Flex
-        flexDirection={"column"}
-        // justifyContent={"space-between"}
-        alignItems={"center"}
-        h="100%"
-        w="100%"
-      >
+      <Flex flexDirection={"column"} alignItems={"center"} h="100%" w="100%">
+        {isLoading && <Loader />}
         {transactions.length > 0 ? (
           <TransactionsTable>
             <thead>

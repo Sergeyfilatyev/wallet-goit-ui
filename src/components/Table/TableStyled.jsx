@@ -121,14 +121,6 @@ export const TransactionsTr = ({ children }) => {
     <Box
       borderBottom="1px solid #DCDCDF"
       boxShadow="0px 1px 0px rgba(255, 255, 255, 0.6)"
-      // _after={{
-      //   content: '""',
-      //   w: "700px",
-      //   height: "4px",
-      //   bgColor: "red",
-      //   display: "inline-block",
-      //   mr: "5px",
-      // }}
       as="tr"
     >
       {children}
@@ -235,7 +227,7 @@ export const TransactionsTdButton = ({ children }) => {
       justifyContent="center"
       alignItems="center"
       as="td"
-      maxWidth="140px"
+      maxWidth="152px"
       pr="20px"
     >
       {children}

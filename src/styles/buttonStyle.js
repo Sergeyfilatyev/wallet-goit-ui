@@ -44,7 +44,6 @@ const deleteButton = defineStyle({
   px: "20px",
   bgColor: "#24CCA7",
   textTransform: "capitalize",
-
   fontSize: "14px",
   color: "#FFFFFF",
   _hover: {
