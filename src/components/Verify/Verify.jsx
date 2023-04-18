@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { stateLogin } from "../../redux/auth/auth-selectors";
 import axios from "axios";
@@ -14,6 +15,7 @@ axios.defaults.baseURL = process.env.REACT_APP_URL;
 
 export const Verify = () => {
   const userState = useSelector(stateLogin);
+    const navigate = useNavigate();
 
   const fetchResendEmail = async () => {
     if (userState.error) {
@@ -33,7 +35,9 @@ export const Verify = () => {
           email: userState.user.email,
         })
         .then(function (response) {
-          console.log(response);
+          if (response.status === 200) {
+            return navigate("/");;
+          }
         })
         .catch(function (error) {
           console.log(error);
