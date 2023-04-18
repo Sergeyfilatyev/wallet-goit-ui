@@ -14,6 +14,8 @@ const LoginPage = () => {
       <Media
         queries={{
           m: "(min-width: 768px)",
+          xl: "(min-width: 1280px)",
+          ml: "(min-height: 960px)",
         }}
       >
         {(matches) => (
@@ -23,6 +25,8 @@ const LoginPage = () => {
             backgroundRepeat={{ s: "no-repeat" }}
             backgroundPosition={{ s: "bottom left" }}
             backgroundSize={{ s: "75%", xl: "45%" }}
+            minHeight="100vh"
+            maxHeight="100%"
             alignItems="center"
           >
             <Flex
@@ -31,7 +35,8 @@ const LoginPage = () => {
               backgroundPosition={{ s: "top right" }}
               backgroundSize={{ xs: "65%", xl: "40%" }}
               py={{ m: "60px", xl: "0" }}
-              h="100vh"
+              minHeight="100vh"
+              maxHeight="100%"
               justifyContent={{ xs: "center", m: "start", xl: "space-between" }}
               alignItems="center"
               flexDirection={{ m: "column", xl: "row" }}
@@ -44,13 +49,26 @@ const LoginPage = () => {
                   justifyContent="center"
                   mb={{ m: "50px", xl: "0" }}
                 >
-                  <Image
-                    src={loginPicture}
-                    alt="Login picture"
-                    maxWidth={{ m: "260px", xl: "435px" }}
-                    mb={{ base: "0", xl: "28px" }}
-                    mr={{ m: "40px" }}
-                  />
+                  {matches.xl || matches.ml ? (
+                    <Image
+                      src={loginPicture}
+                      alt="Login picture"
+                      maxWidth={{ m: "260px", xl: "435px" }}
+                      mb={{ base: "0", xl: "28px" }}
+                      mr={{ m: "40px" }}
+                    />
+                  ) : (
+                    <></>
+                  )}
+                  {/* {matches.ml && (
+                    <Image
+                      src={loginPicture}
+                      alt="Login picture"
+                      maxWidth={{ m: "260px", xl: "435px" }}
+                      mb={{ base: "0", xl: "28px" }}
+                      mr={{ m: "40px" }}
+                    />
+                  )} */}
                   <SecondaryLogo />
                 </Flex>
               )}

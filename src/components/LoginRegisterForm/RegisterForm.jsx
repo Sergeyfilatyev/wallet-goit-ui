@@ -80,7 +80,7 @@ export const RegisterForm = () => {
   };
 
   return (
-    <LoginRegisterFormBox height={{ base: "100%", s: "686px" }}>
+    <LoginRegisterFormBox height={{ base: "100%", s: "650px" }}>
       <LoginRegisterFormLogoBox>
         <Logo />
       </LoginRegisterFormLogoBox>

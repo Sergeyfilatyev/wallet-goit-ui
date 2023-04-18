@@ -15,9 +15,10 @@ export const DashboardBox = ({ children }) => {
       backgroundImage={{ s: purpleEllips }}
       backgroundRepeat={{ s: "no-repeat" }}
       backgroundPosition={{ s: "bottom left" }}
-      backgroundSize={{ s: "75%", l: "45%" }}
+      backgroundSize={{ s: "75%", xl: "45%" }}
       width="100%"
-      height="100%"
+      minHeight="100vh"
+      maxHeight="100%"
       display="relative"
       as="div"
     >
@@ -25,18 +26,20 @@ export const DashboardBox = ({ children }) => {
         backgroundImage={{ s: orangeEllips }}
         backgroundRepeat={{ s: "no-repeat" }}
         backgroundPosition={{ s: "top right" }}
-        backgroundSize={{ xs: "65%", l: "40%" }}
+        backgroundSize={{ xs: "65%", xl: "40%" }}
         width="100%"
-        height="100%"
+        minHeight="100vh"
+        maxHeight="100%"
         as="div"
       >
         <Box
-          pb={{ xs: "12px", m: "32px", l: "40px" }}
-          pt={{ xs: "72px", m: "112px", l: "120px" }}
+          pb={{ xs: "12px", m: "32px", xl: "40px" }}
+          pt={{ xs: "72px", m: "112px", xl: "120px" }}
           background={{ xs: "rgba(255, 255, 255, 0.4)" }}
           backdropFilter={{ xs: "blur(25px)" }}
           width="100%"
-          height="100%"
+          minHeight="100vh"
+          maxHeight="100%"
           as="div"
         >
           {children}
@@ -51,9 +54,12 @@ export const DashboardDivider = () => {
     <Box
       border="1px solid #E7E5F2"
       boxShadow="-1px 0px 0px rgba(0, 0, 0, 0.05), 1px 0px 0px rgba(255, 255, 255, 0.6);"
-      h="100vh"
-      mx={{ l: "20px", xl: "70px" }}
-      mt="-120px"
+      h="auto"
+      mx={{ xl: "60px" }}
+      mt="-100px"
+      mb="-40px"
+      minHeight="100vh"
+      maxHeight="100%"
       as="div"
     />
   );
@@ -82,7 +88,7 @@ export const DashboardAddTransactionButton = () => {
 
 export const DashboardContent = ({ children }) => {
   return (
-    <Flex flexDirection={{ xs: "column", l: "row" }} width="100%">
+    <Flex flexDirection={{ xs: "column", xl: "row" }} width="100%">
       {children}
     </Flex>
   );
@@ -99,9 +105,10 @@ export const DashboardNavigationBalanceBox = ({ children }) => {
 export const DashboardContentFirstPart = ({ children }) => {
   return (
     <Flex
-      flexDirection={{ m: "row", l: "column" }}
-      gap={{ xs: "0px", m: "32px", l: "0px" }}
-      width={{ xs: "100%", l: "280px", xl: "auto" }}
+      flexDirection={{ m: "row", xl: "column" }}
+      gap={{ xs: "0px", m: "32px", xl: "0px" }}
+      width={{ xs: "100%" }}
+      maxWidth={{ xl: "350px" }}
       marginBottom={{ m: "20px" }}
     >
       {children}
@@ -112,9 +119,9 @@ export const DashboardContentFirstPart = ({ children }) => {
 export const DashboardContentSecondPart = ({ children }) => {
   return (
     <Flex
-      // flexDirection={{ xs: "column" }}
-      flexWrap="wrap"
+      flexDirection={{ xs: "column", m: "row" }}
       justifyContent="center"
+      alignItems="center"
       gap="15px"
       width="100%"
     >

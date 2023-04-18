@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 export const TransactionsTable = ({ children }) => {
   return (
@@ -189,7 +189,8 @@ export const TransactionsTdType = ({ value }) => {
 export const TransactionsTdComment = ({ children }) => {
   return (
     <Box
-      maxWidth={{ m: "280px" }}
+      minWidth={{ m: "200px" }}
+      width="100%"
       pl="20px"
       height="52px"
       fontSize="16px"
@@ -211,7 +212,7 @@ export const TransactionsTdSum = ({ value, income }) => {
       fontSize="16px"
       lineHeight="1.5"
       color={income ? "#24CCA7" : "#FF6596"}
-      textAlign="left"
+      textAlign="right"
       as="td"
     >
       {value}
@@ -229,7 +230,22 @@ export const TransactionsLastTr = ({ children }) => {
 
 export const TransactionsTdButton = ({ children }) => {
   return (
-    <Box height="52px" textAlign="center" as="td">
+    <Flex
+      height="52px"
+      justifyContent="center"
+      alignItems="center"
+      as="td"
+      maxWidth="140px"
+      pr="20px"
+    >
+      {children}
+    </Flex>
+  );
+};
+
+export const Tbody = ({ children }) => {
+  return (
+    <Box as="tbody" id="table-content">
       {children}
     </Box>
   );

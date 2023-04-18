@@ -47,7 +47,7 @@ export const ModalAddTransaction = () => {
   const categories = useSelector(selectCategories);
 
   useEffect(() => {
-    isExpense ? setCategory("other expenses") : setCategory("income");
+    isExpense ? setCategory("other") : setCategory("income");
   }, [isExpense]);
 
   const addNewTransaction = () => {

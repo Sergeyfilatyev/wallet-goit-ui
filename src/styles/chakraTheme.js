@@ -21,6 +21,7 @@ export const chakraTheme = extendTheme({
       body: {
         fontFamily: "Circe",
         position: "relative",
+        h: "100vh",
       },
     },
   },

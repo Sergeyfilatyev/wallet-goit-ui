@@ -78,6 +78,7 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
         _hover={{ color: "#24CCA7" }}
         _active={{ bg: "transparent" }}
         onClick={onOpen}
+        p="0px"
       />
 
       <ModalWindow

@@ -41,9 +41,10 @@ const isOpenModalButton = defineStyle({
 
 const deleteButton = defineStyle({
   h: "26px",
-  px: "12px",
+  px: "20px",
   bgColor: "#24CCA7",
   textTransform: "capitalize",
+
   fontSize: "14px",
   color: "#FFFFFF",
   _hover: {

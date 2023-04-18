@@ -26,7 +26,7 @@ export const LoginForm = () => {
   const [isError403, setIsError403] = useState(false);
 
   return (
-    <LoginRegisterFormBox height={{ base: "100%", s: "559px" }}>
+    <LoginRegisterFormBox height={{ base: "100%", s: "520px" }}>
       <LoginRegisterFormLogoBox>
         <Logo />
       </LoginRegisterFormLogoBox>

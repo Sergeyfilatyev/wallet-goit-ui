@@ -17,6 +17,7 @@ import {
   TransactionsTdSum,
   TransactionsTdButton,
   TransactionsLastTr,
+  Tbody,
 } from "./TableStyled";
 import { ModalDelete } from "../Modal";
 import { NoTransactions } from "./NoTransactions";
@@ -27,7 +28,6 @@ import { selectTransactions } from "../../redux/transactions/transactions-select
 import { selectIsLoading } from "../../redux/transactions/transactions-selectors";
 import { Loader } from "../Loader";
 import { Flex } from "@chakra-ui/layout";
-
 
 export const Table = () => {
   const [itemOffset, setItemOffset] = useState(0);
@@ -55,72 +55,82 @@ export const Table = () => {
     .filter((_, index) => index < endOffset && index >= itemOffset);
 
   return (
-
     <>
       {isLoading && <Loader />}
 
-    <Flex flexDirection={"column"} justifyContent={"space-between"} alignItems={"center"} h={"85vh"}>
-      {transactions.length > 0 ? (
-        <TransactionsTable>
-          <thead>
-            <tr>
-              <TransactionsThDate value={t("date")} />
-              <TransactionsThType value={t("type")} />
+      <Flex
+        flexDirection={"column"}
+        // justifyContent={"space-between"}
+        alignItems={"center"}
+        h="100%"
+        w="100%"
+      >
+        {transactions.length > 0 ? (
+          <TransactionsTable>
+            <thead>
+              <tr>
+                <TransactionsThDate value={t("date")} />
+                <TransactionsThType value={t("type")} />
 
-              <TransactionsThCategory value={t("category")} />
-              <TransactionsTh value={t("comment")} />
+                <TransactionsThCategory value={t("category")} />
+                <TransactionsTh value={t("comment")} />
 
-              <TransactionsThSum value={t("sum")} />
-            </tr>
-          </thead>
+                <TransactionsThSum value={t("sum")} />
+              </tr>
+            </thead>
 
-          <tbody id="table-content">
-            {transactionsPaginated.map((item) => {
-              const date = item.date;
+            <Tbody>
+              {transactionsPaginated.map((item) => {
+                const date = item.date;
 
-              return (
-                <TransactionsTr key={item._id}>
-                  <TransactionsTdDate
-                    value={`${date.day.toString().padStart(2, "0")}.${date.month
-                      .toString()
-                      .padStart(2, "0")}.${date.year}`}
-                  />
-                  <TransactionsTdType value={item.income ? "+" : "-"} />
-                  <TransactionsTd value={t(item.category)} />
-                  <TransactionsTdComment>
-                    <EllipsisText text={item.comment} length={50} />
-                  </TransactionsTdComment>
-
-                  <TransactionsTdSum
-                    value={`${item.amount}.00`}
-                    income={item.income}
-                  />
-
-                  <DashboardEditTransactionButton transactionToUpdate={item} />
-                  <TransactionsTdButton>
-                    <ModalDelete
-                      id={item._id}
-                      goToPreviousPage={goToPreviousPage}
+                return (
+                  <TransactionsTr key={item._id}>
+                    <TransactionsTdDate
+                      value={`${date.day
+                        .toString()
+                        .padStart(2, "0")}.${date.month
+                        .toString()
+                        .padStart(2, "0")}.${date.year}`}
                     />
-                  </TransactionsTdButton>
-                </TransactionsTr>
-              );
-            })}
+                    <TransactionsTdType value={item.income ? "+" : "-"} />
+                    <TransactionsTd value={t(item.category)} />
+                    <TransactionsTdComment>
+                      <EllipsisText text={item.comment} length={50} />
+                    </TransactionsTdComment>
 
-            <TransactionsLastTr>
-              <td></td>
-            </TransactionsLastTr>
-          </tbody>
-        </TransactionsTable>
-      ) : (
-        <NoTransactions />
-      )}
-      {transactions.length > 10 && (
-        <TablePagination
-          handlePageClick={handlePageClick}
-          pageCount={pageCount}
-        />
-      )}
-    </Flex>
+                    <TransactionsTdSum
+                      value={`${item.amount}.00`}
+                      income={item.income}
+                    />
+
+                    <TransactionsTdButton>
+                      <DashboardEditTransactionButton
+                        transactionToUpdate={item}
+                      />
+                      <ModalDelete
+                        id={item._id}
+                        goToPreviousPage={goToPreviousPage}
+                      />
+                    </TransactionsTdButton>
+                  </TransactionsTr>
+                );
+              })}
+
+              <TransactionsLastTr>
+                <td></td>
+              </TransactionsLastTr>
+            </Tbody>
+          </TransactionsTable>
+        ) : (
+          <NoTransactions />
+        )}
+        {transactions.length > 10 && (
+          <TablePagination
+            handlePageClick={handlePageClick}
+            pageCount={pageCount}
+          />
+        )}
+      </Flex>
+    </>
   );
 };
