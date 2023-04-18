@@ -77,9 +77,11 @@ function App() {
                 </PrivateRoute>
               }
             >
-              {matches.m && <Route path="home" element={<Table />} />}
-              {matches.xs && <Route path="home" element={<TableMobile />} />}
+              {matches.m && <Route index element={<Table />} />}
+              {matches.xs && <Route index element={<TableMobile />} />}
+
               <Route path="statistics" element={<StatisticsPageDesktop />} />
+
               <Route path="currency" element={<Currency />} />
             </Route>
             <Route

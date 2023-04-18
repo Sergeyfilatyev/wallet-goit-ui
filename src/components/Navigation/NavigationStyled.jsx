@@ -114,7 +114,6 @@ const NavigationStatisticsIcon = ({ fill, filter }) => {
 export const NavigationStatistics = ({ linkName }) => {
   const [active, setActive] = useBoolean();
   const location = useLocation();
-
   useEffect(() => {
     location.pathname === "/dashboard/statistics"
       ? setActive.on()
