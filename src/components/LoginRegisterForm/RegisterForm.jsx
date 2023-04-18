@@ -143,7 +143,11 @@ export const RegisterForm = () => {
               <FieldErrorMessage error={<ErrorMessage name="password" />} />
               <FirstPasswordProgressBar
                 value={firstPasswordProgress}
-                colorScheme={firstPasswordProgress === 100 ? "brow" : "red"}
+                colorScheme={
+                  firstPasswordProgress === 100
+                    ? "progressBarGreen"
+                    : "progressBarPink"
+                }
               />
             </LoginRegisterFormPasswordInput>
             <LoginRegisterFormConfirmPasswordInput

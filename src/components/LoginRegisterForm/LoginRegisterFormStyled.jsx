@@ -259,16 +259,12 @@ export const LoginRegisterFormConfirmPasswordInput = ({
   );
 };
 
-export const FirstPasswordProgressBar = ({ value }) => {
-  return (
-    <Progress value={value} variant="progressBarPink" h="4px" mt="-12px" />
-  );
+export const FirstPasswordProgressBar = ({ value, colorScheme }) => {
+  return <Progress value={value} variant={colorScheme} h="4px" mt="-12px" />;
 };
 
-export const SecondPasswordProgressBar = ({ value }) => {
-  return (
-    <Progress value={value} variant="progressBarGreen" h="4px" mt="-12px" />
-  );
+export const SecondPasswordProgressBar = ({ value, colorScheme }) => {
+  return <Progress value={value} variant={colorScheme} h="4px" mt="-12px" />;
 };
 
 export const LoginRegisterFormNameInput = ({ children, placeholder }) => {
