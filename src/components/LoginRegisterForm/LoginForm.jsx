@@ -68,9 +68,7 @@ export const LoginForm = () => {
             <LoginRegisterFormEmailInput placeholder={t("email")}>
               {isError400 && <FieldErrorMessage error={t("errorVerify")} />}
               {isError403 && <FieldErrorMessage error={t("errorIncorrect")} />}
-              {isError400 && isError403 && (
-                <FieldErrorMessage error={<ErrorMessage name="email" />} />
-              )}
+              <FieldErrorMessage error={<ErrorMessage name="email" />} />
             </LoginRegisterFormEmailInput>
             <LoginRegisterFormPasswordInput placeholder={t("password")}>
               <FieldErrorMessage error={<ErrorMessage name="password" />} />
