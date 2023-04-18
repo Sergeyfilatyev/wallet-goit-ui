@@ -18,6 +18,8 @@ import {
 import { ModalDelete } from "../Modal";
 import { NoTransactions } from "./NoTransactions";
 
+import { Balance } from "../Balance/Balance";
+
 export const TableMobile = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const transactions = useSelector(selectTransactions);
@@ -29,7 +31,9 @@ export const TableMobile = () => {
     setItemOffset(newOffset);
     scroll.scrollToTop();
   };
-  const goToPreviousPage = () => {setItemOffset(itemOffset-10)};
+  const goToPreviousPage = () => {
+    setItemOffset(itemOffset - 5);
+  };
 
   const transactionsPaginated = transactions
     .slice()
@@ -42,6 +46,7 @@ export const TableMobile = () => {
 
   return (
     <>
+      <Balance />
       {transactions.length > 0 ? (
         <>
           {transactionsPaginated.map((item) => (
@@ -73,7 +78,7 @@ export const TableMobile = () => {
               <DataRow>
                 <Header value={t("comment")} />
                 <TransactionDataComment>
-                  <EllipsisText text={item.comment} length={20} />
+                  <EllipsisText text={item.comment} length={35} />
                 </TransactionDataComment>
               </DataRow>
               <DataRowDivider />
@@ -88,7 +93,10 @@ export const TableMobile = () => {
               <DataRowDivider />
 
               <DataRow>
-                <ModalDelete id={item._id} goToPreviousPage={goToPreviousPage} />
+                <ModalDelete
+                  id={item._id}
+                  goToPreviousPage={goToPreviousPage}
+                />
                 <ModalEditTransaction transactionToUpdate={item} />
               </DataRow>
             </TransactionCard>

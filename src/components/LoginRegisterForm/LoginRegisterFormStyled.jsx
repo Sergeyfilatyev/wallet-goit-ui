@@ -22,8 +22,8 @@ export const LoginRegisterFormBox = ({ children, height }) => {
       w={{ base: "100%", s: "480px", m: "533px" }}
       h={height}
       overflow="hidden"
-      paddingTop={{ base: "107px", s: "40px" }}
-      paddingBottom={{ base: "107px", s: "62px" }}
+      paddingTop={{ base: "90px", s: "30px" }}
+      paddingBottom={{ base: "90px", s: "30px" }}
       px={{
         base: "20px",
         s: "36px",

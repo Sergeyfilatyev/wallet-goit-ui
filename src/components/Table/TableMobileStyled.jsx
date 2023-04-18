@@ -4,7 +4,7 @@ import { ModalEditTransaction } from "../Modal";
 export const TransactionCard = ({ children, income }) => {
   return (
     <Box
-      width="280px"
+      width="100%"
       mb="8px"
       p="0 20px"
       borderRadius="10px"
@@ -83,13 +83,24 @@ export const TransactionDataSum = ({ value, income }) => {
 
 export const DataRowDivider = () => {
   return (
-    <Box ml="-25px" border="1px solid #DCDCDF" width="280px" as="div"></Box>
+    <Box
+      ml="-25px"
+      mr="-20px"
+      border="1px solid #DCDCDF"
+      width=""
+      as="div"
+    ></Box>
   );
 };
 
 export const DashboardEditTransactionButton = ({ transactionToUpdate }) => {
   return (
-    <Flex justifyContent={"center"} alignItems={"center"} as="td">
+    <Flex
+      justifyContent={"center"}
+      alignItems={"center"}
+      height="100%"
+      maxWidth="40px"
+    >
       <ModalEditTransaction transactionToUpdate={transactionToUpdate} />
     </Flex>
   );

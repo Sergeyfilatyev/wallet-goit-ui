@@ -1,18 +1,21 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 export const BalanceBox = ({ children }) => {
   return (
-    <Box
+    <Flex
       backgroundColor="#FFF"
-      mb={{ xs: "32px", m: "0px", l: "32px" }}
-      width={{ xs: "100%", xl: "390px" }}
+      mb={{ xs: "32px", m: "0px", xl: "32px" }}
+      width="100%"
       borderRadius="30px"
       height="80px"
-      pl={{ xs: "32px", m: "40px", xl: "40px" }}
       pt="8px"
+      px="20px"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="start"
     >
       {children}
-    </Box>
+    </Flex>
   );
 };
 

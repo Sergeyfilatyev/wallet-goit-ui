@@ -6,8 +6,9 @@ export const PageContainer = ({ children }) => {
     <Box
       as="div"
       fontFamily={i18n.language === "en" ? "Circe" : "Arial"}
-      px={{ base: "20px", m: "32px", l: "16px" }}
-      width="100%"
+      px={{ xs: "20px", m: "30px" }}
+      width={{ xs: "100%", s: "460px", m: "738px", l: "930px", xl: "1250px" }}
+      mx="auto"
     >
       {children}
     </Box>

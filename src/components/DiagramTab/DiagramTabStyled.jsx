@@ -6,15 +6,15 @@ import { useTranslation } from "react-i18next";
 
 export const ListItemCategory = ({ statByCategory }) => {
   const categoryColors = {
-    "main expenses": "#FED057",
+    main: "#FED057",
     products: "#FFD8D0",
     car: "#4A56E2",
     "self care": "#FD9498",
-    "child care": "#81E1FF",
-    "household products": "#C5BAFF",
+    children: "#81E1FF",
+    house: "#C5BAFF",
     education: "#24CCA7",
     leisure: "#6E78E8",
-    "other expenses": "#00AD84",
+    other: "#00AD84",
   };
   const { t } = useTranslation();
   return (

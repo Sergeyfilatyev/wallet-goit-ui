@@ -24,7 +24,7 @@ export const Dashboard = () => {
     <>
       <Media
         queries={{
-          l: "(min-width: 960px)",
+          xl: "(min-width: 1280px)",
           m: "(min-width: 768px)",
         }}
       >
@@ -40,7 +40,7 @@ export const Dashboard = () => {
                     </DashboardNavigationBalanceBox>
                     {matches.m && <Currency />}
                   </DashboardContentFirstPart>
-                  {matches.l && <DashboardDivider />}
+                  {matches.xl && <DashboardDivider />}
                   <DashboardContentSecondPart>
                     <Outlet />
                   </DashboardContentSecondPart>

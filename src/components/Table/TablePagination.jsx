@@ -10,8 +10,8 @@ export const TablePagination = ({ handlePageClick, pageCount }) => {
       w={200}
       justifyContent={"space-between"}
       alignItems={"center"}
-      mt={50}
-      pb={30}
+      mt="20px"
+      // p={10}
       color={"#24CCA7"}
       breakLabel="..."
       nextLabel={<ArrowRightIcon />}
