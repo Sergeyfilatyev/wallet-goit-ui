@@ -59,5 +59,6 @@
   "errorAlready": "is already registered",
   "amountIsReq": "amount is required",
   "transactionNull": "You don't have any transactions yet",
-  "deleteTr": "Do you want to delete the transaction?"
+  "deleteTr": "Do you want to delete the transaction?",
+  "serverError": "Ooops... Server problems! Try again later"
 }

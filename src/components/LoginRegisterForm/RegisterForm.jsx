@@ -136,11 +136,7 @@ export const RegisterForm = () => {
                   error={`${emailWithError} ${t("errorAlready")}`}
                 />
               )}
-              {isError500 && (
-                <FieldErrorMessage
-                  error={t("Ooops... Server problems! Try again later")}
-                />
-              )}
+              {isError500 && <FieldErrorMessage error={t("serverError")} />}
               <FieldErrorMessage error={<ErrorMessage name="email" />} />
             </LoginRegisterFormEmailInput>
             <LoginRegisterFormPasswordInput placeholder={t("password")}>

@@ -59,7 +59,6 @@ export const LoginForm = () => {
             }
           });
 
-          resetForm();
           setSubmitting(false);
         }}
       >

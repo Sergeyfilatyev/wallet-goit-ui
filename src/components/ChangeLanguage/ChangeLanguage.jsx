@@ -20,13 +20,12 @@ export const ChangeLanguage = () => {
               aria-label="Language"
               variant="ghost"
               p={"0"}
-              _hover={{ bg: "transparent" }}
             >
               {i18n.language === "en"
                 ? "EN"
                 : i18n.language === "ru"
-                ? "РУ"
-                : "УКР"}
+                ? "RU"
+                : "UA"}
             </MenuButton>
             <MenuList
               opacity={isOpen ? "1" : "0"}
@@ -44,14 +43,14 @@ export const ChangeLanguage = () => {
                   i18n.changeLanguage("ru");
                 }}
               >
-                РУ
+                RU
               </MenuItem>
               <MenuItem
                 onClick={() => {
                   i18n.changeLanguage("ua");
                 }}
               >
-                УКР
+                UA
               </MenuItem>
             </MenuList>
           </>

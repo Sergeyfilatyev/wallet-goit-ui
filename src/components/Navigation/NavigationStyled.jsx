@@ -13,7 +13,7 @@ export const NavigationBox = ({ children }) => {
       mb={{ xs: "12px", m: "28px" }}
       flexDirection={{ xs: "row", m: "column" }}
       width="100%"
-      gap="12px"
+      gap="36px"
     >
       {children}
     </Flex>
