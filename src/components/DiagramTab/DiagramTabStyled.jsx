@@ -21,7 +21,7 @@ export const ListItemCategory = ({ statByCategory }) => {
     <List display="flex" flexDirection="column" alignItems="flex-end" mb="14px">
       {Object.entries(statByCategory)
         .filter(([category, value]) => value !== 0)
-        .map(([category, value]) => (
+        .sort(([,a],[,b]) => b-a).map(([category, value]) => (
           <ListItem
             paddingLeft="18px"
             key={category}
@@ -325,6 +325,7 @@ export const DiagramRenderer = ({
                 : "340px"
             }
             pos="relative"
+            mb={"50px"}
           >
             <Text
               fontFamily={i18n.language === "en" ? "Circe" : "Arial"}

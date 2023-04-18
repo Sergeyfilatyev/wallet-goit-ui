@@ -57,7 +57,7 @@ export const Table = () => {
   return (
     <>
       <Flex flexDirection={"column"} alignItems={"center"} h="100%" w="100%">
-        {isLoading && <Loader />}
+        {isLoading && transactions.length === 0 && <Loader />}
         {transactions.length > 0 ? (
           <TransactionsTable>
             <thead>
@@ -92,7 +92,7 @@ export const Table = () => {
                     </TransactionsTdComment>
 
                     <TransactionsTdSum
-                      value={`${item.amount}.00`}
+                      value={item.amount.toFixed(2)}
                       income={item.income}
                     />
 

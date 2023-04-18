@@ -38,6 +38,9 @@ export const BalanceBoxTitle = () => {
 
 export const BalanceBoxNumber = ({ value }) => {
   const { i18n } = useTranslation();
+
+  const valueColor = value > 0 ? "#000000" : "#ff6596";
+
   return (
     <Box
       fontFamily={i18n.language === "en" ? "Poppins" : "Arial"}
@@ -45,7 +48,7 @@ export const BalanceBoxNumber = ({ value }) => {
       fontWeight="400px"
       fontSize="30px"
       lineHeight="45px"
-      color="#000000"
+      color={valueColor}
       as="p"
     >
       ₴ {value}

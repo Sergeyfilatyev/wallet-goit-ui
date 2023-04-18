@@ -44,7 +44,7 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
   const categories = useSelector(selectCategories);
 
   useEffect(() => {
-    isExpense ? setCategory("Expense") : setCategory("income");
+    isExpense ? setCategory("other") : setCategory("income");
   }, [isExpense]);
 
   const editTransaction = () => {
