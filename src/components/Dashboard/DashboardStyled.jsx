@@ -16,8 +16,8 @@ export const DashboardBox = ({ children }) => {
       backgroundRepeat={{ s: "no-repeat" }}
       backgroundPosition={{ s: "bottom left" }}
       backgroundSize={{ s: "75%", l: "45%" }}
-      width="100vw"
-      height="100vh"
+      width="100%"
+      height="100%"
       display="relative"
       as="div"
     >

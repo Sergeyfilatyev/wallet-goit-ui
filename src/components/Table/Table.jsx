@@ -6,15 +6,17 @@ import {
   TransactionsTable,
   TransactionsTh,
   TransactionsThDate,
+  TransactionsThType,
   TransactionsThSum,
   TransactionsTr,
   TransactionsTd,
   TransactionsTdDate,
+  TransactionsTdType,
+  TransactionsThCategory,
   TransactionsTdComment,
   TransactionsTdSum,
   TransactionsTdButton,
   TransactionsLastTr,
-  HeaderButton,
 } from "./TableStyled";
 import { ModalDelete } from "../Modal";
 import { NoTransactions } from "./NoTransactions";
@@ -49,21 +51,13 @@ export const Table = () => {
         <TransactionsTable>
           <thead>
             <tr>
-              <TransactionsThDate>
-                <HeaderButton name={t("date")} />
-              </TransactionsThDate>
-              <TransactionsTh>
-                <HeaderButton name={t("type")} />
-              </TransactionsTh>
-              <TransactionsTh>
-                <HeaderButton name={t("category")} />
-              </TransactionsTh>
-              <TransactionsTh>
-                <HeaderButton name={t("comment")} />
-              </TransactionsTh>
-              <TransactionsThSum>
-                <HeaderButton name={t("sum")} />
-              </TransactionsThSum>
+              <TransactionsThDate value={t("date")} />
+              <TransactionsThType value={t("type")} />
+
+              <TransactionsThCategory value={t("category")} />
+              <TransactionsTh value={t("comment")} />
+
+              <TransactionsThSum value={t("sum")} />
             </tr>
           </thead>
 
@@ -78,10 +72,10 @@ export const Table = () => {
                       .toString()
                       .padStart(2, "0")}.${date.year}`}
                   />
-                  <TransactionsTd value={item.income ? "+" : "-"} />
+                  <TransactionsTdType value={item.income ? "+" : "-"} />
                   <TransactionsTd value={t(item.category)} />
                   <TransactionsTdComment>
-                    <EllipsisText text={item.comment} length={20} />
+                    <EllipsisText text={item.comment} length={50} />
                   </TransactionsTdComment>
 
                   <TransactionsTdSum
