@@ -44,7 +44,7 @@ export const NavigationHome = ({ linkName }) => {
   const location = useLocation();
 
   useEffect(() => {
-    location.pathname === "/dashboard/home" ? setActive.on() : setActive.off();
+    location.pathname === "/dashboard" ? setActive.on() : setActive.off();
   }, [location.pathname, setActive]);
   const { i18n } = useTranslation();
   return (
@@ -52,7 +52,7 @@ export const NavigationHome = ({ linkName }) => {
       alignItems="center"
       onMouseEnter={setActive.on}
       onMouseLeave={
-        location.pathname !== "/dashboard/home" ? setActive.off : setActive.on
+        location.pathname !== "/dashboard" ? setActive.off : setActive.on
       }
     >
       {!active && (

@@ -69,20 +69,45 @@ function App() {
                 </PublicRoute>
               }
             />
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <DashboardPage />
-                </PrivateRoute>
-              }
-            >
-              {matches.m && <Route index element={<Table />} />}
-              {matches.xs && <Route index element={<TableMobile />} />}
+            <Route path="/dashboard" element={<DashboardPage />}>
+              {matches.m && (
+                <Route
+                  index
+                  element={
+                    <PrivateRoute>
+                      <Table />
+                    </PrivateRoute>
+                  }
+                />
+              )}
+              {matches.xs && (
+                <Route
+                  index
+                  element={
+                    <PrivateRoute>
+                      <TableMobile />
+                    </PrivateRoute>
+                  }
+                />
+              )}
 
-              <Route path="statistics" element={<StatisticsPageDesktop />} />
+              <Route
+                path="statistics"
+                element={
+                  <PrivateRoute>
+                    <StatisticsPageDesktop />
+                  </PrivateRoute>
+                }
+              />
 
-              <Route path="currency" element={<Currency />} />
+              <Route
+                path="currency"
+                element={
+                  <PrivateRoute>
+                    <Currency />
+                  </PrivateRoute>
+                }
+              />
             </Route>
             <Route
               path="*"
