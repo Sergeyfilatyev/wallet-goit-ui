@@ -101,6 +101,7 @@ export function DiagramTab() {
   const options = {
     cutout: "70%",
   };
+
   return (
     <Box w="100%">
       {isLoading && <Loader />}
@@ -113,7 +114,7 @@ export function DiagramTab() {
             justifyContent={{ m: "normal", xs: "center" }}
             alignItems={{ m: "normal", xs: "center" }}
           >
-            <Box display="flex">
+            <Box display="flex" >
               <DiagramRenderer
                 totalExpense={totalExpense}
                 totalIncome={totalIncome}
