@@ -35,6 +35,7 @@ export const RegisterForm = () => {
   const [status, setStatus] = useState("");
   const [isError409, setIsError409] = useState(false);
   const [emailWithError, setEmailWithError] = useState("");
+  const [isError500, setIsError500] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,6 +47,7 @@ export const RegisterForm = () => {
 
   const handleFormChange = ({ target }) => {
     setIsError409(false);
+    setIsError500(false);
     if (target.name === "password") {
       let progress = 0;
 
@@ -102,6 +104,11 @@ export const RegisterForm = () => {
             if (response.payload.status === 409) {
               setIsError409(true);
               setEmailWithError(email);
+              setIsError500(false);
+            }
+            if (response.payload.status === 500) {
+              setIsError500(true);
+              setIsError409(false);
             }
           });
 
@@ -114,13 +121,17 @@ export const RegisterForm = () => {
         <Form onChange={handleFormChange}>
           <LoginRegisterFormInputsBox>
             <LoginRegisterFormEmailInput placeholder={t("email")}>
-              {isError409 ? (
+              {isError409 && (
                 <FieldErrorMessage
                   error={`${emailWithError} ${t("errorAlready")}`}
                 />
-              ) : (
-                <FieldErrorMessage error={<ErrorMessage name="email" />} />
               )}
+              {isError500 && (
+                <FieldErrorMessage
+                  error={t("Ooops... Server problems! Try again later")}
+                />
+              )}
+              <FieldErrorMessage error={<ErrorMessage name="email" />} />
             </LoginRegisterFormEmailInput>
             <LoginRegisterFormPasswordInput placeholder={t("password")}>
               <FieldErrorMessage error={<ErrorMessage name="password" />} />
