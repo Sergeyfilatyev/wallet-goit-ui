@@ -64,7 +64,7 @@ export const ListItemCategory = ({ statByCategory }) => {
                 color="#000000"
                 paddingRight="20px"
               >
-                {value}
+                {value.toFixed(2)}
               </Text>
               <Box
                 position="absolute"
@@ -103,7 +103,7 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
           color="#FF6596"
           paddingRight="20px"
         >
-          {totalExpense}
+          {totalExpense.toFixed(2)}
         </Text>
       </Box>
       <Box display="flex" justifyContent="space-between" marginTop="15px">
@@ -123,7 +123,7 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
           color="#24CCA7"
           paddingRight="20px"
         >
-          {totalIncome}
+          {totalIncome.toFixed(2)}
         </Text>
       </Box>
     </Box>
@@ -299,7 +299,7 @@ export const DiagramRenderer = ({
               textAlign="center"
               color="#000000"
             >
-              ₴ {totalExpense}
+              ₴ {totalExpense.toFixed(2)}
             </Text>
             <Doughnut data={chartData} options={options} />
           </Box>
@@ -370,7 +370,7 @@ export const DiagramRenderer = ({
               textAlign="center"
               color="#000000"
             >
-              ₴ {totalExpense}
+              ₴ {totalExpense.toFixed(2)}
             </Text>
 
             <Doughnut
@@ -447,7 +447,7 @@ export const NoDataDiagram = ({ totalExpense }) => {
         textAlign="center"
         color="#000000"
       >
-        ₴ {totalExpense}
+        ₴ {totalExpense.toFixed(2)}
       </Text>
       <Doughnut
         data={{

@@ -52,7 +52,7 @@ export const Table = () => {
         b.date.time.localeCompare(a.date.time) ||
         b.createdAt.localeCompare(a.createdAt)
     )
-    .filter((_, index) => index < endOffset && index >= itemOffset);
+    .filter((_, index) => index <= endOffset && index >= itemOffset);
 
   return (
     <>
