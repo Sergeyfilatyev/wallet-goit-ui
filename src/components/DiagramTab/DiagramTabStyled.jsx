@@ -21,7 +21,8 @@ export const ListItemCategory = ({ statByCategory }) => {
     <List display="flex" flexDirection="column" alignItems="flex-end" mb="14px">
       {Object.entries(statByCategory)
         .filter(([category, value]) => value !== 0)
-        .sort(([,a],[,b]) => b-a).map(([category, value]) => (
+        .sort(([, a], [, b]) => b - a)
+        .map(([category, value]) => (
           <ListItem
             paddingLeft="18px"
             key={category}
@@ -102,7 +103,9 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
           color="#FF6596"
           paddingRight="20px"
         >
-          {totalExpense}
+          {Number(totalExpense.toFixed(2))
+            .toLocaleString()
+            .replaceAll(",", " ")}
         </Text>
       </Box>
       <Box display="flex" justifyContent="space-between" marginTop="15px">
@@ -122,7 +125,7 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
           color="#24CCA7"
           paddingRight="20px"
         >
-          {totalIncome}
+          {Number(totalIncome.toFixed(2)).toLocaleString().replaceAll(",", " ")}
         </Text>
       </Box>
     </Box>
