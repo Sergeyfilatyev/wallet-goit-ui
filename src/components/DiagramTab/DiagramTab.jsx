@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import {
   ListItemCategory,
   CalculateNetIncome,
@@ -15,6 +15,9 @@ import { getStatistics } from "../../redux/statistics/statistics-operations";
 import { selectStatistics } from "../../redux/statistics/statistics-selectors";
 import { selectIsLoading } from "../../redux/statistics/statistics-selectors";
 import { Loader } from "../Loader";
+
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const months = [
@@ -75,6 +78,8 @@ export function DiagramTab() {
     setSelectedMonth(newSelectedMonth);
   };
 
+  const printRef = useRef();
+
   const categoryColors = {
     main: "#FED057",
     products: "#FFD8D0",
@@ -102,60 +107,119 @@ export function DiagramTab() {
     cutout: "70%",
   };
 
-  return (
-    <Box w="100%">
-      {isLoading && <Loader />}
+  const handleDownloadPdf = async () => {
+    const element = printRef.current;
+    const mobileWidth = window.innerWidth <= 768;
+    const tableWidth = window.innerWidth > 768 && window.innerWidth <= 1280;
+    const desktopWidth = window.innerWidth >= 1280;
 
-      {Object.keys(statByCategory || {}).length > 0 ? (
-        <>
-          <Box
-            display="flex"
-            flexDirection={{ m: "initial", xs: "column" }}
-            justifyContent={{ m: "normal", xs: "center" }}
-            alignItems={{ m: "normal", xs: "center" }}
-          >
-            <Box display="flex" >
-              <DiagramRenderer
-                totalExpense={totalExpense}
-                totalIncome={totalIncome}
-                statByCategory={statByCategory}
-                options={options}
-                chartData={chartData}
-              ></DiagramRenderer>
-            </Box>
-            <Box display="flex" flexDir="column" ml={{ m: "40px", xs: "0" }}>
-              <Box
-                marginTop={{ xl: "0", m: "20px", xs: "30px" }}
-                display={{ m: "flex", xs: "block" }}
-                w="100%"
-              >
-                <SelectMonth
-                  selectedMonth={selectedMonth}
-                  handleMonthChange={handleMonthChange}
-                  displayedMonths={displayedMonths}
-                ></SelectMonth>
-                <SelectYear
-                  year={year}
-                  years={years}
-                  handleYearChange={handleYearChange}
-                ></SelectYear>
+    const orientation = tableWidth ? "l" : "p";
+    let canvas;
+
+    if (desktopWidth) {
+      canvas = await html2canvas(element, { scale: 1 });
+    } else {
+      canvas = await html2canvas(element, {
+        scale: 1,
+        width: window.innerWidth,
+      });
+    }
+
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF(orientation, "mm", "a4");
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+
+    const canvasWidth = canvas.width * 0.2;
+    const canvasHeight = canvas.height * 0.2;
+
+    const marginX = (pdfWidth - canvasWidth) / 2;
+    const marginY = (pdfHeight - canvasHeight) / 2;
+
+    const marginR = mobileWidth ? 60 : marginX;
+    const marginL = mobileWidth ? 0 : marginY;
+
+    pdf.addImage(
+      data,
+      "PNG",
+      marginR,
+      marginL,
+      canvasWidth,
+      canvasHeight,
+      "a",
+      "FAST"
+    ); 
+    pdf.save("statistics.pdf");
+  };
+
+  return (
+    <>
+      <Box w="100%">
+        {isLoading && <Loader />}
+
+        {Object.keys(statByCategory || {}).length > 0 ? (
+          <>
+            <Box
+              ref={printRef}
+              display="flex"
+              flexDirection={{ m: "initial", xs: "column" }}
+              justifyContent={{ m: "normal", xs: "center" }}
+              alignItems={{ m: "normal", xs: "center" }}
+            >
+              <Box display="flex">
+                <DiagramRenderer
+                  totalExpense={totalExpense}
+                  totalIncome={totalIncome}
+                  statByCategory={statByCategory}
+                  options={options}
+                  chartData={chartData}
+                ></DiagramRenderer>
               </Box>
-              <Flex mt="20px">
-                <CategorySumBox></CategorySumBox>
-              </Flex>
-              <ListItemCategory
-                statByCategory={statByCategory}
-              ></ListItemCategory>
-              <CalculateNetIncome
-                totalExpense={totalExpense}
-                totalIncome={totalIncome}
-              ></CalculateNetIncome>
+              <Box display="flex" flexDir="column" ml={{ m: "40px", xs: "0" }}>
+                <Box
+                  marginTop={{ xl: "0", m: "20px", xs: "30px" }}
+                  display={{ m: "flex", xs: "block" }}
+                  w="100%"
+                >
+                  <SelectMonth
+                    selectedMonth={selectedMonth}
+                    handleMonthChange={handleMonthChange}
+                    displayedMonths={displayedMonths}
+                  ></SelectMonth>
+                  <SelectYear
+                    year={year}
+                    years={years}
+                    handleYearChange={handleYearChange}
+                  ></SelectYear>
+                </Box>
+                <Flex mt="20px">
+                  <CategorySumBox></CategorySumBox>
+                </Flex>
+                <ListItemCategory
+                  statByCategory={statByCategory}
+                ></ListItemCategory>
+                <CalculateNetIncome
+                  totalExpense={totalExpense}
+                  totalIncome={totalIncome}
+                ></CalculateNetIncome>
+              </Box>
             </Box>
-          </Box>
-        </>
-      ) : (
-        <NoDataDiagram totalExpense={totalExpense}></NoDataDiagram>
-      )}
-    </Box>
+            <Box mt={"100px"} display={"flex"} justifyContent={"flex-end"}>
+              <Button
+                variant={"greenButton"}
+                alignItems={"center"}
+                onClick={() => handleDownloadPdf()}
+              >
+                Export as pdf
+              </Button>
+            </Box>
+          </>
+        ) : (
+          <NoDataDiagram totalExpense={totalExpense}></NoDataDiagram>
+        )}
+      </Box>
+    </>
   );
 }
