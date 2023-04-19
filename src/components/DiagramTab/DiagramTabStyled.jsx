@@ -447,7 +447,7 @@ export const NoDataDiagram = ({ totalExpense }) => {
         textAlign="center"
         color="#000000"
       >
-        ₴ {totalExpense.toFixed(2)}
+        ₴ {totalExpense}
       </Text>
       <Doughnut
         data={{
