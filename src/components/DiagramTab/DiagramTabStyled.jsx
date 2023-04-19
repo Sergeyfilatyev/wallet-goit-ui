@@ -298,7 +298,10 @@ export const DiagramRenderer = ({
               textAlign="center"
               color="#000000"
             >
-              ₴ {totalExpense}
+              ₴{" "}
+              {Number(totalExpense.toFixed(2))
+                .toLocaleString()
+                .replaceAll(",", " ")}
             </Text>
             <Doughnut data={chartData} options={options} />
           </Box>
