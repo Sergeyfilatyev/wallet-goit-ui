@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+
 import { selectCategories } from "../../redux/categories/categories-selectors";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../../redux/transactions/transactions-operations";
@@ -30,6 +31,7 @@ export const ModalAddTransaction = () => {
   const [date, setDate] = useState(currentDay());
   const [comment, setComment] = useState("");
   const [amountError, setAmountError] = useState(false);
+  const [functionButtonName, setFunctionButtonName] = useState(t("add"));
   const dispatch = useDispatch();
 
   const handleChange = {
@@ -55,6 +57,8 @@ export const ModalAddTransaction = () => {
       return setAmountError(true);
     } else setAmountError(false);
 
+    setFunctionButtonName("...");
+
     const transactionDate = {
       day: Number(date.slice(8, 10)),
       month: Number(date.slice(5, 7)),
@@ -70,14 +74,15 @@ export const ModalAddTransaction = () => {
       date: transactionDate,
     };
 
-    dispatch(addTransaction(transaction));
-
-    setIsExpense(false);
-    setCategory("income");
-    setAmount("");
-    setDate(currentDay());
-    setComment("");
-    onClose();
+    dispatch(addTransaction(transaction)).then(() => {
+      setIsExpense(false);
+      setCategory("income");
+      setAmount("");
+      setDate(currentDay());
+      setComment("");
+      onClose();
+      setFunctionButtonName(t("add"));
+    });
   };
 
   return (
@@ -91,7 +96,7 @@ export const ModalAddTransaction = () => {
       <ModalWindow
         modalHeader={t("addTr")}
         modalFunction={addNewTransaction}
-        modalFunctionName={t("add")}
+        modalFunctionName={functionButtonName}
         modalCancelName={t("cancel")}
         isOpen={isOpen}
         onClose={onClose}
@@ -106,15 +111,11 @@ export const ModalAddTransaction = () => {
           {isExpense && (
             <ModalSelectCategory
               category={category}
-              setCategory={handleChange.category}
+              setCategory={setCategory}
               placeholder={t("select a category")}
-            >
-              {categories.map((item) => (
-                <option value={item.category} key={item.id}>
-                  {t(item.category)}
-                </option>
-              ))}
-            </ModalSelectCategory>
+              categories={categories}
+              t={t}
+            />
           )}
           <ModalAmountDateBox>
             <Box>
