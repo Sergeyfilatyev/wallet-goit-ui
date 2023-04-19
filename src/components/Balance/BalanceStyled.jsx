@@ -39,7 +39,7 @@ export const BalanceBoxTitle = () => {
 export const BalanceBoxNumber = ({ value }) => {
   const { i18n } = useTranslation();
 
-  const valueColor = value > 0 ? "#000000" : "#ff6596";
+  const valueColor = value >= 0 ? "#000000" : "#ff6596";
 
   return (
     <Box
@@ -51,7 +51,7 @@ export const BalanceBoxNumber = ({ value }) => {
       color={valueColor}
       as="p"
     >
-      ₴ {value.toLocaleString().replaceAll(",", " ")}
+      ₴ {Number(value.toFixed(2)).toLocaleString().replaceAll(",", ".")}
     </Box>
   );
 };
