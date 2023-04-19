@@ -92,7 +92,9 @@ export const Table = () => {
                     </TransactionsTdComment>
 
                     <TransactionsTdSum
-                      value={item.amount.toFixed(2)}
+                      value={Number(item.amount.toFixed(2))
+                        .toLocaleString()
+                        .replaceAll(",", " ")}
                       income={item.income}
                     />
 
