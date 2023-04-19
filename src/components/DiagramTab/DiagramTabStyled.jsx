@@ -64,7 +64,7 @@ export const ListItemCategory = ({ statByCategory }) => {
                 color="#000000"
                 paddingRight="20px"
               >
-                {value}
+                {Number(value.toFixed(2)).toLocaleString().replaceAll(",", " ")}
               </Text>
               <Box
                 position="absolute"
