@@ -1,18 +1,15 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
   Input,
   NumberInput,
   NumberInputField,
-  Select,
+  Box,
   Icon,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
+
+import Select from "react-select";
 
 export const ModalAddOpentButton = ({ onClick }) => {
   return (
@@ -42,27 +39,113 @@ export const ModalComponentsBox = ({ children }) => {
   );
 };
 
+// export const ModalSelectCategory = ({
+//   children,
+//   category,
+//   setCategory,
+//   placeholder,
+//   as,
+// }) => {
+//   return (
+//     <Select
+//       as={as}
+//       onChange={setCategory}
+//       variant="flushed"
+//       w={{ base: "280px", s: "394px" }}
+//       defaultValue={category}
+//       placeholder={placeholder}
+//       _placeholder={{
+//         color: "#BDBDBD",
+//         fontSize: "30px",
+//         fontWeight: "400",
+//       }}
+//     >
+//       {children}
+//     </Select>
+//   );
+// };
+
 export const ModalSelectCategory = ({
-  children,
   category,
   setCategory,
   placeholder,
+  categories,
+  t,
 }) => {
   return (
-    <Select
-      onChange={setCategory}
-      variant="flushed"
-      w={{ base: "280px", s: "394px" }}
-      defaultValue={category}
-      placeholder={placeholder}
-      _placeholder={{
-        color: "#BDBDBD",
-        fontSize: "30px",
-        fontWeight: "400",
-      }}
-    >
-      {children}
-    </Select>
+    <Box w={{ base: "280px", s: "394px" }}>
+      <Select
+        styles={{
+          container: (baseStyles, state) => ({
+            ...baseStyles,
+            width: "100%",
+            border: state.isFocused ? "none" : "none",
+            borderBottom: state.isFocused
+              ? "2px solid #000000"
+              : "1px solid #E0E0E0",
+          }),
+          valueContainer: (baseStyles, state) => ({
+            ...baseStyles,
+            padding: "0px",
+          }),
+
+          menu: (baseStyles, state) => ({
+            ...baseStyles,
+            borderRadius: "20px",
+            background: "rgba(0, 0, 0, 0.1)",
+            boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.1)",
+          }),
+
+          menuList: (baseStyles, state) => ({
+            ...baseStyles,
+            borderRadius: "20px",
+            background: "rgba(255, 255, 255, 0.7)",
+            backdropFilter: "blur(25px)",
+          }),
+
+          option: (baseStyles, state) => ({
+            ...baseStyles,
+            backgroundColor:
+              (state.isSelected && "#FFF") || (state.isFocused && "#FFF"),
+            color:
+              (state.isSelected && "#FF6596") || (state.isFocused && "#FF6596"),
+            fontWeight:
+              (state.isSelected && "700") || (state.isFocused && "700"),
+            height: "44px",
+            padding: "10px 20px",
+          }),
+
+          indicatorSeparator: (baseStyles, state) => ({
+            ...baseStyles,
+            display: "none",
+          }),
+
+          singleValue: (baseStyles, state) => ({
+            ...baseStyles,
+            backgroundColor:
+              (state.isSelected && "#FFF") || (state.isFocused && "#FFF"),
+          }),
+
+          control: (baseStyles, state) => ({
+            ...baseStyles,
+            border: "none",
+            boxShadow: "none",
+          }),
+
+          placeholder: (baseStyles, state) => ({
+            ...baseStyles,
+            color: "#BDBDBD",
+            fontSize: "18px",
+          }),
+        }}
+        onChange={(option) => setCategory(option.value)}
+        defaultValue={category}
+        placeholder={placeholder}
+        options={categories.map((item) => {
+          return { value: item.category, label: t(item.category) };
+        })}
+      />
+    </Box>
   );
 };
 

@@ -34,7 +34,7 @@ const RegistrationPage = () => {
               backgroundRepeat={{ s: "no-repeat" }}
               backgroundPosition={{ s: "top right" }}
               backgroundSize={{ xs: "65%", xl: "40%" }}
-              py={{ m: "60px", xl: "0" }}
+              py={{ m: "45px", xl: "0" }}
               minHeight="100vh"
               maxHeight="100%"
               justifyContent={{ xs: "center", m: "start", xl: "space-between" }}
@@ -50,17 +50,19 @@ const RegistrationPage = () => {
                   mb={{ m: "50px", xl: "0" }}
                 >
                   {matches.xl || matches.ml ? (
-                    <Image
-                      src={registerPicture}
-                      alt="Login picture"
-                      maxWidth={{ m: "260px", xl: "435px" }}
-                      mb={{ base: "0", xl: "28px" }}
-                      mr={{ m: "40px" }}
-                    />
+                    <>
+                      <Image
+                        src={registerPicture}
+                        alt="Login picture"
+                        maxWidth={{ m: "260px", xl: "435px" }}
+                        mb={{ base: "0", xl: "28px" }}
+                        mr={{ m: "40px" }}
+                      />
+                      <SecondaryLogo />
+                    </>
                   ) : (
                     <></>
                   )}
-                  <SecondaryLogo />
                 </Flex>
               )}
               <Flex

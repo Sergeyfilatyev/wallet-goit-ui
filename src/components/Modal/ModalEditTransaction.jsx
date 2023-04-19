@@ -28,6 +28,7 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
   const [amount, setAmount] = useState(transactionToUpdate.amount);
   const [date, setDate] = useState(transactionToUpdate.date.time);
   const [comment, setComment] = useState(transactionToUpdate.comment);
+  const [functionButtonName, setFunctionButtonName] = useState(t("save"));
   const [amountError, setAmountError] = useState(false);
 
   const handleChange = {
@@ -51,6 +52,9 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
     if (!amountValidation(amount)) {
       return setAmountError(true);
     } else setAmountError(false);
+
+    setFunctionButtonName("...");
+
     const transactionDate = {
       day: Number(date.slice(8, 10)),
       month: Number(date.slice(5, 7)),
@@ -66,8 +70,12 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
       income: !isExpense,
     };
 
-    dispatch(updateTransaction({ id: transactionToUpdate._id, updatedData }));
-    onClose();
+    dispatch(
+      updateTransaction({ id: transactionToUpdate._id, updatedData })
+    ).then(() => {
+      onClose();
+      setFunctionButtonName(t("save"));
+    });
   };
   return (
     <>
@@ -87,7 +95,7 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
       <ModalWindow
         modalHeader={t("editTr")}
         modalFunction={editTransaction}
-        modalFunctionName={t("save")}
+        modalFunctionName={functionButtonName}
         modalCancelName={t("cancel")}
         isOpen={isOpen}
         onClose={onClose}
@@ -102,15 +110,11 @@ export const ModalEditTransaction = ({ transactionToUpdate }) => {
           {isExpense && (
             <ModalSelectCategory
               category={category}
-              setCategory={handleChange.category}
+              setCategory={setCategory}
               placeholder={t("select a category")}
-            >
-              {categories.map((item) => (
-                <option value={item.category} key={item.id}>
-                  {t(item.category)}
-                </option>
-              ))}
-            </ModalSelectCategory>
+              categories={categories}
+              t={t}
+            />
           )}
           <ModalAmountDateBox>
             <Box>
