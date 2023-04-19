@@ -86,7 +86,9 @@ export const TableMobile = () => {
               <DataRow>
                 <Header value={t("sum")} />
                 <TransactionDataSum
-                  value={`${item.amount}.00`}
+                  value={Number(item.amount.toFixed(2))
+                    .toLocaleString()
+                    .replaceAll(",", " ")}
                   income={item.income}
                 />
               </DataRow>
