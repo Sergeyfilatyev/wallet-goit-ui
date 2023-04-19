@@ -64,7 +64,7 @@ export const ListItemCategory = ({ statByCategory }) => {
                 color="#000000"
                 paddingRight="20px"
               >
-                {Number(value.toFixed(2)).toLocaleString().replaceAll(",", " ")}
+                {value}
               </Text>
               <Box
                 position="absolute"
@@ -103,9 +103,7 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
           color="#FF6596"
           paddingRight="20px"
         >
-          {Number(totalExpense.toFixed(2))
-            .toLocaleString()
-            .replaceAll(",", " ")}
+          {totalExpense}
         </Text>
       </Box>
       <Box display="flex" justifyContent="space-between" marginTop="15px">
@@ -125,7 +123,7 @@ export const CalculateNetIncome = ({ totalIncome, totalExpense }) => {
           color="#24CCA7"
           paddingRight="20px"
         >
-          {Number(totalIncome.toFixed(2)).toLocaleString().replaceAll(",", " ")}
+          {totalIncome}
         </Text>
       </Box>
     </Box>
@@ -301,10 +299,7 @@ export const DiagramRenderer = ({
               textAlign="center"
               color="#000000"
             >
-              ₴{" "}
-              {Number(totalExpense.toFixed(2))
-                .toLocaleString()
-                .replaceAll(",", " ")}
+              ₴ {totalExpense}
             </Text>
             <Doughnut data={chartData} options={options} />
           </Box>

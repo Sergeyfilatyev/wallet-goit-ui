@@ -51,7 +51,7 @@ export const BalanceBoxNumber = ({ value }) => {
       color={valueColor}
       as="p"
     >
-      ₴ {Number(value.toFixed(2)).toLocaleString().replaceAll(",", " ")}
+      ₴ {value.toLocaleString().replaceAll(",", " ")}
     </Box>
   );
 };
