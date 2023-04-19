@@ -43,8 +43,11 @@ export const Table = () => {
     setItemOffset(newOffset);
   };
   const goToPreviousPage = () => {
-    setItemOffset(itemOffset - 10);
+    if (itemOffset === 10) {
+      setItemOffset(itemOffset - 10);
+    }
   };
+
   const transactionsPaginated = transactions
     .slice()
     .sort(
